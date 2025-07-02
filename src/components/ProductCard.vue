@@ -36,7 +36,7 @@
 
           <!-- Footer -->
           <div class="mt-4 flex justify-between text-xs text-gray-500">
-              <div class="flex items-center bg-gray-300 rounded-2xl px-1.5 space-x-2">
+              <div class="flex items-center bg-gray-300 rounded-xl">
                 <p>Price incl. VAT</p>
               <span class="bg-green-100 text-green-700 px-2 rounded-full">Pro Price</span>
               </div>

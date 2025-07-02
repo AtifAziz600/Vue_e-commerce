@@ -27,7 +27,7 @@
             <img
               src="../assets/img/bgAzNiK7sVcCvUPltURoK845dgqKZTh4vGAujK4p.jpeg"
               alt="Kitchen Essentials"
-              class="absolute right-0 top-1/2 -translate-y-1/2 h-[450px] md:h-[550px] lg:h-[650px] object-contain"
+              class="absolute right-0 top-1/2 -translate-y-1/2 h-[450px] md:h-[550px] lg:h-[650px] object-fit cover"
               style="width: auto; max-width: none; filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));"
               aria-hidden="true"
             />
@@ -49,7 +49,7 @@
             <img
               src="../assets/img/ECOM.jpg"
               alt="Gaming PC"
-              class="absolute right-0 top-1/2 -translate-y-1/2 h-[450px] md:h-[550px] lg:h-[650px] object-contain"
+              class="absolute right-0 top-1/2 -translate-y-1/2 h-[450px] md:h-full lg:h-[650px] object-fit cover"
               style="width: auto; max-width: none; filter: drop-shadow(0 0 10px rgba(0,0,0,0.3));"
               aria-hidden="true"
             />
