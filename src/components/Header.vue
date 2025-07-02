@@ -75,14 +75,14 @@
               </button>
             </div>
             <!--Accordion-->
-            <div class="py-2 px-3 rounded hover:bg-gray-100 transition duration-200">
+            <!-- <div class="py-2 px-3 rounded hover:bg-gray-100 transition duration-200">
               <select v-model="isDropDownOpen" @change="isDropDownOpen = !isDropDownOpen" class="bg-gray-100 text-black font-bold text-sm md:px-1 focus:outline-none">
                 <option>Categories</option>
                 <option>Electronics</option>
                 <option>Fashion</option>
                 <option>Books</option>
               </select>
-              </div>
+              </div> -->
             <!-- <div class="py-2 px-3 rounded hover:bg-gray-100 transition duration-200">
               
               <select class="bg-gray-100 text-black font-bold text-sm md:px-1 focus:outline-none">

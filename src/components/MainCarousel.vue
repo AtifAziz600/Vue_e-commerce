@@ -12,7 +12,7 @@
       :modules="modules"
       class="amazon-style-swiper"
     >
-      <swiper-slide class="relative bg-purple-600 flex items-center justify-center p-8 md:p-16">
+      <swiper-slide class="relative flex items-center justify-center p-8 md:p-16">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between z-10">
           <div class="text-white text-left md:w-1/2 lg:w-2/5 xl:w-1/3 flex flex-col gap-2 md:gap-4 md:ml-10 z-50">
            <h2 class="text-white text-4xl md:text-6xl font-bold tracking-tight drop-shadow bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">
@@ -35,7 +35,7 @@
         </div>
       </swiper-slide>
 
-      <swiper-slide class="relative bg-teal-600 flex items-center justify-center p-6 md:p-12">
+      <swiper-slide class="relative flex items-center justify-center p-6 md:p-12">
         <div class="container mx-auto flex flex-col md:flex-row items-center justify-between z-10">
           <div class="text-white text-left md:w-1/2 lg:w-2/5 xl:w-1/3 flex flex-col gap-2 md:gap-4 md:ml-10 z-50">
             <h2 class="text-white text-4xl md:text-6xl font-bold tracking-tight drop-shadow bg-clip-text bg-gradient-to-r from-yellow-400 to-red-500">
