@@ -151,7 +151,7 @@ import Icon from '@/components/Icon.vue';
 const isSidebarOpen = ref(false);
 const isDropDownOpen = ref(false);
 const NavItems = ref([
-  { name: 'Best seller', link: '#' },
+  { name: 'Best seller', link: '/best-seller' },
   { name: 'New Releases', link: '/new-release' },
   { name: 'Books', link: '/books' },
   { name: 'Computers', link: '/computer' },
