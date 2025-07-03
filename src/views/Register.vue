@@ -1,79 +1,52 @@
 <template>
-    <div>
-      <div class="w-full h-screen flex justify-center items-center bg-white/30">
-        <div class="w-full max-w-xs bg-white rounded-lg border-2 border-gray-200">
-          <h2 class="text-center text-primary font-bold text-2xl py-10">Registration</h2>
-          <small v-if="error?.response?.data?.message" class="text-red-500">{{ error?.response?.data?.message }}</small>
-
-          <form  @submit.prevent="handelRegistration" class="px-5">
-            <div class="text-primary">
-              <label for="name" class="block pb-1" >Name</label>
-              <input type="text" v-model="regData.name" id="name" class="block w-full rounded-md border-0 py-2 text-primary shadow-sm ring-1 ring-inset focus:outline-none ring-primary placeholder:text-gray-400 px-3 mb-2" placeholder="Your Name">
-            </div>
-            <div class="text-primary">
-              <label for="email" class="block pb-1" >Email</label>
-              <input type="email" v-model="regData.email" id="email" class="block w-full rounded-md border-0 py-2 text-primary shadow-sm ring-1 ring-inset focus:outline-none ring-primary placeholder:text-gray-400 px-3 mb-2" placeholder="Your Email">
-            </div>
-            <div class="text-primary">
-              <label for="number" class="block pb-1" >Phone Number</label>
-              <input type="number" name="number"
-                     v-model="regData.phone"
-                     id="number" class="block w-full rounded-md border-0 py-2 text-primary shadow-sm ring-1 ring-inset focus:outline-none ring-primary placeholder:text-gray-400 px-3 mb-2" placeholder="Your Phone Number">
-            </div>
-            <div class="text-primary">
-              <label for="password" class="block pb-1">Password</label>
-              <input type="password" v-model="regData.password"  id="password" class="block w-full rounded-md border-0 py-2 text-primary shadow-sm ring-1  ring-inset focus:outline-none ring-primary placeholder:text-gray-400 px-3 mb-2" placeholder="Your Password">
-            </div>
-  
-            <div class="text-center py-5">
-              <button class="w-full py-2 bg-orange-400 text-white flex items-center justify-center font-bold text-center rounded-lg my-2"
-                      :disabled="loading">
-                <svg v-if="loading" aria-hidden="true" class="w-4 h-4 text-white animate-spin dark:text-gray-600 fill-black" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-                  <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-                </svg>
-                <span v-else>Register</span>
-              </button>
-
-            </div>
-            <p class="font-normal text-sm p-3 text-center">Already Have an Account?
-              <RouterLink to="/login" class="flex items-center justify-center hover:font-semibold hover:text-primary ">Login
-              </RouterLink>
-            </p>
-          </form>
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-100 to-blue-300">
+    <div class="backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl shadow-2xl p-8 w-full max-w-md">
+      <div class="flex flex-col items-center">
+        <form class="flex flex-col gap-6 w-full">
+          <h1 class="text-3xl font-semibold text-gray-800 mb-2 text-center tracking-tight">Register Here</h1>
+          <div>
+            <label class="block text-sm font-medium text-gray-800 mb-1" for="email">First Name</label>
+            <input
+              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+               type="name" name="name" placeholder="Enter Here" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800 mb-1" for="email">Last Name</label>
+            <input
+              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+               type="name" name="name" placeholder="Enter Here" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800 mb-1" for="email">Email</label>
+            <input
+              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+              i type="email" name="email" placeholder="youremail@gmail.com" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800 mb-1" for="password">Password</label>
+            <input
+              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+               type="password" name="password" placeholder="password" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-800 mb-1" for="password">Confirm Password</label>
+            <input
+              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
+               type="password" name="password" placeholder="confirm password" />
+          </div>
+          <button type="submit"
+            class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-2 rounded-lg shadow transition">
+            Register
+          </button>
+          
+        </form>
+        <div class="mt-8 text-center text-gray-600 dark:text-gray-400 text-sm">
+          <span>If you have an account?</span>
+          <RouterLink to="/login" class="text-blue-500 underline hover:text-blue-600 ml-1">Login</RouterLink>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-    import {ref} from "vue";
-    import useAxios from "@/composables/useAxios.js";
-    import {useRoute, useRouter} from "vue-router";
-
-    const {sendRequest, loading, error} = useAxios();
-    const router = useRouter();
-    const regData = ref({
-      name:null,
-      email:null,
-      phone:null,
-      password:null
-    })
-
-
-    const handelRegistration = async () => {
-      const data =await sendRequest({
-        url:'/frontend/register',
-        method:"POST",
-        data:regData.value
-      })
-      if(data){
-        $toast.success('Registration Successfully Done...')
-        await router.push({name: "login"})
-      }
-    }
-  </script>
-  
-  <style  scoped>
-  
-  </style>
+  </div>
+</template>
+<script>
+</script>
