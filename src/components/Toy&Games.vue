@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <div class="pt-20 md:pt-10 flex justify-between items-center px-4 md:px-0 bg-transparent border-b-8">
+        <div class="pt-8 md:pt-10 flex justify-between items-center px-4 md:px-0 bg-transparent border-b-8">
     <div class="text-gray-700 text-sm md:text-base">
       <p class="text-start px-6">1-24 over 900 results</p>
     </div>
