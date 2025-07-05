@@ -81,7 +81,7 @@ import {RouterLink} from "vue-router";
           :to="`/product?category=${child.slug}`"
           class="flex flex-col items-center group"
         >
-          <div class="w-full aspect-square rounded-2xl bg-gray-50 overflow-hidden border border-gray-200 shadow-sm">
+          <div class="w-full bg-gray-50 overflow-hidden border border-gray-200 shadow-sm">
             <img
               :src="child.photo"
               :alt="child.name"
@@ -122,7 +122,7 @@ import {RouterLink} from "vue-router";
           class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
         <div
-          class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm text-gray-800 text-sm px-3 py-1 rounded-lg shadow"
+          class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm text-gray-800 text-sm px-3 py-1 shadow"
         >
           {{ category.name }}
         </div>

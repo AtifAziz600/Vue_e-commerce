@@ -1,278 +1,243 @@
 <template>
-    <section
-        class=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
-        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
-            <div class="grid grid-cols-12">
-                <div
-                    class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
-                    <div class="flex items-center justify-between pb-8 border-b border-gray-300">
-                        <h2 class="font-manrope font-bold text-3xl leading-10 text-black">Shopping Cart</h2>
-                        <h2 class="font-manrope font-bold text-xl leading-8 text-gray-600">3 Items</h2>
+    <AppLayout>
+    <section class="relative z-10 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen py-12">
+        <div class="w-full max-w-7xl px-2 sm:px-4 md:px-8 mx-auto relative z-10">
+            <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-8">
+                <!-- Cart Items -->
+                <div class="col-span-1 xl:col-span-8 pt-8 pb-6 md:py-16 w-full max-xl:max-w-8xl max-xl:mx-auto sm:px-4 px-2">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-gray-200 gap-2">
+                        <h2 class="font-semibold text-2xl sm:text-3xl text-gray-900 tracking-tight">Shopping Cart</h2>
+                        <h2 class="font-medium text-lg sm:text-xl text-gray-500">{{ cartItems.length }} Items</h2>
                     </div>
-                    <div class="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
+                    <div class="hidden md:grid grid-cols-12 mt-8 pb-6 border-b border-gray-100">
                         <div class="col-span-12 md:col-span-7">
-                            <p class="font-normal text-lg leading-8 text-gray-400">Product Details</p>
+                            <p class="font-normal text-lg text-gray-600">Product Details</p>
                         </div>
                         <div class="col-span-12 md:col-span-5">
                             <div class="grid grid-cols-5">
                                 <div class="col-span-3">
-                                    <p class="font-normal text-lg leading-8 text-gray-400 text-center">Quantity</p>
+                                    <p class="font-normal text-lg text-gray-600 text-center">Quantity</p>
                                 </div>
                                 <div class="col-span-2">
-                                    <p class="font-normal text-lg leading-8 text-gray-400 text-center">Total</p>
+                                    <p class="font-normal text-lg text-gray-600 text-center">Total</p>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
-                    <div v-for="item in cartItems" :key="item.id"
-                        class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group">
-                        <div class="w-full md:max-w-[126px]">
-                            <img :src="item.image" :alt="item.name"
-                                class="mx-auto rounded-xl object-cover">
+                    <div
+                        v-for="item in cartItems"
+                        :key="item.id"
+                        class="flex flex-col sm:flex-row items-center gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
+                    >
+                        <div class="w-full sm:w-[90px] flex-shrink-0 flex justify-center">
+                            <img
+                                :src="item.image"
+                                :alt="item.name"
+                                class="w-20 h-20 sm:w-[90px] sm:h-[90px] rounded-xl object-cover border border-gray-200 shadow"
+                            />
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-4 w-full">
-                            <div class="md:col-span-2">
-                                <div class="flex flex-col max-[500px]:items-center gap-3">
-                                    <h6 class="font-semibold text-base leading-7 text-black">{{ item.name }}</h6>
-                                    <h6 class="font-normal text-base leading-7 text-gray-500">{{ item.category }}</h6>
-                                    <h6 class="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-indigo-600">${{ item.price.toFixed(2) }}</h6>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 w-full gap-2">
+                            <div class="sm:col-span-2 flex flex-col items-center sm:items-start gap-1">
+                                <h6 class="font-semibold text-base text-gray-900 text-center sm:text-left">{{ item.title }}</h6>
+                                <h6 class="font-normal text-sm text-gray-500 text-center sm:text-left">{{ item.tag }}</h6>
+                                <h6 class="font-medium text-base text-gray-600 group-hover:text-indigo-600 transition-all">${{ item.price.toFixed(2) }}</h6>
+                                
+                            </div>
+                            <div class="flex items-center justify-center h-full mt-2 sm:mt-0">
+                                <div class="flex items-center h-9 bg-gray-100 rounded-lg shadow-inner">
+                                    <button
+                                        @click="decrement(item)"
+                                        class="rounded-l-lg px-3 py-1 border-r border-gray-200 bg-white hover:bg-gray-50 transition"
+                                    >
+                                        <Icon icon="mdi:minus" width="18" height="18"/>
+                                    </button>
+                                    <input
+                                        type="text"
+                                        class="bg-transparent w-10 text-center font-semibold text-base outline-none"
+                                        :value="item.quantity"
+                                        readonly
+                                    />
+                                    <button
+                                        @click="increment(item)"
+                                        class="rounded-r-lg px-3 py-1 border-l border-gray-200 bg-white hover:bg-gray-50 transition"
+                                    >
+                                        <Icon icon="mdi:plus" width="18" height="18"/>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="flex items-center max-[500px]:justify-center h-full max-md:mt-3">
-                                <div class="flex items-center h-full">
-                                    <button
-                                        class="group rounded-l-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
-                                        <Icon class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                            icon="mdi:minus" width="22" height="22" />
-                                    </button>
-                                    <input type="text"
-                                        class="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-gray-900 py-[15px]  text-center bg-transparent"
-                                        :placeholder="item.quantity" :value="item.quantity" readonly>
-                                    <button
-                                        class="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
-                                        <Icon class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
-                                            icon="mdi:plus" width="22" height="22" />
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="flex items-center max-[500px]:justify-center md:justify-end max-md:mt-3 h-full">
-                                <p class="font-bold text-lg leading-8 text-gray-600 text-center transition-all duration-300 group-hover:text-indigo-600">${{ item.total.toFixed(2) }}</p>
+                            <div class="flex items-center justify-center sm:justify-center mt-2 sm:mt-0 h-full">
+                                <p class="font-bold text-base sm:text-lg text-gray-700 group-hover:text-indigo-600 transition">${{ item.total.toFixed(2) }}</p>
                             </div>
                         </div>
                     </div>
-                    
-
-
-                    <div class="flex items-center justify-end mt-8">
+                    <RouterLink to="/add-coupon-code" class="flex flex-col sm:flex-row items-center justify-end mt-6">
                         <button
-                            class="flex items-center px-5 py-3 rounded-full gap-2 border-none outline-0 group font-semibold text-lg leading-8 text-indigo-600 shadow-sm shadow-transparent transition-all duration-500 hover:text-indigo-700">
+                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-indigo-600 bg-white shadow hover:bg-indigo-50 transition"
+                        >
                             Add Coupon Code
-                            <svg class="transition-all duration-500 group-hover:translate-x-2" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                                fill="none">
-                                <path
-                                    d="M12.7757 5.5L18.3319 11.0562M18.3319 11.0562L12.7757 16.6125M18.3319 11.0562L1.83203 11.0562"
-                                    stroke="#4F46E5" stroke-width="1.6" stroke-linecap="round" />
-                            </svg>
+                            <Icon icon="mdi:arrow-right" class="w-6 h-6"/>
                         </button>
-                    </div>
+                    </RouterLink>
                 </div>
-                <div
-                    class=" col-span-12 xl:col-span-4 bg-gray-50 w-full max-xl:px-6 max-w-3xl xl:max-w-lg mx-auto lg:pl-8 py-24">
-                    <h2 class="font-manrope font-bold text-3xl leading-10 text-black pb-8 border-b border-gray-300">
-                        Order Summary</h2>
-                    <div class="mt-8">
-                        <div class="flex items-center justify-between pb-6">
-                            <p class="font-normal text-lg leading-8 text-black">3 Items</p>
-                            <p class="font-medium text-lg leading-8 text-black">$480.00</p>
+                <!-- Order Summary -->
+                <div class="col-span-1 xl:col-span-4 bg-white/90 rounded-2xl shadow-lg mx-auto py-8 px-3 sm:px-6 max-w-full sm:max-w-md w-full">
+                    <h2 class="font-semibold text-2xl sm:text-3xl text-gray-900 pb-6 border-b border-gray-200">Order Summary</h2>
+                    <div class="mt-6">
+                        <div class="flex items-center justify-between pb-4">
+                            <p class="font-normal text-base sm:text-lg text-gray-700">{{ cartItems.length }} Items</p>
+                            <p class="font-medium text-base sm:text-lg text-gray-900">${{ subtotal.toFixed(2) }}</p>
                         </div>
-                        <form>
-                            <label class="flex  items-center mb-1.5 text-gray-600 text-sm font-medium">Shipping
-                            </label>
-                            <div class="flex pb-6">
+                        <form @submit.prevent>
+                            <!-- Shipping -->
+                            <label class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium">Shipping</label>
+                            <div class="flex pb-4">
                                 <div class="relative w-full">
-                                    <div class=" absolute left-0 top-0 py-3 px-4">
-                                        <span class="font-normal text-base text-gray-300">Second Delivery</span>
-                                    </div>
-                                    <input type="text"
-                                        class="block w-full h-11 pr-10 pl-36 min-[500px]:pl-52 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-gray-400"
-                                        placeholder="$5.00">
-                                    <button id="dropdown-button" data-target="dropdown-delivery"
-                                        class="dropdown-toggle flex-shrink-0 z-10 inline-flex items-center py-4 px-4 text-base font-medium text-center text-gray-900 bg-transparent  absolute right-0 top-0 pl-2 "
-                                        type="button">
-                                        <svg class="ml-2 my-auto" width="12" height="7" viewBox="0 0 12 7"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M1 1.5L4.58578 5.08578C5.25245 5.75245 5.58579 6.08579 6 6.08579C6.41421 6.08579 6.74755 5.75245 7.41421 5.08579L11 1.5"
-                                                stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round"></path>
-                                        </svg>
-                                    </button>
-                                    <div id="dropdown-delivery" aria-labelledby="dropdown-delivery"
-                                        class="z-20 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 absolute top-10 right-0">
-                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="dropdown-button">
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Images</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Finance</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <select
+                                        v-model="selectedShipping"
+                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-indigo-400 shadow"
+                                    >
+                                        <option value="">Select Delivery</option>
+                                        <option value="standard">Standard Delivery - $5.00</option>
+                                        <option value="express">Express Delivery - $10.00</option>
+                                    </select>
                                 </div>
                             </div>
-                            <label class="flex items-center mb-1.5 text-gray-400 text-sm font-medium">Promo Code
-                            </label>
-                            <div class="flex pb-4 w-full">
-                                <div class="relative w-full ">
-                                    <div class=" absolute left-0 top-0 py-2.5 px-4 text-gray-300">
-
-                                    </div>
-                                    <input type="text"
-                                        class="block w-full h-11 pr-11 pl-5 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-gray-400 "
-                                        placeholder="xxxx xxxx xxxx">
-                                    <button id="dropdown-button" data-target="dropdown"
-                                        class="dropdown-toggle flex-shrink-0 z-10 inline-flex items-center py-4 px-4 text-base font-medium text-center text-gray-900 bg-transparent  absolute right-0 top-0 pl-2 "
-                                        type="button"><svg class="ml-2 my-auto" width="12" height="7" viewBox="0 0 12 7"
-                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M1 1.5L4.58578 5.08578C5.25245 5.75245 5.58579 6.08579 6 6.08579C6.41421 6.08579 6.74755 5.75245 7.41421 5.08579L11 1.5"
-                                                stroke="#6B7280" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round"></path>
-                                        </svg>
-                                    </button>
-                                    <div id="dropdown"
-                                        class="absolute top-10 right-0 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="dropdown-button">
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Images</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Finance</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                             <label class="flex items-center mb-1.5 text-gray-400 text-sm font-medium">Payment Method
-                            </label>
-                            <div class="flex pb-4 w-full">
-                                <div class="relative w-full ">
-                                    <div class=" absolute left-0 top-0 py-2.5 px-4 text-gray-300">
-
-                                    </div>
-                                    <div class="relative w-full">
-  <!-- Text input -->
- 
-  <!-- Select dropdown overlay -->
-  <select
-    v-model="selectedMethod"
-    class="absolute top-0 right-0 h-full w-32 px-3 text-base bg-white border-l border-gray-300 rounded-r-lg focus:outline-none"
-  >
-    <option disabled value="">Choose</option>
-    <option value="Bkash">Bkash</option>
-    <option value="Nagad">Nagad</option>
-    <option value="Cash on Hand">Cash on Delivery</option>
-    <option value="Card">Card</option>
-  </select>
-</div>
-
-                                    <div id="dropdown"
-                                        class="absolute top-10 right-0 z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="dropdown-button">
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shopping</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Images</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">News</a>
-                                            </li>
-                                            <li>
-                                                <a href="#"
-                                                    class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Finance</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center border-b border-gray-200">
+                            <!-- Promo Code -->
+                            <label class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium">Promo Code</label>
+                            <div class="flex pb-3 w-full gap-2">
+                                <input
+                                    type="text"
+                                    v-model="promoCode"
+                                    class="block w-full h-10 px-3 text-base font-normal text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-indigo-400 shadow"
+                                    placeholder="xxxx xxxx xxxx"
+                                />
                                 <button
-                                    class="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80">Apply</button>
+                                    type="button"
+                                    @click="applyPromo"
+                                    class="px-3 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition text-sm"
+                                >Apply</button>
                             </div>
-                            <div class="flex items-center justify-between py-8">
-                                <p class="font-medium text-xl leading-8 text-black">3 Items</p>
-                                <p class="font-semibold text-xl leading-8 text-indigo-600">$485.00</p>
+                            <!-- Payment Method -->
+                            <label class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium">Payment Method</label>
+                            <div class="flex pb-3 w-full">
+                                <div class="relative w-full">
+                                    <select
+                                        v-model="selectedMethod"
+                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-indigo-400 shadow"
+                                    >
+                                        <option disabled value="">Choose</option>
+                                        <option value="Bkash">Bkash</option>
+                                        <option value="Nagad">Nagad</option>
+                                        <option value="Cash on Hand">Cash on Delivery</option>
+                                        <option value="Card">Card</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button
-                                class="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">Checkout</button>
+                            <div class="flex items-center border-b border-gray-200 pb-6">
+                                <button
+                                    @click="methodPay"
+                                    class="rounded-lg w-full bg-black py-2 px-3 text-white text-sm font-semibold text-center transition hover:bg-gray-900"
+                                    type="button"
+                                >Apply</button>
+                            </div>
+                            <div class="flex items-center justify-between py-6">
+                                <p class="font-medium text-lg sm:text-xl text-gray-900">{{ cartItems.length }} Items</p>
+                                <p class="font-semibold text-lg sm:text-xl text-indigo-600">${{ total.toFixed(2) }}</p>
+                            </div>
+                            <RouterLink to="/order-confirm">
+                                <button
+                                @click="checkOut"
+                                    class="w-full text-center bg-indigo-600 rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow hover:bg-indigo-700 transition"
+                                    type="button"
+                                >Checkout</button>
+                            </RouterLink>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </section>                                     
+    </section>
+    </AppLayout>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-const cartItems = ref([
-    {
-        id: 1,
-        name: 'Rose Petals Divine',
-        category: 'Perfumes',
-        image: 'https://pagedone.io/asset/uploads/1701162850.png',
-        price: 120.00,
-        quantity: 1,
-        total: 120.00
-    },
-    {
-        id: 2,
-        name: 'Ocean Breeze',
-        category: 'Perfumes',
-        image: 'https://pagedone.io/asset/uploads/1701162850.png',
-        price: 180.00,
-        quantity: 2,
-        total: 360.00
-    },
-    {
-        id: 3,
-        name: 'Citrus Fresh',
-        category: 'Perfumes',
-        image: 'https://pagedone.io/asset/uploads/1701162850.png',
-        price: 80.00,
-        quantity: 1,
-        total: 80.00
-    }
-]);
+import { ref, computed } from 'vue';
+import { Icon } from '@iconify/vue';
+import { useToast } from 'vue-toastification';
+import {useCartStore} from '../stores/useCartStore'
+// import Watch from '../assets/img/download (5).jfif';
+// import Fashion from '../assets/img/download (4).jfif';
+// import Laptop from '../assets/img/images.jfif';
+// import Phone from '../assets/img/download (1).jfif';
+const toast = useToast()
+const cart = useCartStore()
+const cartItems = computed(() => cart.cartItems)
 
 const selectedMethod = ref('');
+const selectedShipping = ref('');
+const promoCode = ref('');
+
+const shippingCost = computed(() => (selectedShipping.value === 'express' ? 10 : 5));
+const subtotal = computed(() => cart.subtotal)
+const total = computed(() => cart.subtotal + shippingCost.value)
+
+function increment(item) {
+    item.quantity++;
+    item.total = item.price * item.quantity;
+}
+function decrement(item) {
+    if (item.quantity > 1) {
+        item.quantity--;
+        item.total = item.price * item.quantity;
+    } else {
+        cartItems.removeCart(item);
+        toast.error(`Removed "${item.title}" from cart`);
+    }
+}
+
+
+function applyPromo() {
+  if (promoCode.value) {
+    toast.success('Promo code applied: ' + promoCode.value)
+  } else {
+    toast.error('Please enter a promo code')
+  }
+};
+
+function methodPay() {
+    if (selectedShipping.value && selectedMethod.value) {
+        toast.success('Shipping and payment method applied successfully!')
+    } else {
+        toast.error('Please fill all required fields: shipping and payment method.')
+    }
+    }
+    function checkOut() {
+    if (selectedShipping.value && selectedMethod.value && promoCode.value) {
+        toast.success('Checkout successful!')
+    } else {
+        toast.error('Please fill all required fields: shipping, payment method and promo code.')
+    }
+}
+
 </script>
 
+<style scoped>
+input,
+select,
+button {
+    font-family: 'San Francisco', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    outline: none;
+}
+@media (max-width: 640px) {
+    .max-w-8xl, .max-w-md {
+        max-width: 100% !important;
+    }
+    .rounded-2xl {
+        border-radius: 1rem !important;
+    }
+    .shadow-lg, .shadow, .shadow-sm {
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06) !important;
+    }
+}
+</style>

@@ -80,6 +80,31 @@ const router = createRouter({
       path: "/best-seller",
       name: "best-seller",
       component: () => import('../components/SellerBestItems.vue')
+    },
+    {
+      path: '/wishlist',
+      name: 'wishlist',
+      component: () => import('../components/Favorite.vue')
+    },
+    {
+      path: '/order-confirm',
+      name: 'order-confirm',
+      component: () => import('../components/OrderConfirmPage.vue')
+    },
+    {
+      path: "/all-products",
+      name: "all-products",
+      component: () => import('../components/AllProducts.vue')
+    },
+    {
+      path: "/add-coupon-code",
+      name: "add-coupon-code",
+      component: () => import('../components/AddCoupon.vue')
+    }, 
+    {
+      path: '/preview-product-page',
+      name: 'preview-product-page',
+      component: () => import('../components/ProductPreviewPage.vue')
     }
   ]
 })

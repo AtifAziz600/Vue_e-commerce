@@ -42,7 +42,7 @@
               </div>
             
             <div class="flex items-center space-x-3">
-              <button class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
+              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -52,7 +52,6 @@
 </template>
 
 <script setup>
-import { Icon } from '@iconify/vue';
 import Watch from '../assets/img/download (5).jfif';
 import Fashion from '../assets/img/download (4).jfif';
 import Laptop from '../assets/img/images.jfif';
@@ -64,44 +63,44 @@ const products = [
     Top: 'Electronics',
     products: [
       {
-        id: 1,
+         id: 1,
         title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
+        subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
         image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
+        oldPrice: 48.54,
+        newPrice: 38.89,
         discount: 19,
         tag: "watch",
       },
       {
         id: 2,
         title: "Fashion",
-        subtitle: "from Fahsion",
+        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
+        oldPrice: 39.96,
+        newPrice: 22.91,
         discount: 42,
-        tag: "fahsion",
+        tag: "fashion",
       },
       {
-        id: 3,
+       id: 3,
         title: "Laptop",
-        subtitle: "Laptop for high performance",
+        subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
+        oldPrice: 3.27,
+        newPrice: 1.90,
         discount: 41,
-        tag: "Laptop",
+        tag: "laptop",
       },
       {
         id: 4,
         title: "Phone",
-        subtitle: "Phone for daily use",
+        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
+        oldPrice: 20.21,
+        newPrice: 17.88,
         discount: 32,
-        tag: "Phone",
+        tag: "phone",
       },
     ],
   },
@@ -110,48 +109,65 @@ const products = [
     Top: 'Organic',
     products: [
       {
-        id: 1,
+     id: 1,
         title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
+        subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
         image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
+        oldPrice: 48.54,
+        newPrice: 38.89,
         discount: 19,
         tag: "watch",
       },
       {
-        id: 2,
+         id: 2,
         title: "Fashion",
-        subtitle: "from Fahsion",
+        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
+        oldPrice: 39.96,
+        newPrice: 22.91,
         discount: 42,
-        tag: "fahsion",
+        tag: "fashion",
       },
       {
         id: 3,
         title: "Laptop",
-        subtitle: "Laptop for high performance",
+        subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
+        oldPrice: 3.27,
+        newPrice: 1.90,
         discount: 41,
-        tag: "Laptop",
+        tag: "laptop",
       },
       {
         id: 4,
         title: "Phone",
-        subtitle: "Phone for daily use",
+        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
+        oldPrice: 20.21,
+        newPrice: 17.88,
         discount: 32,
-        tag: "Phone",
+        tag: "phone",
       },
     ]
   }
 ];
+import { useCartStore } from '../stores/useCartStore'
+const cart = useCartStore()
+import { useToast } from 'vue-toastification';
+const toast = useToast();
+
+function handleAddToCart(item) {
+  cart.addToCart({
+    id: item.id,
+    name: item.title,
+    image: item.image,
+    price: item.newPrice,
+    quantity: 1,
+    total: item.newPrice,
+    category: item.tag
+  })
+  toast.success(`${item.title} added to cart`)
+}
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-                                                    <section class="py-24 relative">
+    <section class="py-24 relative">
         <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
             <h2 class="font-manrope font-bold text-4xl leading-10 text-black text-center">
                 Payment Successful

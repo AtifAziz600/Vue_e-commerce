@@ -10,10 +10,8 @@ import loadingImg from "@/assets/img/loding.svg"
 
 import App from './App.vue'
 import router from './router'
-import { createToaster } from "@meforma/vue-toaster";
-window.$toast = createToaster({
-    position: 'bottom'
-});
+import Toast, { POSITION } from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 const app = createApp(App)
 app.use(createPinia())
     .use(router)
@@ -23,6 +21,17 @@ app.use(createPinia())
         loading: loadingImg,
         attempt: 1
     })
+    .use(Toast, {
+  position: POSITION.TOP_RIGHT,
+  timeout: 3000,
+  closeOnClick: true,
+  pauseOnFocusLoss: true,
+  pauseOnHover: true,
+  draggable: true,
+  showCloseButtonOnHover: false,
+  hideProgressBar: false,
+  icon: true,
+})
     .component('Icon', Icon)
     .component('AppLayout', AppLayout)
     .mount('#app')

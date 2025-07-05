@@ -38,17 +38,17 @@
             </svg>
             <span>Orders</span>
           </RouterLink>
-          <div class="flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded transition duration-200">
+          <RouterLink to="/wishlist" class="flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
             </svg>
             <span>Favorites</span>
-          </div>
+          </RouterLink>
           <RouterLink to="/cart-order" class="relative flex items-center gap-1 cursor-pointer hover:bg-gray-100 px-3 py-2 rounded transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" viewBox="0 0 20 20" fill="currentColor">
               <path d="M3 1a1 1 0 000 2h1.22l.305 1.222 1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
             </svg>
-            <RouterLink to="/cart-order" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">0</RouterLink>
+            <RouterLink to="/cart-order" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{{ cartCount }}</RouterLink>
             <span>Cart</span>
           </RouterLink>
           <RouterLink to="/login" class="cursor-pointer border px-3 py-2 rounded hover:bg-gray-100 transition duration-200">
@@ -65,7 +65,7 @@
       </div>
 
       <!-- Mobile Sidebar Navigation -->
-      <transition name="fade">
+      <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <div class="bg-white w-64 h-full shadow-lg p-6 flex flex-col">
             <div class="flex justify-between items-center mb-6">
@@ -146,6 +146,11 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Icon from '@/components/Icon.vue';
+import { useCartStore } from '@/stores/useCartStore';
+import { storeToRefs } from 'pinia';
+
+const cart = useCartStore();
+const { cartCount } = storeToRefs(cart);
 
 
 const isSidebarOpen = ref(false);

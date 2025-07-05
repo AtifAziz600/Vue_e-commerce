@@ -15,10 +15,7 @@
           class="rounded-3xl bg-white hover:bg-black hover:text-white transition-all duration-300 p-6 shadow-xl"
         >
           <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center rounded-full bg-gray-100">
-            <Icon :mdi="shield" class="w-6 h-6 text-indigo-600" />
-            <Icon :mdi="lightning-bolt" class="w-6 h-6 text-indigo-600" />
-            <Icon :mdi="clock" class="w-6 h-6 text-indigo-600" />
-            <Icon :mdi="credit-card" class="w-6 h-6 text-indigo-600" />
+            <Icon :icon="feature.icon" class="w-8 h-8 text-gray-600" />
           </div>
           <h3 class="text-lg font-semibold mb-2">{{ feature.title }}</h3>
           <p class="text-sm">{{ feature.description }}</p>
@@ -37,18 +34,22 @@ const features = ref([
   {
     title: 'Secure Payment',
     description: 'State-of-the-art encryption keeps your money safe.',
+    icon: 'mdi:shield-check'
   },
   {
     title: 'Fast Transactions',
     description: 'Lightning-fast speed ensures your payments go through instantly.',
+    icon: 'mdi:lightning-bolt'
   },
   {
     title: '24/7 Support',
     description: 'Our team is ready around the clock to help you.',
+    icon: 'mdi:clock-outline'
   },
   {
     title: 'Simple Interface',
     description: 'Designed to be beautiful, clean, and intuitive.',
+    icon: 'mdi:credit-card-outline'
   }
 ])
 </script>
