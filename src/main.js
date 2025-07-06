@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import AppLayout from '@/components/Layouts/AppLayout.vue';
 import Icon from "@/components/Icon.vue"
-
+import 'swiper/css';
+import 'swiper/css/navigation';
 import VueLazyload from "vue-lazyload";
 import errorImg from "@/assets/img/error.svg"
 import loadingImg from "@/assets/img/loding.svg"

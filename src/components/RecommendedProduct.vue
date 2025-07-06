@@ -11,18 +11,18 @@
     </div>
 
     <!-- Sections -->
-    <div v-for="section in products" :key="section.id" class="gap-12">
+    <div v-for="section in products" :key="section.id" class="gap-12 rounded-xl">
       <!-- Product Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-6">
         <div
           v-for="item in section.products"
           :key="item.title"
           class="bg-white shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col"
         >
           <!-- Image -->
-          <div class="bg-gray-100 h-48 flex items-center justify-center overflow-hidden">
+          <RouterLink to="/preview-product-page" class="bg-gray-100 h-48 flex items-center justify-center overflow-hidden">
             <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
-          </div>
+          </RouterLink>
           <!-- Info -->
           <div class="p-5 flex-1 flex flex-col">
             <h4 class="text-lg font-semibold text-gray-900 truncate">{{ item.title }}</h4>
@@ -73,16 +73,27 @@ const products = [
   {
     id: 1,
     products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-        image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-      },
+     {
+    id: 1,
+    title: "Watch",
+    category: "Watches / Luxury",
+    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
+    image: Watch,
+    oldPrice: 48.54,
+    newPrice: 38.89,
+    discount: 19,
+    tag: "watch",
+    reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'Stainless steel case',
+        '2-year warranty'
+    ],
+    sizes: ['Small', 'Medium', 'Large']
+},
       {
         id: 2,
         title: "Fashion",
@@ -92,6 +103,16 @@ const products = [
         newPrice: 22.91,
         discount: 42,
         tag: "fashion",
+         reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 3,
@@ -102,6 +123,16 @@ const products = [
         newPrice: 1.90,
         discount: 41,
         tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 4,
@@ -112,6 +143,16 @@ const products = [
         newPrice: 17.88,
         discount: 32,
         tag: "phone",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
     ],
   },
@@ -127,6 +168,16 @@ const products = [
         newPrice: 38.89,
         discount: 19,
         tag: "watch",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 2,
@@ -137,6 +188,16 @@ const products = [
         newPrice: 22.91,
         discount: 42,
         tag: "fashion",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 3,
@@ -147,6 +208,16 @@ const products = [
         newPrice: 1.90,
         discount: 41,
         tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 4,
@@ -157,6 +228,16 @@ const products = [
         newPrice: 17.88,
         discount: 32,
         tag: "phone",
+           reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
     ]
   }
@@ -167,7 +248,7 @@ const cart = useCartStore()
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
-    name: item.title,
+    title: item.title,
     image: item.image,
     price: item.newPrice,
     quantity: 1,

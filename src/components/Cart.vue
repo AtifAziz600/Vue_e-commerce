@@ -10,47 +10,56 @@
                         <h2 class="font-medium text-lg sm:text-xl text-gray-500">{{ cartItems.length }} Items</h2>
                     </div>
                     <div class="hidden md:grid grid-cols-12 mt-8 pb-6 border-b border-gray-100">
-                        <div class="col-span-12 md:col-span-7">
-                            <p class="font-normal text-lg text-gray-600">Product Details</p>
-                        </div>
-                        <div class="col-span-12 md:col-span-5">
-                            <div class="grid grid-cols-5">
-                                <div class="col-span-3">
-                                    <p class="font-normal text-lg text-gray-600 text-center">Quantity</p>
-                                </div>
-                                <div class="col-span-2">
-                                    <p class="font-normal text-lg text-gray-600 text-center">Total</p>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
+  <div class="col-span-12 md:col-span-7">
+    <p class="font-normal text-lg text-gray-600">Product Details</p>
+  </div>
+  <div class="col-span-12 md:col-span-5">
+    <div class="grid grid-cols-5">
+        <div class="col-span-2">
+          <p class="font-normal text-lg text-gray-600 text-center">Price</p>
+        </div>
+      <div class="col-span-2">
+        <p class="font-normal text-lg text-gray-600 text-center">Quantity</p>
+      </div>
+      <div class="col-span-1">
+        <p class="font-normal text-lg text-gray-600 text-center">Total</p>
+      </div>
+    </div>
+  </div>
+</div>
+
                     <div
                         v-for="item in cartItems"
                         :key="item.id"
-                        class="flex flex-col sm:flex-row items-center gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
+                        class="flex flex-col md:flex-row items-stretch gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
                     >
-                        <div class="w-full sm:w-[90px] flex-shrink-0 flex justify-center">
+                        <!-- Image -->
+                        <div class="flex-shrink-0 flex items-center justify-center md:w-28 w-full">
                             <img
                                 :src="item.image"
-                                :alt="item.name"
-                                class="w-20 h-20 sm:w-[90px] sm:h-[90px] rounded-xl object-cover border border-gray-200 shadow"
+                                :alt="item.title"
+                                class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border border-gray-200 shadow"
                             />
                         </div>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 w-full gap-2">
-                            <div class="sm:col-span-2 flex flex-col items-center sm:items-start gap-1">
-                                <h6 class="font-semibold text-base text-gray-900 text-center sm:text-left">{{ item.title }}</h6>
-                                <h6 class="font-normal text-sm text-gray-500 text-center sm:text-left">{{ item.tag }}</h6>
-                                <h6 class="font-medium text-base text-gray-600 group-hover:text-indigo-600 transition-all">${{ item.price.toFixed(2) }}</h6>
-                                
+                        <!-- Details -->
+                        <div class="flex flex-1 flex-col md:flex-row md:items-center w-full max-w-8xl gap-2">
+                            <div class="flex-1 flex flex-col justify-center md:items-start items-center text-center md:text-left">
+                                <!--why item.title is not showing-->
+                                <h6 class="font-semibold text-lg text-gray-900 truncate">{{ item.title }}</h6>
+                                <span class="text-sm text-gray-500 mt-1">{{ item.category }}</span>
                             </div>
-                            <div class="flex items-center justify-center h-full mt-2 sm:mt-0">
+                            <!-- Price -->
+                            <div class="flex items-center justify-center px-8 mt-2 md:mt-0">
+                                <h6 class="font-medium text-base text-gray-600 group-hover:text-indigo-600 transition-all">${{ item.price.toFixed(2) }}</h6>
+                                </div>
+                            <!-- Quantity Controls -->
+                            <div class="flex items-center justify-center md:justify-start mt-2 md:mt-0">
                                 <div class="flex items-center h-9 bg-gray-100 rounded-lg shadow-inner">
                                     <button
                                         @click="decrement(item)"
                                         class="rounded-l-lg px-3 py-1 border-r border-gray-200 bg-white hover:bg-gray-50 transition"
                                     >
-                                        <Icon icon="mdi:minus" width="18" height="18"/>
+                                        <Icon icon="mdi:minus" width="10" height="18"/>
                                     </button>
                                     <input
                                         type="text"
@@ -62,12 +71,13 @@
                                         @click="increment(item)"
                                         class="rounded-r-lg px-3 py-1 border-l border-gray-200 bg-white hover:bg-gray-50 transition"
                                     >
-                                        <Icon icon="mdi:plus" width="18" height="18"/>
+                                        <Icon icon="mdi:plus" width="10" height="18"/>
                                     </button>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center sm:justify-center mt-2 sm:mt-0 h-full">
-                                <p class="font-bold text-base sm:text-lg text-gray-700 group-hover:text-indigo-600 transition">${{ item.total.toFixed(2) }}</p>
+                            <!-- Total Price -->
+                            <div class="flex items-center justify-center md:justify-end mt-2 md:mt-0 min-w-[80px]">
+                                <p class="font-bold text-base md:text-lg text-gray-700 group-hover:text-indigo-600 transition">${{ item.total.toFixed(2) }}</p>
                             </div>
                         </div>
                     </div>
@@ -147,7 +157,7 @@
                             </div>
                             <RouterLink to="/order-confirm">
                                 <button
-                                @click="checkOut"
+                                @click="handleCheckout"
                                     class="w-full text-center bg-indigo-600 rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow hover:bg-indigo-700 transition"
                                     type="button"
                                 >Checkout</button>
@@ -165,13 +175,15 @@
 import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useToast } from 'vue-toastification';
-import {useCartStore} from '../stores/useCartStore'
+import {useCartStore} from '../stores/useCartStore';
+import { useRouter } from 'vue-router';
+import { useOrderStore} from '../stores/useStoreOrder';
 // import Watch from '../assets/img/download (5).jfif';
 // import Fashion from '../assets/img/download (4).jfif';
 // import Laptop from '../assets/img/images.jfif';
 // import Phone from '../assets/img/download (1).jfif';
 const toast = useToast()
-const cart = useCartStore()
+const cart = useCartStore();
 const cartItems = computed(() => cart.cartItems)
 
 const selectedMethod = ref('');
@@ -181,7 +193,7 @@ const promoCode = ref('');
 const shippingCost = computed(() => (selectedShipping.value === 'express' ? 10 : 5));
 const subtotal = computed(() => cart.subtotal)
 const total = computed(() => cart.subtotal + shippingCost.value)
-
+const order = useOrderStore();
 function increment(item) {
     item.quantity++;
     item.total = item.price * item.quantity;
@@ -195,7 +207,6 @@ function decrement(item) {
         toast.error(`Removed "${item.title}" from cart`);
     }
 }
-
 
 function applyPromo() {
   if (promoCode.value) {
@@ -212,13 +223,35 @@ function methodPay() {
         toast.error('Please fill all required fields: shipping and payment method.')
     }
     }
-    function checkOut() {
-    if (selectedShipping.value && selectedMethod.value && promoCode.value) {
-        toast.success('Checkout successful!')
-    } else {
-        toast.error('Please fill all required fields: shipping, payment method and promo code.')
-    }
+const router = useRouter();
+
+function handleCheckout() {
+  if (!selectedShipping.value || !selectedMethod.value || !promoCode.value) {
+    toast.error('Please fill all required fields: shipping, payment method and promo code.');
+    return;
+  }
+
+  toast.success('Checkout successful!');
+
+  order.setOrder({
+    customerName: 'John',
+    orderItems: cartItems.value.map(item => ({
+      id: item.id,
+      title: item.title,
+      qty: item.quantity,
+      image: item.image,
+      total: item.total
+    })),
+    paymentMethod: selectedMethod.value,
+    shippingMethod: selectedShipping.value,
+    promoCode: promoCode.value,
+    shipping: shippingCost.value,
+    subtotal: subtotal.value,
+  });
+
+  router.push({ name: 'order-confirm' });
 }
+
 
 </script>
 

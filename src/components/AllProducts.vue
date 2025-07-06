@@ -1,5 +1,6 @@
 <template>
   <AppLayout>
+    
     <!-- Section Title -->
      <div class="py-12 items-center text-center justify-center">
         <h1 class="font-bold text-xl md:text-2xl">All Products</h1>
@@ -17,9 +18,9 @@
         class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
       >
         <!-- Image -->
-        <div class="bg-gray-100 h-48 flex items-center justify-center">
+        <RouterLink to="/preview-product-page" class="bg-gray-100 h-48 flex items-center justify-center">
           <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
-        </div>
+        </RouterLink>
 
         <!-- Info -->
         <div class="p-5">
@@ -46,7 +47,7 @@
               </div>
             
             <div class="flex items-center space-x-3">
-              <button class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
+              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -58,427 +59,202 @@
 
 <script setup>
 import { Icon } from '@iconify/vue';
+import { useToast } from 'vue-toastification';
 import Watch from '../assets/img/download (5).jfif';
 import Fashion from '../assets/img/download (4).jfif';
 import Laptop from '../assets/img/images.jfif';
 import Phone from '../assets/img/download (1).jfif';
 
+
+const toast = useToast();
 const products = [
+  {
+    id: 1,
+    products: [
      {
     id: 1,
-    Top: 'New Release',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
+    title: "Watch",
+    category: "Watches / Luxury",
+    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
+    image: Watch,
+    oldPrice: 48.54,
+    newPrice: 38.89,
+    discount: 19,
+    tag: "watch",
+    reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'Stainless steel case',
+        '2-year warranty'
+    ],
+    sizes: ['Small', 'Medium', 'Large']
+},
       {
         id: 2,
         title: "Fashion",
-        subtitle: "from Fahsion",
+        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
+        oldPrice: 39.96,
+        newPrice: 22.91,
         discount: 42,
-        tag: "fahsion",
+        tag: "fashion",
+         reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 3,
         title: "Laptop",
-        subtitle: "Laptop for high performance",
+        subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
+        oldPrice: 3.27,
+        newPrice: 1.90,
         discount: 41,
-        tag: "Laptop",
+        tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 4,
         title: "Phone",
-        subtitle: "Phone for daily use",
+        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
+        oldPrice: 20.21,
+        newPrice: 17.88,
         discount: 32,
-        tag: "Phone",
+        tag: "phone",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
     ],
   },
   {
     id: 2,
-    Top: 'Electronics',
     products: [
       {
         id: 1,
         title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
+        subtitle: "Eco-friendly watches crafted with sustainable materials.",
         image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
+        oldPrice: 48.54,
+        newPrice: 38.89,
         discount: 19,
         tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
     ],
-  },
-  {
-    id: 3,
-    Top: 'Organic',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 2,
         title: "Fashion",
-        subtitle: "from Fahsion",
+        subtitle: "Organic fashion wear for a greener planet.",
         image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
+        oldPrice: 39.96,
+        newPrice: 22.91,
         discount: 42,
-        tag: "fahsion",
+        tag: "fashion",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 3,
         title: "Laptop",
-        subtitle: "Laptop for high performance",
+        subtitle: "Energy-efficient laptops with eco-friendly packaging.",
         image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
+        oldPrice: 3.27,
+        newPrice: 1.90,
         discount: 41,
-        tag: "Laptop",
+        tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 4,
         title: "Phone",
-        subtitle: "Phone for daily use",
+        subtitle: "Phones made with recycled materials.",
         image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
+        oldPrice: 20.21,
+        newPrice: 17.88,
         discount: 32,
-        tag: "Phone",
+        tag: "phone",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
     ]
-  },
-   {
-    id: 4,
-    Top: 'Fahsion',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
-   {
-    id: 5,
-    Top: 'Books',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
-   {
-    id: 6,
-    Top: 'Computer',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
-   {
-    id: 7,
-    Top: 'Health',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
-   {
-    id: 8,
-    Top: 'Pharmacy',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
-   {
-    id: 9,
-    Top: 'Toys & Games',
-    products: [
-      {
-        id: 1,
-        title: "Watch",
-        subtitle: "from Switzerland/Germany/Austria...",
-        image: Watch,
-        oldPrice: "48.54",
-        newPrice: "38.89",
-        discount: 19,
-        tag: "watch",
-      },
-      {
-        id: 2,
-        title: "Fashion",
-        subtitle: "from Fahsion",
-        image: Fashion,
-        oldPrice: "39.96",
-        newPrice: "22.91",
-        discount: 42,
-        tag: "fahsion",
-      },
-      {
-        id: 3,
-        title: "Laptop",
-        subtitle: "Laptop for high performance",
-        image: Laptop,
-        oldPrice: "3.27",
-        newPrice: "1.90",
-        discount: 41,
-        tag: "Laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Phone for daily use",
-        image: Phone,
-        oldPrice: "20.21",
-        newPrice: "17.88",
-        discount: 32,
-        tag: "Phone",
-      },
-    ],
-  },
+  }
 ];
+import { useCartStore } from '../stores/useCartStore'
+const cart = useCartStore()
+
+function handleAddToCart(item) {
+  cart.addToCart({
+    id: item.id,
+    title: item.title,
+    image: item.image,
+    price: item.newPrice,
+    quantity: 1,
+    total: item.newPrice,
+    category: item.tag
+  })
+  toast.success(`${item.title} added to cart`)
+}
 </script>
 
 <style scoped>

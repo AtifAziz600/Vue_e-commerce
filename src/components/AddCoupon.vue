@@ -1,5 +1,6 @@
 <template>
-  <section class="bg-gray-50 py-10 px-4">
+  <AppLayout>
+  <section class="bg-gray-50 py-12 px-4">
     <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-6">
       <h2 class="text-2xl font-bold text-gray-800 mb-4">Apply Coupon Code</h2>
 
@@ -41,13 +42,12 @@
       </div>
     </div>
   </section>
-  <Footer/>
+</AppLayout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
-import Footer from '@/components/Footer.vue'
 const toast = useToast()
 
 const enteredCode = ref('')

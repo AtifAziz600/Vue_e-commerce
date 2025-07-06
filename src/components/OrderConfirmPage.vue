@@ -1,156 +1,118 @@
 <template>
-    <section class="py-24 relative">
-        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
-            <h2 class="font-manrope font-bold text-4xl leading-10 text-black text-center">
-                Payment Successful
-            </h2>
-            <p class="mt-4 font-normal text-lg leading-8 text-gray-500 mb-11 text-center">Thanks for making a purchase
-                you can
-                check our order summary frm below</p>
-            <div class="main-box border border-gray-200 rounded-xl pt-6 max-w-xl max-lg:mx-auto lg:max-w-full">
-                <div
-                    class="flex flex-col lg:flex-row lg:items-center justify-between px-6 pb-6 border-b border-gray-200">
-                    <div class="data">
-                        <p class="font-semibold text-base leading-7 text-black">Order Id: <span class="text-indigo-600 font-medium">#10234987</span></p>
-                        <p class="font-semibold text-base leading-7 text-black mt-4">Order Payment : <span class="text-gray-400 font-medium"> 18th march
-                            2021</span></p>
-                    </div>
-                    <button
-                        class="rounded-full py-3 px-7 font-semibold text-sm leading-7 text-white bg-indigo-600 max-lg:mt-5 shadow-sm shadow-transparent transition-all duration-500 hover:bg-indigo-700 hover:shadow-indigo-400">Track
-                        Your Order</button>
+    <section class="py-24 relative bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
+        <div class="w-full max-w-full px-6 mx-auto rounded-2xl shadow-2xl bg-white/80 backdrop-blur-md border border-gray-200">
+            <div class="flex flex-col items-center gap-10 py-10">
+                <div class="flex flex-col items-center gap-2">
+                    <svg class="w-16 h-16 text-green-500 mb-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="white"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 12l2.5 2.5L16 9" />
+                    </svg>
+                    <h2 class="text-center text-gray-900 text-3xl font-bold font-sans tracking-tight">{{ customerName }}, Thank You for Your Order!</h2>
+                    <p class="max-w-xl text-center text-gray-500 text-lg font-normal leading-8">
+                        Your order has been successfully placed. You will receive an email with the details of your order.
+                    </p>
                 </div>
-                <div class="w-full px-3 min-[400px]:px-6">
-                    <div class="flex flex-col lg:flex-row items-center py-6 border-b border-gray-200 gap-6 w-full">
-                        <div class="img-box max-lg:w-full">
-                            <img src="https://pagedone.io/asset/uploads/1701167607.png" alt="Premium Watch image" 
-                                class="aspect-square w-full lg:max-w-[140px] rounded-xl object-cover">
+                <div class="w-full flex flex-col gap-8">
+                    <div class="rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm">
+                        <div class="flex justify-between items-center px-6 py-4 bg-gray-50 border-b border-gray-200">
+                            <h3 class="text-gray-900 text-xl font-semibold">Item</h3>
+                            <h3 class="text-right text-gray-900 text-xl font-semibold">Total</h3>
                         </div>
-                        <div class="flex flex-row items-center w-full ">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 w-full">
-                                <div class="flex items-center">
-                                    <div class="">
-                                        <h2 class="font-semibold text-xl leading-8 text-black mb-3">
-                                            Premium Quality Dust Watch</h2>
-                                        <p class="font-normal text-lg leading-8 text-gray-500 mb-3 ">
-                                            By: Dust Studios</p>
-                                        <div class="flex items-center ">
-                                            <p
-                                                class="font-medium text-base leading-7 text-black pr-4 mr-4 border-r border-gray-200">
-                                                Size: <span class="text-gray-500">100 ml</span></p>
-                                            <p class="font-medium text-base leading-7 text-black ">Qty: <span
-                                                    class="text-gray-500">2</span></p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="grid grid-cols-5">
-                                    <div class="col-span-5 lg:col-span-1 flex items-center max-lg:mt-3">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm leading-7 text-black">price</p>
-                                            <p class="lg:mt-4 font-medium text-sm leading-7 text-indigo-600">$100</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-span-5 lg:col-span-2 flex items-center max-lg:mt-3 ">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm leading-7 text-black">Status
-                                            </p>
-                                            <p
-                                                class="font-medium text-sm leading-6 whitespace-nowrap py-0.5 px-3 rounded-full lg:mt-3 bg-emerald-50 text-emerald-600">
-                                                Ready for Delivery</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-span-5 lg:col-span-2 flex items-center max-lg:mt-3">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm whitespace-nowrap leading-6 text-black">
-                                                Expected Delivery Time</p>
-                                            <p class="font-medium text-base whitespace-nowrap leading-7 lg:mt-3 text-emerald-500">
-                                                23rd March 2021</p>
-                                        </div>
-
+                        <div>
+                            <div
+                                v-for="item in orderItems"
+                                :key="item.id"
+                                class="flex justify-between items-center gap-6 px-6 py-4 border-b last:border-b-0 border-gray-100 hover:bg-gray-50 transition"
+                            >
+                                <div class="flex items-center gap-4">
+                                    <img class="object-cover w-16 h-16 rounded-lg border border-gray-200 shadow" :src="item.image" :alt="item.alt" />
+                                    <div>
+                                        <h5 class="text-gray-900 text-lg font-semibold">{{ item.name }}</h5>
+                                        <h6 class="text-gray-500 text-base font-normal">QTY: {{ item.qty }}</h6>
                                     </div>
                                 </div>
+                                <h4 class="text-right text-gray-900 text-lg font-semibold">${{ item.total.toFixed(2) }}</h4>
                             </div>
-
-
                         </div>
                     </div>
-
-                    <div class="flex flex-col lg:flex-row items-center py-6 gap-6 w-full">
-                        <div class="img-box max-lg:w-full">
-                            <img src="https://pagedone.io/asset/uploads/1701167621.png" alt="Diamond Watch image" 
-                                class="aspect-square w-full lg:max-w-[140px] rounded-xl object-cover">
-                        </div>
-                        <div class="flex flex-row items-center w-full ">
-                            <div class="grid grid-cols-1 lg:grid-cols-2 w-full">
-                                <div class="flex items-center">
-                                    <div class="">
-                                        <h2 class="font-semibold text-xl leading-8 text-black mb-3 ">
-                                            Diamond Platinum Watch</h2>
-                                        <p class="font-normal text-lg leading-8 text-gray-500 mb-3">
-                                            Diamond Dials</p>
-                                        <div class="flex items-center  ">
-                                            <p
-                                                class="font-medium text-base leading-7 text-black pr-4 mr-4 border-r border-gray-200">
-                                                Size: <span class="text-gray-500">Regular</span></p>
-                                            <p class="font-medium text-base leading-7 text-black ">Qty: <span
-                                                    class="text-gray-500">1</span></p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="grid grid-cols-5">
-                                    <div class="col-span-5 lg:col-span-1 flex items-center max-lg:mt-3">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm leading-7 text-black">price</p>
-                                            <p class="lg:mt-4 font-medium text-sm leading-7 text-indigo-600">$100</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-span-5 lg:col-span-2 flex items-center max-lg:mt-3 ">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm leading-7 text-black">Status
-                                            </p>
-                                            <p
-                                                class="font-medium text-sm leading-6 py-0.5 px-3 whitespace-nowrap rounded-full lg:mt-3 bg-indigo-50 text-indigo-600">
-                                                Dispatched</p>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-span-5 lg:col-span-2 flex items-center max-lg:mt-3">
-                                        <div class="flex gap-3 lg:block">
-                                            <p class="font-medium text-sm whitespace-nowrap leading-6 text-black">
-                                                Expected Delivery Time</p>
-                                            <p class="font-medium text-base whitespace-nowrap leading-7 lg:mt-3 text-emerald-500">
-                                                23rd March 2021</p>
-                                        </div>
-
-                                    </div>
-                                </div>
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="flex-1 rounded-xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col gap-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-medium">Estimated Delivery</span>
+                                <span class="text-gray-700 font-semibold">{{ estimatedDelivery }}</span>
                             </div>
-
-
+                            <div class="flex justify-between items-center border-y border-gray-100 py-4">
+                                <span class="text-gray-500 font-medium">Delivery Address</span>
+                                <span class="text-gray-700 font-semibold">{{ deliveryAddress }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-medium">Payment Method</span>
+                                <span class="text-gray-700 font-semibold">{{ paymentMethod }}</span>
+                            </div>
+                        </div>
+                        <div class="flex-1 rounded-xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col gap-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-medium">Subtotal</span>
+                                <span class="text-gray-900 font-semibold">${{ subtotal.toFixed(2) }}</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-500 font-medium">Shipping</span>
+                                <span class="text-gray-900 font-semibold">${{ shipping.toFixed(2) }}</span>
+                            </div>
+                            
+                            <div class="border-t border-gray-100 my-2"></div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-indigo-600 text-lg font-bold">Total</span>
+                                <span class="text-indigo-600 text-lg font-bold">${{ total.toFixed(2) }}</span>
+                            </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="w-full border-t border-gray-200 px-6 flex flex-col lg:flex-row items-center justify-between ">
-                    <div class="flex flex-col sm:flex-row items-center max-lg:border-b border-gray-200">
+                    <div class="flex justify-center gap-4 mt-4">
+                        <RouterLink
+                            to="/order-summary"
+                            class="px-6 py-2.5 rounded-xl bg-white border border-indigo-200 text-indigo-600 font-semibold shadow hover:bg-indigo-50 transition"
+                        >
+                            Order Summary
+                        </RouterLink>
                         <button
-                            class="flex outline-0 py-6 sm:pr-6  sm:border-r border-gray-200 whitespace-nowrap gap-2 items-center justify-center font-semibold group text-lg text-black bg-white transition-all duration-500 hover:text-indigo-600">
-                            <svg class="stroke-black transition-all duration-500 group-hover:stroke-indigo-600" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
-                                fill="none">
-                                <path d="M5.5 5.5L16.5 16.5M16.5 5.5L5.5 16.5" stroke="" stroke-width="1.6"
-                                    stroke-linecap="round" />
-                            </svg>
-                            Cancel Order
+                            class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition"
+                        >
+                            Track My Order
                         </button>
-                        <p class="font-medium text-lg text-gray-900 pl-6 py-3 max-lg:text-center">Paid using Credit Card <span class="text-gray-500">ending with 8822</span></p>
                     </div>
-                    <p class="font-semibold text-lg text-black py-6">Total Price: <span class="text-indigo-600"> $200.00</span></p>
                 </div>
-
             </div>
         </div>
     </section>
-                                            
 </template>
+
+<script setup>
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+import { useOrderStore} from '../stores/useStoreOrder'
+
+const route = useRoute();
+const order = useOrderStore();
+
+const customerName = order.customerName;
+const orderItems = order.orderItems;
+const shippingMethod = order.shippingMethod;
+const promoCode = order.promoCode;
+const paymentMethod = order.paymentMethod;
+const subtotal = order.subtotal;
+const shipping = order.shipping;
+const total = computed(() => subtotal + shipping);
+
+const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocaleDateString(undefined, {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+})
+
+const deliveryAddress = "123 Main St, Springfield, IL 62701";
+// const paymentMethod = 'COD'
+
+// const shipping = 20.00
+
+</script>

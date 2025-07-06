@@ -13,9 +13,9 @@
         class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
       >
         <!-- Image -->
-        <div class="bg-gray-100 h-48 flex items-center justify-center">
+        <RouterLink to="/preview-product-page" class="bg-gray-100 h-48 flex items-center justify-center">
           <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
-        </div>
+        </RouterLink>
 
         <!-- Info -->
         <div class="p-5">
@@ -71,6 +71,7 @@ const products = [
         newPrice: 38.89,
         discount: 19,
         tag: "watch",
+        
       },
       {
         id: 2,
