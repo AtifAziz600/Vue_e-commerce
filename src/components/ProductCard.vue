@@ -12,7 +12,7 @@
         class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
       >
         <!-- Image -->
-        <RouterLink to="/preview-product-page" class="bg-gray-100 h-48 flex items-center justify-center">
+        <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center">
           <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
         </RouterLink>
 
@@ -59,11 +59,11 @@ import Phone from '../assets/img/download (1).jfif';
 const products = [
   {
     id: 1,
-    Top: 'Electronics',
     products: [
      {
     id: 1,
     title: "Watch",
+    slug: "luxury-watch",
     category: "Watches / Luxury",
     subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
     image: Watch,
@@ -85,6 +85,7 @@ const products = [
       {
         id: 2,
         title: "Fashion",
+        slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
         oldPrice: 39.96,
@@ -105,6 +106,7 @@ const products = [
       {
         id: 3,
         title: "Laptop",
+        slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
         oldPrice: 3.27,
@@ -125,6 +127,7 @@ const products = [
       {
         id: 4,
         title: "Phone",
+        slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
         oldPrice: 20.21,
@@ -146,11 +149,11 @@ const products = [
   },
   {
     id: 2,
-        Top: 'Fashion',
     products: [
       {
         id: 1,
         title: "Watch",
+        slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
         image: Watch,
         oldPrice: 48.54,
@@ -171,6 +174,7 @@ const products = [
       {
         id: 2,
         title: "Fashion",
+        slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
         image: Fashion,
         oldPrice: 39.96,
@@ -191,6 +195,7 @@ const products = [
       {
         id: 3,
         title: "Laptop",
+        slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
         image: Laptop,
         oldPrice: 3.27,
@@ -211,6 +216,7 @@ const products = [
       {
         id: 4,
         title: "Phone",
+        slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
         image: Phone,
         oldPrice: 20.21,

@@ -1,13 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import authMiddleware from "@/middleware/auth.js"
-// import vendor from "./vendor.js";
-// import frontendRoutes from "@/router/frontend.js";
-// const router = createRouter({
-//   history: createWebHistory(import.meta.env.BASE_URL),
-//   routes: [...vendor, ...frontendRoutes]
-// })
+import ProductPreviewPage from "@/components/ProductPreviewPage.vue"
 
-// router.beforeEach(authMiddleware)
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -109,7 +102,7 @@ const router = createRouter({
     {
       path: '/product/:slug',
       name: 'preview-product-page',
-      component: () => import('../components/ProductPreviewPage.vue')
+      component: ProductPreviewPage,
     }
   ]
 })

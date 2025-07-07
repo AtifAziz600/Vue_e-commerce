@@ -130,32 +130,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import Watch from '../assets/img/download (5).jfif';
-const product =  {
-    id: 1,
-    title: "Watch",
-    category: "Watches / Luxury",
-    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'Stainless steel case',
-        '2-year warranty'
-    ],
-    sizes: ['Small', 'Medium', 'Large']
-}
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useProductStore } from '@/stores/useProductStore'
 
+const route = useRoute();
+const productStore = useProductStore()
 
-const selectedSize = ref(product.sizes[0])
+const product = computed(() => productStore.getProductBySlug(route.params.slug))
+
+const selectedSize = ref(product.value?.sizes[0])
 const quantity = ref(1)
 const wishlisted = ref(false)
 
