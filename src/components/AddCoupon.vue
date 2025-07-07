@@ -31,7 +31,10 @@
           <li
             v-for="coupon in availableCoupons"
             :key="coupon.code"
-            class="border p-4 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+            @click="selectCoupon(coupon)"
+            :class="[
+             'border p-4 rounded-lg transition cursor-pointer',
+              coupon.code === enteredCode ? 'bg-indigo-100 border-indigo-400' : 'bg-gray-100 hover:bg-gray-200']"
           >
             <div class="flex items-center justify-between">
               <span class="font-semibold text-gray-800">{{ coupon.code }}</span>
@@ -48,32 +51,43 @@
 <script setup>
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
+import { useCouponCode } from "../stores/useCouponCode"
 const toast = useToast()
 
 const enteredCode = ref('')
 const message = ref('')
 const messageType = ref('')
-
+const couponStore = useCouponCode()
 const availableCoupons = ref([
   { code: 'SAVE10', description: 'Get 10% off your order' },
   { code: 'FREESHIP', description: 'Free shipping on all orders' },
   { code: 'WELCOME', description: 'Flat $5 discount for new users' },
 ])
 
-function applyCoupon() {
+function applyCoupon(codeToApply = enteredCode.value) {
+  const code = codeToApply?.trim().toLowerCase()
+
   const found = availableCoupons.value.find(
-    c => c.code.toLowerCase() === enteredCode.value.trim().toLowerCase()
+    c => c.code.toLowerCase() === code
   )
 
   if (found) {
     toast.success(`Coupon "${found.code}" applied successfully!`)
     message.value = `${found.description}`
     messageType.value = 'text-green-600'
+    couponStore.applyCoupon(found.code)
   } else {
     toast.error('Invalid coupon code.')
     message.value = 'Invalid or expired coupon.'
     messageType.value = 'text-red-600'
+    couponStore.clearCoupon()
   }
+}
+function selectCoupon(coupon) {
+  enteredCode.value = coupon.code
+  message.value = `Selected coupon: ${coupon.description}`
+  messageType.value = 'text-blue-600'
+  applyCoupon(coupon.code)
 }
 </script>
 

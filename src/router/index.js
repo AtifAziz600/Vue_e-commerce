@@ -107,7 +107,7 @@ const router = createRouter({
       component: () => import('../components/AddCoupon.vue')
     }, 
     {
-      path: '/preview-product-page',
+      path: '/product/:slug',
       name: 'preview-product-page',
       component: () => import('../components/ProductPreviewPage.vue')
     }

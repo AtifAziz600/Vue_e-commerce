@@ -4,7 +4,6 @@
     <div class="mb-8">
       <h2 class="text-3xl font-bold text-gray-800 tracking-tight">{{ section.Top }}</h2>
     </div>
-
     <!-- Product Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <div
@@ -62,17 +61,27 @@ const products = [
     id: 1,
     Top: 'Electronics',
     products: [
-      {
-         id: 1,
-        title: "Watch",
-        subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-        image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-        
-      },
+     {
+    id: 1,
+    title: "Watch",
+    category: "Watches / Luxury",
+    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
+    image: Watch,
+    oldPrice: 48.54,
+    newPrice: 38.89,
+    discount: 19,
+    tag: "watch",
+    reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'Stainless steel case',
+        '2-year warranty'
+    ],
+    sizes: ['Small', 'Medium', 'Large']
+},
       {
         id: 2,
         title: "Fashion",
@@ -82,52 +91,16 @@ const products = [
         newPrice: 22.91,
         discount: 42,
         tag: "fashion",
-      },
-      {
-       id: 3,
-        title: "Laptop",
-        subtitle: "High performance laptops for work and play. Reliable and powerful.",
-        image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
-        tag: "laptop",
-      },
-      {
-        id: 4,
-        title: "Phone",
-        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
-        image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-      },
+         reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
     ],
-  },
-  {
-    id: 2,
-    Top: 'Organic',
-    products: [
-      {
-     id: 1,
-        title: "Watch",
-        subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-        image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-      },
-      {
-         id: 2,
-        title: "Fashion",
-        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
-        image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 3,
@@ -138,6 +111,16 @@ const products = [
         newPrice: 1.90,
         discount: 41,
         tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
       {
         id: 4,
@@ -148,6 +131,102 @@ const products = [
         newPrice: 17.88,
         discount: 32,
         tag: "phone",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
+      },
+    ],
+  },
+  {
+    id: 2,
+        Top: 'Fashion',
+    products: [
+      {
+        id: 1,
+        title: "Watch",
+        subtitle: "Eco-friendly watches crafted with sustainable materials.",
+        image: Watch,
+        oldPrice: 48.54,
+        newPrice: 38.89,
+        discount: 19,
+        tag: "watch",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
+      },
+      {
+        id: 2,
+        title: "Fashion",
+        subtitle: "Organic fashion wear for a greener planet.",
+        image: Fashion,
+        oldPrice: 39.96,
+        newPrice: 22.91,
+        discount: 42,
+        tag: "fashion",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
+      },
+      {
+        id: 3,
+        title: "Laptop",
+        subtitle: "Energy-efficient laptops with eco-friendly packaging.",
+        image: Laptop,
+        oldPrice: 3.27,
+        newPrice: 1.90,
+        discount: 41,
+        tag: "laptop",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
+      },
+      {
+        id: 4,
+        title: "Phone",
+        subtitle: "Phones made with recycled materials.",
+        image: Phone,
+        oldPrice: 20.21,
+        newPrice: 17.88,
+        discount: 32,
+        tag: "phone",
+        reviews: 1248,
+    rating: 5,
+    features: [
+        'Swiss movement',
+        'Sapphire crystal glass',
+        'Water resistant up to 50m',
+        'cotton blend fabric',
+        'Breathable and lightweight',
+    ],
+    sizes: ['M', 'XL', 'XXL']
       },
     ]
   }
@@ -160,7 +239,7 @@ const toast = useToast();
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
-    name: item.title,
+    title: item.title,
     image: item.image,
     price: item.newPrice,
     quantity: 1,

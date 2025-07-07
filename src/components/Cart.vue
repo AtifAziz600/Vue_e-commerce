@@ -44,7 +44,7 @@
                         <!-- Details -->
                         <div class="flex flex-1 flex-col md:flex-row md:items-center w-full max-w-8xl gap-2">
                             <div class="flex-1 flex flex-col justify-center md:items-start items-center text-center md:text-left">
-                                <!--why item.title is not showing-->
+                                
                                 <h6 class="font-semibold text-lg text-gray-900 truncate">{{ item.title }}</h6>
                                 <span class="text-sm text-gray-500 mt-1">{{ item.category }}</span>
                             </div>
@@ -144,6 +144,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <!-- Coupon Code -->
+                             <label class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium">Coupon Code</label>
+<div class="flex items-center justify-between">
+  <p class="text-gray-600 py-1.5 text-xs sm:text-sm font-normal">Code</p>
+  <p class="py-1.5 text-sm sm:text-sm font-bold text-green-500">#{{ couponStore.appliedCoupon || 'None' }}</p>
+</div>
+<div class="flex items-center justify-between">
+  <p class="text-gray-600 py-1.5 text-xs sm:text-sm font-normal">Discount</p>
+  <p class="text-gray-900 py-1.5 text-xs sm:text-sm font-thin">$ {{ discount.toFixed(2) }}</p>
+</div>
                             <div class="flex items-center border-b border-gray-200 pb-6">
                                 <button
                                     @click="methodPay"
@@ -177,22 +187,19 @@ import { Icon } from '@iconify/vue';
 import { useToast } from 'vue-toastification';
 import {useCartStore} from '../stores/useCartStore';
 import { useRouter } from 'vue-router';
-import { useOrderStore} from '../stores/useStoreOrder';
-// import Watch from '../assets/img/download (5).jfif';
-// import Fashion from '../assets/img/download (4).jfif';
-// import Laptop from '../assets/img/images.jfif';
-// import Phone from '../assets/img/download (1).jfif';
+import { useOrderStore } from '../stores/useStoreOrder';
+import {useCouponCode  } from '../stores/useCouponCode';
 const toast = useToast()
 const cart = useCartStore();
 const cartItems = computed(() => cart.cartItems)
-
+const couponStore = useCouponCode();
 const selectedMethod = ref('');
 const selectedShipping = ref('');
 const promoCode = ref('');
-
+const couponCode = ref('');
 const shippingCost = computed(() => (selectedShipping.value === 'express' ? 10 : 5));
 const subtotal = computed(() => cart.subtotal)
-const total = computed(() => cart.subtotal + shippingCost.value)
+const total = computed(() => cart.subtotal + shippingCost.value - discount.value)
 const order = useOrderStore();
 function increment(item) {
     item.quantity++;
@@ -207,7 +214,12 @@ function decrement(item) {
         toast.error(`Removed "${item.title}" from cart`);
     }
 }
-
+const discount = computed(() => {
+  const amount = couponStore.discountAmount
+  return typeof amount === 'number'
+    ? (amount < 1 ? subtotal.value * amount : amount)
+    : 0
+})
 function applyPromo() {
   if (promoCode.value) {
     toast.success('Promo code applied: ' + promoCode.value)
@@ -215,6 +227,7 @@ function applyPromo() {
     toast.error('Please enter a promo code')
   }
 };
+
 
 function methodPay() {
     if (selectedShipping.value && selectedMethod.value) {
@@ -234,20 +247,22 @@ function handleCheckout() {
   toast.success('Checkout successful!');
 
   order.setOrder({
-    customerName: 'John',
-    orderItems: cartItems.value.map(item => ({
-      id: item.id,
-      title: item.title,
-      qty: item.quantity,
-      image: item.image,
-      total: item.total
-    })),
-    paymentMethod: selectedMethod.value,
-    shippingMethod: selectedShipping.value,
-    promoCode: promoCode.value,
-    shipping: shippingCost.value,
-    subtotal: subtotal.value,
-  });
+  customerName: 'John',
+  orderItems: cartItems.value.map(item => ({
+    id: item.id,
+    title: item.title,
+    qty: item.quantity,
+    image: item.image,
+    total: item.total
+  })),
+  paymentMethod: selectedMethod.value,
+  shippingMethod: selectedShipping.value,
+  promoCode: promoCode.value,
+  couponCode: couponStore.value,
+  shipping: shippingCost.value,
+  subtotal: subtotal.value,
+  total: total.value,
+});
 
   router.push({ name: 'order-confirm' });
 }

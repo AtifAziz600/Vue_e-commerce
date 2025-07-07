@@ -470,7 +470,7 @@ const cart = useCartStore()
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
-    name: item.title,
+    title: item.title,
     image: item.image,
     price: item.newPrice,
     quantity: 1,

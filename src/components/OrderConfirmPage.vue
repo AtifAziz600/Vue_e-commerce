@@ -27,7 +27,7 @@
                                 <div class="flex items-center gap-4">
                                     <img class="object-cover w-16 h-16 rounded-lg border border-gray-200 shadow" :src="item.image" :alt="item.alt" />
                                     <div>
-                                        <h5 class="text-gray-900 text-lg font-semibold">{{ item.name }}</h5>
+                                        <h5 class="text-gray-900 text-lg font-semibold">{{ item.title }}</h5>
                                         <h6 class="text-gray-500 text-base font-normal">QTY: {{ item.qty }}</h6>
                                     </div>
                                 </div>
@@ -111,8 +111,5 @@ const estimatedDelivery = new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toLocal
 })
 
 const deliveryAddress = "123 Main St, Springfield, IL 62701";
-// const paymentMethod = 'COD'
-
-// const shipping = 20.00
 
 </script>

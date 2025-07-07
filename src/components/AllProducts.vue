@@ -18,7 +18,7 @@
         class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
       >
         <!-- Image -->
-        <RouterLink to="/preview-product-page" class="bg-gray-100 h-48 flex items-center justify-center">
+        <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center">
           <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
         </RouterLink>
 
@@ -74,6 +74,7 @@ const products = [
      {
     id: 1,
     title: "Watch",
+    slug: "luxury-watch",
     category: "Watches / Luxury",
     subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
     image: Watch,
@@ -95,6 +96,7 @@ const products = [
       {
         id: 2,
         title: "Fashion",
+        slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
         oldPrice: 39.96,
@@ -115,6 +117,7 @@ const products = [
       {
         id: 3,
         title: "Laptop",
+        slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
         oldPrice: 3.27,
@@ -135,6 +138,7 @@ const products = [
       {
         id: 4,
         title: "Phone",
+        slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
         oldPrice: 20.21,
@@ -255,6 +259,7 @@ function handleAddToCart(item) {
   })
   toast.success(`${item.title} added to cart`)
 }
+
 </script>
 
 <style scoped>

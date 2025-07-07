@@ -7,8 +7,10 @@ export const useOrderStore = defineStore('order', () => {
   const paymentMethod = ref('')
   const shippingMethod = ref('')
   const promoCode = ref('')
+  const couponCode = ref('')
   const shipping = ref(0)
   const subtotal = ref(0)
+  const total = ref(0)
 
   function setOrder(order) {
     customerName.value = order.customerName
@@ -16,8 +18,10 @@ export const useOrderStore = defineStore('order', () => {
     paymentMethod.value = order.paymentMethod
     shippingMethod.value = order.shippingMethod
     promoCode.value = order.promoCode
+    couponCode.value = order.couponCode
     shipping.value = order.shipping
     subtotal.value = order.subtotal
+    total.value = order.total
   }
 
   return {
@@ -28,6 +32,7 @@ export const useOrderStore = defineStore('order', () => {
     promoCode,
     shipping,
     subtotal,
+    total,
     setOrder
   }
 })

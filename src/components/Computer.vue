@@ -268,7 +268,7 @@
                               <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">
                                   Add to Cart
                               </button>
-                              <RouterLink to="/preview-product-page" class="text-blue-500 hover:underline text-xs font-medium">
+                              <RouterLink to="/preview-product-page" class="text-blue-500 hover:underline text-xs font-medium text-center">
                                   See Details
                               </RouterLink>
                           </div>
@@ -470,7 +470,7 @@ const cart = useCartStore()
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
-    name: item.title,
+    title: item.title,
     image: item.image,
     price: item.newPrice,
     quantity: 1,
