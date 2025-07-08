@@ -1,15 +1,14 @@
 <template>
-    <AppLayout>
-        <div class="pt-8 md:pt-10 flex justify-between items-center px-4 md:px-0 bg-transparent border-b-1">
-    <div class="text-gray-700 text-sm md:text-base">
-      <p class="text-center px-6">900 results</p>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <label for="sort-by" class="text-gray-700 text-sm md:text-base font-normal whitespace-nowrap">Sort by:</label>
-      <div class="relative inline-block w-30 ">
-        <select
-          id="sort-by"
+  <AppLayout>
+    <!-- Header -->
+    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+      <div class="text-gray-700 text-base font-medium">
+        <p class="text-center">900 results</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label for="sort-by" class="text-gray-700 text-base font-normal">Sort by:</label>
+        <div class="relative w-40">
+          <select
           class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm
                  focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
         >
@@ -26,21 +25,15 @@
     </div>
   </div>
   <section class="md:flex md:justify-between md:items-start px-4 md:px-0">
-      
-    <!-- Mobile Hamburger Menu Button -->
       <div class="lg:hidden flex items-end justify-end">
         <button @click="isSidebarOpen = !isSidebarOpen" class="p-2 rounded hover:bg-gray-200 focus:outline-none">
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-
-      <!-- Mobile Sidebar Navigation -->
       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -67,8 +60,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -87,8 +78,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -107,21 +96,16 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
           <div class="flex-1" @click="isSidebarOpen = false"></div>
         </div>
@@ -129,8 +113,6 @@
       <!-- Main Content -->
        <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -157,8 +139,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -177,8 +157,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -197,25 +175,20 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Best Seller
+                    Health
                 </h2>
                 <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
                     Check All the products here
@@ -263,15 +236,27 @@
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
                               <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
                           </div>
-                          <!-- Footer -->
-                          <div class="mt-auto flex flex-col gap-2">
-                              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">
-                                  Add to Cart
-                              </button>
-                              <button class="text-blue-500 hover:underline text-xs font-medium">
-                                  See Details
-                              </button>
-                          </div>
+                            <!-- Footer -->
+                            <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
+                            <div class="flex flex-col items-start">
+                              
+                              <span
+    :class="[
+      'text-xs font-semibold px-2 rounded-full',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+  </span>
+                            </div>
+                            <button
+                              @click="handleAddToCart(item)"
+                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                            >
+                            <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
+                              Add to Cart
+                            </button>
+                            </div>
                       </div>
                   </div>
               </div>
@@ -282,10 +267,10 @@
 </template>
 
 <script setup>
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../../assets/img/download (5).jfif';
+import Fashion from '../../assets/img/download (4).jfif';
+import Laptop from '../../assets/img/images.jfif';
+import Phone from '../../assets/img/download (1).jfif';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -295,90 +280,97 @@ const products = [
   {
     id: 1,
     products: [
-     {
-    id: 1,
-    title: "Watch",
-    slug: "luxury-watch",
-    category: "Watches / Luxury",
-    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'Stainless steel case',
-        '2-year warranty'
-    ],
-    sizes: ['Small', 'Medium', 'Large']
-},
+      {
+        id: 1,
+        title: "Blood Pressure Monitor",
+        slug: "blood-pressure-monitor",
+        category: "Health Devices",
+        inStock: true,
+        subtitle: "Accurate and easy-to-use digital blood pressure monitor for home use.",
+        image: Watch,
+        oldPrice: 59.99,
+        newPrice: 44.99,
+        discount: 25,
+        tag: "bp-monitor",
+        reviews: 320,
+        rating: 4.7,
+        features: [
+          'Large LCD display',
+          'Memory for 120 readings',
+          'One-touch operation',
+          'Irregular heartbeat detection',
+          'Portable design'
+        ],
+        sizes: []
+      },
       {
         id: 2,
-        title: "Fashion",
-        slug: "fashion-show",
-        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
+        title: "Infrared Thermometer",
+        slug: "infrared-thermometer",
+        category: "Health Devices",
+        inStock: true,
+        subtitle: "Contactless thermometer for instant and hygienic temperature readings.",
         image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 39.99,
+        newPrice: 29.99,
+        discount: 25,
+        tag: "thermometer",
+        reviews: 210,
+        rating: 4.5,
+        features: [
+          'Fever alarm',
+          'Backlit display',
+          'Fast 1-second reading',
+          'Memory recall',
+          'Celsius/Fahrenheit switch'
+        ],
+        sizes: []
       },
       {
         id: 3,
-        title: "Laptop",
-        slug: "computer-laptop",
-        subtitle: "High performance laptops for work and play. Reliable and powerful.",
+        title: "Pulse Oximeter",
+        slug: "pulse-oximeter",
+        category: "Health Devices",
+        inStock: false,
+        subtitle: "Monitor your blood oxygen saturation and pulse rate at home.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
-        tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 29.99,
+        newPrice: 19.99,
+        discount: 33,
+        tag: "oximeter",
+        reviews: 180,
+        rating: 4.6,
+        features: [
+          'SpO2 and pulse rate measurement',
+          'OLED display',
+          'Auto power-off',
+          'Lightweight and portable',
+          'Battery included'
+        ],
+        sizes: []
       },
       {
         id: 4,
-        title: "Phone",
-        slug: "phone",
-        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
+        title: "Digital Weighing Scale",
+        slug: "digital-weighing-scale",
+        category: "Health Devices",
+        inStock: true,
+        subtitle: "Track your weight with high-precision digital scale.",
         image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 34.99,
+        newPrice: 24.99,
+        discount: 29,
+        tag: "scale",
+        reviews: 150,
+        rating: 4.4,
+        features: [
+          'Tempered glass platform',
+          'Auto-calibration',
+          'Step-on technology',
+          'Large LED display',
+          'Max weight 180kg'
+        ],
+        sizes: []
       },
     ],
   },
@@ -387,92 +379,100 @@ const products = [
     products: [
       {
         id: 1,
-        title: "Watch",
-        slug: "eco-watch",
-        subtitle: "Eco-friendly watches crafted with sustainable materials.",
+        title: "Fitness Tracker Band",
+        slug: "fitness-tracker-band",
+        category: "Wearables",
+        inStock: true,
+        subtitle: "Track your steps, heart rate, and sleep with this smart band.",
         image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 49.99,
+        newPrice: 34.99,
+        discount: 30,
+        tag: "fitness-band",
+        reviews: 400,
+        rating: 4.8,
+        features: [
+          'Heart rate monitor',
+          'Sleep tracking',
+          'Water resistant',
+          'Multi-sport modes',
+          'Long battery life'
+        ],
+        sizes: ['S', 'M', 'L']
       },
       {
         id: 2,
-        title: "Fashion",
-        slug: "sustainable-fashion",
-        subtitle: "Organic fashion wear for a greener planet.",
+        title: "Electric Toothbrush",
+        slug: "electric-toothbrush",
+        category: "Personal Care",
+        inStock: true,
+        subtitle: "Advanced sonic technology for a brighter, healthier smile.",
         image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 59.99,
+        newPrice: 39.99,
+        discount: 33,
+        tag: "toothbrush",
+        reviews: 220,
+        rating: 4.7,
+        features: [
+          '2-minute timer',
+          'Multiple brushing modes',
+          'Rechargeable battery',
+          'Soft bristles',
+          'Travel case included'
+        ],
+        sizes: []
       },
       {
         id: 3,
-        title: "Laptop",
-        slug: "eco-laptop",
-        subtitle: "Energy-efficient laptops with eco-friendly packaging.",
+        title: "Smart Water Bottle",
+        slug: "smart-water-bottle",
+        category: "Hydration",
+        inStock: true,
+        subtitle: "Stay hydrated with reminders and temperature display.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
-        tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 39.99,
+        newPrice: 27.99,
+        discount: 30,
+        tag: "water-bottle",
+        reviews: 95,
+        rating: 4.3,
+        features: [
+          'LED temperature display',
+          'Hydration reminders',
+          'Stainless steel',
+          'Keeps drinks hot/cold',
+          'Leak-proof lid'
+        ],
+        sizes: []
       },
       {
         id: 4,
-        title: "Phone",
-        slug: "recycled-phone",
-        subtitle: "Phones made with recycled materials.",
+        title: "Massage Gun",
+        slug: "massage-gun",
+        category: "Recovery",
+        inStock: false,
+        subtitle: "Relieve muscle soreness and improve recovery with deep tissue massage.",
         image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        oldPrice: 99.99,
+        newPrice: 69.99,
+        discount: 30,
+        tag: "massage-gun",
+        reviews: 130,
+        rating: 4.6,
+        features: [
+          '6 massage heads',
+          'Adjustable speed',
+          'Quiet motor',
+          'Portable case',
+          'Rechargeable battery'
+        ],
+        sizes: []
       },
     ]
   }
 ];
-import { useCartStore } from '../stores/useCartStore'
+import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
 
 function handleAddToCart(item) {

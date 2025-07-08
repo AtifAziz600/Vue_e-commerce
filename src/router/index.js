@@ -12,87 +12,87 @@ const router = createRouter({
     {
       path: '/register',
       name: 'register',
-      component: () => import('../views/Register.vue')
+      component: () => import('../views/Auth/Register.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/Auth/Login.vue')
     },
     {
       path: '/order-history',
       name: 'order-history',
-      component: () => import('../components/OrderHistory.vue'),
+      component: () => import('../views/Order/OrderHistory.vue'),
     },
     {
       path: '/become-seller',
       name: 'become-seller',
-      component: () => import('../components/BecomeSeller.vue')
+      component: () => import('../views/BecomeSeller/BecomeSeller.vue')
     },
     {
       path: '/cart-order',
       name: 'cart-order',
-      component: () => import('../components/Cart.vue')
+      component: () => import('../views/Order/Cart.vue')
     },
     {
       path: '/new-release',
       name:'new-release',
-      component: () => import('../components/NewRelease.vue')
+      component: () => import('../views/NewRelease/NewRelease.vue')
     },
     {
       path: '/books',
       name: 'books',
-      component: () => import('../components/Books.vue')
+      component: () => import('../views/Books/Books.vue')
     },
     {
       path: "/computer",
       name: 'computer',
-      component: () => import('../components/Computer.vue')
+      component: () => import('../views/Computer/Computer.vue')
     },
     {
       path: "/health",
       name: 'health',
-      component: () => import('../components/Heath.vue')
+      component: () => import('../views/Health/Heath.vue')
     },
     {
       path: '/fashion',
       name: 'fashion',
-      component: () => import('../components/Fashion.vue')
+      component: () => import('../views/Fashion/Fashion.vue')
     },
     {
       path: '/toysgame',
       name: "toysgames",
-      component: () => import('../components/Toy&Games.vue')
+      component: () => import('../views/Toy&Game/Toy&Games.vue')
     },
     {
       path: "/pharmacy",
       name: "pharmacy",
-      component: () => import('../components/Pharmacy.vue')
+      component: () => import('../views/Pharmacy/Pharmacy.vue')
     },
     {
       path: "/best-seller",
       name: "best-seller",
-      component: () => import('../components/SellerBestItems.vue')
+      component: () => import('../views/BestSeller/SellerBestItems.vue')
     },
     {
       path: '/wishlist',
       name: 'wishlist',
-      component: () => import('../components/Favorite.vue')
+      component: () => import('../views/Order/Favorite.vue')
     },
     {
       path: '/order-confirm',
       name: 'order-confirm',
-      component: () => import('../components/OrderConfirmPage.vue')
+      component: () => import('../views/Order/OrderConfirmPage.vue')
     },
     {
       path: '/order-summary',
       name: 'order-summary',
-      component: () => import('../components/OrderSummary.vue')
+      component: () => import('../views/Order/OrderSummary.vue')
     },
     {
       path: "/all-products",
       name: "all-products",
-      component: () => import('../components/AllProducts.vue')
+      component: () => import('../views/Products/AllProducts.vue')
     },
     {
       path: "/add-coupon-code",

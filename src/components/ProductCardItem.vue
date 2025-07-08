@@ -1,7 +1,7 @@
 <template>
-    <section class="bg-transparent py-24">
+    <section class="bg-transparent py-12">
          <!-- Header -->
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-center">
         <h2 class="text-2xl sm:text-2xl font-bold text-black">Merchandiese</h2>
       </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
@@ -25,14 +25,14 @@
         <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
       </div>
     </div>
-
-    <!-- See more link -->
-    <a
+ <div class="text-center justify-center items-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
  <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
@@ -54,13 +54,14 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+    <div class="text-center justify-center items-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
   <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
@@ -81,14 +82,14 @@
         <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
       </div>
     </div>
-
-    <!-- See more link -->
-    <a
+    <div class="text-center justify-center items-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
   <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
@@ -109,16 +110,16 @@
         <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
       </div>
     </div>
-
-    <!-- See more link -->
-    <a
+    <div class="text-center justify-center items-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-        </div>
+    </div>
     </section>
 </template>
 

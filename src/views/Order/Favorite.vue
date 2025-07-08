@@ -75,7 +75,7 @@
                             <span class="block lg:hidden font-medium text-gray-500 text-xs mr-2">Action:</span>
                             <button
                                 class="font-semibold text-xs sm:text-sm rounded-full px-4 py-1 sm:p-2 text-gray-100"
-                                :class="order.button === 'Add to Cart' ? 'bg-blue-600 hover:bg-blue-800' : 'bg-gray-700 hover:bg-gray-900'"
+                                :class="order.button === 'Cart Again' ? 'bg-blue-600 hover:bg-blue-800' : 'bg-gray-700 hover:bg-gray-900'"
                             >
                                 {{ order.button }}
                             </button>
@@ -83,7 +83,7 @@
                         <!-- Remove -->
                         <div class="flex items-center justify-between lg:justify-center col-span-1 lg:col-span-1 cursor-pointer">
                             <span class="block lg:hidden font-medium text-gray-500 text-xs mr-2">Remove:</span>
-                            <Icon icon="mdi:delete" class="font-semibold text-base text-gray-700 hover:text-gray-900 h-5 w-5"/>
+                            <Icon icon="mdi:delete" class="flex justify-center items-center font-semibold text-base text-gray-700 hover:text-gray-900 h-5 w-5"/>
                         </div>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import image from '../assets/img/1705474950.png'
+import image from '../../assets/img/1705474950.png'
 import { Icon } from '@iconify/vue';
 const orderHistorys = ref([
         {

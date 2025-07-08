@@ -1,15 +1,14 @@
 <template>
-    <AppLayout>
-        <div class="pt-8 md:pt-10 flex justify-between items-center px-4 md:px-0 bg-transparent border-b-1">
-    <div class="text-gray-700 text-sm md:text-base">
-      <p class="text-center px-6">900 results</p>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <label for="sort-by" class="text-gray-700 text-sm md:text-base font-normal whitespace-nowrap">Sort by:</label>
-      <div class="relative inline-block w-30 ">
-        <select
-          id="sort-by"
+  <AppLayout>
+    <!-- Header -->
+    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+      <div class="text-gray-700 text-base font-medium">
+        <p class="text-center">900 results</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label for="sort-by" class="text-gray-700 text-base font-normal">Sort by:</label>
+        <div class="relative w-40">
+          <select
           class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm
                  focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
         >
@@ -26,21 +25,15 @@
     </div>
   </div>
   <section class="md:flex md:justify-between md:items-start px-4 md:px-0">
-      
-    <!-- Mobile Hamburger Menu Button -->
       <div class="lg:hidden flex items-end justify-end">
         <button @click="isSidebarOpen = !isSidebarOpen" class="p-2 rounded hover:bg-gray-200 focus:outline-none">
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-
-      <!-- Mobile Sidebar Navigation -->
       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -67,8 +60,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -87,8 +78,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -107,21 +96,16 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
           <div class="flex-1" @click="isSidebarOpen = false"></div>
         </div>
@@ -129,8 +113,6 @@
       <!-- Main Content -->
        <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -157,8 +139,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -177,8 +157,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -197,29 +175,24 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-              Computer & Accessories
-          </h2>
-           <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
-              Check All the products here
-          </p>
+                    Computer
+                </h2>
+                <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
+                    Check All the products here
+                </p>
           <div
               v-for="section in products"
               :key="section.id"
@@ -263,15 +236,27 @@
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
                               <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
                           </div>
-                          <!-- Footer -->
-                          <div class="mt-auto flex flex-col gap-2">
-                              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">
-                                  Add to Cart
-                              </button>
-                              <RouterLink to="/preview-product-page" class="text-blue-500 hover:underline text-xs font-medium text-center">
-                                  See Details
-                              </RouterLink>
-                          </div>
+                            <!-- Footer -->
+                            <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
+                            <div class="flex flex-col items-start">
+                              <span class="text-xs text-gray-400">Price incl. VAT</span>
+                              <span
+    :class="[
+      'text-xs font-semibold px-2 rounded-full',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Stock out' }}
+  </span>
+                            </div>
+                            <button
+                              @click="handleAddToCart(item)"
+                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                            >
+                            <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
+                              Add to Cart
+                            </button>
+                            </div>
                       </div>
                   </div>
               </div>
@@ -282,10 +267,10 @@
 </template>
 
 <script setup>
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Laptop1 from '../../assets/img/apple.jfif'
+import Fashion from '../../assets/img/download (4).jfif';
+import Laptop from '../../assets/img/download (6).jfif';
+import Phone from '../../assets/img/download (1).jfif';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -295,184 +280,199 @@ const products = [
   {
     id: 1,
     products: [
-     {
-    id: 1,
-    title: "Watch",
-    slug: "luxury-watch",
-    category: "Watches / Luxury",
-    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'Stainless steel case',
-        '2-year warranty'
-    ],
-    sizes: ['Small', 'Medium', 'Large']
-},
+      {
+        id: 1,
+        title: "Dell XPS 13",
+        slug: "dell-xps-13",
+        category: "Laptops / Ultrabook",
+        inStock: true,
+        subtitle: "13.4-inch FHD+ Laptop, Intel Core i7, 16GB RAM, 512GB SSD.",
+        image: Laptop,
+        oldPrice: 1299.99,
+        newPrice: 1099.99,
+        discount: 15,
+        tag: "laptop",
+        reviews: 234,
+        rating: 5,
+        features: [
+          'Intel Core i7 12th Gen',
+          '16GB LPDDR5 RAM',
+          '512GB NVMe SSD',
+          '13.4" FHD+ InfinityEdge Display',
+          'Windows 11 Home'
+        ],
+        sizes: []
+      },
       {
         id: 2,
-        title: "Fashion",
-        slug: "fashion-show",
-        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
-        image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        title: "Apple MacBook Air M2",
+        slug: "macbook-air-m2",
+        category: "Laptops / Apple",
+        inStock: true,
+        subtitle: "Apple M2 chip, 8GB RAM, 256GB SSD, 13.6-inch Liquid Retina.",
+        image: Laptop1,
+        oldPrice: 1199.00,
+        newPrice: 1049.00,
+        discount: 13,
+        tag: "laptop",
+        reviews: 512,
+        rating: 5,
+        features: [
+          'Apple M2 Chip',
+          '8GB Unified Memory',
+          '256GB SSD Storage',
+          '13.6-inch Liquid Retina Display',
+          'macOS Ventura'
+        ],
+        sizes: []
       },
       {
         id: 3,
-        title: "Laptop",
-        slug: "computer-laptop",
-        subtitle: "High performance laptops for work and play. Reliable and powerful.",
+        title: "HP Spectre x360",
+        slug: "hp-spectre-x360",
+        category: "Laptops / Convertible",
+        inStock: false,
+        subtitle: "14-inch 2-in-1 Touch, Intel i7, 16GB RAM, 1TB SSD.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
+        oldPrice: 1599.99,
+        newPrice: 1349.99,
+        discount: 16,
         tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        reviews: 187,
+        rating: 4,
+        features: [
+          'Intel Core i7 12th Gen',
+          '16GB RAM',
+          '1TB SSD',
+          '14" 3K2K OLED Touchscreen',
+          '360° Convertible'
+        ],
+        sizes: []
       },
       {
         id: 4,
-        title: "Phone",
-        slug: "phone",
-        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
-        image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
-      },
-    ],
+        title: "Lenovo ThinkPad X1 Carbon",
+        slug: "thinkpad-x1-carbon",
+        category: "Laptops / Business",
+        inStock: true,
+        subtitle: "14-inch, Intel i7, 16GB RAM, 512GB SSD, Windows 11 Pro.",
+        image: Laptop,
+        oldPrice: 1799.00,
+        newPrice: 1499.00,
+        discount: 17,
+        tag: "laptop",
+        reviews: 321,
+        rating: 5,
+        features: [
+          'Intel Core i7 12th Gen',
+          '16GB RAM',
+          '512GB SSD',
+          '14" FHD+ Display',
+          'Windows 11 Pro'
+        ],
+        sizes: []
+      }
+    ]
   },
   {
     id: 2,
     products: [
       {
         id: 1,
-        title: "Watch",
-        slug: "eco-watch",
-        subtitle: "Eco-friendly watches crafted with sustainable materials.",
-        image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        title: "ASUS ZenBook 14",
+        slug: "asus-zenbook-14",
+        category: "Laptops / Ultrabook",
+        inStock: true,
+        subtitle: "14-inch FHD, AMD Ryzen 7, 16GB RAM, 1TB SSD.",
+        image: Laptop,
+        oldPrice: 999.99,
+        newPrice: 849.99,
+        discount: 15,
+        tag: "laptop",
+        reviews: 98,
+        rating: 4,
+        features: [
+          'AMD Ryzen 7 5800H',
+          '16GB RAM',
+          '1TB SSD',
+          '14" FHD NanoEdge Display',
+          'Windows 11 Home'
+        ],
+        sizes: []
       },
       {
         id: 2,
-        title: "Fashion",
-        slug: "sustainable-fashion",
-        subtitle: "Organic fashion wear for a greener planet.",
-        image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        title: "Acer Swift 3",
+        slug: "acer-swift-3",
+        category: "Laptops / Thin & Light",
+        inStock: true,
+        subtitle: "14-inch, Intel i5, 8GB RAM, 512GB SSD, Silver.",
+        image: Laptop,
+        oldPrice: 749.99,
+        newPrice: 649.99,
+        discount: 13,
+        tag: "laptop",
+        reviews: 76,
+        rating: 4,
+        features: [
+          'Intel Core i5 11th Gen',
+          '8GB RAM',
+          '512GB SSD',
+          '14" FHD IPS Display',
+          'Wi-Fi 6'
+        ],
+        sizes: []
       },
       {
         id: 3,
-        title: "Laptop",
-        slug: "eco-laptop",
-        subtitle: "Energy-efficient laptops with eco-friendly packaging.",
+        title: "Microsoft Surface Laptop 5",
+        slug: "surface-laptop-5",
+        category: "Laptops / Touchscreen",
+        inStock: false,
+        subtitle: "13.5-inch Touch, Intel i5, 8GB RAM, 256GB SSD.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
+        oldPrice: 999.00,
+        newPrice: 899.00,
+        discount: 10,
         tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        reviews: 54,
+        rating: 4,
+        features: [
+          'Intel Core i5 12th Gen',
+          '8GB RAM',
+          '256GB SSD',
+          '13.5" PixelSense Touchscreen',
+          'Windows 11 Home'
+        ],
+        sizes: []
       },
       {
         id: 4,
-        title: "Phone",
-        slug: "recycled-phone",
-        subtitle: "Phones made with recycled materials.",
-        image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
-      },
+        title: "Razer Blade 15",
+        slug: "razer-blade-15",
+        category: "Laptops / Gaming",
+        inStock: true,
+        subtitle: "15.6-inch QHD, Intel i7, RTX 3070, 16GB RAM, 1TB SSD.",
+        image: Laptop,
+        oldPrice: 2499.99,
+        newPrice: 2199.99,
+        discount: 12,
+        tag: "laptop",
+        reviews: 112,
+        rating: 5,
+        features: [
+          'Intel Core i7 12th Gen',
+          'NVIDIA GeForce RTX 3070',
+          '16GB RAM',
+          '1TB SSD',
+          '15.6" QHD 240Hz Display'
+        ],
+        sizes: []
+      }
     ]
   }
 ];
-import { useCartStore } from '../stores/useCartStore'
+import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
 
 function handleAddToCart(item) {

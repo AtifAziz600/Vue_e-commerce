@@ -1,8 +1,8 @@
 <template>
-  <footer class="w-full bg-gradient-to-br from-red-900 via-red-500 to-red-900 text-white border-t border-rose-100 py-12 md:py-16">
+  <footer class="w-full bg-gradient-to-br from-red-900 via-red-500 to-red-900 text-white border-t border-rose-100 py-12 md:py-6">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
-        class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 py-6 max-sm:max-w-sm max-sm:mx-auto gap-y-10"
+        class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10"
       >
         <div class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -62,7 +62,7 @@
         </div>
       ---
 
-      <div class="py-8 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between">
+      <div class="py-4 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between">
         <span class="text-sm text-white mb-4 md:mb-0 text-center">
           &copy; <a href="http://www.w3.org/2000/svg" class="hover:underline">What A Market</a> 2025, All rights reserved.
         </span>

@@ -1,69 +1,93 @@
 <template>
   <AppLayout>
-    
-    <!-- Section Title -->
-     <div class="py-12 items-center text-center justify-center">
-        <h1 class="font-bold text-xl md:text-2xl">All Products</h1>
-        <p class="text-sm font-light">
-            Here Get All Products and Their Categories
-        </p>
-     </div>
-    <div v-for="section in products" :key="section.id" class="bg-gradient-to-br from-gray-100 to-gray-200 p-8 rounded-3xl shadow-2xl mb-14">
-    
-    <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div
-        v-for="item in section.products"
-        :key="item.title"
-        class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
-      >
-        <!-- Image -->
-        <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center">
-          <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
-        </RouterLink>
-
-        <!-- Info -->
-        <div class="p-5">
-          <h3 class="text-lg font-semibold text-gray-900 truncate">{{ item.title }}</h3>
-          <p class="text-xs text-gray-500 mt-1 truncate">{{ item.subtitle }}</p>
-
-          <!-- Price -->
-          <div class="flex items-center space-x-2 mt-4">
-            <span class="text-xs line-through text-gray-400">{{ item.oldPrice }}</span>
-            <span class="text-lg text-red-600 font-bold">{{ item.newPrice }}</span>
-            <span class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
-          </div>
-
-          <!-- Tag -->
-          <div class="mt-3">
-            <span class="text-xs uppercase bg-red-500 text-white px-2 py-0.5 rounded-full tracking-wide">{{ item.tag }}</span>
-          </div>
-
-          <!-- Footer -->
-          <div class="mt-4 flex justify-between text-xs text-gray-500">
-              <div class="flex items-center bg-gray-300 rounded-xl">
-                <p>Price incl. VAT</p>
-              <span class="bg-green-100 text-green-700 px-2 rounded-full">Pro Price</span>
+    <section class="py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <h2 class="text-2xl md:text-4xl font-bold text-gray-900 mb-6 tracking-tight text-center">
+                    All Products
+                </h2>
+                <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-center">
+                    Check All the products here
+                </p>
+          <div
+              v-for="section in products"
+              :key="section.id"
+              class="mb-12"
+          >
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                  <div
+                      v-for="item in section.products"
+                      :key="item.title"
+                      class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
+                  >
+                      <!-- Image -->
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                          <img
+                              :src="item.image"
+                              alt="product"
+                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <span
+                              v-if="item.discount"
+                              class="absolute top-3 left-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
+                          >
+                              -{{ item.discount }}%
+                          </span>
+                      </RouterLink>
+                      <!-- Info -->
+                      <div class="flex-1 flex flex-col p-5">
+                          <h3 class="text-lg font-semibold text-gray-900 truncate mb-1">
+                              {{ item.title }}
+                          </h3>
+                          <p class="text-xs text-gray-500 mb-2 truncate">
+                              {{ item.subtitle }}
+                          </p>
+                          <!-- Price -->
+                          <div class="flex items-end space-x-2 mb-4">
+                              <span class="text-sm line-through text-gray-400">${{ item.oldPrice }}</span>
+                              <span class="text-xl text-blue-600 font-bold">${{ item.newPrice }}</span>
+                          </div>
+                          
+                          <div class="flex items-center mb-4">
+                              <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
+                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                          </div>
+                            <!-- Footer -->
+                            <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
+                            <div class="flex flex-col items-start">
+                              <span class="text-xs text-gray-400">Price incl. VAT</span>
+                              <span
+    :class="[
+      'text-xs font-semibold px-2 rounded-full',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Out of Stock' }}
+  </span>
+                            </div>
+                            <button
+                              @click="handleAddToCart(item)"
+                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                            >
+                            <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
+                              Add to Cart
+                            </button>
+                            </div>
+                      </div>
+                  </div>
               </div>
-            
-            <div class="flex items-center space-x-3">
-              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
-            </div>
           </div>
-        </div>
       </div>
-    </div>
-  </div>
+    </section>
   </AppLayout>
 </template>
 
 <script setup>
 import { Icon } from '@iconify/vue';
 import { useToast } from 'vue-toastification';
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../../assets/img/download (5).jfif';
+import Fashion from '../../assets/img/download (4).jfif';
+import Laptop from '../../assets/img/images.jfif';
+import Phone from '../../assets/img/download (1).jfif';
 
 
 const toast = useToast();
@@ -76,6 +100,7 @@ const products = [
     title: "Watch",
     slug: "luxury-watch",
     category: "Watches / Luxury",
+    inStock: true,
     subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
     image: Watch,
     oldPrice: 48.54,
@@ -99,6 +124,7 @@ const products = [
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
+        inStock: false,
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
@@ -120,6 +146,7 @@ const products = [
         slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
+        inStock: true,
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
@@ -141,6 +168,7 @@ const products = [
         slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
+        inStock: true,
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
@@ -167,6 +195,7 @@ const products = [
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
         image: Watch,
+        inStock: true,
         oldPrice: 48.54,
         newPrice: 38.89,
         discount: 19,
@@ -188,6 +217,7 @@ const products = [
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
         image: Fashion,
+        inStock: false,
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
@@ -209,6 +239,7 @@ const products = [
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
         image: Laptop,
+        inStock: true,
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
@@ -230,6 +261,7 @@ const products = [
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
         image: Phone,
+        inStock: true,
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
@@ -248,7 +280,7 @@ const products = [
     ]
   }
 ];
-import { useCartStore } from '../stores/useCartStore'
+import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
 
 function handleAddToCart(item) {

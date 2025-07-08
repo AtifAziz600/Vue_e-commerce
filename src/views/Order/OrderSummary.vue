@@ -1,8 +1,9 @@
 <template>
+    <AppLayout>
     <section class="py-24 relative">
         <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
             <div class="flex items-start flex-col gap-6 xl:flex-row ">
-                <!-- Order Summary -->
+                
                 <div class="w-full max-w-full md:max-w-full xl:max-w-sm flex items-start flex-col gap-8 max-xl:mx-auto">
                     <div class="p-6 border border-gray-200 rounded-3xl w-full group transition-all duration-500 hover:border-gray-400 ">
                         <h2 class="font-manrope font-bold text-3xl leading-10 text-black pb-6 border-b border-gray-200 ">
@@ -29,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Product List -->
+              
                 <div v-for="product in products" :key="product.id">
   <div class="rounded-3xl p-6 bg-gray-100 border border-gray-100 flex flex-col md:flex-row md:items-center gap-5 max-w-full md:max-w-3xl mx-auto">
     <div class="img-box">
@@ -50,10 +51,11 @@
             </div>
         </div>
     </section>
+</AppLayout>
 </template>
 
 <script setup>
-import { useOrderStore } from '../stores/useStoreOrder';
+import { useOrderStore } from '../../stores/useStoreOrder';
 import { computed } from 'vue';
 
 const order = useOrderStore();

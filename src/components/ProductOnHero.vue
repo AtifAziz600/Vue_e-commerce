@@ -1,13 +1,8 @@
 <template>
-    <section class="bg-transparent pt-48">
-       
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
-            <!-- Product Box Card-->
-    <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-md">
-    <!-- Title -->
+    <section class="bg-transparent max-w-8xl mx-auto px-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center max-w-7xl">
+    <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-md">
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
-
-    <!-- Grid 2x2 -->
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div
         v-for="item in items"
@@ -22,16 +17,16 @@
         <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
       </div>
     </div>
-
-    <!-- See more link -->
-    <a
+    <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
- <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+ <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -51,15 +46,16 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+   <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-  <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -79,15 +75,16 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+  <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-  <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -107,20 +104,19 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+   <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-   <!-- Product Box Card-->
-             <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-8xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
-    <!-- Grid 2x2 -->
     <div class="grid grid-cols-2 gap-4 mb-4">
       <div
         v-for="item in items"
@@ -136,15 +132,16 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+   <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
- <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+ <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -164,15 +161,16 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+   <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-  <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -192,15 +190,16 @@
       </div>
     </div>
 
-    <!-- See more link -->
-    <a
+   <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
-  <div class="w-full max-w-3xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-7xl border border-gray-200 rounded-md bg-white p-4 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
@@ -219,14 +218,14 @@
         <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
       </div>
     </div>
-
-    <!-- See more link -->
-    <a
+  <div class="text-center justify-center">
+      <a
       href="#"
-      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium"
+      class="text-sm text-blue-600 hover:underline hover:text-blue-800 font-medium text-center items-center justify-center"
     >
       See more
     </a>
+    </div>
   </div>
         </div>
         
@@ -235,10 +234,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import FirstItem from '../assets/img/download (1).jfif'
-import SecondItem from '../assets/img/download (2).jfif'
-import ThirdItem from '../assets/img/download (3).jfif'
-import FourthItem from '../assets/img/download (4).jfif'
+import FirstItem from '../assets/img/LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg'
+import SecondItem from '../assets/img/LSS23_SPRING_DT_CAT_CARD_2_x1._SY116_CB595261253_.jpg'
+import ThirdItem from '../assets/img/LSS23_SPRING_DT_CAT_CARD_3_x1._SY116_CB595261253_.jpg'
+import FourthItem from '../assets/img/LSS23_SPRING_DT_CAT_CARD_4_x1._SY116_CB595261253_.jpg'
 const items = [
   {
     title: 'Apparel',

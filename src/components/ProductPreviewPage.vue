@@ -10,7 +10,7 @@
                                 :src="product.image"
                                 :alt="product.title"
                                 class="max-lg:mx-auto lg:ml-auto h-full object-cover transition-transform duration-300 hover:scale-105"
-                                style="min-width:320px;min-height:320px;"
+                              
                             />
                         </div>
                     </div>
@@ -58,24 +58,7 @@
                                     <span class="font-normal text-base text-gray-900">{{ feature }}</span>
                                 </li>
                             </ul>
-                            <p class="text-gray-900 text-lg leading-8 font-medium mb-4">Size</p>
-                            <div class="w-full pb-8 border-b border-gray-100 flex-wrap">
-                                <div class="flex gap-3 max-w-md">
-                                    <button
-                                        v-for="size in product.sizes"
-                                        :key="size"
-                                        :class="[
-                                            'py-1.5 px-6 font-semibold text-lg rounded-full border transition-all duration-200',
-                                            selectedSize === size
-                                                ? 'bg-indigo-600 text-white border-indigo-600 shadow'
-                                                : 'bg-white text-gray-900 border-gray-200 hover:bg-gray-100'
-                                        ]"
-                                        @click="selectedSize = size"
-                                    >
-                                        {{ size }}
-                                    </button>
-                                </div>
-                            </div>
+                            
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-8">
                                 <div class="flex sm:items-center sm:justify-center w-full">
                                     <button
@@ -98,6 +81,7 @@
                                     </button>
                                 </div>
                                 <button
+                                @click="handleAddToCart(product)"
                                     class="py-3 px-5 rounded-full bg-red-600 text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300 hover:bg-red-700"
                                 >
                                     <Icon icon="mdi:cart" class="h-6 w-6" />
@@ -133,13 +117,26 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/useProductStore'
-
+import { useToast } from 'vue-toastification';
 const route = useRoute();
 const productStore = useProductStore()
-
+import { useCartStore } from '@/stores/useCartStore'
+const cart = useCartStore()
+const toast  = useToast();
+function handleAddToCart(item) {
+  cart.addToCart({
+    id: item.id,
+    title: item.title,
+    image: item.image,
+    price: item.newPrice,
+    quantity: 1,
+    total: item.newPrice,
+    category: item.tag
+  })
+  toast.success(`${item.title} added to cart`)
+}
 const product = computed(() => productStore.getProductBySlug(route.params.slug))
 
-const selectedSize = ref(product.value?.sizes[0])
 const quantity = ref(1)
 const wishlisted = ref(false)
 

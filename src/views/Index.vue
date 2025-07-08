@@ -17,9 +17,6 @@
     <RecommendedProduct/>
     <FeatureSection/>
     <OurPartner/>
-    <!-- <div class="container mx-auto my-20">
-      <slot />
-    </div> -->
     <Pagination/>
     </AppLayout>
 </template>
@@ -27,7 +24,7 @@
 <script setup>
 import MainCarousel from "@/components/MainCarousel.vue";
 import HomeCategoryCard from "@/components/HomeCategoryCard.vue";
-import ProductCard from "@/components/ProductCard.vue";
+import ProductCard from "@/views/Products/ProductCard.vue";
 import ProductCardCarsoal from "@/components/ProductCardCarsoal.vue";
 import ProductSlider from "@/components/ProductSlider.vue";
 import FeatureSection from "@/components/FeatureSection.vue";
@@ -43,13 +40,19 @@ import ProductOnHero from "@/components/ProductOnHero.vue";
 
 .category-cards-grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  max-width: 1200px; 
-  margin: -300px auto 60px auto; 
-  position: relative; 
-  z-index: 2; 
-  padding: 0 20px; 
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  max-width: 1280px;
+  margin: -220px auto 48px auto;
+  position: relative;
+  z-index: 2;
+  padding: 50px 24px 50px 24px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s;
+}
+.category-cards-grid-container:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
 }
 
 @media (max-width: 768px) {

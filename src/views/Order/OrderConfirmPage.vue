@@ -1,4 +1,5 @@
 <template>
+    <AppLayout>
     <section class="py-24 relative bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen">
         <div class="w-full max-w-full px-6 mx-auto rounded-2xl shadow-2xl bg-white/80 backdrop-blur-md border border-gray-200">
             <div class="flex flex-col items-center gap-10 py-10">
@@ -84,12 +85,13 @@
             </div>
         </div>
     </section>
+</AppLayout>
 </template>
 
 <script setup>
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
-import { useOrderStore} from '../stores/useStoreOrder'
+import { useOrderStore} from '../../stores/useStoreOrder'
 
 const route = useRoute();
 const order = useOrderStore();

@@ -13,7 +13,7 @@
       >
         <!-- Image -->
         <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center">
-          <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
+          <img :src="item.image" alt="product" class="w-full h-full transform group-hover:scale-105 transition-transform duration-300" />
         </RouterLink>
 
         <!-- Info -->
@@ -51,14 +51,19 @@
 </template>
 
 <script setup>
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../../assets/img/watch.png';
+import Fashion from '../../assets/img/shirt.jfif';
+import Laptop from '../../assets/img/laptop.jfif';
+import Phone from '../../assets/img/xiaomi.jfif';
+import Watch2 from '../../assets/img/watch2.png';
+import Fashion2 from '../../assets/img/pants.jfif';
+import Laptop2 from '../../assets/img/laptop.jfif';
+import Phone2 from '../../assets/img/Oppo.jfif';
 
 const products = [
   {
     id: 1,
+    Top: "Electronics",
     products: [
      {
     id: 1,
@@ -84,7 +89,7 @@ const products = [
 },
       {
         id: 2,
-        title: "Fashion",
+        title: "Shirt",
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
@@ -126,7 +131,7 @@ const products = [
       },
       {
         id: 4,
-        title: "Phone",
+        title: "Xiaomi",
         slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
@@ -149,13 +154,14 @@ const products = [
   },
   {
     id: 2,
+    Top: "Morden",
     products: [
       {
         id: 1,
-        title: "Watch",
+        title: "Pants",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
-        image: Watch,
+        image: Fashion2,
         oldPrice: 48.54,
         newPrice: 38.89,
         discount: 19,
@@ -173,10 +179,10 @@ const products = [
       },
       {
         id: 2,
-        title: "Fashion",
+        title: "Watch",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
-        image: Fashion,
+        image: Watch2,
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
@@ -194,10 +200,10 @@ const products = [
       },
       {
         id: 3,
-        title: "Laptop",
+        title: "Desktop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
-        image: Laptop,
+        image: Laptop2,
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
@@ -215,10 +221,10 @@ const products = [
       },
       {
         id: 4,
-        title: "Phone",
+        title: "Oppo",
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
-        image: Phone,
+        image: Phone2,
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
@@ -237,7 +243,7 @@ const products = [
     ]
   }
 ];
-import { useCartStore } from '../stores/useCartStore'
+import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
 import { useToast } from 'vue-toastification';
 const toast = useToast();

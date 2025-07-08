@@ -1,15 +1,14 @@
 <template>
-    <AppLayout>
-        <div class="pt-8 md:pt-10 flex justify-between items-center px-4 md:px-0 bg-transparent border-b-1">
-    <div class="text-gray-700 text-sm md:text-base">
-      <p class="text-center px-6">900 results</p>
-    </div>
-
-    <div class="flex items-center gap-2">
-      <label for="sort-by" class="text-gray-700 text-sm md:text-base font-normal whitespace-nowrap">Sort by:</label>
-      <div class="relative inline-block w-30 ">
-        <select
-          id="sort-by"
+  <AppLayout>
+    <!-- Header -->
+    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+      <div class="text-gray-700 text-base font-medium">
+        <p class="text-center">900 results</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label for="sort-by" class="text-gray-700 text-base font-normal">Sort by:</label>
+        <div class="relative w-40">
+          <select
           class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm
                  focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
         >
@@ -26,21 +25,15 @@
     </div>
   </div>
   <section class="md:flex md:justify-between md:items-start px-4 md:px-0">
-      
-    <!-- Mobile Hamburger Menu Button -->
       <div class="lg:hidden flex items-end justify-end">
         <button @click="isSidebarOpen = !isSidebarOpen" class="p-2 rounded hover:bg-gray-200 focus:outline-none">
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-
-      <!-- Mobile Sidebar Navigation -->
       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -67,8 +60,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -87,8 +78,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -107,21 +96,16 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
           <div class="flex-1" @click="isSidebarOpen = false"></div>
         </div>
@@ -129,8 +113,6 @@
       <!-- Main Content -->
        <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -157,8 +139,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -177,8 +157,6 @@
             <button class="text-blue-500 text-xs mt-1 hover:underline">See more</button>
           </div>
         </div>
-
-        
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
           <div class="space-y-2 text-sm text-gray-600">
@@ -197,29 +175,24 @@
             </label>
           </div>
         </div>
-
-      
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">$0 – $2,500</div>
         </div>
-
-     
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
           <input type="range" min="0" max="100" class="w-full accent-blue-500" />
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
-
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-              Fashion & Accessories
-          </h2>
-           <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
-              Check All the products here
-          </p>
+                    Pharmacy
+                </h2>
+                <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
+                    Check All the products here
+                </p>
           <div
               v-for="section in products"
               :key="section.id"
@@ -263,15 +236,27 @@
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
                               <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
                           </div>
-                          <!-- Footer -->
-                          <div class="mt-auto flex flex-col gap-2">
-                              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">
-                                  Add to Cart
-                              </button>
-                              <RouterLink to="/preview-product-page" class="text-blue-500 hover:underline text-xs font-medium text-center">
-                                  See Details
-                              </RouterLink>
-                          </div>
+                            <!-- Footer -->
+                            <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
+                            <div class="flex flex-col items-start">
+                              
+                              <span
+    :class="[
+      'text-xs font-semibold px-2 rounded-full',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+  </span>
+                            </div>
+                            <button
+                              @click="handleAddToCart(item)"
+                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                            >
+                            <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
+                              Add to Cart
+                            </button>
+                            </div>
                       </div>
                   </div>
               </div>
@@ -282,10 +267,10 @@
 </template>
 
 <script setup>
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../../assets/img/download (5).jfif';
+import Fashion from '../../assets/img/download (4).jfif';
+import Laptop from '../../assets/img/images.jfif';
+import Phone from '../../assets/img/download (1).jfif';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -295,184 +280,191 @@ const products = [
   {
     id: 1,
     products: [
-     {
-    id: 1,
-    title: "Watch",
-    slug: "luxury-watch",
-    category: "Watches / Luxury",
-    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'Stainless steel case',
-        '2-year warranty'
-    ],
-    sizes: ['Small', 'Medium', 'Large']
-},
+      {
+        id: 1,
+        title: "Paracetamol 500mg Tablets",
+        slug: "paracetamol-500mg",
+        subtitle: "Effective pain relief and fever reducer.",
+        image: Watch,
+        inStock: true,
+        oldPrice: 5.99,
+        newPrice: 3.99,
+        discount: 33,
+        tag: "pain-relief",
+        reviews: 320,
+        rating: 4.8,
+        features: [
+          "Reduces fever",
+          "Relieves mild to moderate pain",
+          "Suitable for adults and children",
+          "Fast acting",
+          "Easy to swallow"
+        ],
+        sizes: ["Pack of 16", "Pack of 32"]
+      },
       {
         id: 2,
-        title: "Fashion",
-        slug: "fashion-show",
-        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
+        title: "Ibuprofen 200mg Tablets",
+        slug: "ibuprofen-200mg",
+        subtitle: "Anti-inflammatory for pain and swelling.",
         image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        inStock: true,
+        oldPrice: 6.49,
+        newPrice: 4.49,
+        discount: 31,
+        tag: "anti-inflammatory",
+        reviews: 210,
+        rating: 4.7,
+        features: [
+          "Reduces inflammation",
+          "Relieves pain and swelling",
+          "Suitable for headaches and muscle pain",
+          "Non-drowsy formula",
+          "Fast relief"
+        ],
+        sizes: ["Pack of 16", "Pack of 32"]
       },
       {
         id: 3,
-        title: "Laptop",
-        slug: "computer-laptop",
-        subtitle: "High performance laptops for work and play. Reliable and powerful.",
+        title: "Cetirizine Allergy Tablets",
+        slug: "cetirizine-allergy",
+        subtitle: "24-hour allergy relief for hayfever and allergies.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
-        tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        inStock: true,
+        oldPrice: 7.99,
+        newPrice: 5.99,
+        discount: 25,
+        tag: "allergy",
+        reviews: 180,
+        rating: 4.6,
+        features: [
+          "Non-drowsy",
+          "Relieves sneezing and itchy eyes",
+          "Effective for hayfever",
+          "Once daily",
+          "Suitable for adults and children"
+        ],
+        sizes: ["Pack of 7", "Pack of 14"]
       },
       {
         id: 4,
-        title: "Phone",
-        slug: "phone",
-        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
+        title: "Vitamin C 1000mg Tablets",
+        slug: "vitamin-c-1000mg",
+        subtitle: "Boosts immune system and overall health.",
         image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
-      },
-    ],
+        inStock: true,
+        oldPrice: 9.99,
+        newPrice: 7.49,
+        discount: 25,
+        tag: "vitamins",
+        reviews: 150,
+        rating: 4.9,
+        features: [
+          "Supports immune health",
+          "High strength",
+          "Antioxidant support",
+          "Easy to swallow",
+          "Suitable for daily use"
+        ],
+        sizes: ["Pack of 30", "Pack of 60"]
+      }
+    ]
   },
   {
     id: 2,
     products: [
       {
-        id: 1,
-        title: "Watch",
-        slug: "eco-watch",
-        subtitle: "Eco-friendly watches crafted with sustainable materials.",
+        id: 5,
+        title: "Loratadine 10mg Tablets",
+        slug: "loratadine-10mg",
+        subtitle: "Non-drowsy antihistamine for allergies.",
         image: Watch,
-        oldPrice: 48.54,
-        newPrice: 38.89,
-        discount: 19,
-        tag: "watch",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        inStock: true,
+        oldPrice: 6.99,
+        newPrice: 4.99,
+        discount: 29,
+        tag: "allergy",
+        reviews: 140,
+        rating: 4.7,
+        features: [
+          "24-hour relief",
+          "Non-drowsy",
+          "Effective for hayfever",
+          "Suitable for adults and children",
+          "Easy to swallow"
+        ],
+        sizes: ["Pack of 7", "Pack of 14"]
       },
       {
-        id: 2,
-        title: "Fashion",
-        slug: "sustainable-fashion",
-        subtitle: "Organic fashion wear for a greener planet.",
+        id: 6,
+        title: "Aspirin 75mg Tablets",
+        slug: "aspirin-75mg",
+        subtitle: "Low dose for heart health and blood thinning.",
         image: Fashion,
-        oldPrice: 39.96,
-        newPrice: 22.91,
-        discount: 42,
-        tag: "fashion",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        inStock: true,
+        oldPrice: 5.49,
+        newPrice: 3.99,
+        discount: 27,
+        tag: "heart-health",
+        reviews: 110,
+        rating: 4.5,
+        features: [
+          "Supports heart health",
+          "Low dose",
+          "Easy to swallow",
+          "Suitable for long-term use",
+          "Trusted formula"
+        ],
+        sizes: ["Pack of 28", "Pack of 56"]
       },
       {
-        id: 3,
-        title: "Laptop",
-        slug: "eco-laptop",
-        subtitle: "Energy-efficient laptops with eco-friendly packaging.",
+        id: 7,
+        title: "Multivitamin Tablets",
+        slug: "multivitamin",
+        subtitle: "Daily essential vitamins and minerals.",
         image: Laptop,
-        oldPrice: 3.27,
-        newPrice: 1.90,
-        discount: 41,
-        tag: "laptop",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        inStock: true,
+        oldPrice: 8.99,
+        newPrice: 6.99,
+        discount: 22,
+        tag: "vitamins",
+        reviews: 170,
+        rating: 4.8,
+        features: [
+          "Supports overall health",
+          "Contains 12 vitamins and minerals",
+          "Suitable for adults",
+          "One-a-day formula",
+          "Easy to swallow"
+        ],
+        sizes: ["Pack of 30", "Pack of 60"]
       },
       {
-        id: 4,
-        title: "Phone",
-        slug: "recycled-phone",
-        subtitle: "Phones made with recycled materials.",
+        id: 8,
+        title: "Omeprazole 20mg Capsules",
+        slug: "omeprazole-20mg",
+        subtitle: "Relieves heartburn and acid reflux.",
         image: Phone,
-        oldPrice: 20.21,
-        newPrice: 17.88,
-        discount: 32,
-        tag: "phone",
-        reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
-      },
+        inStock: true,
+        oldPrice: 10.99,
+        newPrice: 8.49,
+        discount: 23,
+        tag: "digestive-health",
+        reviews: 130,
+        rating: 4.6,
+        features: [
+          "Reduces stomach acid",
+          "Effective for heartburn",
+          "Once daily",
+          "Easy to swallow",
+          "Suitable for adults"
+        ],
+        sizes: ["Pack of 14", "Pack of 28"]
+      }
     ]
   }
 ];
-import { useCartStore } from '../stores/useCartStore'
+import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
 
 function handleAddToCart(item) {

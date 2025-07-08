@@ -27,11 +27,10 @@
     </div>
   </div>
 </div>
-
                     <div
                         v-for="item in cartItems"
                         :key="item.id"
-                        class="flex flex-col md:flex-row items-stretch gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
+                        class="flex flex-col md:flex-row items-stretch px-8 gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
                     >
                         <!-- Image -->
                         <div class="flex-shrink-0 flex items-center justify-center md:w-28 w-full">
@@ -81,6 +80,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <RouterLink to="/add-coupon-code" class="flex flex-col sm:flex-row items-center justify-end mt-6">
                         <button
                             class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-indigo-600 bg-white shadow hover:bg-indigo-50 transition"
@@ -185,10 +185,10 @@
 import { ref, computed } from 'vue';
 import { Icon } from '@iconify/vue';
 import { useToast } from 'vue-toastification';
-import {useCartStore} from '../stores/useCartStore';
+import {useCartStore} from '../../stores/useCartStore';
 import { useRouter } from 'vue-router';
-import { useOrderStore } from '../stores/useStoreOrder';
-import {useCouponCode  } from '../stores/useCouponCode';
+import { useOrderStore } from '../../stores/useStoreOrder';
+import {useCouponCode  } from '../../stores/useCouponCode';
 const toast = useToast()
 const cart = useCartStore();
 const cartItems = computed(() => cart.cartItems)
