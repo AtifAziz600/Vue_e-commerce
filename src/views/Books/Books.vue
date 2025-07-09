@@ -99,7 +99,7 @@
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
-          <div class="text-sm text-gray-600">$0 – $2,500</div>
+          <div class="text-sm text-gray-600">zł0 – zł2,500</div>
         </div>
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
@@ -178,7 +178,7 @@
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
-          <div class="text-sm text-gray-600">$0 – $2,500</div>
+          <div class="text-sm text-gray-600">zł0 – zł2,500</div>
         </div>
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
@@ -228,8 +228,8 @@
                           </p>
                           <!-- Price -->
                           <div class="flex items-end space-x-2 mb-4">
-                              <span class="text-sm line-through text-gray-400">${{ item.oldPrice }}</span>
-                              <span class="text-xl text-blue-600 font-bold">${{ item.newPrice }}</span>
+                              <span class="text-sm line-through text-gray-400">zł {{ item.oldPrice }}</span>
+                              <span class="text-xl text-blue-600 font-bold">zł {{ item.newPrice }}</span>
                           </div>
                           
                           <div class="flex items-center mb-4">

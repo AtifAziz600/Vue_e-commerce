@@ -49,7 +49,7 @@
                             </div>
                             <!-- Price -->
                             <div class="flex items-center justify-center px-8 mt-2 md:mt-0">
-                                <h6 class="font-medium text-base text-gray-600 group-hover:text-rose-900 transition-all">${{ item.price.toFixed(2) }}</h6>
+                                <h6 class="font-medium text-base text-gray-600 group-hover:text-rose-900 transition-all">zł{{ item.price.toFixed(2) }}</h6>
                                 </div>
                             <!-- Quantity Controls -->
                             <div class="flex items-center justify-center md:justify-start mt-2 md:mt-0">
@@ -76,7 +76,7 @@
                             </div>
                             <!-- Total Price -->
                             <div class="flex items-center justify-center md:justify-end mt-2 md:mt-0 min-w-[80px]">
-                                <p class="font-bold text-base md:text-lg text-gray-700 group-hover:text-rose-600 transition">${{ item.total.toFixed(2) }}</p>
+                                <p class="font-bold text-base md:text-lg text-gray-700 group-hover:text-rose-600 transition">zł{{ item.total.toFixed(2) }}</p>
                             </div>
                         </div>
                         <div class="flex items-center justify-center mt-2 md:mt-0">
@@ -104,7 +104,7 @@
                     <div class="mt-6">
                         <div class="flex items-center justify-between pb-4">
                             <p class="font-normal text-base sm:text-lg text-gray-700">{{ cartItems.length }} Items</p>
-                            <p class="font-medium text-base sm:text-lg text-gray-900">${{ subtotal.toFixed(2) }}</p>
+                            <p class="font-medium text-base sm:text-lg text-gray-900">zł{{ subtotal.toFixed(2) }}</p>
                         </div>
                         <form @submit.prevent>
                             <!-- Shipping -->
@@ -116,8 +116,8 @@
                                         class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
                                     >
                                         <option value="">Select Delivery</option>
-                                        <option value="standard">Standard Delivery - $5.00</option>
-                                        <option value="express">Express Delivery - $10.00</option>
+                                        <option value="standard">Standard Delivery - zł5.00</option>
+                                        <option value="express">Express Delivery - zł10.00</option>
                                     </select>
                                 </div>
                             </div>
@@ -160,7 +160,7 @@
 </div>
 <div class="flex items-center justify-between">
   <p class="text-gray-600 py-1.5 text-xs sm:text-sm font-normal">Discount</p>
-  <p class="text-gray-900 py-1.5 text-xs sm:text-sm font-thin">$ {{ discount.toFixed(2) }}</p>
+  <p class="text-gray-900 py-1.5 text-xs sm:text-sm font-thin">zł {{ discount.toFixed(2) }}</p>
 </div>
                             <div class="flex items-center border-b border-gray-200 pb-6">
                                 <button
@@ -171,7 +171,7 @@
                             </div>
                             <div class="flex items-center justify-between py-6">
                                 <p class="font-medium text-lg sm:text-xl text-gray-900">{{ cartItems.length }} Items</p>
-                                <p class="font-semibold text-lg sm:text-xl text-deepMaroon">${{ total.toFixed(2) }}</p>
+                                <p class="font-semibold text-lg sm:text-xl text-deepMaroon">zł{{ total.toFixed(2) }}</p>
                             </div>
                             <RouterLink to="/order-confirm">
                                 <button

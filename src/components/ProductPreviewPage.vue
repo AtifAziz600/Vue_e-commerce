@@ -25,7 +25,7 @@
                             </h2>
                             <div class="flex flex-col sm:flex-row sm:items-center mb-6">
                                 <h6 class="font-semibold text-3xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5">
-                                    ${{ product.newPrice }}
+                                    zł {{ product.newPrice }}
                                 </h6>
                                 <div class="flex items-center gap-2">
                                     <div class="flex items-center gap-1">
@@ -54,7 +54,7 @@
                             </p>
                             <ul class="grid gap-y-3 mb-8">
                                 <li v-for="(feature, i) in product.features" :key="i" class="flex items-center gap-3">
-                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-deepMaroon"></span>
                                     <span class="font-normal text-base text-gray-900">{{ feature }}</span>
                                 </li>
                             </ul>
@@ -94,7 +94,7 @@
                                     :class="{ 'ring-2 ring-indigo-400': wishlisted }"
                                     @click="wishlisted = !wishlisted"
                                 >
-                                    <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-indigo-600" />
+                                    <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-[#7a3b49]" />
                                 </button>
                                 <button class="text-center w-full px-5 py-4 rounded-xl bg-rose-800 hover:bg-rose-900 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
                                     Buy Now
@@ -109,7 +109,169 @@
                     </div>
                 </div>
             </div>
-        </section>
+        <div class="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto py-24 relative bg-white/70 backdrop-blur-md rounded-2xl shadow-xl">
+  <h2 class="font-sans font-semibold text-3xl sm:text-4xl text-gray-800 mb-10 text-center">Customer Reviews & Ratings</h2>
+  <div class="grid grid-cols-12 gap-8 mb-14">
+    <div class="col-span-12 xl:col-span-4 flex items-center">
+      <div class="space-y-4 w-full max-w-xl mx-auto">
+        <div class="flex items-center w-full space-x-3">
+          <p class="text-gray-700 font-medium w-6 text-right">5</p>
+          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 30%;"></div>
+          </div>
+          <p class="text-gray-600 font-medium w-10 text-right">30</p>
+        </div>
+       <div class="flex items-center w-full space-x-3">
+          <p class="text-gray-700 font-medium w-6 text-right">4</p>
+          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 65%;"></div>
+          </div>
+          <p class="text-gray-600 font-medium w-10 text-right">78</p>
+        </div>
+        <div class="flex items-center w-full space-x-3">
+          <p class="text-gray-700 font-medium w-6 text-right">3</p>
+          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 25%;"></div>
+          </div>
+          <p class="text-gray-600 font-medium w-10 text-right">60</p>
+        </div>
+        <div class="flex items-center w-full space-x-3">
+          <p class="text-gray-700 font-medium w-6 text-right">2</p>
+          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 20%;"></div>
+          </div>
+          <p class="text-gray-600 font-medium w-10 text-right">23</p>
+        </div>
+        <div class="flex items-center w-full space-x-3">
+          <p class="text-gray-700 font-medium w-6 text-right">1</p>
+          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 10%;"></div>
+          </div>
+          <p class="text-gray-600 font-medium w-10 text-right">3</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-12 xl:col-span-8 space-y-6 xl:pl-8">
+      <div class="grid grid-cols-12 gap-4 bg-white/50 border border-gray-200 backdrop-blur-xl shadow-md rounded-2xl p-6">
+        <div class="col-span-12 md:col-span-8 flex items-center justify-center">
+          <div class="flex flex-col sm:flex-row justify-center w-full">
+            <div class="border-r border-gray-300 pr-6 text-center">
+              <h2 class="text-5xl font-bold text-gray-800 mb-2">4.3</h2>
+              <div class="flex justify-center mb-2">
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
+              </div>
+              <p class="text-gray-500 text-sm">{{ product.ratting }} Ratings</p>
+            </div>
+            <div class="pl-6 text-center">
+              <h2 class="text-5xl font-bold text-gray-800 mb-2">{{ product.reviews }}</h2>
+              <div class="flex justify-center mb-2">
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+                <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
+              </div>
+              <p class="text-gray-500 text-sm">Last Month</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-4 flex flex-col justify-center items-center space-y-3 mt-6 md:mt-0">
+          <fwb-button @click="showModal" class="w-full py-3 px-6 rounded-full bg-pink-900 text-white font-semibold shadow hover:bg-pink-800 transition-all">Write A Review</fwb-button>
+          <fwb-modal
+  v-if="isShowModal"
+  @close="closeModal"
+  class="!p-0 !bg-white/80 backdrop-blur-xl border border-gray-300 shadow-2xl rounded-2xl overflow-hidden max-w-lg w-full transition-all duration-300 z-[9999]"
+>
+  <template #header>
+    <div class="w-full px-6 py-4 border-b border-gray-200 bg-white/70 backdrop-blur-md flex justify-between items-center">
+      <h3 class="text-gray-800 font-semibold text-lg">Write a Review</h3>
+      <button @click="closeModal" class="text-gray-500 hover:text-gray-700 transition">
+        <Icon icon="mdi:close" class="w-5 h-5" />
+      </button>
+    </div>
+  </template>
+
+  <template #body>
+    <div class="px-6 py-5 text-gray-700 text-base space-y-3">
+      <p class="leading-relaxed">
+        Please share your experience with this product. Your feedback helps others make better choices.
+      </p>
+      <textarea
+        class="w-full h-32 p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-900 resize-none bg-white/90 backdrop-blur-sm"
+        placeholder="Write your review..."
+      ></textarea>
+    </div>
+  </template>
+
+  <template #footer>
+    <div class="flex justify-end gap-3 px-6 py-4 bg-white/70 backdrop-blur-md border-t border-gray-200">
+      <fwb-button @click="closeModal" color="alternative" class="rounded-full px-6 py-2 text-gray-700 hover:text-black transition">
+        Cancel
+      </fwb-button>
+      <fwb-button @click="closeModal" class="rounded-full bg-pink-900 hover:bg-pink-800 text-white px-6 py-2">
+        Submit Review
+      </fwb-button>
+    </div>
+  </template>
+</fwb-modal>
+         <RouterLink class="w-full py-3 px-1" to="/review">
+             <button class="w-full py-3 px-6 rounded-full bg-white text-pink-900 border border-pink-900 font-semibold hover:bg-pink-900 hover:text-white transition-all">See All Reviews</button>
+         </RouterLink>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-12 border-b border-gray-200 pb-8 max-w-3xl mx-auto">
+    <h4 class="text-2xl font-semibold text-gray-800 mb-4">Most Helpful Positive Review</h4>
+    <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">
+      <div class="flex gap-1 items-center">
+        <Icon icon="mdi:star" class="text-yellow-500" />
+        <Icon icon="mdi:star" class="text-yellow-500" />
+        <Icon icon="mdi:star" class="text-yellow-500" />
+        <Icon icon="mdi:star" class="text-yellow-500" />
+        <Icon icon="mdi:star-outline" class="text-yellow-500" />
+      </div>
+      <div class="flex gap-2 items-center">
+        <span class="font-medium">john@gmail.com</span>
+        <span>|</span>
+        <span class="text-gray-400">Nov 01, 2023</span>
+      </div>
+    </div>
+    <p class="text-gray-600 leading-7">
+      I recently had the opportunity to explore Pagedone's UI design system, and it left a lasting impression on my workflow...
+    </p>
+  </div>
+  <div class="space-y-8 max-w-3xl mx-auto">
+    <div class="border-b border-gray-200 pb-6">
+      <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">
+        <div class="flex gap-1 items-center">
+          <Icon icon="mdi:star" class="text-yellow-500" />
+          <Icon icon="mdi:star" class="text-yellow-500" />
+          <Icon icon="mdi:star" class="text-yellow-500" />
+          <Icon icon="mdi:star" class="text-yellow-500" />
+          <Icon icon="mdi:star-half-full" class="text-yellow-500" />
+        </div>
+        <div class="flex gap-2 items-center">
+          <span class="font-medium">sara@live.com</span>
+          <span>|</span>
+          <span class="text-gray-400">Oct 18, 2023</span>
+        </div>
+      </div>
+      <p class="text-gray-600">The design is intuitive and easy to use...</p>
+    </div>
+  </div>
+</div>
+    </section>
     </AppLayout>
 </template>
 
@@ -118,9 +280,19 @@ import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/useProductStore'
 import { useToast } from 'vue-toastification';
+import { useCartStore } from '@/stores/useCartStore'
+import { FwbButton, FwbModal } from 'flowbite-vue'
+
+const isShowModal = ref(false)
+
+function closeModal () {
+  isShowModal.value = false
+}
+function showModal () {
+  isShowModal.value = true
+}
 const route = useRoute();
 const productStore = useProductStore()
-import { useCartStore } from '@/stores/useCartStore'
 const cart = useCartStore()
 const toast  = useToast();
 function handleAddToCart(item) {

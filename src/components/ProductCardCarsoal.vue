@@ -33,8 +33,8 @@
               </span>
               <span class="text-[11px]">With Discount</span>
             </p>
-            <p class="text-base font-semibold">${{ product.price.toFixed(2) }}
-              <span class="text-gray-400 font-normal text-sm line-through ml-1">${{ product.originalPrice.toFixed(2) }}</span>
+            <p class="text-base font-semibold">zł {{ product.price.toFixed(2) }}
+              <span class="text-gray-400 font-normal text-sm line-through ml-1">zł {{ product.originalPrice.toFixed(2) }}</span>
             </p>
             <p class="text-sm mt-1 text-gray-700 leading-tight line-clamp-2">{{ product.name }}</p>
           </div>

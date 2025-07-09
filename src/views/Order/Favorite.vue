@@ -101,7 +101,7 @@ const orderHistorys = ref([
         {
                 product: 'Apple Airpods Pro',
                 color: 'White',
-                price: '$249.99',
+                price: 'zł249.99',
                 button: 'Add to Cart',
                 image: image,
                 status: 'In Stock'
@@ -109,7 +109,7 @@ const orderHistorys = ref([
         {
                 product: 'Samsung Galaxy Buds',
                 color: 'Black',
-                price: '$199.99',
+                price: 'zł199.99',
                 button: 'Add to Cart',
                 image: image,
                 status: 'In Stock'
@@ -117,7 +117,7 @@ const orderHistorys = ref([
         {
                 product: 'Sony WH-1000XM4',
                 color: 'Silver',
-                price: '$349.99',
+                price: 'zł349.99',
                 button: 'Contact Us',
                 image: image,
                 status: 'Stock Out'

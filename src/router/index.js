@@ -103,6 +103,11 @@ const router = createRouter({
       path: '/product/:slug',
       name: 'preview-product-page',
       component: ProductPreviewPage,
+    },
+    {
+      path: "/review",
+      name: 'review',
+      component: () => import('../views/Review/Review.vue')
     }
   ]
 })

@@ -12,11 +12,11 @@
                         <div class="data py-6 border-b border-gray-200">
                             <div class="flex items-center justify-between gap-4 mb-5">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Product Cost</p>
-                                <p class="font-medium text-lg leading-8 text-gray-900">${{ total.toFixed(2) }}</p>
+                                <p class="font-medium text-lg leading-8 text-gray-900">zł{{ total.toFixed(2) }}</p>
                             </div>
                             <div class="flex items-center justify-between gap-4 mb-5">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Shipping</p>
-                                <p class="font-medium text-lg leading-8 text-gray-600">${{ shippingCost.toFixed(2) }}</p>
+                                <p class="font-medium text-lg leading-8 text-gray-600">zł{{ shippingCost.toFixed(2) }}</p>
                             </div>
                             <div class="flex items-center justify-between gap-4 ">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">Coupon Code</p>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="total flex items-center justify-between pt-6">
                             <p class="font-normal text-xl leading-8 text-black ">Subtotal</p>
-                            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">${{ subtotal.toFixed(2) }}</h5>
+                            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">zł {{ subtotal.toFixed(2) }}</h5>
                         </div>
                     </div>
                 </div>

@@ -29,8 +29,8 @@
             <p class="text-xs text-gray-500 mt-1 mb-2 line-clamp-2">{{ item.subtitle }}</p>
             <!-- Price -->
             <div class="flex items-center space-x-2 mt-2">
-              <span v-if="item.oldPrice" class="text-xs line-through text-gray-400">${{ item.oldPrice }}</span>
-              <span class="text-lg text-red-600 font-bold">${{ item.newPrice }}</span>
+              <span v-if="item.oldPrice" class="text-xs line-through text-gray-400">zł{{ item.oldPrice }}</span>
+              <span class="text-lg text-red-600 font-bold">zł {{ item.newPrice }}</span>
               <span v-if="item.discount" class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
                <span
     :class="[

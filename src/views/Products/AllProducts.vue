@@ -43,8 +43,8 @@
                           </p>
                           <!-- Price -->
                           <div class="flex items-end space-x-2 mb-4">
-                              <span class="text-sm line-through text-gray-400">${{ item.oldPrice }}</span>
-                              <span class="text-xl text-blue-600 font-bold">${{ item.newPrice }}</span>
+                              <span class="text-sm line-through text-gray-400">zł{{ item.oldPrice }}</span>
+                              <span class="text-xl text-blue-600 font-bold">zł{{ item.newPrice }}</span>
                           </div>
                           
                           <div class="flex items-center mb-4">

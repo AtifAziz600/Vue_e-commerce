@@ -61,7 +61,7 @@ const couponStore = useCouponCode()
 const availableCoupons = ref([
   { code: 'SAVE10', description: 'Get 10% off your order' },
   { code: 'FREESHIP', description: 'Free shipping on all orders' },
-  { code: 'WELCOME', description: 'Flat $5 discount for new users' },
+  { code: 'WELCOME', description: 'Flat zł5 discount for new users' },
 ])
 
 function applyCoupon(codeToApply = enteredCode.value) {
