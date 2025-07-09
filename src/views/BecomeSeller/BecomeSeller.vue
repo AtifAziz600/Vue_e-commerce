@@ -48,11 +48,11 @@
                         <div>
                             <label class="block text-gray-700 font-medium mb-2">Portfolio / Resume</label>
                             <label for="file-upload" class="flex flex-col items-center justify-center py-8 w-full border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-deepMaroon mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12" />
                                 </svg>
                                 <span class="text-gray-500 text-sm mb-1">PNG, JPG, PDF, DOCX up to 15MB</span>
-                                <span class="text-indigo-600 font-medium">Click to upload or drag file here</span>
+                                <span class="text-deepMaroon font-medium">Click to upload or drag file here</span>
                                 <input id="file-upload" type="file" class="hidden" />
                             </label>
                         </div>
@@ -63,7 +63,7 @@
                         </div>
                         <!-- Submit -->
                         <div class="flex justify-center">
-                            <button type="submit" class="px-10 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-2xl shadow-lg transition text-lg">
+                            <button type="submit" class="px-10 py-3 bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold rounded-2xl shadow-lg transition text-lg">
                                 Submit Application
                             </button>
                         </div>

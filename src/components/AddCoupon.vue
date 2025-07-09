@@ -9,12 +9,12 @@
           v-model="enteredCode"
           type="text"
           placeholder="Enter coupon code"
-          class="flex-1 border border-gray-300 px-4 py-2 rounded-lg text-gray-700 focus:outline-indigo-500"
+          class="flex-1 border border-gray-300 px-4 py-2 rounded-lg text-gray-700 focus:outline-rose-500"
         />
 <RouterLink to="/cart-order">
             <button
           type="submit"
-          class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg font-semibold"
+          class="bg-deepMaroon hover:bg-[#7a3b49] text-white px-5 py-2 rounded-lg font-semibold"
         >
           Apply
         </button>

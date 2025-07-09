@@ -35,10 +35,14 @@
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules';
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../assets/img/watch.png';
+import Fashion from '../assets/img/shirt.jfif';
+import Laptop from '../assets/img/laptop.jfif';
+import Phone from '../assets/img/xiaomi.jfif';
+import Watch2 from '../assets/img/watch2.png';
+import Fashion2 from '../assets/img/pants.jfif';
+import Laptop2 from '../assets/img/laptop.jfif';
+import Phone2 from '../assets/img/Oppo.jfif';
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -60,16 +64,16 @@ const products = [
     image: Phone,
   },
   {
-    image: Watch,
+    image: Watch2,
   },
   {
-    image: Fashion,
+    image: Fashion2,
   },
   {
-    image: Laptop,
+    image: Laptop2,
   },
   {
-    image: Phone,
+    image: Phone2,
   }
 ]
 </script>

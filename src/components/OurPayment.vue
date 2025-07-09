@@ -22,27 +22,7 @@
                 </a>
                 <a href="#"
                     class="flex justify-center items-center border border-solid border-gray-200 shadow-sm h-24 rounded-2xl">
-                   <img src="../assets/img/rocket.png" height="36" width="119" alt="">
-
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center border border-solid border-gray-200 shadow-sm h-24 rounded-2xl">
-                    <img src="../assets/img/bkash.png" height="36" width="119" alt="">
-
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center border border-solid border-gray-200 shadow-sm h-24 rounded-2xl">
-                    <img src="../assets/img/cash.png" height="36" width="119" alt="">
-
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center border border-solid border-gray-200 shadow-sm h-24 rounded-2xl">
-                    <img src="../assets/img/dutchbangla.png" height="36" width="119" alt="">
-
-                </a>
-                <a href="#"
-                    class="flex justify-center items-center border border-solid border-gray-200 shadow-sm h-24 rounded-2xl">
-                    <img src="../assets/img/nagod.png" height="36" width="119" alt="">
+                    <img src="../assets/img/paypal.png" height="36" width="119" alt="">
 
                 </a>
             </div>

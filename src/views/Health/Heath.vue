@@ -1,7 +1,7 @@
 <template>
-  <AppLayout>
+ <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -188,7 +188,7 @@
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Health
+                    Health Devices
                 </h2>
                 <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
                     Check All the products here
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,7 +234,10 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
@@ -242,16 +245,16 @@
                               
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
+      'text-xs font-semibold px-2 py-2 rounded-2xl',
       item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
     ]"
   >
-    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+    {{ item.inStock ? 'In Stock' : 'Stock Out' }}
   </span>
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -267,10 +270,14 @@
 </template>
 
 <script setup>
-import Watch from '../../assets/img/download (5).jfif';
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/images.jfif';
-import Phone from '../../assets/img/download (1).jfif';
+import Health1 from '../../assets/img/bluepressure.png';
+import Health2 from '../../assets/img/InfraredThermometer.png';
+import Health3 from '../../assets/img/PulseOximeter.png';
+import Health4 from '../../assets/img/DigitalWeighingScale.png';
+import Health5 from '../../assets/img/FitnessTrackerBand.png';
+import Health6 from '../../assets/img/ElectricToothbrush.png';
+import Health7 from '../../assets/img/SmartWaterBottle.png';
+import Health8 from '../../assets/img/MassageGun.png';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -287,7 +294,7 @@ const products = [
         category: "Health Devices",
         inStock: true,
         subtitle: "Accurate and easy-to-use digital blood pressure monitor for home use.",
-        image: Watch,
+        image: Health1,
         oldPrice: 59.99,
         newPrice: 44.99,
         discount: 25,
@@ -310,7 +317,7 @@ const products = [
         category: "Health Devices",
         inStock: true,
         subtitle: "Contactless thermometer for instant and hygienic temperature readings.",
-        image: Fashion,
+        image: Health2,
         oldPrice: 39.99,
         newPrice: 29.99,
         discount: 25,
@@ -333,7 +340,7 @@ const products = [
         category: "Health Devices",
         inStock: false,
         subtitle: "Monitor your blood oxygen saturation and pulse rate at home.",
-        image: Laptop,
+        image: Health3,
         oldPrice: 29.99,
         newPrice: 19.99,
         discount: 33,
@@ -356,7 +363,7 @@ const products = [
         category: "Health Devices",
         inStock: true,
         subtitle: "Track your weight with high-precision digital scale.",
-        image: Phone,
+        image: Health4,
         oldPrice: 34.99,
         newPrice: 24.99,
         discount: 29,
@@ -384,7 +391,7 @@ const products = [
         category: "Wearables",
         inStock: true,
         subtitle: "Track your steps, heart rate, and sleep with this smart band.",
-        image: Watch,
+        image: Health5,
         oldPrice: 49.99,
         newPrice: 34.99,
         discount: 30,
@@ -407,7 +414,7 @@ const products = [
         category: "Personal Care",
         inStock: true,
         subtitle: "Advanced sonic technology for a brighter, healthier smile.",
-        image: Fashion,
+        image: Health6,
         oldPrice: 59.99,
         newPrice: 39.99,
         discount: 33,
@@ -430,7 +437,7 @@ const products = [
         category: "Hydration",
         inStock: true,
         subtitle: "Stay hydrated with reminders and temperature display.",
-        image: Laptop,
+        image: Health7,
         oldPrice: 39.99,
         newPrice: 27.99,
         discount: 30,
@@ -453,7 +460,7 @@ const products = [
         category: "Recovery",
         inStock: false,
         subtitle: "Relieve muscle soreness and improve recovery with deep tissue massage.",
-        image: Phone,
+        image: Health8,
         oldPrice: 99.99,
         newPrice: 69.99,
         discount: 30,

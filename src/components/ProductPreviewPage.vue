@@ -82,7 +82,7 @@
                                 </div>
                                 <button
                                 @click="handleAddToCart(product)"
-                                    class="py-3 px-5 rounded-full bg-red-600 text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300 hover:bg-red-700"
+                                    class="py-3 px-5 rounded-full bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
                                 >
                                     <Icon icon="mdi:cart" class="h-6 w-6" />
                                     Add to cart
@@ -96,7 +96,7 @@
                                 >
                                     <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-indigo-600" />
                                 </button>
-                                <button class="text-center w-full px-5 py-4 rounded-xl bg-blue-500 hover:bg-blue-800 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
+                                <button class="text-center w-full px-5 py-4 rounded-xl bg-rose-800 hover:bg-rose-900 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
                                     Buy Now
                                 </button>
                             </div>

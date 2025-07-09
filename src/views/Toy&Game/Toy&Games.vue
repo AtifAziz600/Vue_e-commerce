@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -30,7 +30,7 @@
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-      <transition name="fade" class="overflow-auto">
+       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
@@ -188,7 +188,7 @@
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Toys and Games
+                    Toys & Games
                 </h2>
                 <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
                     Check All the products here
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,7 +234,10 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
@@ -242,7 +245,7 @@
                               
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
+      'text-xs font-semibold px-2 py-2 rounded-2xl',
       item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
     ]"
   >
@@ -251,7 +254,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -267,10 +270,14 @@
 </template>
 
 <script setup>
-import Watch from '../../assets/img/download (5).jfif';
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/images.jfif';
-import Phone from '../../assets/img/download (1).jfif';
+import Toy1 from '../../assets/img/LEGOClassicBricks.png';
+import Toy2 from '../../assets/img/MonopolyBoardGame.png';
+import Toy3 from '../../assets/img/NerfEliteDisruptor.png';
+import Toy4 from '../../assets/img/UNOCardGame.png';
+import Toy5 from '../../assets/img/HotWheels10-Pack.png';
+import Toy6 from '../../assets/img/JengaClassicGame.png';
+import Toy7 from '../../assets/img/BarbieDreamhouseDollhouse.png';
+import Toy8 from '../../assets/img/Play-Doh10-PackColors.png';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -287,7 +294,7 @@ const products = [
         category: "Building Toys",
         inStock: true,
         subtitle: "A box of colorful LEGO bricks for creative building fun.",
-        image: "https://m.media-amazon.com/images/I/81QF4lQ9pGL._AC_SL1500_.jpg",
+        image: Toy1,
         oldPrice: 29.99,
         newPrice: 22.99,
         discount: 23,
@@ -309,7 +316,7 @@ const products = [
         category: "Board Games",
         inStock: true,
         subtitle: "Classic Monopoly game for family and friends.",
-        image: "https://m.media-amazon.com/images/I/91lF1gkQKGL._AC_SL1500_.jpg",
+        image: Toy2,
         oldPrice: 24.99,
         newPrice: 19.99,
         discount: 20,
@@ -330,7 +337,7 @@ const products = [
         category: "Outdoor Toys",
         inStock: true,
         subtitle: "Quick-draw blaster with rotating drum.",
-        image: "https://m.media-amazon.com/images/I/81vQwQd2QXL._AC_SL1500_.jpg",
+        image: Toy3,
         oldPrice: 17.99,
         newPrice: 13.49,
         discount: 25,
@@ -352,7 +359,7 @@ const products = [
         category: "Card Games",
         inStock: true,
         subtitle: "Fast-paced card game for everyone.",
-        image: "https://m.media-amazon.com/images/I/81QwQ4n6FGL._AC_SL1500_.jpg",
+        image: Toy4,
         oldPrice: 9.99,
         newPrice: 6.99,
         discount: 30,
@@ -379,7 +386,7 @@ const products = [
         category: "Vehicles",
         inStock: true,
         subtitle: "Set of 10 Hot Wheels cars for racing fun.",
-        image: "https://m.media-amazon.com/images/I/81QwQ4n6FGL._AC_SL1500_.jpg",
+        image: Toy5,
         oldPrice: 14.99,
         newPrice: 11.99,
         discount: 20,
@@ -400,7 +407,7 @@ const products = [
         category: "Stacking Games",
         inStock: true,
         subtitle: "Stack the blocks and don't let the tower fall!",
-        image: "https://m.media-amazon.com/images/I/81QwQ4n6FGL._AC_SL1500_.jpg",
+        image: Toy6,
         oldPrice: 16.99,
         newPrice: 12.99,
         discount: 24,
@@ -421,7 +428,7 @@ const products = [
         category: "Dolls & Dollhouses",
         inStock: false,
         subtitle: "Three-story Barbie Dreamhouse with furniture and accessories.",
-        image: "https://m.media-amazon.com/images/I/81QwQ4n6FGL._AC_SL1500_.jpg",
+        image: Toy7,
         oldPrice: 199.99,
         newPrice: 179.99,
         discount: 10,
@@ -443,7 +450,7 @@ const products = [
         category: "Arts & Crafts",
         inStock: true,
         subtitle: "10 cans of colorful Play-Doh for creative play.",
-        image: "https://m.media-amazon.com/images/I/81QwQ4n6FGL._AC_SL1500_.jpg",
+        image: Toy8,
         oldPrice: 8.99,
         newPrice: 6.49,
         discount: 28,

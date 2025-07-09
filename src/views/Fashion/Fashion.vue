@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -30,7 +30,7 @@
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-      <transition name="fade" class="overflow-auto">
+       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,15 +234,18 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
                             <div class="flex flex-col items-start">
-                             
+                              
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
+      'text-xs font-semibold px-2 py-2 rounded-2xl',
       item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
     ]"
   >
@@ -251,7 +254,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -267,10 +270,14 @@
 </template>
 
 <script setup>
-import Watch from '../../assets/img/download (5).jfif';
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/images.jfif';
-import Phone from '../../assets/img/download (1).jfif';
+import Fashion from '../../assets/img/shirt.jfif';
+import Fashion2 from '../../assets/img/cloths.png';
+import Fashion3 from '../../assets/img/pants.jfif';
+import Fashion4 from '../../assets/img/best-british-fashion-brands-1.jpg';
+import Fashion5 from '../../assets/img/download (7).jfif';
+import Fashion6 from '../../assets/img/images (4).jfif';
+import Fashion7 from '../../assets/img/81+oQBvBR-L._AC_UL320_.jpg';
+import Fashion8 from '../../assets/img/images (5).jfif';
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -309,7 +316,7 @@ const products = [
         category: "Bottoms",
         inStock: true,
         subtitle: "Modern slim fit jeans with stretch for comfort.",
-        image: Fashion,
+        image: Fashion2,
         oldPrice: 60.00,
         newPrice: 44.99,
         discount: 25,
@@ -330,7 +337,7 @@ const products = [
         category: "Tops",
         inStock: true,
         subtitle: "Soft cotton t-shirt available in multiple colors.",
-        image: Fashion,
+        image: Fashion3,
         oldPrice: 20.00,
         newPrice: 14.99,
         discount: 25,
@@ -351,7 +358,7 @@ const products = [
         category: "Dresses",
         inStock: false,
         subtitle: "Lightweight floral dress perfect for summer outings.",
-        image: Fashion,
+        image: Fashion4,
         oldPrice: 80.00,
         newPrice: 59.99,
         discount: 25,
@@ -377,7 +384,7 @@ const products = [
         category: "Outerwear",
         inStock: true,
         subtitle: "Elegant wool blend overcoat for chilly days.",
-        image: Fashion,
+        image: Fashion5,
         oldPrice: 180.00,
         newPrice: 135.00,
         discount: 25,
@@ -398,7 +405,7 @@ const products = [
         category: "Bottoms",
         inStock: true,
         subtitle: "Chic pleated skirt for casual and formal looks.",
-        image: Fashion,
+        image: Fashion6,
         oldPrice: 50.00,
         newPrice: 37.50,
         discount: 25,
@@ -419,7 +426,7 @@ const products = [
         category: "Tops",
         inStock: true,
         subtitle: "Breathable linen shirt for a relaxed summer style.",
-        image: Fashion,
+        image: Fashion7,
         oldPrice: 45.00,
         newPrice: 33.75,
         discount: 25,
@@ -440,7 +447,7 @@ const products = [
         category: "Outerwear",
         inStock: false,
         subtitle: "Classic denim jacket with a modern fit.",
-        image: Fashion,
+        image: Fashion8,
         oldPrice: 90.00,
         newPrice: 67.50,
         discount: 25,

@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -30,7 +30,7 @@
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-      <transition name="fade" class="overflow-auto">
+          <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
@@ -188,7 +188,7 @@
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Pharmacy
+                    Pharmacy Products
                 </h2>
                 <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
                     Check All the products here
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,7 +234,10 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
@@ -242,16 +245,16 @@
                               
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
-      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+      'text-xs font-semibold px-2 py-2 rounded-2xl whitespace-nowrap',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100 inline-block'
     ]"
   >
-    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+    {{ item.inStock ? 'In Stock' : 'Stock Out' }}
   </span>
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 whitespace-nowrap bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -267,10 +270,14 @@
 </template>
 
 <script setup>
-import Watch from '../../assets/img/download (5).jfif';
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/images.jfif';
-import Phone from '../../assets/img/download (1).jfif';
+import Pharmacy1 from '../../assets/img/para.png'
+import Pharmacy2 from '../../assets/img/Ibuprofen200mgTablets.png';
+import Pharmacy3 from '../../assets/img/CetirizineAllergyTablets.png';
+import Pharmacy4 from '../../assets/img/VitaminC1000mgTablets.png';
+import Pharmacy5 from '../../assets/img/Loratadine10mgTablets.png';
+import Pharmacy6 from '../../assets/img/Aspirin75mgTablets.png';
+import Pharmacy7 from '../../assets/img/MultivitaminTablets.png';
+import Pharmacy8 from '../../assets/img/Omeprazole20mgCapsules.png'
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -285,7 +292,7 @@ const products = [
         title: "Paracetamol 500mg Tablets",
         slug: "paracetamol-500mg",
         subtitle: "Effective pain relief and fever reducer.",
-        image: Watch,
+        image: Pharmacy1,
         inStock: true,
         oldPrice: 5.99,
         newPrice: 3.99,
@@ -307,7 +314,7 @@ const products = [
         title: "Ibuprofen 200mg Tablets",
         slug: "ibuprofen-200mg",
         subtitle: "Anti-inflammatory for pain and swelling.",
-        image: Fashion,
+        image: Pharmacy2,
         inStock: true,
         oldPrice: 6.49,
         newPrice: 4.49,
@@ -329,8 +336,8 @@ const products = [
         title: "Cetirizine Allergy Tablets",
         slug: "cetirizine-allergy",
         subtitle: "24-hour allergy relief for hayfever and allergies.",
-        image: Laptop,
-        inStock: true,
+        image: Pharmacy3,
+        inStock: false,
         oldPrice: 7.99,
         newPrice: 5.99,
         discount: 25,
@@ -351,7 +358,7 @@ const products = [
         title: "Vitamin C 1000mg Tablets",
         slug: "vitamin-c-1000mg",
         subtitle: "Boosts immune system and overall health.",
-        image: Phone,
+        image: Pharmacy4,
         inStock: true,
         oldPrice: 9.99,
         newPrice: 7.49,
@@ -378,7 +385,7 @@ const products = [
         title: "Loratadine 10mg Tablets",
         slug: "loratadine-10mg",
         subtitle: "Non-drowsy antihistamine for allergies.",
-        image: Watch,
+        image: Pharmacy5,
         inStock: true,
         oldPrice: 6.99,
         newPrice: 4.99,
@@ -400,7 +407,7 @@ const products = [
         title: "Aspirin 75mg Tablets",
         slug: "aspirin-75mg",
         subtitle: "Low dose for heart health and blood thinning.",
-        image: Fashion,
+        image: Pharmacy6,
         inStock: true,
         oldPrice: 5.49,
         newPrice: 3.99,
@@ -422,7 +429,7 @@ const products = [
         title: "Multivitamin Tablets",
         slug: "multivitamin",
         subtitle: "Daily essential vitamins and minerals.",
-        image: Laptop,
+        image: Pharmacy7,
         inStock: true,
         oldPrice: 8.99,
         newPrice: 6.99,
@@ -444,7 +451,7 @@ const products = [
         title: "Omeprazole 20mg Capsules",
         slug: "omeprazole-20mg",
         subtitle: "Relieves heartburn and acid reflux.",
-        image: Phone,
+        image: Pharmacy8,
         inStock: true,
         oldPrice: 10.99,
         newPrice: 8.49,

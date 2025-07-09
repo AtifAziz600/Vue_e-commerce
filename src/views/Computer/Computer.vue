@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -30,7 +30,7 @@
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-      <transition name="fade" class="overflow-auto">
+       <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
@@ -99,7 +99,7 @@
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
-          <div class="text-sm text-gray-600">$0 – $2,500</div>
+          <div class="text-sm text-gray-600">zł0 – zł2,500</div>
         </div>
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
@@ -178,7 +178,7 @@
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
           <input type="range" min="0" max="2500" class="w-full accent-blue-500" />
-          <div class="text-sm text-gray-600">$0 – $2,500</div>
+          <div class="text-sm text-gray-600">zł0 – zł2,500</div>
         </div>
         <div>
           <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
@@ -188,7 +188,7 @@
       </aside>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Computer
+                    Fashion
                 </h2>
                 <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
                     Check All the products here
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,24 +234,27 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
                             <div class="flex flex-col items-start">
-                              <span class="text-xs text-gray-400">Price incl. VAT</span>
+                              
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
+      'text-xs font-semibold px-2 py-2 rounded-2xl',
       item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
     ]"
   >
-    {{ item.inStock ? 'In Stock' : 'Stock out' }}
+    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
   </span>
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -268,9 +271,13 @@
 
 <script setup>
 import Laptop1 from '../../assets/img/apple.jfif'
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/download (6).jfif';
-import Phone from '../../assets/img/download (1).jfif';
+import Laptop0 from '../../assets/img/download (6).jfif'
+import Laptop2 from '../../assets/img/HPSpectre x360.png'
+import Laptop3 from '../../assets/img/LenovoThinkPad X1Carbon.png'
+import Laptop4 from '../../assets/img/ASUSZenBook14.png'
+import Laptop5 from '../../assets/img/AcerSwift3.png'
+import Laptop6 from '../../assets/img/MicrosoftSurfaceLaptop5.png'
+import Laptop7 from '../../assets/img/RazerBlade15.png'
 import Icon from '@/components/Icon.vue';
 import { useToast } from 'vue-toastification';
 import { ref } from 'vue';
@@ -287,7 +294,7 @@ const products = [
         category: "Laptops / Ultrabook",
         inStock: true,
         subtitle: "13.4-inch FHD+ Laptop, Intel Core i7, 16GB RAM, 512GB SSD.",
-        image: Laptop,
+        image: Laptop0,
         oldPrice: 1299.99,
         newPrice: 1099.99,
         discount: 15,
@@ -333,7 +340,7 @@ const products = [
         category: "Laptops / Convertible",
         inStock: false,
         subtitle: "14-inch 2-in-1 Touch, Intel i7, 16GB RAM, 1TB SSD.",
-        image: Laptop,
+        image: Laptop2,
         oldPrice: 1599.99,
         newPrice: 1349.99,
         discount: 16,
@@ -356,7 +363,7 @@ const products = [
         category: "Laptops / Business",
         inStock: true,
         subtitle: "14-inch, Intel i7, 16GB RAM, 512GB SSD, Windows 11 Pro.",
-        image: Laptop,
+        image: Laptop3,
         oldPrice: 1799.00,
         newPrice: 1499.00,
         discount: 17,
@@ -384,7 +391,7 @@ const products = [
         category: "Laptops / Ultrabook",
         inStock: true,
         subtitle: "14-inch FHD, AMD Ryzen 7, 16GB RAM, 1TB SSD.",
-        image: Laptop,
+        image: Laptop4,
         oldPrice: 999.99,
         newPrice: 849.99,
         discount: 15,
@@ -407,7 +414,7 @@ const products = [
         category: "Laptops / Thin & Light",
         inStock: true,
         subtitle: "14-inch, Intel i5, 8GB RAM, 512GB SSD, Silver.",
-        image: Laptop,
+        image: Laptop5,
         oldPrice: 749.99,
         newPrice: 649.99,
         discount: 13,
@@ -430,7 +437,7 @@ const products = [
         category: "Laptops / Touchscreen",
         inStock: false,
         subtitle: "13.5-inch Touch, Intel i5, 8GB RAM, 256GB SSD.",
-        image: Laptop,
+        image: Laptop6,
         oldPrice: 999.00,
         newPrice: 899.00,
         discount: 10,
@@ -453,7 +460,7 @@ const products = [
         category: "Laptops / Gaming",
         inStock: true,
         subtitle: "15.6-inch QHD, Intel i7, RTX 3070, 16GB RAM, 1TB SSD.",
-        image: Laptop,
+        image: Laptop7,
         oldPrice: 2499.99,
         newPrice: 2199.99,
         discount: 12,

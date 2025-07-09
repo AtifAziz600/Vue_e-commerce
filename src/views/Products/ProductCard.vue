@@ -20,7 +20,6 @@
         <div class="p-5">
           <h3 class="text-lg font-semibold text-gray-900 truncate">{{ item.title }}</h3>
           <p class="text-xs text-gray-500 mt-1 truncate">{{ item.subtitle }}</p>
-
           <!-- Price -->
           <div class="flex items-center space-x-2 mt-4">
             <span class="text-xs line-through text-gray-400">{{ item.oldPrice }}</span>
@@ -29,19 +28,28 @@
           </div>
 
           <!-- Tag -->
-          <div class="mt-3">
+          <div class="mt-3 flex flex-row space-x-4">
             <span class="text-xs uppercase bg-red-500 text-white px-2 py-0.5 rounded-full tracking-wide">{{ item.tag }}</span>
+             <span
+    :class="[
+      'text-xs font-semibold rounded-2xl px-2 py-1',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+  </span>
           </div>
 
           <!-- Footer -->
           <div class="mt-4 flex justify-between text-xs text-gray-500">
-              <div class="flex items-center bg-gray-300 rounded-xl">
-                <p>Price incl. VAT</p>
-              <span class="bg-green-100 text-green-700 px-2 rounded-full">Pro Price</span>
+            <div class="flex items-center space-x-1">
+              <Icon icon="mdi:star" class="text-yellow-500" />
+              <span>{{ item.rating }}</span>
+              <RouterLink class="ml-5 hover:underline">({{ item.reviews }})</RouterLink>
               </div>
             
             <div class="flex items-center space-x-3">
-              <button @click="handleAddToCart(item)" class="bg-red-500 text-white text-sm font-medium px-5 py-2 rounded-full shadow-sm hover:bg-red-800 transition-all duration-200 focus:outline-none">Add to Cart</button>
+              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-medium px-5 py-2 rounded-2xl shadow-sm hover:bg-[#7a3b49] transition-all duration-200 focus:outline-none">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -76,6 +84,7 @@ const products = [
     newPrice: 38.89,
     discount: 19,
     tag: "watch",
+    inStock: true,
     reviews: 1248,
     rating: 5,
     features: [
@@ -98,6 +107,7 @@ const products = [
         discount: 42,
         tag: "fashion",
          reviews: 1248,
+    inStock: false,
     rating: 5,
     features: [
         'Swiss movement',
@@ -117,6 +127,7 @@ const products = [
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
         reviews: 1248,
     rating: 5,
@@ -138,6 +149,7 @@ const products = [
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
+        inStock: true,
         tag: "phone",
         reviews: 1248,
     rating: 5,
@@ -166,6 +178,7 @@ const products = [
         newPrice: 38.89,
         discount: 19,
         tag: "watch",
+        inStock: true,
         reviews: 1248,
     rating: 5,
     features: [
@@ -186,6 +199,7 @@ const products = [
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+        inStock: true,
         tag: "fashion",
         reviews: 1248,
     rating: 5,
@@ -208,6 +222,7 @@ const products = [
         newPrice: 1.90,
         discount: 41,
         tag: "laptop",
+        inStock: true,
         reviews: 1248,
     rating: 5,
     features: [
@@ -229,6 +244,7 @@ const products = [
         newPrice: 17.88,
         discount: 32,
         tag: "phone",
+        inStock: true,
         reviews: 1248,
     rating: 5,
     features: [

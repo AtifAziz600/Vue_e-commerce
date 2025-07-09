@@ -32,7 +32,7 @@
                                         <h6 class="text-gray-500 text-base font-normal">QTY: {{ item.qty }}</h6>
                                     </div>
                                 </div>
-                                <h4 class="text-right text-gray-900 text-lg font-semibold">${{ item.total.toFixed(2) }}</h4>
+                                <h4 class="text-right text-gray-900 text-lg font-semibold">zł {{ item.total.toFixed(2) }}</h4>
                             </div>
                         </div>
                     </div>
@@ -54,29 +54,29 @@
                         <div class="flex-1 rounded-xl border border-gray-200 bg-white shadow-sm p-6 flex flex-col gap-4">
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-500 font-medium">Subtotal</span>
-                                <span class="text-gray-900 font-semibold">${{ subtotal.toFixed(2) }}</span>
+                                <span class="text-gray-900 font-semibold">zł {{ subtotal.toFixed(2) }}</span>
                             </div>
                             <div class="flex justify-between items-center">
                                 <span class="text-gray-500 font-medium">Shipping</span>
-                                <span class="text-gray-900 font-semibold">${{ shipping.toFixed(2) }}</span>
+                                <span class="text-gray-900 font-semibold">zł {{ shipping.toFixed(2) }}</span>
                             </div>
                             
                             <div class="border-t border-gray-100 my-2"></div>
                             <div class="flex justify-between items-center">
-                                <span class="text-indigo-600 text-lg font-bold">Total</span>
-                                <span class="text-indigo-600 text-lg font-bold">${{ total.toFixed(2) }}</span>
+                                <span class="text-deepMaroon text-lg font-bold">Total</span>
+                                <span class="text-deepMaroon text-lg font-bold">zł {{ total.toFixed(2) }} </span>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-center gap-4 mt-4">
                         <RouterLink
                             to="/order-summary"
-                            class="px-6 py-2.5 rounded-xl bg-white border border-indigo-200 text-indigo-600 font-semibold shadow hover:bg-indigo-50 transition"
+                            class="px-6 py-2.5 rounded-xl bg-white border border-deepMaroon text-deepMaroon hover:text-white font-semibold shadow hover:bg-[#7a3b49] transition"
                         >
                             Order Summary
                         </RouterLink>
                         <button
-                            class="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold shadow hover:bg-indigo-700 transition"
+                            class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold shadow transition"
                         >
                             Track My Order
                         </button>

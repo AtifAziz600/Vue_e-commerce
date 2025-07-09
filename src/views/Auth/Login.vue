@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-100 to-blue-300">
+  <div class="min-h-screen flex items-center justify-center bg-gray-200">
     <div class="backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl shadow-2xl p-8 w-full max-w-md">
       <div class="flex flex-col items-center">
         <form class="flex flex-col gap-6 w-full" @submit.prevent="handleLogin">

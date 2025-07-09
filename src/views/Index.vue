@@ -32,7 +32,7 @@ import Pagination from "@/components//Pagination.vue";
 import ProductCardItem from "@/components/ProductCardItem.vue";
 import BestSellerItems from "@/components/BestSellerItem.vue";
 import RecommendedProduct from "@/components/RecommendedProduct.vue";
-import OurPartner from "@/components/OurPartner.vue";
+import OurPartner from "@/components/OurPayment.vue";
 import ProductOnHero from "@/components/ProductOnHero.vue";
 </script>
 <style>

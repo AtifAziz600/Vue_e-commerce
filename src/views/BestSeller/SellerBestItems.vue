@@ -1,7 +1,7 @@
 <template>
   <AppLayout>
     <!-- Header -->
-    <div class="pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -205,11 +205,11 @@
                       class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-4/5 h-44 object-contain transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -234,15 +234,18 @@
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | Free Delivery</span>
+                              <span class="text-xs text-gray-500">4.8 | </span>
+                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                                  ({{ item.reviews }} reviews)
+                                  </RouterLink>
                           </div>
                             <!-- Footer -->
                             <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
                             <div class="flex flex-col items-start">
-                              <span class="text-xs text-gray-400">Price incl. VAT</span>
+                              
                               <span
     :class="[
-      'text-xs font-semibold px-2 rounded-full',
+      'text-xs font-semibold px-2 py-2 rounded-2xl',
       item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
     ]"
   >
@@ -251,7 +254,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-red-600 border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-700 hover:border-red-700 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart
@@ -294,6 +297,7 @@ const  products = [
     oldPrice: 48.54,
     newPrice: 38.89,
     discount: 19,
+    inStock: true,
     tag: "watch",
     reviews: 1248,
     rating: 5,
@@ -315,6 +319,7 @@ const  products = [
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+          inStock: false,
         tag: "fashion",
          reviews: 1248,
     rating: 5,
@@ -336,6 +341,7 @@ const  products = [
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
         reviews: 1248,
     rating: 5,
@@ -357,6 +363,7 @@ const  products = [
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
+        inStock: true,
         tag: "phone",
         reviews: 1248,
     rating: 5,
@@ -385,6 +392,7 @@ const  products = [
         discount: 19,
         tag: "watch",
         reviews: 1248,
+        inStock: true,
     rating: 5,
     features: [
         'Swiss movement',
@@ -404,6 +412,7 @@ const  products = [
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+        inStock: true,
         tag: "fashion",
         reviews: 1248,
     rating: 5,
@@ -425,6 +434,7 @@ const  products = [
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
         reviews: 1248,
     rating: 5,
@@ -448,6 +458,7 @@ const  products = [
         discount: 32,
         tag: "phone",
         reviews: 1248,
+    inStock: true,
     rating: 5,
     features: [
         'Swiss movement',

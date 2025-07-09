@@ -12,7 +12,7 @@
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="rounded-3xl bg-white hover:bg-black hover:text-white transition-all duration-300 p-6 shadow-xl"
+          class="rounded-3xl bg-white hover:bg-[#7a3b49] hover:text-white transition-all duration-300 p-6 shadow-xl"
         >
           <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center rounded-full bg-gray-100">
             <Icon :icon="feature.icon" class="w-8 h-8 text-gray-600" />

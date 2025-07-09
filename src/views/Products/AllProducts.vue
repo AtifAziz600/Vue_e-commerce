@@ -84,11 +84,14 @@
 <script setup>
 import { Icon } from '@iconify/vue';
 import { useToast } from 'vue-toastification';
-import Watch from '../../assets/img/download (5).jfif';
-import Fashion from '../../assets/img/download (4).jfif';
-import Laptop from '../../assets/img/images.jfif';
-import Phone from '../../assets/img/download (1).jfif';
-
+import Watch from '../../assets/img/watch.png';
+import Fashion from '../../assets/img/shirt.jfif';
+import Laptop from '../../assets/img/laptop.jfif';
+import Phone from '../../assets/img/xiaomi.jfif';
+import Watch2 from '../../assets/img/watch2.png';
+import Fashion2 from '../../assets/img/pants.jfif';
+import Laptop2 from '../../assets/img/laptop.jfif';
+import Phone2 from '../../assets/img/Oppo.jfif';
 
 const toast = useToast();
 const products = [
@@ -123,7 +126,7 @@ const products = [
         title: "Fashion",
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
-        image: Fashion,
+        image: Fashion2,
         inStock: false,
         oldPrice: 39.96,
         newPrice: 22.91,
@@ -145,7 +148,7 @@ const products = [
         title: "Laptop",
         slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
-        image: Laptop,
+        image: Laptop2,
         inStock: true,
         oldPrice: 3.27,
         newPrice: 1.90,
@@ -194,7 +197,7 @@ const products = [
         title: "Watch",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
-        image: Watch,
+        image: Watch2,
         inStock: true,
         oldPrice: 48.54,
         newPrice: 38.89,
@@ -260,7 +263,7 @@ const products = [
         title: "Phone",
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
-        image: Phone,
+        image: Phone2,
         inStock: true,
         oldPrice: 20.21,
         newPrice: 17.88,

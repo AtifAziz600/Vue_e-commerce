@@ -49,7 +49,7 @@
                             </div>
                             <!-- Price -->
                             <div class="flex items-center justify-center px-8 mt-2 md:mt-0">
-                                <h6 class="font-medium text-base text-gray-600 group-hover:text-indigo-600 transition-all">${{ item.price.toFixed(2) }}</h6>
+                                <h6 class="font-medium text-base text-gray-600 group-hover:text-rose-900 transition-all">${{ item.price.toFixed(2) }}</h6>
                                 </div>
                             <!-- Quantity Controls -->
                             <div class="flex items-center justify-center md:justify-start mt-2 md:mt-0">
@@ -76,14 +76,22 @@
                             </div>
                             <!-- Total Price -->
                             <div class="flex items-center justify-center md:justify-end mt-2 md:mt-0 min-w-[80px]">
-                                <p class="font-bold text-base md:text-lg text-gray-700 group-hover:text-indigo-600 transition">${{ item.total.toFixed(2) }}</p>
+                                <p class="font-bold text-base md:text-lg text-gray-700 group-hover:text-rose-600 transition">${{ item.total.toFixed(2) }}</p>
                             </div>
                         </div>
+                        <div class="flex items-center justify-center mt-2 md:mt-0">
+  <button
+    @click="removeItem(item)"
+    class="text-sm text-red-500 hover:text-red-700 font-medium transition"
+  >
+    <Icon icon="mdi:trash" class="w-8 h-8"/>
+  </button>
+</div>
                     </div>
                     
                     <RouterLink to="/add-coupon-code" class="flex flex-col sm:flex-row items-center justify-end mt-6">
                         <button
-                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-indigo-600 bg-white shadow hover:bg-indigo-50 transition"
+                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-deepMaroon bg-white shadow hover:bg-rose-50 transition"
                         >
                             Add Coupon Code
                             <Icon icon="mdi:arrow-right" class="w-6 h-6"/>
@@ -105,7 +113,7 @@
                                 <div class="relative w-full">
                                     <select
                                         v-model="selectedShipping"
-                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-indigo-400 shadow"
+                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
                                     >
                                         <option value="">Select Delivery</option>
                                         <option value="standard">Standard Delivery - $5.00</option>
@@ -119,13 +127,13 @@
                                 <input
                                     type="text"
                                     v-model="promoCode"
-                                    class="block w-full h-10 px-3 text-base font-normal text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-indigo-400 shadow"
+                                    class="block w-full h-10 px-3 text-base font-normal text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-rose-400 shadow"
                                     placeholder="xxxx xxxx xxxx"
                                 />
                                 <button
                                     type="button"
                                     @click="applyPromo"
-                                    class="px-3 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition text-sm"
+                                    class="px-3 py-2 rounded-lg bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold transition text-sm"
                                 >Apply</button>
                             </div>
                             <!-- Payment Method -->
@@ -134,7 +142,7 @@
                                 <div class="relative w-full">
                                     <select
                                         v-model="selectedMethod"
-                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-indigo-400 shadow"
+                                        class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
                                     >
                                         <option disabled value="">Choose</option>
                                         <option value="Bkash">Bkash</option>
@@ -163,12 +171,12 @@
                             </div>
                             <div class="flex items-center justify-between py-6">
                                 <p class="font-medium text-lg sm:text-xl text-gray-900">{{ cartItems.length }} Items</p>
-                                <p class="font-semibold text-lg sm:text-xl text-indigo-600">${{ total.toFixed(2) }}</p>
+                                <p class="font-semibold text-lg sm:text-xl text-deepMaroon">${{ total.toFixed(2) }}</p>
                             </div>
                             <RouterLink to="/order-confirm">
                                 <button
                                 @click="handleCheckout"
-                                    class="w-full text-center bg-indigo-600 rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow hover:bg-indigo-700 transition"
+                                    class="w-full text-center bg-deepMaroon hover:bg-[#7a3b49] rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
                                     type="button"
                                 >Checkout</button>
                             </RouterLink>
@@ -210,10 +218,11 @@ function decrement(item) {
         item.quantity--;
         item.total = item.price * item.quantity;
     } else {
-        cartItems.removeCart(item);
+        cart.removeItem(item); 
         toast.error(`Removed "${item.title}" from cart`);
     }
 }
+
 const discount = computed(() => {
   const amount = couponStore.discountAmount
   return typeof amount === 'number'
@@ -266,7 +275,10 @@ function handleCheckout() {
 
   router.push({ name: 'order-confirm' });
 }
-
+function removeItem(item) {
+    cart.removeItem(item);
+    toast.error(`Removed "${item.title}" from cart`);
+}
 
 </script>
 

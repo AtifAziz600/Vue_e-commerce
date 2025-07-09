@@ -32,6 +32,14 @@
               <span v-if="item.oldPrice" class="text-xs line-through text-gray-400">${{ item.oldPrice }}</span>
               <span class="text-lg text-red-600 font-bold">${{ item.newPrice }}</span>
               <span v-if="item.discount" class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
+               <span
+    :class="[
+      'text-xs font-semibold px-2 rounded-full items-end justify-end',
+      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+  </span>
             </div>
             <!-- Rating & Cart -->
             <div class="mt-auto flex justify-between items-center pt-4">
@@ -41,9 +49,9 @@
                 <Icon icon="mdi:star" />
                 <Icon icon="mdi:star" />
                 <Icon icon="mdi:star-outline" />
-                <span class="text-gray-400 text-xs ml-1">(4.5)</span>
+                <RouterLink class="text-sm text-gray-700 font-normal hover:underline ml-1 px-4">({{ item.reviews }})</RouterLink>
               </div>
-              <button @click="handleAddToCart(item)" class="bg-red-600 text-white text-xs font-semibold px-4 py-2 rounded-full shadow hover:bg-red-700 transition">
+              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-xs font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a3b49] transition">
                 Add to Cart
               </button>
             </div>
@@ -62,10 +70,14 @@
 
 <script setup>
 import { Icon } from '@iconify/vue';
-import Watch from '../assets/img/download (5).jfif';
-import Fashion from '../assets/img/download (4).jfif';
-import Laptop from '../assets/img/images.jfif';
-import Phone from '../assets/img/download (1).jfif';
+import Watch from '../assets/img/watch.png';
+import Fashion from '../assets/img/shirt.jfif';
+import Laptop from '../assets/img/laptop.jfif';
+import Phone from '../assets/img/xiaomi.jfif';
+import Watch2 from '../assets/img/watch2.png';
+import Fashion2 from '../assets/img/pants.jfif';
+import Laptop2 from '../assets/img/laptop.jfif';
+import Phone2 from '../assets/img/Oppo.jfif';
 import { useToast } from 'vue-toastification';
 const toast = useToast();
 
@@ -84,7 +96,8 @@ const products = [
     newPrice: 38.89,
     discount: 19,
     tag: "watch",
-    reviews: 1248,
+    reviews: 148,
+    inStock: true,
     rating: 5,
     features: [
         'Swiss movement',
@@ -104,8 +117,9 @@ const products = [
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+        inStock: false,
         tag: "fashion",
-         reviews: 1248,
+         reviews: 124,
     rating: 5,
     features: [
         'Swiss movement',
@@ -125,8 +139,9 @@ const products = [
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
-        reviews: 1248,
+        reviews: 248,
     rating: 5,
     features: [
         'Swiss movement',
@@ -146,8 +161,9 @@ const products = [
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
+        inStock: true,
         tag: "phone",
-        reviews: 1248,
+        reviews: 128,
     rating: 5,
     features: [
         'Swiss movement',
@@ -168,12 +184,13 @@ const products = [
         title: "Watch",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
-        image: Watch,
+        image: Watch2,
         oldPrice: 48.54,
         newPrice: 38.89,
         discount: 19,
+        inStock: true,
         tag: "watch",
-        reviews: 1248,
+        reviews: 481,
     rating: 5,
     features: [
         'Swiss movement',
@@ -189,12 +206,13 @@ const products = [
         title: "Fashion",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
-        image: Fashion,
+        image: Fashion2,
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+        inStock: true,
         tag: "fashion",
-        reviews: 1248,
+        reviews: 842,
     rating: 5,
     features: [
         'Swiss movement',
@@ -210,12 +228,13 @@ const products = [
         title: "Laptop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
-        image: Laptop,
+        image: Laptop2,
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
-        reviews: 1248,
+        reviews: 48,
     rating: 5,
     features: [
         'Swiss movement',
@@ -231,12 +250,13 @@ const products = [
         title: "Phone",
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
-        image: Phone,
+        image: Phone2,
         oldPrice: 20.21,
         newPrice: 17.88,
         discount: 32,
+        inStock: false,
         tag: "phone",
-        reviews: 1248,
+        reviews: 24,
     rating: 5,
     features: [
         'Swiss movement',

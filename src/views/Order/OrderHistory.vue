@@ -89,7 +89,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <!-- End v-for -->
+                         
                         </div>
                     </div>
                 </div>
@@ -109,71 +109,69 @@ const statusIcons = {
     'Cancelled': 'mdi:close-circle-outline'
 }
 
-// Example orders data
 const orders = [
     {
         id: '#FWB127364372',
         date: '20.12.2023',
-        price: '$4,756',
+        price: 'zł4,756',
         status: 'Pre-order'
     },
     {
         id: '#FWB125467980',
         date: '11.12.2023',
-        price: '$499',
+        price: 'zł499',
         status: 'In transit'
     },
     {
         id: '#FWB139485607',
         date: '08.12.2023',
-        price: '$85',
+        price: 'zł85',
         status: 'Confirmed'
     },
     {
         id: '#FWB137364371',
         date: '16.11.2023',
-        price: '$119',
+        price: 'zł119',
         status: 'Confirmed'
     },
     {
         id: '#FWB134567890',
         date: '02.11.2023',
-        price: '$2,056',
+        price: 'zł2,056',
         status: 'Confirmed'
     },
     {
         id: '#FWB146284623',
         date: '26.09.2023',
-        price: '$180',
+        price: 'zł180',
         status: 'Cancelled'
     },
     {
         id: '#FWB145967376',
         date: '17.07.2023',
-        price: '$756',
+        price: 'zł756',
         status: 'Confirmed'
     },
     {
         id: '#FWB148756352',
         date: '30.06.2023',
-        price: '$235',
+        price: 'zł235',
         status: 'Confirmed'
     },
     {
         id: '#FWB159873546',
         date: '04.06.2023',
-        price: '$90',
+        price: 'zł90',
         status: 'Cancelled'
     },
     {
         id: '#FWB156475937',
         date: '11.02.2023',
-        price: '$1,845',
+        price: 'zł1,845',
         status: 'Confirmed'
     }
 ]
 
-// Status color classes
 function statusClass(status) {
     switch (status) {
         case 'Pre-order':

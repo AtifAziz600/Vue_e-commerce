@@ -42,7 +42,7 @@
         <p class="font-normal text-lg leading-8 text-gray-500">Quantity: {{ product.qty }}</p>
       </div>
       <div class="flex items-center justify-between gap-8">
-        <h6 class="font-medium text-xl leading-8 text-indigo-600">${{ product.total.toFixed(2) }}</h6>
+        <h6 class="font-medium text-xl leading-8 text-indigo-600">zł {{ product.total.toFixed(2) }}</h6>
       </div>
     </div>
   </div>
