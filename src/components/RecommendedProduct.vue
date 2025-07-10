@@ -21,7 +21,7 @@
         >
           <!-- Image -->
           <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center overflow-hidden">
-            <img :src="item.image" alt="product" class="w-3/4 h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
+            <img :src="item.image" alt="product" class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-300" />
           </RouterLink>
           <!-- Info -->
           <div class="p-5 flex-1 flex flex-col">
