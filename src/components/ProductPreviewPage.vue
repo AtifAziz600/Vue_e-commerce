@@ -109,128 +109,173 @@
                     </div>
                 </div>
             </div>
-        <div class="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto py-24 relative bg-white/70 backdrop-blur-md rounded-2xl shadow-xl">
+            <!-- Review Part -->
+        <div class="w-full max-w-full px-4 md:px-5 lg:px-6 mx-auto relative bg-white/70 backdrop-blur-md rounded-2xl shadow-xl">
   <h2 class="font-sans font-semibold text-3xl sm:text-4xl text-gray-800 mb-10 text-center">Customer Reviews & Ratings</h2>
   <div class="grid grid-cols-12 gap-8 mb-14">
-    <div class="col-span-12 xl:col-span-4 flex items-center">
-      <div class="space-y-4 w-full max-w-xl mx-auto">
-        <div class="flex items-center w-full space-x-3">
-          <p class="text-gray-700 font-medium w-6 text-right">5</p>
-          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 30%;"></div>
-          </div>
-          <p class="text-gray-600 font-medium w-10 text-right">30</p>
-        </div>
-       <div class="flex items-center w-full space-x-3">
-          <p class="text-gray-700 font-medium w-6 text-right">4</p>
-          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 65%;"></div>
-          </div>
-          <p class="text-gray-600 font-medium w-10 text-right">78</p>
-        </div>
-        <div class="flex items-center w-full space-x-3">
-          <p class="text-gray-700 font-medium w-6 text-right">3</p>
-          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 25%;"></div>
-          </div>
-          <p class="text-gray-600 font-medium w-10 text-right">60</p>
-        </div>
-        <div class="flex items-center w-full space-x-3">
-          <p class="text-gray-700 font-medium w-6 text-right">2</p>
-          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 20%;"></div>
-          </div>
-          <p class="text-gray-600 font-medium w-10 text-right">23</p>
-        </div>
-        <div class="flex items-center w-full space-x-3">
-          <p class="text-gray-700 font-medium w-6 text-right">1</p>
-          <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-          <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-            <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full" style="width: 10%;"></div>
-          </div>
-          <p class="text-gray-600 font-medium w-10 text-right">3</p>
-        </div>
-      </div>
+    <div class="col-span-11 md:col-span-4 flex items-center">
+     <div class="space-y-3 sm:space-y-4 w-full max-w-sm sm:max-w-md mx-auto px-2">
+  <div class="flex items-center w-full space-x-2 sm:space-x-3">
+    <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">5</p>
+    <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
+    <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 30%;"></div>
     </div>
-    <div class="col-span-12 xl:col-span-8 space-y-6 xl:pl-8">
-      <div class="grid grid-cols-12 gap-4 bg-white/50 border border-gray-200 backdrop-blur-xl shadow-md rounded-2xl p-6">
-        <div class="col-span-12 md:col-span-8 flex items-center justify-center">
-          <div class="flex flex-col sm:flex-row justify-center w-full">
-            <div class="border-r border-gray-300 pr-6 text-center">
-              <h2 class="text-5xl font-bold text-gray-800 mb-2">4.3</h2>
-              <div class="flex justify-center mb-2">
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
-              </div>
-              <p class="text-gray-500 text-sm">{{ product.ratting }} Ratings</p>
-            </div>
-            <div class="pl-6 text-center">
-              <h2 class="text-5xl font-bold text-gray-800 mb-2">{{ product.reviews }}</h2>
-              <div class="flex justify-center mb-2">
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
-                <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
-              </div>
-              <p class="text-gray-500 text-sm">Last Month</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-span-12 md:col-span-4 flex flex-col justify-center items-center space-y-3 mt-6 md:mt-0">
-          <fwb-button @click="showModal" class="w-full py-3 px-6 rounded-full bg-pink-900 text-white font-semibold shadow hover:bg-pink-800 transition-all">Write A Review</fwb-button>
-          <fwb-modal
-  v-if="isShowModal"
-  @close="closeModal"
-  class="!p-0 !bg-white/80 backdrop-blur-xl border border-gray-300 shadow-2xl rounded-2xl overflow-hidden max-w-lg w-full transition-all duration-300 z-[9999]"
->
-  <template #header>
-    <div class="w-full px-6 py-4 border-b border-gray-200 bg-white/70 backdrop-blur-md flex justify-between items-center">
-      <h3 class="text-gray-800 font-semibold text-lg">Write a Review</h3>
-      <button @click="closeModal" class="text-gray-500 hover:text-gray-700 transition">
-        <Icon icon="mdi:close" class="w-5 h-5" />
-      </button>
-    </div>
-  </template>
-
-  <template #body>
-    <div class="px-6 py-5 text-gray-700 text-base space-y-3">
-      <p class="leading-relaxed">
-        Please share your experience with this product. Your feedback helps others make better choices.
-      </p>
-      <textarea
-        class="w-full h-32 p-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-900 resize-none bg-white/90 backdrop-blur-sm"
-        placeholder="Write your review..."
-      ></textarea>
-    </div>
-  </template>
-
-  <template #footer>
-    <div class="flex justify-end gap-3 px-6 py-4 bg-white/70 backdrop-blur-md border-t border-gray-200">
-      <fwb-button @click="closeModal" color="alternative" class="rounded-full px-6 py-2 text-gray-700 hover:text-black transition">
-        Cancel
-      </fwb-button>
-      <fwb-button @click="closeModal" class="rounded-full bg-pink-900 hover:bg-pink-800 text-white px-6 py-2">
-        Submit Review
-      </fwb-button>
-    </div>
-  </template>
-</fwb-modal>
-         <RouterLink class="w-full py-3 px-1" to="/review">
-             <button class="w-full py-3 px-6 rounded-full bg-white text-pink-900 border border-pink-900 font-semibold hover:bg-pink-900 hover:text-white transition-all">See All Reviews</button>
-         </RouterLink>
-        </div>
-      </div>
-    </div>
+    <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">30</p>
   </div>
 
+  <div class="flex items-center w-full space-x-2 sm:space-x-3">
+    <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">4</p>
+    <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
+    <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 65%;"></div>
+    </div>
+    <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">78</p>
+  </div>
+
+  <div class="flex items-center w-full space-x-2 sm:space-x-3">
+    <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">3</p>
+    <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
+    <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 25%;"></div>
+    </div>
+    <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">60</p>
+  </div>
+
+  <div class="flex items-center w-full space-x-2 sm:space-x-3">
+    <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">2</p>
+    <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
+    <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 20%;"></div>
+    </div>
+    <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">23</p>
+  </div>
+
+  <div class="flex items-center w-full space-x-2 sm:space-x-3">
+    <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">1</p>
+    <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
+    <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
+      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 10%;"></div>
+    </div>
+    <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">3</p>
+  </div>
+</div>
+    </div>
+    <div class="col-span-11 md:col-span-8 space-y-3 lg:pl-4 max-w-full py-12 justify-center items-center">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-4 bg-white/50 border border-gray-200 backdrop-blur-xl shadow-md rounded-2xl p-6">
+    <!-- Ratings & Reviews -->
+    <div class="col-span-12 md:col-span-8 flex items-center justify-center">
+      <div class="flex flex-col sm:flex-row justify-between items-center w-full max-w-full gap-6">
+        <!-- Average Rating -->
+        <div class="sm:border-r sm:pr-6 text-center w-full">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">{{ product.rating }}</h2>
+          <div class="flex justify-center mb-2">
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
+          </div>
+          <p class="text-gray-500 text-sm">{{ product.ratting }} Ratings</p>
+        </div>
+
+        <!-- Monthly Review Count -->
+        <div class="sm:pl-6 text-center w-full">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">{{ product.reviews }}</h2>
+          <div class="flex justify-center mb-2">
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star" class="w-5 h-5 text-yellow-500" />
+            <Icon icon="mdi:star-outline" class="w-5 h-5 text-yellow-500" />
+          </div>
+          <p class="text-gray-500 text-sm">Last Month</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review Actions -->
+    <div class="col-span-12 md:col-span-4 flex flex-col justify-center items-center space-y-4 mt-6 md:mt-0">
+      <button @click="isReviewModalOpen = true" class="w-full py-3 px-6 rounded-full bg-pink-900 text-white font-semibold shadow hover:bg-pink-800 transition-all text-sm sm:text-base">
+        Write A Review
+      </button>
+
+      <!-- Modal -->
+      <Modal :show="isReviewModalOpen" @close="isReviewModalOpen = false">
+        <template #header>
+          <div class="mb-2">
+            <h2 class="text-lg sm:text-xl font-semibold">Write Review Here:</h2>
+            <h3 class="text-sm sm:text-md font-normal text-blue-600">{{ product.title }}</h3>
+          </div>
+        </template>
+
+        <div class="mt-4 space-y-4">
+          <!-- Star Rating -->
+          <div class="flex items-center gap-1">
+            <Icon
+              v-for="i in 5"
+              :key="i"
+              :icon="i <= rating ? 'mdi:star' : 'mdi:star-outline'"
+              class="text-yellow-500 w-6 h-6 cursor-pointer transition"
+              @click="rating = i"
+            />
+          </div>
+
+          <!-- Review Title -->
+          <div>
+            <label for="title" class="block text-sm font-medium text-gray-900 mb-1">Review Title</label>
+            <input
+              type="text"
+              placeholder="Review Title"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+          </div>
+
+          <!-- Review Description -->
+          <div>
+            <textarea
+              v-model="reviewText"
+              rows="4"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+              placeholder="Give Your Review Description Here.."
+            ></textarea>
+          </div>
+
+          <!-- File Upload -->
+          <div>
+            <label class="block text-gray-700 text-sm font-normal mb-2">Add real photos of the product (Optional)</label>
+            <label for="file-upload" class="flex flex-col items-center justify-center py-6 sm:py-8 w-full border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 text-pink-900 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12" />
+              </svg>
+              <span class="text-gray-500 text-xs sm:text-sm mb-1">PNG, JPG, PDF, DOCX up to 15MB</span>
+              <span class="text-pink-900 font-medium text-sm">Click to upload or drag file here</span>
+              <input id="file-upload" type="file" class="hidden" />
+            </label>
+          </div>
+        </div>
+
+        <template #footer>
+          <div class="mt-6 flex flex-wrap gap-2 justify-start">
+            <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-sm" @click="isReviewModalOpen = false">
+              Cancel
+            </button>
+            <button class="px-4 py-2 bg-pink-900 text-white rounded-lg hover:bg-pink-800 text-sm" @click="submitReview">
+              Submit
+            </button>
+          </div>
+        </template>
+      </Modal>
+      <RouterLink to="/review" class="w-full">
+        <button class="w-full py-3 px-6 rounded-full bg-white text-rose-900 border border-rose-900 font-semibold hover:bg-rose-900 hover:text-white transition-all text-sm sm:text-base">
+          See All Reviews
+        </button>
+      </RouterLink>
+    </div>
+  </div>
+</div>
+  </div>
+  <!--Review Case-->
   <div class="mb-12 border-b border-gray-200 pb-8 max-w-3xl mx-auto">
     <h4 class="text-2xl font-semibold text-gray-800 mb-4">Most Helpful Positive Review</h4>
     <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">
@@ -252,24 +297,32 @@
     </p>
   </div>
   <div class="space-y-8 max-w-3xl mx-auto">
-    <div class="border-b border-gray-200 pb-6">
-      <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">
-        <div class="flex gap-1 items-center">
-          <Icon icon="mdi:star" class="text-yellow-500" />
-          <Icon icon="mdi:star" class="text-yellow-500" />
-          <Icon icon="mdi:star" class="text-yellow-500" />
-          <Icon icon="mdi:star" class="text-yellow-500" />
-          <Icon icon="mdi:star-half-full" class="text-yellow-500" />
-        </div>
-        <div class="flex gap-2 items-center">
-          <span class="font-medium">sara@live.com</span>
-          <span>|</span>
-          <span class="text-gray-400">Oct 18, 2023</span>
-        </div>
+  <div 
+    v-for="(rev, index) in reviews" 
+    :key="index" 
+    class="border-b border-gray-200 pb-6"
+  >
+    <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">
+      <div class="flex gap-1 items-center">
+        <Icon 
+          v-for="i in 5" 
+          :key="i" 
+          :icon="i <= Math.floor(rev.rating) ? 'mdi:star' : (i - rev.rating <= 0.5 ? 'mdi:star-half-full' : 'mdi:star-outline')" 
+          class="text-yellow-500" 
+        />
       </div>
-      <p class="text-gray-600">The design is intuitive and easy to use...</p>
+      <div class="flex gap-2 items-center">
+        <span class="font-medium">{{ rev.email }}</span>
+        <span>|</span>
+        <span class="text-gray-400">{{ rev.date }}</span>
+      </div>
     </div>
+    <p class="text-gray-600 leading-7">
+      {{ rev.content }}
+    </p>
   </div>
+</div>
+
 </div>
     </section>
     </AppLayout>
@@ -281,15 +334,36 @@ import { useRoute } from 'vue-router'
 import { useProductStore } from '@/stores/useProductStore'
 import { useToast } from 'vue-toastification';
 import { useCartStore } from '@/stores/useCartStore'
-import { FwbButton, FwbModal } from 'flowbite-vue'
+import { Icon } from '@iconify/vue'
+import Modal from '../components/Modal.vue' 
+const rating = ref(0)
+const isReviewModalOpen = ref(false)
+const reviewText = ref('')
 
-const isShowModal = ref(false)
+const reviews = ref([
+  {
+    email: 'sara@live.com',
+    date: 'Oct 18, 2023',
+    rating: 4.5,
+    content: "The design is intuitive and easy to use..."
+  }
+]);
 
-function closeModal () {
-  isShowModal.value = false
-}
-function showModal () {
-  isShowModal.value = true
+function submitReview() {
+  const newReview = {
+    email: 'guest@user.com', 
+    date: new Date().toLocaleDateString('en-US', {
+      year: 'numeric', month: 'short', day: '2-digit'
+    }),
+    rating: rating.value,
+    content: reviewText.value
+  }
+
+  reviews.value.push(newReview) 
+  toast.success(`Review Submitted:, ${reviewText.value}`)
+  isReviewModalOpen.value = false
+  reviewText.value = ''
+  rating.value = 0
 }
 const route = useRoute();
 const productStore = useProductStore()
