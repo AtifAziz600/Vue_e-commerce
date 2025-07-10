@@ -4,14 +4,14 @@
       <div class="flex items-center justify-center">
         <h2 class="text-2xl sm:text-2xl font-bold text-black">Merchandiese</h2>
       </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-1 items-center justify-center">
             <!-- Product Box Card-->
-             <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+             <div class="w-full max-w-xs border border-gray-200 rounded-md bg-gray-100 p-2 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
     <!-- Grid 2x2 -->
-    <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-4">
       <div
         v-for="item in items"
         :key="item.title"
@@ -34,12 +34,12 @@
     </a>
     </div>
   </div>
- <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+ <div class="w-full max-w-xs border border-gray-200 rounded-md bg-gray-100 p-2 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
     <!-- Grid 2x2 -->
-    <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-4">
       <div
         v-for="item in items"
         :key="item.title"
@@ -63,12 +63,12 @@
     </a>
     </div>
   </div>
-  <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-xs border border-gray-200 rounded-md bg-gray-100 p-2 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
     <!-- Grid 2x2 -->
-    <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-4">
       <div
         v-for="item in items"
         :key="item.title"
@@ -91,12 +91,12 @@
     </a>
     </div>
   </div>
-  <div class="w-full max-w-xs border border-gray-200 rounded-md bg-white p-4 shadow-sm">
+  <div class="w-full max-w-xs border border-gray-200 rounded-md bg-gray-100 p-2 shadow-sm">
     <!-- Title -->
     <h2 class="text-lg font-semibold text-gray-900 mb-4">Gaming merchandise</h2>
 
     <!-- Grid 2x2 -->
-    <div class="grid grid-cols-2 gap-4 mb-4">
+    <div class="grid grid-cols-2 gap-2 mb-4">
       <div
         v-for="item in items"
         :key="item.title"

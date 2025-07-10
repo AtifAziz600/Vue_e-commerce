@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-br from-[#5c2731] via-[#7a3b49] to-[#2e1217] py-4 text-gray-900 rounded-2xl">
+  <div class="bg-gradient-to-br from-[#5c2731] via-[#7a3b49] to-[#2e1217] py-4 text-gray-900">
     <div class="max-w-full mx-auto px-4">
       <!-- Header -->
       <div class="flex items-center justify-between">
@@ -23,9 +23,9 @@
         <swiper-slide
           v-for="(product, index) in products"
           :key="index"
-          class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200"
+          class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-2xl"
         >
-          <img :src="product.image" alt="Product" class="w-full h-44 object-contain p-4" />
+          <img :src="product.image" alt="Product" class="w-full h-44 object-contain p-2" />
           <div class="px-4 pb-4">
             <p class="text-xs font-medium text-gray-500 mb-1">
               <span class="inline-block bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-[10px] font-semibold mr-2">

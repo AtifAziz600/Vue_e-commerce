@@ -186,11 +186,11 @@
           <div class="text-sm text-gray-600">0% – 100%</div>
         </div>
       </aside>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 tracking-tight text-start">
-                    Fashion
+      <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 tracking-tight text-start">
+                    Computer
                 </h2>
-                <p class="text-sm font-thin text-gray-900 mb-6 tracking-tight text-start">
+                <p class="text-sm font-thin text-gray-900 tracking-tight text-start mb-1">
                     Check All the products here
                 </p>
           <div
@@ -198,14 +198,14 @@
               :key="section.id"
               class="mb-12"
           >
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                   <div
                       v-for="item in section.products"
                       :key="item.title"
-                      class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
+                      class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"

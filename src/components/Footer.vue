@@ -5,10 +5,10 @@
         class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10"
       >
         <div class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-        </svg>
-        <span class="text-xl font-bold text-white sm:inline">APAGOR</span>
+          <img src="../assets/img/ChatGPT Image Jul 9, 2025, 04_16_42 PM.png" class="w-30 h-10 rounded-2xl" alt="">
+          <br>
+          <br>
+        <span class="text-xl font-bold text-white sm:inline"></span>
 
           <div class="flex items-center gap-4 py-6">
 
@@ -24,7 +24,7 @@
   </div>
         </div>
         <div class="lg:mx-auto text-left">
-          <h4 class="text-lg text-white font-semibold mb-6">What A Market</h4>
+          <h4 class="text-lg text-white font-semibold mb-6">APAGOR</h4>
           <ul class="text-base space-y-4">
             <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Home</a></li>
             <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">About</a></li>
@@ -64,7 +64,7 @@
 
       <div class="py-4 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between">
         <span class="text-sm text-white mb-4 md:mb-0 text-center">
-          &copy; <a href="http://www.w3.org/2000/svg" class="hover:underline">What A Market</a> 2025, All rights reserved.
+          &copy; <a href="http://www.w3.org/2000/svg" class="hover:underline">CREATIVE TECH PARK</a> 2025, All rights reserved.
         </span>
         <div class="flex space-x-3 sm:justify-center">
           <a

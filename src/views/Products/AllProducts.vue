@@ -13,14 +13,14 @@
               :key="section.id"
               class="mb-12"
           >
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
                   <div
                       v-for="item in section.products"
                       :key="item.title"
-                      class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
+                      class="bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center rounded-t-2xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-56 flex items-center justify-center overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"

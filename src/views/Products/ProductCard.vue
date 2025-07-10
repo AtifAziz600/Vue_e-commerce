@@ -1,15 +1,15 @@
 <template>
-  <div v-for="section in products" :key="section.id" class="bg-gradient-to-br from-gray-100 to-gray-200 p-8 rounded-3xl shadow-2xl mb-14">
+  <div v-for="section in products" :key="section.id" class="bg-gradient-to-br from-gray-100 to-gray-200 p-4 shadow-md mb-14">
     <!-- Section Title -->
     <div class="mb-8">
       <h2 class="text-3xl font-bold text-gray-800 tracking-tight">{{ section.Top }}</h2>
     </div>
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
       <div
         v-for="item in section.products"
         :key="item.title"
-        class="rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
+        class="overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 bg-white group"
       >
         <!-- Image -->
         <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center">
