@@ -145,8 +145,8 @@
                                         class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
                                     >
                                         <option disabled value="">Choose</option>
-                                        <option value="Bkash">Paypal</option>
-                                        <option value="Nagad">American Express</option>
+                                        <option value="Paypal">Paypal</option>
+                                        <option value="American Express">American Express</option>
                                         <option value="Card">Card</option>
                                         <option value="Paypal">PayPal</option>
                                     </select>
