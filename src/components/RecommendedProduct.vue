@@ -29,8 +29,8 @@
             <!-- Price -->
             <div class="flex items-center space-x-2 mt-2">
               <span v-if="item.oldPrice" class="text-xs line-through text-gray-400">zł{{ item.oldPrice }}</span>
-              <span class="text-lg text-red-600 font-bold">zł {{ item.newPrice }}</span>
-              <span v-if="item.discount" class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
+              <span class="text-lg text-red-800 font-bold">zł {{ item.newPrice }}</span>
+              <span v-if="item.discount" class="text-white bg-[#f7e7ce] px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
             </div>
             <div class="mt-auto flex justify-between items-center pt-4">
               <div class="flex items-center space-x-1 text-yellow-500">
@@ -41,7 +41,7 @@
                 <Icon icon="mdi:star-outline" />
                 <RouterLink to="/review" class="text-sm text-gray-700 font-normal hover:underline ml-1 px-4">({{ item.reviews }})</RouterLink>
               </div>
-              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a3b49] transition">
+              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-semibold px-4 py-2 rounded-full shadow hover:bg-red-950 transition">
                 Add to Cart
               </button>
             </div>

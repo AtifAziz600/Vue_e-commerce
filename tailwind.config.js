@@ -12,6 +12,7 @@ export default {
         primary: colors.slate,
         secondary: colors.orange,
         deepMaroon: '#a6102d',
+        midnight: '#FFA500'
       }
     },
   },

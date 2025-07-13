@@ -5,7 +5,6 @@
                 <div class="bg-white/80 shadow-2xl rounded-3xl border border-gray-200 ring-1 ring-gray-100 backdrop-blur-2xl transition-all duration-500 p-10">
                     <!-- Header -->
                     <div class="flex flex-col items-center gap-2 mb-10">
-                        <!-- <img src="../assets//img/app.png" class="w-16 h-16 mb-2 opacity-80" /> -->
                         <h2 class="text-center text-gray-900 text-4xl font-bold font-sans tracking-tight">Become a Seller</h2>
                         <p class="max-w-xl text-center text-gray-500 text-base font-normal leading-relaxed">
                             Join our marketplace and start selling your products or services. Fill out the application below and our team will review your submission.

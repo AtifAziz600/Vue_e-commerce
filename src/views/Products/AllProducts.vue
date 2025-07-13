@@ -224,13 +224,13 @@
                           <!-- Price -->
                           <div class="flex items-end space-x-2 mb-4">
                               <span class="text-sm line-through text-gray-400">zł{{ item.oldPrice }}</span>
-                              <span class="text-xl text-blue-600 font-bold">zł{{ item.newPrice }}</span>
+                              <span class="text-xl text-red-800 font-bold">zł{{ item.newPrice }}</span>
                           </div>
                           
                           <div class="flex items-center mb-4">
                               <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
                               <span class="text-xs text-gray-500">4.8 | </span>
-                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
+                              <RouterLink class="text-xs text-blue-700 hover:underline ml-1">
                                   ({{ item.reviews }} reviews)
                                   </RouterLink>
                           </div>
@@ -239,7 +239,7 @@
   <!-- Buy Now -->
   <button
     @click="handleAddToCart(item)"
-    class="flex items-center justify-center gap-2 bg-blue-600 text-white text-xs font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-blue-800 hover:border-blue-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-400"
+    class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
   >
     <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
     <span>Buy Now</span>

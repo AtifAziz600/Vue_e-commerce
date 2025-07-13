@@ -254,7 +254,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-900 hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart

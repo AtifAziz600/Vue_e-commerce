@@ -8,19 +8,19 @@
     >
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-2 cursor-pointer py-2">
-       <img src="../assets/img/logo.png" class="h-10 md:h-6 sm:h-2 rounded-lg w-auto object-contain">
+       <img src="../assets/img/logo.png" class="h-10 md:h-6 sm:h-2 w-auto object-contain">
       </RouterLink>
 
       <!-- Search Bar -->
-      <form class="flex flex-grow border border-red-700 rounded overflow-hidden bg-red-600 shadow-sm">
-        <select class="bg-[#a6102d] text-white font-bold text-sm px-3 py-2 md:px-1 focus:outline-none md:block md:w-auto hidden hover:bg-red-950">
-          <option>Categories</option>
-          <option>Electronics</option>
-          <option>Fashion</option>
-          <option>Books</option>
+      <form class="flex flex-grow border border-[#1f2d3a] rounded overflow-hidden bg-[#34495e] ">
+        <select class="bg-[#a6102d] text-white font-bold text-sm px-3 py-2 md:px-1 focus:outline-none md:block md:w-auto hidden">
+          <option class="hover:bg-black text-white">Categories</option>
+          <option class="hover:bg-black text-white">Electronics</option>
+          <option class="hover:bg-black text-white">Fashion</option>
+          <option class="hover:bg-black text-white">Books</option>
         </select>
         <input type="text" placeholder="Search Apricot" class="flex-grow px-3 py-2 md:px-3 text-sm focus:outline-none" />
-        <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-white p-2 md:px-3 transition duration-200 flex items-center justify-center">
+        <button type="submit" class="bg-black hover:bg-blue-950 text-white p-2 md:px-3 transition duration-200 flex items-center justify-center">
           <Icon icon="mdi:magnify" class="h-6 w-6 md:h-6 md:w-6" />
         </button>
       </form>
@@ -45,10 +45,10 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
               <path d="M3 1a1 1 0 000 2h1.22l.305 1.222 1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
             </svg>
-            <RouterLink to="/cart-order" class="absolute -top-1 -right-1 bg-green-700 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{{ cartCount }}</RouterLink>
+            <RouterLink to="/cart-order" class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">{{ cartCount }}</RouterLink>
             <span class="text-white">Cart</span>
           </RouterLink>
-          <RouterLink to="/login" class="cursor-pointer border px-3 py-2 rounded hover:bg-red-900 transition duration-200">
+          <RouterLink to="/login" class="cursor-pointer border border-black px-3 py-2 rounded hover:bg-red-900 transition duration-200">
             <span class="text-white">Sign in</span>
           </RouterLink>
         </div>
@@ -56,7 +56,7 @@
 
       <!-- Mobile Hamburger Menu Button -->
       <div class="lg:hidden flex items-center">
-        <button @click="isSidebarOpen = !isSidebarOpen" class="p-2 rounded hover:bg-[#7a3b49] focus:outline-none">
+        <button @click="isSidebarOpen = !isSidebarOpen" class="p-2 rounded hover:bg-red-900 focus:outline-none">
           <Icon icon="mdi:menu" class="h-6 w-6 text-white" />
         </button>
       </div>
@@ -67,21 +67,21 @@
           <div class="bg-deepMaroon w-64 h-full shadow-lg p-6 flex flex-col">
             <div class="flex justify-between items-center mb-6">
               <span class="text-lg font-bold text-gray-100">Menu</span>
-              <button @click="isSidebarOpen = false" class="p-2 rounded hover:bg-[#7a3b49]">
+              <button @click="isSidebarOpen = false" class="p-2 rounded hover:bg-red-900">
                 <Icon icon="mdi:close" class="h-5 w-5 md:w-6 md:h-6 text-gray-100" />
               </button>
             </div>
             <nav class="flex flex-col gap-4 text-white">
-              <a v-for="item in NavItems" :key="item.name" :href="item.link" class="py-2 px-3 rounded hover:bg-[#7a3b49] transition duration-200">
+              <a v-for="item in NavItems" :key="item.name" :href="item.link" class="py-2 px-3 rounded hover:bg-red-900 transition duration-200">
                 {{ item.name }}
               </a>
             </nav>
             <div class="mt-8 flex flex-col gap-3 text-white">
-              <RouterLink to="/cart-order" class="flex items-center gap-2 cursor-pointer hover:bg-[#7a3b49] px-3 py-2 rounded transition duration-200">
+              <RouterLink to="/cart-order" class="flex items-center gap-2 cursor-pointer hover:bg-red-900 px-3 py-2 rounded transition duration-200">
                 <Icon icon="mdi:cart" class="h-5 w-5 text-gray-100" />
                 <span>Cart</span>
               </RouterLink>
-              <RouterLink to="/login" class="flex items-center gap-2 cursor-pointer hover:bg-[#7a3b49] px-3 py-2 rounded transition duration-200">
+              <RouterLink to="/login" class="flex items-center gap-2 cursor-pointer hover:bg-red-900 px-3 py-2 rounded transition duration-200">
                 <Icon icon="mdi:account" class="h-5 w-5 text-gray-100" />
                 <span>Sign in</span>
               </RouterLink>

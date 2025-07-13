@@ -62,7 +62,7 @@
                             </p>
                             <ul class="grid gap-y-3 mb-8">
                                 <li v-for="(feature, i) in product.features" :key="i" class="flex items-center gap-3">
-                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-600"></span>
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-800"></span>
                                     <span class="font-normal text-base text-gray-900">{{ feature }}</span>
                                 </li>
                             </ul>
@@ -90,7 +90,7 @@
                                 </div>
                                 <button
                                 @click="handleAddToCart(product)"
-                                    class="py-3 px-5 rounded-full bg-red-600 hover:bg-red-900 text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
+                                    class="py-3 px-5 rounded-full bg-red-800 hover:bg-red-900 text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
                                 >
                                     <Icon icon="mdi:cart" class="h-6 w-6" />
                                     Add to cart
@@ -104,7 +104,7 @@
                                 >
                                     <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-indigo-800" />
                                 </button>
-                                <button class="text-center w-full px-5 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
+                                <button class="text-center w-full px-5 py-4 rounded-xl bg-blue-900 hover:bg-blue-950 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
                                     Buy Now
                                 </button>
                             </div>
@@ -126,7 +126,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">5</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 30%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-800 rounded-full max-w-full" style="width: 30%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">30</p>
   </div>
@@ -135,7 +135,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">4</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 65%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-800 rounded-full max-w-full" style="width: 65%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">78</p>
   </div>
@@ -144,7 +144,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">3</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 25%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-800 rounded-full max-w-full" style="width: 25%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">60</p>
   </div>
@@ -153,7 +153,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">2</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 20%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-800 rounded-full max-w-full" style="width: 20%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">23</p>
   </div>
@@ -162,7 +162,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">1</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 10%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-800 rounded-full max-w-full" style="width: 10%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">3</p>
   </div>
@@ -197,7 +197,7 @@
       </div>
     </div>
     <div class="col-span-12 md:col-span-4 flex flex-col justify-center items-center space-y-4 mt-6 md:mt-0">
-      <button @click="isReviewModalOpen = true" class="w-full py-3 px-6 rounded-full bg-red-600 text-white font-semibold shadow hover:bg-red-800 transition-all text-sm sm:text-base">
+      <button @click="isReviewModalOpen = true" class="w-full py-3 px-6 rounded-full bg-red-700 text-white font-semibold shadow hover:bg-red-800 transition-all text-sm sm:text-base">
         Write A Review
       </button>
       <Modal :show="isReviewModalOpen" @close="isReviewModalOpen = false">
@@ -252,14 +252,14 @@
             <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-sm" @click="isReviewModalOpen = false">
               Cancel
             </button>
-            <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-800 text-sm" @click="submitReview">
+            <button class="px-4 py-2 bg-red-700 text-white rounded-lg hover:bg-red-800 text-sm" @click="submitReview">
               Submit
             </button>
           </div>
         </template>
       </Modal>
       <RouterLink to="/review" class="w-full">
-        <button class="w-full py-3 px-6 rounded-full bg-white text-red-600 border border-red-700 font-semibold hover:bg-red-900 hover:text-white transition-all text-sm sm:text-base">
+        <button class="w-full py-3 px-6 rounded-full bg-white text-red-700 border border-red-700 font-semibold hover:bg-red-900 hover:text-white transition-all text-sm sm:text-base">
           See All Reviews
         </button>
       </RouterLink>
