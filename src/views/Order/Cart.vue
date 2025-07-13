@@ -91,7 +91,7 @@
                     
                     <RouterLink to="/add-coupon-code" class="flex flex-col sm:flex-row items-center justify-end mt-6">
                         <button
-                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-deepMaroon bg-white shadow hover:bg-rose-50 transition"
+                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-red-600 hover:text-white bg-white shadow hover:bg-red-700 transition"
                         >
                             Add Coupon Code
                             <Icon icon="mdi:arrow-right" class="w-6 h-6"/>
@@ -133,7 +133,7 @@
                                 <button
                                     type="button"
                                     @click="applyPromo"
-                                    class="px-3 py-2 rounded-lg bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold transition text-sm"
+                                    class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition text-sm"
                                 >Apply</button>
                             </div>
                             <!-- Payment Method -->
@@ -148,6 +148,7 @@
                                         <option value="Bkash">Paypal</option>
                                         <option value="Nagad">American Express</option>
                                         <option value="Card">Card</option>
+                                        <option value="Paypal">PayPal</option>
                                     </select>
                                 </div>
                             </div>
@@ -164,7 +165,7 @@
                             <div class="flex items-center border-b border-gray-200 pb-6">
                                 <button
                                     @click="methodPay"
-                                    class="rounded-lg w-full bg-black py-2 px-3 text-white text-sm font-semibold text-center transition hover:bg-gray-900"
+                                    class="rounded-lg w-full bg-slate-700 py-2 px-3 text-white text-sm font-semibold text-center transition hover:bg-slate-900"
                                     type="button"
                                 >Apply</button>
                             </div>
@@ -175,7 +176,7 @@
                             <RouterLink to="/order-confirm">
                                 <button
                                 @click="handleCheckout"
-                                    class="w-full text-center bg-deepMaroon hover:bg-[#7a3b49] rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
+                                    class="w-full text-center bg-red-600 hover:bg-red-800 rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
                                     type="button"
                                 >Checkout</button>
                             </RouterLink>

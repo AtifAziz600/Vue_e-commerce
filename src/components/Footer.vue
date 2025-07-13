@@ -1,11 +1,11 @@
 <template>
-  <footer class="w-full bg-gradient-to-br from-red-900 via-red-500 to-red-900 text-white border-t border-rose-100 py-12 md:py-6">
+  <footer class="w-full bg-[#a6102d] text-white border-t border-rose-100 py-12 md:py-6">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
         class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10"
       >
         <div class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
-          <img src="../assets/img/ChatGPT Image Jul 9, 2025, 04_16_42 PM.png" class="w-30 h-10 rounded-2xl" alt="">
+          <img src="../assets/img/logo.png" class="w-30 h-10 rounded-2xl" alt="">
           <br>
           <br>
         <span class="text-xl font-bold text-white sm:inline"></span>

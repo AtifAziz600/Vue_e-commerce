@@ -1,10 +1,10 @@
 <template>
-  <div class="bg-gradient-to-br from-[#5c2731] via-[#7a3b49] to-[#2e1217] py-4 text-gray-900">
+  <div class="bg-gradient-to-br from-red-900 via-red-500 to-red-900 py-4 text-gray-900">
     <div class="max-w-full mx-auto px-4">
       <!-- Header -->
       <div class="flex items-center justify-between">
         <h2 class="text-xl sm:text-2xl font-semibold text-gray-100">Up to 30% off Products brands</h2>
-        <a href="#" class="text-sm text-gray-200 font-semibold hover:text-gray-100">See more</a>
+        <a href="/all-products" class="text-lg text-gray-100 font-semibold hover:text-gray-50">See more</a>
       </div>
 
       <!-- Swiper -->

@@ -39,14 +39,38 @@ import Toy5 from '../assets/img/HotWheels10-Pack.png';
 import Toy6 from '../assets/img/JengaClassicGame.png';
 import Toy7 from '../assets/img/BarbieDreamhouseDollhouse.png';
 import Toy8 from '../assets/img/Play-Doh10-PackColors.png';
-import Laptop1 from '../assets/img/apple.jfif'
-import Laptop0 from '../assets/img/download (6).jfif'
-import Laptop25 from '../assets/img/HPSpectre x360.png'
-import Laptop3 from '../assets/img/LenovoThinkPad X1Carbon.png'
-import Laptop4 from '../assets/img/ASUSZenBook14.png'
-import Laptop5 from '../assets/img/AcerSwift3.png'
-import Laptop6 from '../assets/img/MicrosoftSurfaceLaptop5.png'
-import Laptop7 from '../assets/img/RazerBlade15.png'
+import Laptop1 from '../assets/img/apple.jfif';
+import Laptop0 from '../assets/img/download (6).jfif';
+import Laptop25 from '../assets/img/HPSpectre x360.png';
+import Laptop3 from '../assets/img/LenovoThinkPad X1Carbon.png';
+import Laptop4 from '../assets/img/ASUSZenBook14.png';
+import Laptop5 from '../assets/img/AcerSwift3.png';
+import Laptop6 from '../assets/img/MicrosoftSurfaceLaptop5.png';
+import Laptop7 from '../assets/img/RazerBlade15.png';
+import Electronics1 from '../assets/img/x200.png';
+import Electronics2 from '../assets/img/ele2.png';
+import Electronics3 from '../assets/img/ele3.png';
+import Electronics4 from '../assets/img/ele4.png';
+import Electronics5 from '../assets/img/ele5.png';
+import Electronics6 from '../assets/img/ele6.png';
+import Electronics7 from '../assets/img/ele7.png';
+import Electronics8 from '../assets/img/ele8.png';
+import Phone11 from '../assets/img/x200.png';
+import Phone21 from '../assets/img/Phone.png';
+import Phone3 from '../assets/img/Phone1.png';
+import Phone4 from '../assets/img/Phone2.png';
+import Phone5 from '../assets/img/Phone3.png';
+import Phone6 from '../assets/img/Phone4.png';
+import Phone7 from '../assets/img/Phone5.png';
+import Phone8 from '../assets/img/Phone6.png';
+import Accessory0 from '../assets/img/acc1.png'
+import Accessory1 from '../assets/img/acc2.png'
+import Accessory2 from '../assets/img/acc3.png'
+import Accessory3 from '../assets/img/acc4.png'
+import Accessory4 from '../assets/img/acc5.png'
+import Accessory5 from '../assets/img/acc6.png'
+import Accessory6 from '../assets/img/acc7.png'
+import Accessory7 from '../assets/img/acc8.png'
 
 export const useProductStore = defineStore('productStore', {
     state: () => ({
@@ -60,6 +84,7 @@ export const useProductStore = defineStore('productStore', {
     image: Watch,
     oldPrice: 48.54,
     newPrice: 38.89,
+    inStock: true,
     discount: 19,
     tag: "watch",
     reviews: 1248,
@@ -81,6 +106,7 @@ export const useProductStore = defineStore('productStore', {
         image: Fashion,
         oldPrice: 39.96,
         newPrice: 22.91,
+        inStock: true,
         discount: 42,
         tag: "fashion",
          reviews: 1248,
@@ -103,6 +129,7 @@ export const useProductStore = defineStore('productStore', {
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: true,
         tag: "laptop",
         reviews: 1248,
     rating: 5,
@@ -123,6 +150,7 @@ export const useProductStore = defineStore('productStore', {
         image: Phone,
         oldPrice: 20.21,
         newPrice: 17.88,
+        inStock: false,
         discount: 32,
         tag: "phone",
         reviews: 1248,
@@ -145,6 +173,7 @@ export const useProductStore = defineStore('productStore', {
         oldPrice: 48.54,
         newPrice: 38.89,
         discount: 19,
+        inStock: true,
         tag: "watch",
         reviews: 1248,
     rating: 5,
@@ -166,6 +195,7 @@ export const useProductStore = defineStore('productStore', {
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
+        inStock: true,
         tag: "fashion",
         reviews: 1248,
     rating: 5,
@@ -187,6 +217,7 @@ export const useProductStore = defineStore('productStore', {
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: false,
         tag: "laptop",
         reviews: 1248,
     rating: 5,
@@ -209,6 +240,7 @@ export const useProductStore = defineStore('productStore', {
         newPrice: 17.88,
         discount: 32,
         tag: "phone",
+        inStock: true,
         reviews: 1248,
     rating: 5,
     features: [
@@ -1373,6 +1405,537 @@ export const useProductStore = defineStore('productStore', {
           '16GB RAM',
           '1TB SSD',
           '15.6" QHD 240Hz Display'
+        ],
+        sizes: []
+      },
+            {
+        id: 59,
+        title: "Smartphone X200",
+        slug: "smartphone-x200",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Powerful smartphone with advanced camera and display.",
+        image: Electronics1, // Replace with actual image import
+        oldPrice: 799.00,
+        newPrice: 649.99,
+        discount: 19,
+        tag: "phone",
+        reviews: 1050,
+        rating: 4.6,
+        features: [
+          "6.5-inch AMOLED display",
+          "Triple 64MP camera",
+          "128GB storage",
+          "Fast charging"
+        ],
+        sizes: ["128GB", "256GB"]
+      },
+      {
+        id: 60,
+        title: "UltraNoise Headphones",
+        slug: "ultranoise-headphones",
+        category: "Audio",
+        inStock: true,
+        subtitle: "Wireless noise-canceling headphones for immersive sound.",
+        image: Electronics2,
+        oldPrice: 299.00,
+        newPrice: 219.99,
+        discount: 27,
+        tag: "headphones",
+        reviews: 620,
+        rating: 4.8,
+        features: [
+          "Active noise cancellation",
+          "Bluetooth 5.2",
+          "30-hour battery life"
+        ],
+        sizes: ["Standard"]
+      },
+      {
+        id: 61,
+        title: "Smartwatch Pro 5",
+        slug: "smartwatch-pro-5",
+        category: "Wearables",
+        inStock: true,
+        subtitle: "Fitness-focused smartwatch with advanced health tracking.",
+        image: Electronics3,
+        oldPrice: 199.00,
+        newPrice: 149.99,
+        discount: 25,
+        tag: "smartwatch",
+        reviews: 340,
+        rating: 4.5,
+        features: [
+          "Heart rate monitor",
+          "Sleep tracking",
+          "Water resistant",
+          "AMOLED display"
+        ],
+        sizes: ["42mm", "46mm"]
+      },
+      {
+        id: 62,
+        title: "4K LED Smart TV 55\"",
+        slug: "4k-led-smart-tv-55",
+        category: "Televisions",
+        inStock: false,
+        subtitle: "Crisp 4K display with built-in streaming apps.",
+        image: Electronics4,
+        oldPrice: 599.00,
+        newPrice: 449.99,
+        discount: 25,
+        tag: "tv",
+        reviews: 270,
+        rating: 4.7,
+        features: [
+          "Ultra HD 4K resolution",
+          "HDR10 support",
+          "Built-in WiFi",
+          "Voice remote"
+        ],
+        sizes: ["43\"", "50\"", "55\"", "65\""]
+      },
+            {
+        id: 63,
+        title: "Gaming Laptop G15",
+        slug: "gaming-laptop-g15",
+        category: "Computers",
+        inStock: true,
+        subtitle: "High-performance laptop for gaming and productivity.",
+        image: Electronics5,
+        oldPrice: 1299.00,
+        newPrice: 1099.00,
+        discount: 15,
+        tag: "laptop",
+        reviews: 420,
+        rating: 4.6,
+        features: [
+          "Intel i7 / Ryzen 7",
+          "RTX 4060 GPU",
+          "16GB RAM, 512GB SSD"
+        ],
+        sizes: ["15.6\"", "17.3\""]
+      },
+      {
+        id: 64,
+        title: "Portable Bluetooth Speaker",
+        slug: "portable-bluetooth-speaker",
+        category: "Audio",
+        inStock: true,
+        subtitle: "Compact speaker with deep bass and waterproof build.",
+        image: Electronics6,
+        oldPrice: 89.00,
+        newPrice: 66.75,
+        discount: 25,
+        tag: "speaker",
+        reviews: 310,
+        rating: 4.4,
+        features: [
+          "Waterproof (IPX7)",
+          "12-hour battery",
+          "Built-in mic"
+        ],
+        sizes: ["Small", "Medium"]
+      },
+      {
+        id: 65,
+        title: "Wireless Mechanical Keyboard",
+        slug: "wireless-mechanical-keyboard",
+        category: "Accessories",
+        inStock: true,
+        subtitle: "Tactile mechanical keys with customizable RGB lighting.",
+        image: Electronics7,
+        oldPrice: 110.00,
+        newPrice: 82.50,
+        discount: 25,
+        tag: "keyboard",
+        reviews: 145,
+        rating: 4.5,
+        features: [
+          "Hot-swappable keys",
+          "Wireless + USB-C",
+          "RGB backlight"
+        ],
+        sizes: ["75%", "TKL", "Full"]
+      },
+      {
+        id: 66,
+        title: "Home Security Camera 1080p",
+        slug: "home-security-camera-1080p",
+        category: "Security",
+        inStock: false,
+        subtitle: "Monitor your home remotely with motion alerts.",
+        image: Electronics8,
+        oldPrice: 70.00,
+        newPrice: 52.50,
+        discount: 25,
+        tag: "camera",
+        reviews: 190,
+        rating: 4.3,
+        features: [
+          "Night vision",
+          "Mobile app control",
+          "Cloud storage compatible"
+        ],
+        sizes: ["Indoor", "Outdoor"]
+      },
+            {
+        id: 67,
+        title: "Smartphone X200",
+        slug: "smartphone-x200",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Powerful smartphone with advanced camera and display.",
+        image: Phone11, 
+        oldPrice: 799.00,
+        newPrice: 649.99,
+        discount: 19,
+        tag: "phone",
+        reviews: 1050,
+        rating: 4.6,
+        features: [
+          "6.5-inch AMOLED display",
+          "Triple 64MP camera",
+          "128GB storage",
+          "Fast charging"
+        ],
+        sizes: ["128GB", "256GB"]
+      },
+      {
+        id: 68,
+        title: "Galaxy Note Air",
+        slug: "galaxy-note-air",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Stylus-supported productivity phone with big display.",
+        image: Phone21,
+        oldPrice: 999.00,
+        newPrice: 799.00,
+        discount: 20,
+        tag: "phone",
+        reviews: 860,
+        rating: 4.7,
+        features: [
+          "6.9-inch Dynamic AMOLED",
+          "S-Pen support",
+          "Snapdragon 8 Gen 2",
+          "5000mAh battery"
+        ],
+        sizes: ["256GB", "512GB"]
+      },
+      {
+        id: 69,
+        title: "Pixel Vision Pro",
+        slug: "pixel-vision-pro",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "AI-optimized camera phone from Google.",
+        image: Phone3,
+        oldPrice: 899.00,
+        newPrice: 749.99,
+        discount: 17,
+        tag: "phone",
+        reviews: 980,
+        rating: 4.8,
+        features: [
+          "Dual 50MP camera with AI",
+          "Stock Android 14",
+          "Face unlock",
+          "Titan M2 security chip"
+        ],
+        sizes: ["128GB", "256GB", "512GB"]
+      },
+      {
+        id: 70,
+        title: "iPhone 15 Pro",
+        slug: "iphone-15-pro",
+        category: "Smartphones",
+        inStock: false,
+        subtitle: "Premium Apple device with titanium build.",
+        image: Phone4,
+        oldPrice: 1099.00,
+        newPrice: 999.00,
+        discount: 9,
+        tag: "phone",
+        reviews: 1320,
+        rating: 4.9,
+        features: [
+          "A17 Pro chip",
+          "USB-C port",
+          "ProMotion 120Hz display",
+          "LiDAR scanner"
+        ],
+        sizes: ["128GB", "256GB", "512GB", "1TB"]
+      },
+            {
+        id: 71,
+        title: "OnePlus 12 Turbo",
+        slug: "oneplus-12-turbo",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Fast performance with AMOLED and flagship SoC.",
+        image: Phone5,
+        oldPrice: 699.00,
+        newPrice: 599.00,
+        discount: 14,
+        tag: "phone",
+        reviews: 610,
+        rating: 4.5,
+        features: [
+          "Snapdragon 8 Gen 2",
+          "120Hz AMOLED",
+          "80W SUPERVOOC charging",
+          "Dual stereo speakers"
+        ],
+        sizes: ["256GB", "512GB"]
+      },
+      {
+        id: 72,
+        title: "Xiaomi Mi Ultra 13",
+        slug: "xiaomi-mi-ultra-13",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Flagship phone with Leica-powered cameras.",
+        image: Phone6,
+        oldPrice: 899.00,
+        newPrice: 729.00,
+        discount: 18,
+        tag: "phone",
+        reviews: 740,
+        rating: 4.6,
+        features: [
+          "1-inch Sony sensor",
+          "Snapdragon 8 Gen 3",
+          "90W wired / 50W wireless charging",
+          "IP68 water resistance"
+        ],
+        sizes: ["256GB", "512GB"]
+      },
+      {
+        id: 73,
+        title: "Nothing Phone 2",
+        slug: "nothing-phone-2",
+        category: "Smartphones",
+        inStock: true,
+        subtitle: "Stylish smartphone with Glyph interface and clean UI.",
+        image: Phone7,
+        oldPrice: 599.00,
+        newPrice: 499.00,
+        discount: 16,
+        tag: "phone",
+        reviews: 420,
+        rating: 4.4,
+        features: [
+          "Glyph LED notifications",
+          "Snapdragon 8+ Gen 1",
+          "Dual rear cameras",
+          "Nothing OS"
+        ],
+        sizes: ["128GB", "256GB"]
+      },
+      {
+        id: 74,
+        title: "Asus ROG Phone 7",
+        slug: "asus-rog-phone-7",
+        category: "Smartphones",
+        inStock: false,
+        subtitle: "Gaming phone with extreme performance and cooling.",
+        image: Phone8,
+        oldPrice: 999.00,
+        newPrice: 849.00,
+        discount: 15,
+        tag: "phone",
+        reviews: 300,
+        rating: 4.7,
+        features: [
+          "165Hz AMOLED",
+          "AirTrigger buttons",
+          "6000mAh battery",
+          "Snapdragon 8 Gen 2"
+        ],
+        sizes: ["256GB", "512GB"]
+      },
+            {
+        id: 75,
+        title: "Logitech MX Master 3S",
+        slug: "logitech-mx-master-3s",
+        category: "Accessories / Mouse",
+        inStock: true,
+        subtitle: "Advanced wireless mouse with ergonomic design and fast scrolling.",
+        image: Accessory0,
+        oldPrice: 119.99,
+        newPrice: 99.99,
+        discount: 17,
+        tag: "accessory",
+        reviews: 1241,
+        rating: 5,
+        features: [
+          'Ergonomic Design',
+          'MagSpeed Scrolling',
+          '4000 DPI Sensor',
+          'USB-C Rechargeable',
+          'Bluetooth & USB Receiver'
+        ],
+        sizes: []
+      },
+      {
+        id: 76,
+        title: "Sony WH-1000XM5",
+        slug: "sony-wh-1000xm5",
+        category: "Accessories / Headphones",
+        inStock: true,
+        subtitle: "Wireless Noise-Canceling Over-Ear Headphones with premium sound.",
+        image: Accessory1,
+        oldPrice: 399.99,
+        newPrice: 349.99,
+        discount: 13,
+        tag: "accessory",
+        reviews: 942,
+        rating: 5,
+        features: [
+          'Industry-leading Noise Cancellation',
+          '30-hour Battery Life',
+          'Touch Controls',
+          'Bluetooth 5.2',
+          'Hi-Res Audio Certified'
+        ],
+        sizes: []
+      },
+      {
+        id: 77,
+        title: "Razer BlackWidow V4 Pro",
+        slug: "razer-blackwidow-v4-pro",
+        category: "Accessories / Keyboard",
+        inStock: false,
+        subtitle: "Mechanical gaming keyboard with RGB and macro keys.",
+        image: Accessory2,
+        oldPrice: 229.99,
+        newPrice: 199.99,
+        discount: 13,
+        tag: "accessory",
+        reviews: 283,
+        rating: 4,
+        features: [
+          'Mechanical Switches (Green)',
+          'Dedicated Macro Keys',
+          'Magnetic Wrist Rest',
+          'Chroma RGB Lighting',
+          'USB Passthrough'
+        ],
+        sizes: []
+      },
+      {
+        id: 78,
+        title: "Elgato Stream Deck XL",
+        slug: "elgato-stream-deck-xl",
+        category: "Accessories / Streaming",
+        inStock: true,
+        subtitle: "32 customizable LCD keys for productivity and streaming control.",
+        image: Accessory3,
+        oldPrice: 249.99,
+        newPrice: 219.99,
+        discount: 12,
+        tag: "accessory",
+        reviews: 389,
+        rating: 5,
+        features: [
+          '32 LCD Keys',
+          'Custom Icons & Functions',
+          'Integration with OBS, Twitch, YouTube',
+          'Detachable Stand',
+          'USB-C Connection'
+        ],
+        sizes: []
+      },
+            {
+        id: 79,
+        title: "Anker 737 Power Bank",
+        slug: "anker-737-power-bank",
+        category: "Accessories / Power",
+        inStock: true,
+        subtitle: "140W USB-C Portable Charger with 24,000mAh capacity.",
+        image: Accessory4,
+        oldPrice: 159.99,
+        newPrice: 139.99,
+        discount: 13,
+        tag: "accessory",
+        reviews: 478,
+        rating: 5,
+        features: [
+          '140W Fast Charging',
+          '24,000mAh Battery',
+          'USB-C PD 3.1',
+          'Smart Digital Display',
+          'Multiple Device Charging'
+        ],
+        sizes: []
+      },
+      {
+        id: 80,
+        title: "Logitech Brio 4K Webcam",
+        slug: "logitech-brio-4k-webcam",
+        category: "Accessories / Webcam",
+        inStock: true,
+        subtitle: "Ultra HD 4K webcam with HDR and Windows Hello support.",
+        image: Accessory5,
+        oldPrice: 199.99,
+        newPrice: 169.99,
+        discount: 15,
+        tag: "accessory",
+        reviews: 212,
+        rating: 4,
+        features: [
+          '4K Ultra HD Resolution',
+          'HDR and Auto Light Correction',
+          'Windows Hello Facial Recognition',
+          'Omni-directional Microphones',
+          'Adjustable Field of View'
+        ],
+        sizes: []
+      },
+      {
+        id: 81,
+        title: "Samsung T7 Shield SSD",
+        slug: "samsung-t7-shield-ssd",
+        category: "Accessories / Storage",
+        inStock: false,
+        subtitle: "1TB rugged portable SSD with USB 3.2 and IP65 water resistance.",
+        image: Accessory6,
+        oldPrice: 139.99,
+        newPrice: 119.99,
+        discount: 14,
+        tag: "accessory",
+        reviews: 341,
+        rating: 4,
+        features: [
+          '1TB NVMe SSD',
+          'USB 3.2 Gen 2',
+          'Up to 1050MB/s Read Speed',
+          'Shock & Water Resistant (IP65)',
+          'Secure AES 256-bit Encryption'
+        ],
+        sizes: []
+      },
+      {
+        id: 82,
+        title: "HyperX Cloud II",
+        slug: "hyperx-cloud-ii",
+        category: "Accessories / Gaming Headset",
+        inStock: true,
+        subtitle: "Gaming headset with 7.1 virtual surround and detachable mic.",
+        image: Accessory7,
+        oldPrice: 99.99,
+        newPrice: 79.99,
+        discount: 20,
+        tag: "accessory",
+        reviews: 1920,
+        rating: 5,
+        features: [
+          '7.1 Virtual Surround Sound',
+          'Memory Foam Ear Cushions',
+          'Detachable Noise-Canceling Mic',
+          'USB Audio Control Box',
+          'Multi-Platform Compatibility'
         ],
         sizes: []
       }

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative max-w-screen-full mx-auto mt-6 overflow-hidden rounded-3xl shadow-2xl border border-gray-300/30">
+    <div class="relative max-w-screen-full mx-auto mt-6 overflow-hidden shadow-2xl border border-gray-300/30">
     <swiper
       :spaceBetween="0"
       :effect="'fade'"

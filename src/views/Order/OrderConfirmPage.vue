@@ -71,15 +71,16 @@
                     <div class="flex justify-center gap-4 mt-4">
                         <RouterLink
                             to="/order-summary"
-                            class="px-6 py-2.5 rounded-xl bg-white border border-deepMaroon text-deepMaroon hover:text-white font-semibold shadow hover:bg-[#7a3b49] transition"
+                            class="px-6 py-2.5 rounded-xl bg-white border border-deepMaroon text-deepMaroon hover:text-white font-semibold shadow hover:bg-red-800 transition"
                         >
                             Order Summary
                         </RouterLink>
-                        <button
-                            class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold shadow transition"
+                        <RouterLink
+                        to="/order-tracking"
+                            class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-red-800 text-white font-semibold shadow transition"
                         >
                             Track My Order
-                        </button>
+                        </RouterLink>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
     <section class="py-24 ">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-20 text-center">
-                <span class="text-indigo-600 text-center font-medium mb-4 block">OUR PAYMENT METHOD</span>
+                <span class="text-red-600 text-center font-medium mb-4 block">OUR PAYMENT METHOD</span>
                 <h1 class="text-4xl text-gray-900 text-center font-bold">The payment method that we accept</h1>
             </div>
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2  xl:grid-cols-4">

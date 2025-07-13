@@ -108,6 +108,36 @@ const router = createRouter({
       path: "/review",
       name: 'review',
       component: () => import('../views/Review/Review.vue')
+    },
+    {
+      path: "/electronics",
+      name: "electronics",
+      component: () => import('../views/Electronics/Electronics.vue')
+    },
+    {
+      path: "/phones",
+      name: "phones",
+      component: () => import('../views/Phone/Phone.vue')
+    },
+    {
+      path: "/tablets",
+      name: "tablets",
+      component: () => import('../views/Tablets/Tablets.vue')
+    },
+    {
+      path: '/category/:slug',
+      name: "category",
+      component: () => import('../views/Category/HomeCategoryCard.vue')
+    },
+    {
+      path: "/accessories",
+      name: "accessories",
+      component: () => import('../views/Accessories/Accessories.vue')
+    },
+    {
+      path: '/order-tracking',
+      name: 'order-tracking',
+      component: () => import('../views/Order/OrderTracking.vue')
     }
   ]
 })

@@ -6,7 +6,7 @@
         {{ category.name }}
       </h2>
       <RouterLink
-        to="/category"
+        :to="`/category/${category.slug}`"
         class="text-sm text-blue-600 font-medium hover:underline hover:text-blue-800 transition px-4 py-1 bg-white/70 shadow"
       >
         See More
@@ -14,12 +14,12 @@
     </div>
 
     <!-- Subcategories Grid -->
-    <div v-if="category.children_recursive.length" class="p-8">
+    <div v-if="category.children_recursive.length" class="p-2">
       <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
         <RouterLink
           v-for="child in category.children_recursive"
           :key="child.id"
-          :to="`/product?category=${child.slug}`"
+          :to="child.slug"
           class="flex flex-col items-center group border border-gray-200 rounded-2xl p-4 bg-gradient-to-b from-white to-[#f5f6fa] hover:shadow-xl hover:scale-105 transition-all duration-200"
         >
           <div class="w-30 h-full rounded-full bg-gray-50 overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center mb-2">
@@ -56,12 +56,12 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import ElectronicsIcon from '../assets/img/electorcis.jfif';
-import ComputerIcons from '../assets/img/images.jfif';
-import PhonesIcon from '../assets/img/phone.jfif';
-import TabletsIcon from '../assets/img/download (2).jfif';
-import AccessoriesIcon from '../assets/img/download (3).jfif';
-import FashionIcon from '../assets/img/images (2).jfif';
+import ElectronicsIcon from '../../assets/img/electorcis.jfif';
+import ComputerIcons from '../../assets/img/images.jfif';
+import PhonesIcon from '../../assets/img/phone.jfif';
+import TabletsIcon from '../../assets/img/download (2).jfif';
+import AccessoriesIcon from '../../assets/img/download (3).jfif';
+import FashionIcon from '../../assets/img/images (2).jfif';
 import ProductSlider from '@/components/ProductSlider.vue'
 
 const category = ref({
@@ -71,7 +71,7 @@ const category = ref({
     {
       id: 1,
       name: 'Electronics',
-      slug: 'ElectronicsIcon',
+      slug: 'electronics',
       photo: ElectronicsIcon,
     },
     {
@@ -95,7 +95,7 @@ const category = ref({
     {
       id: 5,
       name: 'Computers',
-      slug: 'computers',
+      slug: 'computer',
       photo: ComputerIcons,
     },
     {
@@ -106,4 +106,5 @@ const category = ref({
     }
   ]
 });
+
 </script>

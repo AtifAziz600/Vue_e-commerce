@@ -26,7 +26,7 @@
                         </div>
                         <div class="total flex items-center justify-between pt-6">
                             <p class="font-normal text-xl leading-8 text-black ">Subtotal</p>
-                            <h5 class="font-manrope font-bold text-2xl leading-9 text-indigo-600">zł {{ subtotal.toFixed(2) }}</h5>
+                            <h5 class="font-manrope font-bold text-2xl leading-9 text-red-600">zł {{ subtotal.toFixed(2) }}</h5>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
         <p class="font-normal text-lg leading-8 text-gray-500">Quantity: {{ product.qty }}</p>
       </div>
       <div class="flex items-center justify-between gap-8">
-        <h6 class="font-medium text-xl leading-8 text-indigo-600">zł {{ product.total.toFixed(2) }}</h6>
+        <h6 class="font-medium text-xl leading-8 text-red-600">zł {{ product.total.toFixed(2) }}</h6>
       </div>
     </div>
   </div>

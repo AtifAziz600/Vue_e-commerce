@@ -27,29 +27,17 @@
             <span class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
           </div>
 
-          <!-- Tag -->
-          <div class="mt-3 flex flex-row space-x-4">
-            <span class="text-xs uppercase bg-red-500 text-white px-2 py-0.5 rounded-full tracking-wide">{{ item.tag }}</span>
-             <span
-    :class="[
-      'text-xs font-semibold rounded-2xl px-2 py-1',
-      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
-    ]"
-  >
-    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
-  </span>
-          </div>
 
           <!-- Footer -->
           <div class="mt-4 flex justify-between text-xs text-gray-500">
             <div class="flex items-center space-x-1">
-              <Icon icon="mdi:star" class="text-yellow-500" />
-              <span>{{ item.rating }}</span>
-              <RouterLink class="ml-5 hover:underline">({{ item.reviews }})</RouterLink>
+              <Icon icon="mdi:star" class="text-yellow-500 text-lg" />
+              <span class="text-md">{{ item.rating }}</span>
+              <RouterLink to="/review" class="text-sm ml-5 hover:text-blue-700 hover:underline">({{ item.reviews }}) reviews</RouterLink>
               </div>
             
             <div class="flex items-center space-x-3">
-              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-medium px-5 py-2 rounded-2xl shadow-sm hover:bg-[#7a3b49] transition-all duration-200 focus:outline-none">Add to Cart</button>
+              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-medium px-5 py-2 rounded-2xl shadow-sm hover:bg-red-900 transition-all duration-200 focus:outline-none">Add to Cart</button>
             </div>
           </div>
         </div>

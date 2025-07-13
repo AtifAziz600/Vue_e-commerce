@@ -23,7 +23,7 @@
 
 <script setup>
 import MainCarousel from "@/components/MainCarousel.vue";
-import HomeCategoryCard from "@/components/HomeCategoryCard.vue";
+import HomeCategoryCard from "@/views/Category/HomeCategoryCard.vue";
 import ProductCard from "@/views/Products/ProductCard.vue";
 import ProductCardCarsoal from "@/components/ProductCardCarsoal.vue";
 import ProductSlider from "@/components/ProductSlider.vue";
@@ -42,12 +42,11 @@ import ProductOnHero from "@/components/ProductOnHero.vue";
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 32px;
-  max-width: 1280px;
+  max-width: 2400px;
   margin: -220px auto 48px auto;
   position: relative;
   z-index: 2;
   padding: 50px 24px 50px 24px;
-  border-radius: 18px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   transition: box-shadow 0.2s;
 }

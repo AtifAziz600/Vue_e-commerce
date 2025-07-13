@@ -11,7 +11,7 @@ export default {
       colors: {
         primary: colors.slate,
         secondary: colors.orange,
-        deepMaroon: '#5c2731',
+        deepMaroon: '#a6102d',
       }
     },
   },

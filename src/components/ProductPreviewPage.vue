@@ -3,9 +3,8 @@
         <section class="relative py-12 bg-[#f5f5f7] min-h-screen">
             <div class="w-full mx-auto px-4 sm:px-6 lg:px-0">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2">
-                    <!-- Product Image -->
                     <div class="img flex items-center justify-center">
-                        <div class="h-full max-lg:mx-auto rounded-3xl overflow-hidden shadow-xl border border-gray-200 bg-white">
+                        <div class="h-96 max-lg:mx-auto rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white">
                             <img
                                 :src="product.image"
                                 :alt="product.title"
@@ -14,9 +13,8 @@
                             />
                         </div>
                     </div>
-                    <!-- Product Data -->
-                    <div class="data w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
-                        <div class="data w-full max-w-xl">
+                    <div class="w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0">
+                        <div class="w-full max-w-xl">
                             <p class="text-base font-medium leading-8 text-gray-500 mb-2 tracking-wide uppercase">
                                 {{ product.category }}
                             </p>
@@ -49,12 +47,22 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="py-2">
+                                <span
+    :class="[
+      'text-lg font-semibold px-2 rounded-full items-end justify-end',
+      product.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
+    ]"
+  >
+    {{ product.inStock ? 'In Stock' : 'Out Stock' }}
+  </span>
+                            </div>
                             <p class="text-gray-700 text-lg font-normal mb-5 leading-relaxed">
                                 {{ product.subtitle }}
                             </p>
                             <ul class="grid gap-y-3 mb-8">
                                 <li v-for="(feature, i) in product.features" :key="i" class="flex items-center gap-3">
-                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-deepMaroon"></span>
+                                    <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-600"></span>
                                     <span class="font-normal text-base text-gray-900">{{ feature }}</span>
                                 </li>
                             </ul>
@@ -82,7 +90,7 @@
                                 </div>
                                 <button
                                 @click="handleAddToCart(product)"
-                                    class="py-3 px-5 rounded-full bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
+                                    class="py-3 px-5 rounded-full bg-red-600 hover:bg-red-900 text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
                                 >
                                     <Icon icon="mdi:cart" class="h-6 w-6" />
                                     Add to cart
@@ -94,9 +102,9 @@
                                     :class="{ 'ring-2 ring-indigo-400': wishlisted }"
                                     @click="wishlisted = !wishlisted"
                                 >
-                                    <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-[#7a3b49]" />
+                                    <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-indigo-800" />
                                 </button>
-                                <button class="text-center w-full px-5 py-4 rounded-xl bg-rose-800 hover:bg-rose-900 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
+                                <button class="text-center w-full px-5 py-4 rounded-xl bg-blue-600 hover:bg-blue-700 flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">
                                     Buy Now
                                 </button>
                             </div>
@@ -109,7 +117,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Review Part -->
         <div class="w-full max-w-full px-4 md:px-5 lg:px-6 mx-auto relative bg-white/70 backdrop-blur-md rounded-2xl shadow-xl">
   <h2 class="font-sans font-semibold text-3xl sm:text-4xl text-gray-800 mb-10 text-center">Customer Reviews & Ratings</h2>
   <div class="grid grid-cols-12 gap-8 mb-14">
@@ -119,7 +126,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">5</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 30%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 30%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">30</p>
   </div>
@@ -128,7 +135,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">4</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 65%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 65%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">78</p>
   </div>
@@ -137,7 +144,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">3</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 25%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 25%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">60</p>
   </div>
@@ -146,7 +153,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">2</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 20%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 20%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">23</p>
   </div>
@@ -155,7 +162,7 @@
     <p class="text-gray-700 font-medium w-4 text-right text-sm sm:text-base">1</p>
     <Icon icon="mdi:star" class="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 flex-shrink-0" />
     <div class="relative flex-1 h-2 bg-gray-200 rounded-full">
-      <div class="absolute top-0 left-0 h-full bg-pink-900 rounded-full max-w-full" style="width: 10%;"></div>
+      <div class="absolute top-0 left-0 h-full bg-red-600 rounded-full max-w-full" style="width: 10%;"></div>
     </div>
     <p class="text-gray-600 font-medium w-12 text-right text-sm sm:text-base">3</p>
   </div>
@@ -163,10 +170,8 @@
     </div>
     <div class="col-span-11 md:col-span-8 space-y-3 lg:pl-4 max-w-full py-12 justify-center items-center">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-4 bg-white/50 border border-gray-200 backdrop-blur-xl shadow-md rounded-2xl p-6">
-    <!-- Ratings & Reviews -->
     <div class="col-span-12 md:col-span-8 flex items-center justify-center">
       <div class="flex flex-col sm:flex-row justify-between items-center w-full max-w-full gap-6">
-        <!-- Average Rating -->
         <div class="sm:border-r sm:pr-6 text-center w-full">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">{{ product.rating }}</h2>
           <div class="flex justify-center mb-2">
@@ -178,8 +183,6 @@
           </div>
           <p class="text-gray-500 text-sm">{{ product.ratting }} Ratings</p>
         </div>
-
-        <!-- Monthly Review Count -->
         <div class="sm:pl-6 text-center w-full">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-2">{{ product.reviews }}</h2>
           <div class="flex justify-center mb-2">
@@ -193,14 +196,10 @@
         </div>
       </div>
     </div>
-
-    <!-- Review Actions -->
     <div class="col-span-12 md:col-span-4 flex flex-col justify-center items-center space-y-4 mt-6 md:mt-0">
-      <button @click="isReviewModalOpen = true" class="w-full py-3 px-6 rounded-full bg-pink-900 text-white font-semibold shadow hover:bg-pink-800 transition-all text-sm sm:text-base">
+      <button @click="isReviewModalOpen = true" class="w-full py-3 px-6 rounded-full bg-red-600 text-white font-semibold shadow hover:bg-red-800 transition-all text-sm sm:text-base">
         Write A Review
       </button>
-
-      <!-- Modal -->
       <Modal :show="isReviewModalOpen" @close="isReviewModalOpen = false">
         <template #header>
           <div class="mb-2">
@@ -210,7 +209,6 @@
         </template>
 
         <div class="mt-4 space-y-4">
-          <!-- Star Rating -->
           <div class="flex items-center gap-1">
             <Icon
               v-for="i in 5"
@@ -220,36 +218,30 @@
               @click="rating = i"
             />
           </div>
-
-          <!-- Review Title -->
           <div>
             <label for="title" class="block text-sm font-medium text-gray-900 mb-1">Review Title</label>
             <input
               type="text"
               placeholder="Review Title"
-              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
             />
           </div>
-
-          <!-- Review Description -->
           <div>
             <textarea
               v-model="reviewText"
               rows="4"
-              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-500"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
               placeholder="Give Your Review Description Here.."
             ></textarea>
           </div>
-
-          <!-- File Upload -->
           <div>
             <label class="block text-gray-700 text-sm font-normal mb-2">Add real photos of the product (Optional)</label>
             <label for="file-upload" class="flex flex-col items-center justify-center py-6 sm:py-8 w-full border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 text-pink-900 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 sm:h-10 sm:w-10 text-red-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12" />
               </svg>
               <span class="text-gray-500 text-xs sm:text-sm mb-1">PNG, JPG, PDF, DOCX up to 15MB</span>
-              <span class="text-pink-900 font-medium text-sm">Click to upload or drag file here</span>
+              <span class="text-red-700 font-medium text-sm">Click to upload or drag file here</span>
               <input id="file-upload" type="file" class="hidden" />
             </label>
           </div>
@@ -260,14 +252,14 @@
             <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-sm" @click="isReviewModalOpen = false">
               Cancel
             </button>
-            <button class="px-4 py-2 bg-pink-900 text-white rounded-lg hover:bg-pink-800 text-sm" @click="submitReview">
+            <button class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-800 text-sm" @click="submitReview">
               Submit
             </button>
           </div>
         </template>
       </Modal>
       <RouterLink to="/review" class="w-full">
-        <button class="w-full py-3 px-6 rounded-full bg-white text-rose-900 border border-rose-900 font-semibold hover:bg-rose-900 hover:text-white transition-all text-sm sm:text-base">
+        <button class="w-full py-3 px-6 rounded-full bg-white text-red-600 border border-red-700 font-semibold hover:bg-red-900 hover:text-white transition-all text-sm sm:text-base">
           See All Reviews
         </button>
       </RouterLink>
@@ -275,7 +267,6 @@
   </div>
 </div>
   </div>
-  <!--Review Case-->
   <div class="mb-12 border-b border-gray-200 pb-8 max-w-3xl mx-auto">
     <h4 class="text-2xl font-semibold text-gray-800 mb-4">Most Helpful Positive Review</h4>
     <div class="flex justify-between flex-col sm:flex-row text-sm text-gray-600 mb-2">

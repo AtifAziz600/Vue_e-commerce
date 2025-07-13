@@ -12,35 +12,35 @@
                         </p>
                     </div>
                     <!-- Form -->
-                    <form class="space-y-8">
+                    <form class="space-y-8" @submit.prevent="handleSubmitApplication">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">First Name <span class="text-red-500">*</span></label>
-                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="John" />
+                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="Your First Name" />
                             </div>
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Last Name <span class="text-red-500">*</span></label>
-                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="Doe" />
+                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="Your Last Name" />
                             </div>
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Email <span class="text-red-500">*</span></label>
-                                <input type="email" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="john@icloud.com" />
+                                <input type="email" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="your@gamil.com" />
                             </div>
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Phone Number</label>
-                                <input type="tel" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="(555) 123-4567" />
+                                <input type="tel" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="(555) 123-4567" />
                             </div>
                             <div class="md:col-span-2">
                                 <label class="block text-gray-700 font-medium mb-1">Address</label>
-                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="123 Apple Park Way, Cupertino, CA" />
+                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="Your Address" />
                             </div>
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Work Experience</label>
-                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="e.g. 3 years" />
+                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="e.g. 3 years" />
                             </div>
                             <div>
                                 <label class="block text-gray-700 font-medium mb-1">Store/Brand Name</label>
-                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition" placeholder="Your Brand" />
+                                <input type="text" class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition" placeholder="Your Brand" />
                             </div>
                         </div>
                     
@@ -74,6 +74,26 @@
     </AppLayout>
     </template>
 <script setup>
+import { useToast } from 'vue-toastification';
+import { ref } from 'vue';
+const toast = useToast();
+const firstName = ref('');
+const lastName = ref('');
+const email = ref('');
+const phone = ref('');
+const address = ref('');
+const workExperience = ref('');
+const storeBrand = ref('');
+
+
+const handleSubmitApplication = () => {
+  if (!firstName.value || !lastName.value || !email.value || !phone.value || !address.value || !workExperience.value || !storeBrand.value) {
+      toast.success('Congratulations, your application has been submitted!')
+      router.push('/')
+  } else {
+    toast.error('Please fill up the form!')
+  }
+}
 
 </script>
 
