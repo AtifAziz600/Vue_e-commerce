@@ -62,7 +62,7 @@
                         </div>
                         <!-- Submit -->
                         <div class="flex justify-center">
-                            <button type="submit" class="px-10 py-3 bg-deepMaroon hover:bg-[#7a3b49] text-white font-semibold rounded-2xl shadow-lg transition text-lg">
+                            <button type="submit" class="px-10 py-3 bg-primarysButton hover:bg-secondysButton text-white font-semibold rounded-2xl shadow-lg transition text-lg">
                                 Submit Application
                             </button>
                         </div>

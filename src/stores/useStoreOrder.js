@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 export const useOrderStore = defineStore('order', () => {
   const customerName = ref('')
+  const orderId = ref([]);
   const orderItems = ref([])
   const paymentMethod = ref('')
   const shippingMethod = ref('')
@@ -14,6 +15,7 @@ export const useOrderStore = defineStore('order', () => {
 
   function setOrder(order) {
     customerName.value = order.customerName
+    orderId.value = order.orderId
     orderItems.value = order.orderItems
     paymentMethod.value = order.paymentMethod
     shippingMethod.value = order.shippingMethod
@@ -26,6 +28,7 @@ export const useOrderStore = defineStore('order', () => {
 
   return {
     customerName,
+    orderId,
     orderItems,
     paymentMethod,
     shippingMethod,

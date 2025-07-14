@@ -91,7 +91,7 @@
                     
                     <RouterLink to="/add-coupon-code" class="flex flex-col sm:flex-row items-center justify-end mt-6">
                         <button
-                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-red-600 hover:text-white bg-white shadow hover:bg-red-700 transition"
+                            class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-red-600 hover:text-white bg-white shadow hover:bg-secondysButton transition"
                         >
                             Add Coupon Code
                             <Icon icon="mdi:arrow-right" class="w-6 h-6"/>
@@ -133,7 +133,7 @@
                                 <button
                                     type="button"
                                     @click="applyPromo"
-                                    class="px-3 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition text-sm"
+                                    class="px-3 py-2 rounded-lg bg-primarysButton hover:bg-secondysButton text-white font-semibold transition text-sm"
                                 >Apply</button>
                             </div>
                             <!-- Payment Method -->
@@ -176,7 +176,7 @@
                             <RouterLink to="/order-confirm">
                                 <button
                                 @click="handleCheckout"
-                                    class="w-full text-center bg-red-600 hover:bg-red-800 rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
+                                    class="w-full text-center bg-primarysButton hover:bg-secondysButton rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
                                     type="button"
                                 >Checkout</button>
                             </RouterLink>

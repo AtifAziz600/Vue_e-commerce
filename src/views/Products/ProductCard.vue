@@ -5,7 +5,7 @@
       <h2 class="text-3xl font-bold text-gray-800 tracking-tight">{{ section.Top }}</h2>
     </div>
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
+    <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-2">
       <div
         v-for="item in section.products"
         :key="item.title"
@@ -16,19 +16,16 @@
           <img :src="item.image" alt="product" class="w-full h-full transform group-hover:scale-105 transition-transform duration-300" />
         </RouterLink>
 
-        <!-- Info -->
         <div class="p-5">
           <h3 class="text-lg font-semibold text-gray-900 truncate">{{ item.title }}</h3>
           <p class="text-xs text-gray-500 mt-1 truncate">{{ item.subtitle }}</p>
-          <!-- Price -->
+
           <div class="flex items-center space-x-2 mt-4">
             <span class="text-xs line-through text-gray-400">{{ item.oldPrice }}</span>
             <span class="text-lg text-red-600 font-bold">{{ item.newPrice }}</span>
             <span class="text-white bg-green-500 px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
           </div>
 
-
-          <!-- Footer -->
           <div class="mt-4 flex justify-between text-xs text-gray-500">
             <div class="flex items-center space-x-1">
               <Icon icon="mdi:star" class="text-yellow-500 text-lg" />
@@ -37,7 +34,7 @@
               </div>
             
             <div class="flex items-center space-x-3">
-              <button @click="handleAddToCart(item)" class="bg-deepMaroon text-white text-sm font-medium px-5 py-2 rounded-2xl shadow-sm hover:bg-red-900 transition-all duration-200 focus:outline-none">Add to Cart</button>
+              <button @click="handleAddToCart(item)" class="bg-primarysButton hover:bg-secondysButton text-white text-sm font-medium px-5 py-2 rounded-2xl shadow-sm transition-all duration-200 focus:outline-none">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -63,6 +60,7 @@ const products = [
     products: [
      {
     id: 1,
+    orderId: '#FWB127364372',
     title: "Watch",
     slug: "luxury-watch",
     category: "Watches / Luxury",
@@ -86,6 +84,7 @@ const products = [
 },
       {
         id: 2,
+        orderId: '#FWB127364373',
         title: "Shirt",
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
@@ -108,6 +107,7 @@ const products = [
       },
       {
         id: 3,
+        orderId: '#FWB127364234',
         title: "Laptop",
         slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
@@ -130,6 +130,7 @@ const products = [
       },
       {
         id: 4,
+        orderId: '#FWB1273644356',
         title: "Xiaomi",
         slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
@@ -158,6 +159,7 @@ const products = [
     products: [
       {
         id: 1,
+        orderId: '#FWB127364432',
         title: "Pants",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
@@ -180,6 +182,7 @@ const products = [
       },
       {
         id: 2,
+        orderId: '#FWB1273643452',
         title: "Watch",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
@@ -202,6 +205,7 @@ const products = [
       },
       {
         id: 3,
+        orderId: '#FWB1273643252',
         title: "Desktop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
@@ -225,6 +229,7 @@ const products = [
       {
         id: 4,
         title: "Oppo",
+        orderId: '#FWB1273643234',
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
         image: Phone2,
@@ -256,6 +261,7 @@ function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
     title: item.title,
+    orderId: item.orderId,
     image: item.image,
     price: item.newPrice,
     quantity: 1,

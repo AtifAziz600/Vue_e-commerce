@@ -2,7 +2,7 @@
     <AppLayout>
         <section class="bg-gray-100 py-8 antialiased md:py-16 min-h-screen">
             <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-                <div class="mx-auto max-w-5xl">
+                <div class="mx-auto max-w-full">
                     <!-- Header -->
                     <div class="gap-4 sm:flex sm:items-center sm:justify-between mb-8">
                         <h2 class="text-3xl font-extrabold sm:text-4xl flex items-center gap-2">
@@ -66,27 +66,37 @@
                                         {{ order.status }}
                                     </dd>
                                 </dl>
-                                <div class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4">
+                                <div class="w-full grid sm:grid-cols-2 lg:flex lg:w-96 lg:items-center lg:justify-end gap-4">
                                     <button
                                         v-if="order.status === 'Pre-order' || order.status === 'In transit'"
                                         type="button"
+                                        @click="handleCancel"
                                         class="w-full rounded-lg border border-red-700 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 transition"
                                     >
-                                        Cancel order
+                                        Cancel Order
                                     </button>
-                                    <button
+                                    <RouterLink
                                         v-else
                                         type="button"
+                                        @click="handleOrder"
                                         class="w-full rounded-lg border border-green-700 px-3 py-2 text-center text-sm font-medium text-green-700 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 transition"
                                     >
-                                        Order again
-                                    </button>
-                                    <a
-                                        href="#"
+                                        Order Again
+                                    </RouterLink>
+                                    <RouterLink
+                                    to="/order-summary"
+                                    @click="handleViewDetails"
                                         class="w-full rounded-lg border border-blue-700 px-3 py-2 text-center text-sm font-medium text-blue-700 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 transition"
                                     >
-                                        View details
-                                    </a>
+                                        View Details
+                                    </RouterLink>
+                                    <RouterLink
+                                    @click="handleRefunds"
+                                    to="/refund-order"
+                                    class="w-full rounded-lg border border-slate-700 px-3 py-2 text-center text-sm font-medium text-primarysButton hover:bg-secondysButton hover:text-white focus:outline-none focus:ring-4 focus:ring-secondysButton transition"
+                                    >
+                                    Refund Order
+                                    </RouterLink>
                                 </div>
                             </div>
                          
@@ -100,8 +110,10 @@
 
 <script setup>
 import { Icon } from '@iconify/vue'
-
-// Icon names for each status
+import { useToast } from 'vue-toastification'
+import { useRouter } from 'vue-router'
+const toast = useToast();
+const route = useRouter();
 const statusIcons = {
     'Pre-order': 'mdi:clock-outline',
     'In transit': 'mdi:truck-delivery-outline',
@@ -186,6 +198,24 @@ function statusClass(status) {
             return 'bg-gray-100 text-gray-800'
     }
 }
+function handleCancel () {
+    toast.error('Order Have Been Cancel')
+}
+
+function handleOrder () {
+    toast.success('Order Place again')
+}
+
+function handleViewDetails () {
+    toast.warning('This is the order details');
+    route('/order-summary')
+}
+
+function handleRefunds () {
+    toast.success('Navigate to Refund Page');
+    route('/refund-order')
+}
+
 </script>
 
 <style scoped>

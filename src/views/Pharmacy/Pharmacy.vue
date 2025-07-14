@@ -213,7 +213,7 @@
                           />
                           <span
                               v-if="item.discount"
-                              class="absolute top-3 left-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
+                              class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
                           >
                               -{{ item.discount }}%
                           </span>
@@ -254,7 +254,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 whitespace-nowrap bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-[#7a3b49] hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 whitespace-nowrap bg-primarysButton hover:bg-secondysButton border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart

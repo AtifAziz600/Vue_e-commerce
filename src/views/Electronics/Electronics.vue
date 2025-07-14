@@ -110,7 +110,6 @@
           <div class="flex-1" @click="isSidebarOpen = false"></div>
         </div>
       </transition>
-      <!-- Main Content -->
        <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
         <div>
@@ -213,7 +212,7 @@
                           />
                           <span
                               v-if="item.discount"
-                              class="absolute top-3 left-3 bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
+                              class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
                           >
                               -{{ item.discount }}%
                           </span>
@@ -254,7 +253,7 @@
                             </div>
                             <button
                               @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-deepMaroon border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-red-900 hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                              class="flex items-center gap-2 bg-primarysButton hover:bg-secondysButton border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
                             >
                             <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
                               Add to Cart

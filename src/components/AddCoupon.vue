@@ -14,7 +14,7 @@
 <RouterLink to="/cart-order">
             <button
           type="submit"
-          class="bg-deepMaroon hover:bg-[#7a3b49] text-white px-5 py-2 rounded-lg font-semibold"
+          class="bg-primarysButton hover:bg-secondysButton text-white px-5 py-2 rounded-lg font-semibold"
         >
           Apply
         </button>

@@ -1,10 +1,10 @@
 <template>
     <AppLayout>
     <section class="py-24 relative">
-        <div class="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto">
+        <div class="w-full p-2 px-8 md:px-5 lg-6 mx-auto">
             <div class="flex items-start flex-col gap-6 xl:flex-row ">
                 
-                <div class="w-full max-w-full md:max-w-full xl:max-w-sm flex items-start flex-col gap-8 max-xl:mx-auto">
+                <div class="w-full max-w-full md:max-w-full xl:max-w-sm items-start gap-8 max-xl:mx-auto">
                     <div class="p-6 border border-gray-200 rounded-3xl w-full group transition-all duration-500 hover:border-gray-400 ">
                         <h2 class="font-manrope font-bold text-3xl leading-10 text-black pb-6 border-b border-gray-200 ">
                             Order Summary
@@ -12,13 +12,13 @@
                         <div class="data py-6 border-b border-gray-200">
                             <div class="flex items-center justify-between gap-4 mb-5">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Product Cost</p>
-                                <p class="font-medium text-lg leading-8 text-gray-900">zł{{ total.toFixed(2) }}</p>
+                                <p class="font-medium text-lg leading-8 text-gray-900">zł {{ total.toFixed(2) }}</p>
                             </div>
                             <div class="flex items-center justify-between gap-4 mb-5">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700">Shipping</p>
-                                <p class="font-medium text-lg leading-8 text-gray-600">zł{{ shippingCost.toFixed(2) }}</p>
+                                <p class="font-medium text-lg leading-8 text-gray-600">zł {{ shippingCost.toFixed(2) }}</p>
                             </div>
-                            <div class="flex items-center justify-between gap-4 ">
+                            <div class="flex items-center justify-between gap-4">
                                 <p class="font-normal text-lg leading-8 text-gray-400 transition-all duration-500 group-hover:text-gray-700 ">Coupon Code</p>
                                 <p class="font-normal text-lg leading-8 text-blue-400 transition-all duration-500 group-hover:text-blue-700">{{ promoCode }}</p>
                                 <p class="font-medium text-lg leading-8 text-emerald-500">{{ couponCode?.value }}</p>
@@ -32,7 +32,7 @@
                 </div>
               
                 <div v-for="product in products" :key="product.id">
-  <div class="rounded-3xl p-6 bg-gray-100 border border-gray-100 flex flex-col md:flex-row md:items-center gap-5 max-w-full md:max-w-3xl mx-auto">
+  <div class="rounded-3xl p-6 bg-gray-100 border border-gray-100 flex flex-row md:flex-col md:items-center gap-5 max-w-full md:max-w-3xl mx-auto">
     <div class="img-box">
       <img :src="product.image" :alt="product.title" class="w-full md:max-w-[122px] rounded-lg object-cover" />
     </div>

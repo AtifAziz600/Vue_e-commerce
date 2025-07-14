@@ -77,6 +77,7 @@ export const useProductStore = defineStore('productStore', {
         products: [
          {
     id: 1,
+    orderId: '#FWB127364372',
     title: "Watch",
     slug: "luxury-watch",
     category: "Watches / Luxury",
@@ -100,6 +101,7 @@ export const useProductStore = defineStore('productStore', {
 },
       {
         id: 2,
+        orderId: '#FWD215439065',
         title: "Shirt",
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
@@ -122,6 +124,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 3,
+        orderId: '#FWB122546348',
         title: "Laptop",
         slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
@@ -144,6 +147,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 4,
+        orderId: '#FWB122344348',
         title: "Xiaomi",
         slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
@@ -166,6 +170,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 5,
+        orderId: '#FWB12345659',
         title: "Pants",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
@@ -188,6 +193,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 6,
+        orderId: '#FWB126345659',
         title: "Watch",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
@@ -210,6 +216,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 7,
+        orderId: '#FWB123456593',
         title: "Desktop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
@@ -232,6 +239,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 8,
+        orderId: '#FWB123456549',
         title: "Oppo",
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
@@ -254,6 +262,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 9,
+        orderId: '#FWB123456369',
         title: "Atomic Habits",
         slug: "atomic-habits",
         category: "Self-help",
@@ -277,6 +286,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 10,
+        orderId: '#FWB123456591',
         title: "The Alchemist",
         slug: "the-alchemist",
         category: "Fiction",
@@ -300,6 +310,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 11,
+        orderId: '#FWB123456597',
         title: "Deep Work",
         slug: "deep-work",
         category: "Productivity",
@@ -323,6 +334,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 12,
+        orderId: '#FWB1234565971',
         title: "Educated",
         slug: "educated",
         category: "Memoir",
@@ -346,6 +358,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 13,
+        orderId: '#FWB1234565976',
         title: "Classic Trench Coat",
         slug: "classic-trench-coat",
         category: "Outerwear",
@@ -368,6 +381,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 14,
+        orderId: '#FWB1234565978',
         title: "Slim Fit Jeans",
         slug: "slim-fit-jeans",
         category: "Bottoms",
@@ -389,6 +403,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 15,
+        orderId: '#FWB123483497',
         title: "Cotton Crewneck T-Shirt",
         slug: "cotton-crewneck-tshirt",
         category: "Tops",
@@ -410,6 +425,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 16,
+        orderId: '#FWB123483493',
         title: "Summer Floral Dress",
         slug: "summer-floral-dress",
         category: "Dresses",
@@ -431,6 +447,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 17,
+        orderId: '#FWB982361902',
         title: "Wool Blend Overcoat",
         slug: "wool-blend-overcoat",
         category: "Outerwear",
@@ -452,6 +469,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 18,
+        orderId: '#FWB348971823',
         title: "Pleated Midi Skirt",
         slug: "pleated-midi-skirt",
         category: "Bottoms",
@@ -473,6 +491,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 19,
+        orderId: '#FWB293573489',
         title: "Linen Button-Up Shirt",
         slug: "linen-button-up-shirt",
         category: "Tops",
@@ -494,6 +513,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 20,
+        orderId: '#FWB093571352',
         title: "Denim Jacket",
         slug: "denim-jacket",
         category: "Outerwear",
@@ -515,6 +535,7 @@ export const useProductStore = defineStore('productStore', {
       },
             {
         id: 21,
+        orderId: '#FWB093571352',
         title: "LEGO Classic Bricks",
         slug: "lego-classic-bricks",
         category: "Building Toys",
@@ -537,6 +558,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 22,
+        orderId: '#FWB0192741232',
         title: "Monopoly Board Game",
         slug: "monopoly-board-game",
         category: "Board Games",
@@ -558,6 +580,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 23,
+        orderId: '#FWB0291562731',
         title: "Nerf Elite Disruptor",
         slug: "nerf-elite-disruptor",
         category: "Outdoor Toys",
@@ -580,6 +603,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 24,
+        orderId: '#FWB8392791290',
         title: "UNO Card Game",
         slug: "uno-card-game",
         category: "Card Games",
@@ -602,6 +626,7 @@ export const useProductStore = defineStore('productStore', {
       },
             {
         id: 25,
+        orderId: '#FWB3928571233',
         title: "Fitness Tracker Band",
         slug: "fitness-tracker-band",
         category: "Wearables",
@@ -625,6 +650,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 26,
+        orderId: '#FWB092375823',
         title: "Electric Toothbrush",
         slug: "electric-toothbrush",
         category: "Personal Care",
@@ -648,6 +674,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 27,
+        orderId: '#FWB932486871',
         title: "Smart Water Bottle",
         slug: "smart-water-bottle",
         category: "Hydration",
@@ -671,6 +698,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 28,
+        orderId: '#FWB2390578912',
         title: "Massage Gun",
         slug: "massage-gun",
         category: "Recovery",
@@ -694,6 +722,7 @@ export const useProductStore = defineStore('productStore', {
       },
             {
         id: 29,
+        orderId: '#FWB23895691',
         title: "Blood Pressure Monitor",
         slug: "blood-pressure-monitor",
         category: "Health Devices",
@@ -717,6 +746,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 30,
+        orderId: '#FWB349857821',
         title: "Infrared Thermometer",
         slug: "infrared-thermometer",
         category: "Health Devices",
@@ -740,6 +770,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 31,
+        orderId: '#FWB293857123',
         title: "Pulse Oximeter",
         slug: "pulse-oximeter",
         category: "Health Devices",
@@ -763,6 +794,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 32,
+        orderId: '#FWB957237132',
         title: "Digital Weighing Scale",
         slug: "digital-weighing-scale",
         category: "Health Devices",
@@ -786,6 +818,7 @@ export const useProductStore = defineStore('productStore', {
       },
             {
         id: 33,
+        orderId: '#FWB457237132',
         title: "Fitness Tracker Band",
         slug: "fitness-tracker-band",
         category: "Wearables",
@@ -809,6 +842,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 34,
+        orderId: '#FWB157237132',
         title: "Electric Toothbrush",
         slug: "electric-toothbrush",
         category: "Personal Care",
@@ -832,6 +866,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 35,
+        orderId: '#FWB257237132',
         title: "Smart Water Bottle",
         slug: "smart-water-bottle",
         category: "Hydration",
@@ -855,6 +890,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 36,
+        orderId: '#FWB057237132',
         title: "Massage Gun",
         slug: "massage-gun",
         category: "Recovery",
@@ -878,6 +914,7 @@ export const useProductStore = defineStore('productStore', {
       },
        {
         id: 37,
+        orderId: '#FWB557237132',
         title: "Paracetamol 500mg Tablets",
         slug: "paracetamol-500mg",
         subtitle: "Effective pain relief and fever reducer.",
@@ -900,6 +937,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 38,
+        orderId: '#FWB757237132',
         title: "Ibuprofen 200mg Tablets",
         slug: "ibuprofen-200mg",
         subtitle: "Anti-inflammatory for pain and swelling.",
@@ -922,6 +960,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 39,
+        orderId: '#FWB557237132',
         title: "Cetirizine Allergy Tablets",
         slug: "cetirizine-allergy",
         subtitle: "24-hour allergy relief for hayfever and allergies.",
@@ -944,6 +983,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 40,
+        orderId: '#FWB957237132',
         title: "Vitamin C 1000mg Tablets",
         slug: "vitamin-c-1000mg",
         subtitle: "Boosts immune system and overall health.",
@@ -966,6 +1006,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 41,
+        orderId: '#FWB98767237132',
         title: "Loratadine 10mg Tablets",
         slug: "loratadine-10mg",
         subtitle: "Non-drowsy antihistamine for allergies.",
@@ -988,6 +1029,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 42,
+        orderId: '#FWB12357237132',
         title: "Aspirin 75mg Tablets",
         slug: "aspirin-75mg",
         subtitle: "Low dose for heart health and blood thinning.",
@@ -1010,6 +1052,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 43,
+        orderId: '#FWB93357237132',
         title: "Multivitamin Tablets",
         slug: "multivitamin",
         subtitle: "Daily essential vitamins and minerals.",
@@ -1032,6 +1075,7 @@ export const useProductStore = defineStore('productStore', {
       },
       {
         id: 44,
+        orderId: '#FWB4957237132',
         title: "Omeprazole 20mg Capsules",
         slug: "omeprazole-20mg",
         subtitle: "Relieves heartburn and acid reflux.",
@@ -1053,7 +1097,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["Pack of 14", "Pack of 28"]
       },
             {
-        id: 43,
+        id: 45,
+        orderId: '#FWB112957237132',
         title: "LEGO Classic Bricks",
         slug: "lego-classic-bricks",
         category: "Building Toys",
@@ -1075,7 +1120,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 44,
+        id: 46,
+        orderId: '#FWB09957237132',
         title: "Monopoly Board Game",
         slug: "monopoly-board-game",
         category: "Board Games",
@@ -1096,7 +1142,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 45,
+        id: 47,
+        orderId: '#FWB8757237132',
         title: "Nerf Elite Disruptor",
         slug: "nerf-elite-disruptor",
         category: "Outdoor Toys",
@@ -1118,7 +1165,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 46,
+        id: 49,
+        orderId: '#FWB0857237132',
         title: "UNO Card Game",
         slug: "uno-card-game",
         category: "Card Games",
@@ -1140,7 +1188,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
             {
-        id: 47,
+        id: 50,
+        orderId: '#FWB2937237132',
         title: "Hot Wheels 10-Pack",
         slug: "hot-wheels-10-pack",
         category: "Vehicles",
@@ -1161,7 +1210,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 48,
+        id: 51,
+        orderId: '#FWB2398437132',
         title: "Jenga Classic Game",
         slug: "jenga-classic-game",
         category: "Stacking Games",
@@ -1182,7 +1232,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 49,
+        id: 52,
+        orderId: '#FWB238477132',
         title: "Barbie Dreamhouse Dollhouse",
         slug: "barbie-dreamhouse-dollhouse",
         category: "Dolls & Dollhouses",
@@ -1204,7 +1255,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 50,
+        id: 53,
+        orderId: '#FWB1957237132',
         title: "Play-Doh 10-Pack Colors",
         slug: "play-doh-10-pack",
         category: "Arts & Crafts",
@@ -1225,7 +1277,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
             {
-        id: 51,
+        id: 54,
+        orderId: '#FWB0957237132',
         title: "Dell XPS 13",
         slug: "dell-xps-13",
         category: "Laptops / Ultrabook",
@@ -1248,7 +1301,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 52,
+        id: 55,
+        orderId: '#FWB1957237132',
         title: "Apple MacBook Air M2",
         slug: "macbook-air-m2",
         category: "Laptops / Apple",
@@ -1271,7 +1325,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 53,
+        id: 56,
+        orderId: '#FWB1957237132',
         title: "HP Spectre x360",
         slug: "hp-spectre-x360",
         category: "Laptops / Convertible",
@@ -1294,7 +1349,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 54,
+        id: 57,
+        orderId: '#FWB93237132',
         title: "Lenovo ThinkPad X1 Carbon",
         slug: "thinkpad-x1-carbon",
         category: "Laptops / Business",
@@ -1317,7 +1373,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
             {
-        id: 55,
+        id: 58,
+        orderId: '#FWB0957237132',
         title: "ASUS ZenBook 14",
         slug: "asus-zenbook-14",
         category: "Laptops / Ultrabook",
@@ -1340,7 +1397,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 56,
+        id: 59,
+        orderId: '#FWB2347237132',
         title: "Acer Swift 3",
         slug: "acer-swift-3",
         category: "Laptops / Thin & Light",
@@ -1363,7 +1421,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 57,
+        id: 60,
+        orderId: '#FWB1237237132',
         title: "Microsoft Surface Laptop 5",
         slug: "surface-laptop-5",
         category: "Laptops / Touchscreen",
@@ -1386,7 +1445,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 58,
+        id: 61,
+        orderId: '#FWB0987237132',
         title: "Razer Blade 15",
         slug: "razer-blade-15",
         category: "Laptops / Gaming",
@@ -1409,7 +1469,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
             {
-        id: 59,
+        id: 62,
+        orderId: '#FWB9857237132',
         title: "Smartphone X200",
         slug: "smartphone-x200",
         category: "Smartphones",
@@ -1431,7 +1492,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["128GB", "256GB"]
       },
       {
-        id: 60,
+        id: 63,
+        orderId: '#FWB827237132',
         title: "UltraNoise Headphones",
         slug: "ultranoise-headphones",
         category: "Audio",
@@ -1452,7 +1514,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["Standard"]
       },
       {
-        id: 61,
+        id: 64,
+        orderId: '#FWB077237132',
         title: "Smartwatch Pro 5",
         slug: "smartwatch-pro-5",
         category: "Wearables",
@@ -1474,7 +1537,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["42mm", "46mm"]
       },
       {
-        id: 62,
+        id: 65,
+        orderId: '#FWB9327237132',
         title: "4K LED Smart TV 55\"",
         slug: "4k-led-smart-tv-55",
         category: "Televisions",
@@ -1496,7 +1560,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["43\"", "50\"", "55\"", "65\""]
       },
             {
-        id: 63,
+        id: 66,
+        orderId: '#FWB345237132',
         title: "Gaming Laptop G15",
         slug: "gaming-laptop-g15",
         category: "Computers",
@@ -1517,7 +1582,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["15.6\"", "17.3\""]
       },
       {
-        id: 64,
+        id: 67,
+        orderId: '#FWB3427237132',
         title: "Portable Bluetooth Speaker",
         slug: "portable-bluetooth-speaker",
         category: "Audio",
@@ -1538,7 +1604,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["Small", "Medium"]
       },
       {
-        id: 65,
+        id: 68,
+        orderId: '#FWB8127237132',
         title: "Wireless Mechanical Keyboard",
         slug: "wireless-mechanical-keyboard",
         category: "Accessories",
@@ -1559,7 +1626,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["75%", "TKL", "Full"]
       },
       {
-        id: 66,
+        id: 69,
+        orderId: '#FWB12427237132',
         title: "Home Security Camera 1080p",
         slug: "home-security-camera-1080p",
         category: "Security",
@@ -1580,7 +1648,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["Indoor", "Outdoor"]
       },
             {
-        id: 67,
+        id: 70,
+        orderId: '#FWB12327237132',
         title: "Smartphone X200",
         slug: "smartphone-x200",
         category: "Smartphones",
@@ -1602,7 +1671,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["128GB", "256GB"]
       },
       {
-        id: 68,
+        id: 71,
+        orderId: '#FWB1227237132',
         title: "Galaxy Note Air",
         slug: "galaxy-note-air",
         category: "Smartphones",
@@ -1624,7 +1694,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["256GB", "512GB"]
       },
       {
-        id: 69,
+        id: 72,
+        orderId: '#FWB12327237132',
         title: "Pixel Vision Pro",
         slug: "pixel-vision-pro",
         category: "Smartphones",
@@ -1646,7 +1717,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["128GB", "256GB", "512GB"]
       },
       {
-        id: 70,
+        id: 73,
+        orderId: '#FWB23427237132',
         title: "iPhone 15 Pro",
         slug: "iphone-15-pro",
         category: "Smartphones",
@@ -1668,7 +1740,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["128GB", "256GB", "512GB", "1TB"]
       },
             {
-        id: 71,
+        id: 74,
+        orderId: '#FWB2457237132',
         title: "OnePlus 12 Turbo",
         slug: "oneplus-12-turbo",
         category: "Smartphones",
@@ -1690,7 +1763,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["256GB", "512GB"]
       },
       {
-        id: 72,
+        id: 75,
+        orderId: '#FWB5127237132',
         title: "Xiaomi Mi Ultra 13",
         slug: "xiaomi-mi-ultra-13",
         category: "Smartphones",
@@ -1712,7 +1786,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["256GB", "512GB"]
       },
       {
-        id: 73,
+        id: 76,
+        orderId: '#FWB1227237132',
         title: "Nothing Phone 2",
         slug: "nothing-phone-2",
         category: "Smartphones",
@@ -1734,7 +1809,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["128GB", "256GB"]
       },
       {
-        id: 74,
+        id: 77,
+        orderId: '#FWB23427237132',
         title: "Asus ROG Phone 7",
         slug: "asus-rog-phone-7",
         category: "Smartphones",
@@ -1756,7 +1832,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: ["256GB", "512GB"]
       },
             {
-        id: 75,
+        id: 78,
+        orderId: '#FWB2327237132',
         title: "Logitech MX Master 3S",
         slug: "logitech-mx-master-3s",
         category: "Accessories / Mouse",
@@ -1779,7 +1856,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 76,
+        id: 79,
+        orderId: '#FWB2427237132',
         title: "Sony WH-1000XM5",
         slug: "sony-wh-1000xm5",
         category: "Accessories / Headphones",
@@ -1802,7 +1880,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 77,
+        id: 80,
+        orderId: '#FWB4327237132',
         title: "Razer BlackWidow V4 Pro",
         slug: "razer-blackwidow-v4-pro",
         category: "Accessories / Keyboard",
@@ -1825,7 +1904,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 78,
+        id: 81,
+        orderId: '#FWB2327237132',
         title: "Elgato Stream Deck XL",
         slug: "elgato-stream-deck-xl",
         category: "Accessories / Streaming",
@@ -1848,7 +1928,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
             {
-        id: 79,
+        id: 82,
+        orderId: '#FWB1227237132',
         title: "Anker 737 Power Bank",
         slug: "anker-737-power-bank",
         category: "Accessories / Power",
@@ -1871,7 +1952,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 80,
+        id: 83,
+        orderId: '#FWB2327237132',
         title: "Logitech Brio 4K Webcam",
         slug: "logitech-brio-4k-webcam",
         category: "Accessories / Webcam",
@@ -1894,7 +1976,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 81,
+        id: 84,
+        orderId: '#FWB11227237132',
         title: "Samsung T7 Shield SSD",
         slug: "samsung-t7-shield-ssd",
         category: "Accessories / Storage",
@@ -1917,7 +2000,8 @@ export const useProductStore = defineStore('productStore', {
         sizes: []
       },
       {
-        id: 82,
+        id: 85,
+        orderId: '#FWB3127237132',
         title: "HyperX Cloud II",
         slug: "hyperx-cloud-ii",
         category: "Accessories / Gaming Headset",

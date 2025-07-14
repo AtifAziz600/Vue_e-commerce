@@ -9,8 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: colors.slate,
-        secondary: colors.orange,
+        primarysButton: '#8A0000',
+        secondysButton: '#3B060A',
+        cardColour: '#C83F12',
+        discountColor: '#FFF287',
         deepMaroon: '#a6102d',
         midnight: '#FFA500'
       }

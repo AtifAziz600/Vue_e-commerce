@@ -2,22 +2,18 @@
   <section class="py-24 relative bg-gray-100">
     <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
       <div class="w-full flex-col justify-start items-start gap-12 inline-flex">
-
         <!-- Order Header -->
-        <div class="w-full justify-between items-center flex gap-3">
-          <div class="w-full flex-col justify-center sm:items-start items-center gap-1 inline-flex">
+          <div class="w-full flex-col justify-center sm:items-start items-center gap-1 flex">
             <h2 class="text-gray-500 text-2xl font-semibold font-manrope leading-9">
-              Order <span class="text-indigo-600">#128954tr8935</span>
+              Order <span class="text-indigo-600">{{ orderId }}</span>
             </h2>
             <span class="text-gray-500 text-base font-medium leading-relaxed">{{ orderDate }}</span>
-          </div>
-          <button
-            class="px-3.5 py-2 bg-deepMaroon hover:bg-red-800 transition-all duration-700 ease-in-out rounded-lg text-white flex items-center">
+            <button
+            class="bg-gradient-to-r from-primarysButton to-midnight hover:from-secondysButton hover:to-secondysButton text-white px-5 py-2 rounded-xl shadow transition duration-300">
             Print Invoice
           </button>
-        </div>
-
-        <!-- Tracking Steps -->
+          </div>
+          
         <div class="w-full bg-white p-8 rounded-xl flex-col gap-5 flex">
           <h2 class="text-gray-900 text-2xl font-semibold font-manrope border-b pb-5">Order Tracking</h2>
           <ol class="flex md:flex-row flex-col md:items-start items-center justify-between w-full md:gap-1 gap-4">
@@ -59,7 +55,7 @@
               </div>
               <div class="md:col-span-4 flex md:flex-row flex-col justify-between items-center gap-2">
                 <h4 class="text-gray-500 text-xl font-semibold">zł {{ item.price }} x {{ item.qty }}</h4>
-                <h4 class="text-gray-900 text-xl font-semibold">zł {{ item.total }}</h4>
+                <h4 class="text-gray-900 text-xl font-semibold">zł {{ item.total.toFixed(2) }}</h4>
               </div>
             </div>
           </div>
@@ -102,6 +98,7 @@ const route = useRoute();
 const order = useOrderStore();
 
 const customerName = computed(() => order.customerName);
+const orderId = computed(() => order.orderId);
 const orderItems = computed(() => order.orderItems);
 const subtotal = computed(() => order.subtotal);
 const shipping = computed(() => order.shipping);

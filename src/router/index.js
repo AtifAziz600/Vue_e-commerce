@@ -138,6 +138,21 @@ const router = createRouter({
       path: '/order-tracking',
       name: 'order-tracking',
       component: () => import('../views/Order/OrderTracking.vue')
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/About/About.vue')
+    },
+    {
+      path: '/refund',
+      name: 'refund',
+      component: () => import('../views/RefundAndReturn/RefundPolicy.vue')
+    },
+    {
+      path: '/refund-order',
+      name: 'refund-order',
+      component: () => import('../views/RefundAndReturn/RefundAndReturn.vue')
     }
   ]
 })

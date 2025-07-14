@@ -96,7 +96,7 @@ import { useOrderStore} from '../../stores/useStoreOrder'
 
 const route = useRoute();
 const order = useOrderStore();
-
+const orderId = order.orderId;
 const customerName = order.customerName;
 const orderItems = order.orderItems;
 const shippingMethod = order.shippingMethod;

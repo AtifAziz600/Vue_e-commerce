@@ -1,11 +1,8 @@
 <template>
-  <!--  phone nav bar-->
   <nav class="lg:hidden bg-secondary">
     <div class="flex justify-between p-3">
-      <!--        menu & logo  -->
       <div class="flex items-center justify-center">
         <div>
-          <!--            menu bar-->
           <div class="elegance-hamburger-menu" @click="channelSidebarClickEvent">
             <div class="elegance-hamburger-menu__btn" :class="{'elegance-hamburger-menu__btn--active' : toggleNav}">
               <span></span>
@@ -39,16 +36,13 @@
           </RouterLink>
         </div>
       </div>
-
     </div>
-    <!--        search box -->
     <div>
       <div class="flex items-center pb-2 px-3 w-full">
         <SearchArea class="w-full"></SearchArea>
       </div>
     </div>
   </nav>
-  <!--  phone nav bar end-->
 </template>
 <script setup>
   import SearchArea from "@/components/SearchArea.vue";

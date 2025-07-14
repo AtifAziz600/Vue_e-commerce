@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full bg-[#a6102d] text-white border-t border-rose-100 py-12 md:py-6">
+  <footer class="w-full bg-deepMaroon text-white border-t border-rose-100 py-12 md:py-6">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
         class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10"
@@ -23,44 +23,47 @@
     </div>
   </div>
         </div>
-        <div class="lg:mx-auto text-left">
-          <h4 class="text-lg text-white font-semibold mb-6">APAGOR</h4>
-          <ul class="text-base space-y-4">
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Home</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">About</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Pricing</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Features</a></li>
-          </ul>
+        <div class="lg:mx-auto text-left py-2">
+  <h4 class="text-lg text-white font-semibold mb-6">APAGOR</h4>
+  <ul class="text-base space-y-4">
+    <li><a href="/" class="text-white hover:text-gray-400 transition-colors duration-200">Home</a></li>
+    <li><a href="/about" class="text-white hover:text-gray-400 transition-colors duration-200">About Us</a></li>
+    <li><a href="/contact" class="text-white hover:text-gray-400 transition-colors duration-200">Contact</a></li>
+    <li><a href="/support" class="text-white hover:text-gray-400 transition-colors duration-200">Support</a></li>
+  </ul>
+</div>
+
+<div class="lg:mx-auto text-left py-2">
+  <h4 class="text-lg text-white font-semibold mb-6">Shop Categories</h4>
+  <ul class="text-base space-y-4">
+    <li><a href="/electronics" class="text-white hover:text-gray-400 transition-colors duration-200">Electronics</a></li>
+    <li><a href="/fashion" class="text-white hover:text-gray-400 transition-colors duration-200">Fashion</a></li>
+    <li><a href="/health" class="text-white hover:text-gray-400 transition-colors duration-200">Health</a></li>
+    <li><a href="/pharmacy" class="text-white hover:text-gray-400 transition-colors duration-200">Pharmacy</a></li>
+  </ul>
+</div>
+
+<div class="lg:mx-auto text-left py-2">
+  <h4 class="text-lg text-white font-semibold mb-6">Customer Service</h4>
+  <ul class="text-base space-y-4">
+    <li><a href="/faq" class="text-white hover:text-gray-400 transition-colors duration-200">FAQs</a></li>
+    <li><a href="/order-history" class="text-white hover:text-gray-400 transition-colors duration-200">Order Info</a></li>
+    <li><a href="/refund" class="text-white hover:text-gray-400 transition-colors duration-200">Refunds Policy</a></li>
+    <li><a href="/wishlist" class="text-white hover:text-gray-400 transition-colors duration-200">Favorites</a></li>
+  </ul>
+</div>
+
+<div class="lg:mx-auto text-left py-2">
+  <h4 class="text-lg text-white font-semibold mb-6">Latest News</h4>
+  <ul class="text-base space-y-4">
+    <li><a href="/blog/new-arrivals" class="text-white hover:text-gray-400 transition-colors duration-200">New Arrivals</a></li>
+    <li><a href="/blog/deals" class="text-white hover:text-gray-400 transition-colors duration-200">Deals & Offers</a></li>
+    <li><a href="/blog/tips" class="text-white hover:text-gray-400 transition-colors duration-200">Shopping Tips</a></li>
+    <li><a href="/blog/events" class="text-white hover:text-gray-400 transition-colors duration-200">Events in Poland</a></li>
+  </ul>
+</div>
+
         </div>
-        <div class="lg:mx-auto text-left">
-          <h4 class="text-lg text-white font-semibold mb-6">Products</h4>
-          <ul class="text-base space-y-4">
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Figma UI System</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Icons Assets</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Responsive Blocks</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Components Library</a></li>
-          </ul>
-        </div>
-        <div class="lg:mx-auto text-left">
-          <h4 class="text-lg text-white font-semibold mb-6">Resources</h4>
-          <ul class="text-base space-y-4">
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">FAQs</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Quick Start</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Documentation</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">User Guide</a></li>
-          </ul>
-        </div>
-        <div class="lg:mx-auto text-left">
-          <h4 class="text-lg text-white font-semibold mb-6">Blogs</h4>
-          <ul class="text-base space-y-4">
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">News</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Tips & Tricks</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">New Updates</a></li>
-            <li><a href="javascript:;" class="text-white hover:text-gray-600 transition-colors duration-200">Events</a></li>
-          </ul>
-        </div>
-        </div>
-      ---
 
       <div class="py-4 border-t border-gray-200 flex flex-col md:flex-row items-center justify-between">
         <span class="text-sm text-white mb-4 md:mb-0 text-center">
