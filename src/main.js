@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 import VueLazyload from "vue-lazyload";
 import errorImg from "@/assets/img/error.svg"
 import loadingImg from "@/assets/img/loding.svg"
-
+import PrimeVue from 'primevue/config';
 import App from './App.vue'
 import router from './router'
 import Toast, { POSITION } from 'vue-toastification'
@@ -16,6 +16,7 @@ import 'vue-toastification/dist/index.css'
 const app = createApp(App)
 app.use(createPinia())
     .use(router)
+    .use(PrimeVue)
     .use(VueLazyload, {
         preLoad:1.3,
         error: errorImg,

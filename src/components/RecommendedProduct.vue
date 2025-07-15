@@ -1,6 +1,5 @@
 <template>
   <div class="w-full mx-auto px-1 sm:px-1 lg:px-2 py-4 bg-gray-200">
-    <!-- Header -->
     <div class="mb-8 text-center">
       <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight">
         Featured Products
@@ -9,45 +8,71 @@
         Discover our top picks, hand-selected for you.
       </p>
     </div>
-    <!-- Sections -->
     <div v-for="section in products" :key="section.id" class="gap-12">
-      <!-- Product Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
-        <div
-          v-for="item in section.products"
-          :key="item.title"
-          class="bg-white shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col"
+    <div
+      class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2"
+    >
+      <div
+        v-for="item in section.products"
+        :key="item.id"
+        class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
+      >
+        <RouterLink
+          :to="`/product/${item.slug}`"
+          class="block w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden"
         >
-          <!-- Image -->
-          <RouterLink :to="`/product/${item.slug}`" class="bg-gray-100 h-48 flex items-center justify-center overflow-hidden">
-            <img :src="item.image" alt="product" class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300" />
-          </RouterLink>
-          <!-- Info -->
-          <div class="p-5 flex-1 flex flex-col">
-            <h4 class="text-lg font-semibold text-gray-900 truncate">{{ item.title }}</h4>
-            <p class="text-xs text-gray-500 mt-1 mb-2 line-clamp-2">{{ item.subtitle }}</p>
-            <!-- Price -->
-            <div class="flex items-center space-x-2 mt-2">
-              <span v-if="item.oldPrice" class="text-xs line-through text-gray-400">zł{{ item.oldPrice }}</span>
-              <span class="text-lg text-red-800 font-bold">zł {{ item.newPrice }}</span>
-              <span v-if="item.discount" class="text-black bg-discountColor px-2 py-0.5 text-xs rounded-full font-medium">-{{ item.discount }}%</span>
-            </div>
-            <div class="mt-auto flex justify-between items-center pt-4">
-              <div class="flex items-center space-x-1 text-yellow-500">
-                <Icon icon="mdi:star" />
-                <Icon icon="mdi:star" />
-                <Icon icon="mdi:star" />
-                <Icon icon="mdi:star" />
-                <Icon icon="mdi:star-outline" />
-                <RouterLink to="/review" class="text-sm text-gray-700 font-normal hover:underline ml-1 px-4">({{ item.reviews }})</RouterLink>
+          <img
+            :src="item.image"
+            :alt="item.title"
+            class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
+          />
+          <span
+              v-if="item.discount"
+              class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow">-{{ item.discount }}%
+              </span>
+        </RouterLink>
+        <div class="p-4 sm:p-5 flex flex-col justify-between h-auto">
+          <div>
+            <h3 class="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2" :title="item.title">
+              {{ item.title }}
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2" :title="item.subtitle">
+              {{ item.subtitle }}
+            </p>
+
+            <div class="flex items-baseline space-x-2 mt-3 sm:mt-4">
+              <div class="md:flex flex-col">
+                <span class="text-sm line-through text-gray-400 gap-2">zł {{ item.oldPrice.toFixed(2) }}</span>
+                <span class="text-base sm:text-lg text-red-600 font-bold">zł {{ item.newPrice.toFixed(2) }}</span>
               </div>
-              <button @click="handleAddToCart(item)" class="bg-primarysButton hover:bg-secondysButton text-white text-sm font-semibold px-4 py-2 rounded-full shadow transition">
+            </div>
+          </div>
+          <div class="flex justify-between flex-col sm:flex-row">
+            <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
+            <div class="flex items-center space-x-1">
+              <Icon icon="mdi:star" class="text-yellow-500 text-base" />
+              <span class="text-sm font-medium text-gray-700">{{ item.rating }}</span>
+              <RouterLink
+                :to="`/review`"
+                class="text-sm ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
+              >
+                ({{ item.reviews }}) Reviews
+              </RouterLink>
+            </div>
+          </div>
+           <div class="flex items-center py-1">
+              <button
+                @click="handleAddToCart(item)"
+                class="flex items-center justify-center bg-primarysButton hover:bg-secondysButton text-white text-sm font-medium px-4 py-2 rounded-2xl shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 mt-4"
+              >
+                <Icon icon="mdi:cart-plus" class="w-5 h-5 mr-1" />
                 Add to Cart
               </button>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
      <RouterLink to="/all-products" class="flex items-center justify-center mt-6">
         <button class="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition">

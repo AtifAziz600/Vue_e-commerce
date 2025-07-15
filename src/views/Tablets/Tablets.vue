@@ -1,6 +1,5 @@
 <template>
   <AppLayout>
-    <!-- Header -->
     <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>

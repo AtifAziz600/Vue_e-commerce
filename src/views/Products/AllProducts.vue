@@ -1,10 +1,10 @@
 <template>
   <AppLayout>
-    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
-      <div class="text-gray-700 text-base font-medium">
+    <div class="sm:pt-2 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+      <div class="text-gray-700 text-base font-medium mt-10 md:mt-1">
         <p class="text-center">900 results</p>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 mt-10">
         <label for="sort-by" class="text-gray-700 text-base font-normal">Sort by:</label>
         <div class="relative w-40">
           <select
@@ -192,19 +192,19 @@
                 <p class="text-sm font-thin text-gray-900 tracking-tight text-center mb-8">
                     Check All the products here
                 </p>
-          <div class="mb-12">
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+          <div class="mb-2">
+              <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
                   <div
                       v-for="item in productStore.products"
                       :key="item.title"
-                      class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
+                      class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="block w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
                           />
                           <span
                               v-if="item.discount"
@@ -215,31 +215,49 @@
                       </RouterLink>
                       <!-- Info -->
                       <div class="flex-1 flex flex-col p-5">
-                          <h3 class="text-lg font-semibold text-gray-900 truncate mb-1">
-                              {{ item.title }}
-                          </h3>
-                          <p class="text-xs text-gray-500 mb-2 truncate">
-                              {{ item.subtitle }}
-                          </p>
-                          <!-- Price -->
-                          <div class="flex items-end space-x-2 mb-4">
-                              <span class="text-sm line-through text-gray-400">zł{{ item.oldPrice }}</span>
-                              <span class="text-xl text-red-800 font-bold">zł{{ item.newPrice }}</span>
-                          </div>
-                          
-                          <div class="flex items-center mb-4">
-                              <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | </span>
-                              <RouterLink class="text-xs text-blue-700 hover:underline ml-1">
-                                  ({{ item.reviews }} reviews)
-                                  </RouterLink>
-                          </div>
+                         <!-- Title -->
+<h3 class="text-base sm:text-lg font-semibold text-gray-900 mb-1 truncate">
+  {{ item.title }}
+</h3>
+
+<!-- Subtitle -->
+<p class="text-xs sm:text-sm text-gray-500 mb-2 truncate">
+  {{ item.subtitle }}
+</p>
+
+<!-- Price -->
+<div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
+  <span
+    v-if="item.oldPrice"
+    class="text-xs sm:text-sm line-through text-gray-400"
+  >
+    zł{{ item.oldPrice }}
+  </span>
+  <span class="text-base sm:text-xl text-red-700 font-bold">
+    zł{{ item.newPrice }}
+  </span>
+</div>
+
+<!-- Rating -->
+<div class="flex md:flex-col gap-1 mb-4 flex-wrap text-xs sm:text-sm">
+            <div class="flex items-center space-x-1">
+              <Icon icon="mdi:star" class="text-yellow-500 text-base" />
+              <span class="text-xs font-medium text-gray-700">{{ item.rating }}</span>
+              <RouterLink
+                :to="`/review`"
+                class="text-xs ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
+              >
+                ({{ item.reviews }}) Reviews
+              </RouterLink>
+            </div>
+</div>
+
                             <!-- Footer -->
-                          <div class="mt-auto pt-3 border-t border-gray-100 flex justify-between items-center gap-3">
+ <div class="mt-auto pt-3 border-t border-gray-100 flex justify-center items-center gap-3 flex-col sm:flex-row">
   <!-- Buy Now -->
   <button
     @click="handleAddToCart(item)"
-    class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-4 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
+    class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
   >
     <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
     <span>Buy Now</span>
@@ -248,12 +266,12 @@
   <!-- Add to Cart -->
   <button
     @click="handleAddToCart(item)"
-    class="flex items-center justify-center gap-2 bg-primarysButton hover:bg-secondysButton text-white text-xs font-semibold px-4 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+    class="flex items-center justify-center gap-1 bg-primarysButton hover:bg-secondysButton text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
   >
     <Icon icon="mdi:cart" class="h-5 w-5" />
-    <span>Add to Cart</span>
+    <span>Add Cart</span>
   </button>
-</div>
+                         </div>
                       </div>
                   </div>
               </div>

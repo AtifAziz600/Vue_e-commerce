@@ -97,11 +97,9 @@
                                 </button>
                             </div>
                             <div class="flex items-center gap-3">
-                                <button
-                                    class="transition-all duration-300 p-4 rounded-full bg-white border border-gray-200 hover:bg-gray-100"
+                                <button class="transition-all duration-300 p-4 rounded-full bg-white border border-gray-200 hover:bg-gray-100"
                                     :class="{ 'ring-2 ring-indigo-400': wishlisted }"
-                                    @click="wishlisted = !wishlisted"
-                                >
+                                    @click="wishlisted = !wishlisted">
                                     <Icon icon="mdi:heart" class="h-6 w-6 text-gray-500 hover:text-gray-800" />
                                 </button>
                                 <button class="text-center w-full px-5 py-4 rounded-xl bg-primarysButton hover:bg-secondysButton flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300">

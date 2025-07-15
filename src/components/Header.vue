@@ -2,28 +2,40 @@
   <header class="bg-deepMaroon shadow-md border-b"
   :class="isHeaderShrunk ? 'h-16' : 'h-20'"
   >
-    <!-- Top Header Row -->
     <div class="flex items-center justify-between px-4 py-1 gap-4"
     :class="isHeaderShrunk ? 'py-1' : 'py-2'"
     >
-      <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-2 cursor-pointer py-2">
        <img src="../assets/img/logo.png" class="h-10 md:h-6 sm:h-8 w-20 md:w-60 object-contain">
       </RouterLink>
-
-      <!-- Search Bar -->
      <div class="relative flex-grow">
-  <form class="flex border border-[#1f2d3a] rounded overflow-hidden bg-[#34495e]">
-    <select class="bg-deepMaroon text-white font-bold text-sm px-3 py-2 md:px-1 focus:outline-none md:block md:w-auto hidden appearance-none">
-      <option class="hover:bg-black text-white border-black">Categories</option>
-      <option class="hover:bg-black text-white border-black">Electronics</option>
-      <option class="hover:bg-black text-white border-black">Fashion</option>
-      <option class="hover:bg-black text-white border-black">Books</option>
-    </select>
+  <form class="flex border border-[#1f2d3a] rounded overflow-hidden bg-deepMaroon">
+    <button class="md:block hidden sm:block w-28 text-center">
+    <div
+      @click.prevent="open = !open"
+      class="bg-deepMaroon text-white font-bold text-sm px-1 py-2 rounded focus:outline-none text-start"
+    >
+  {{ selected || 'Category' }}
+    </div>
+    <ul
+      v-if="open"
+      class="absolute z-10 bg-white border border-black rounded shadow-md text-start"
+    >
+      <li
+        v-for="item in items"
+        :key="item"
+        @click="select(item)"
+        class="cursor-pointer bg-deepMaroon text-white hover:bg-primarysButton hover:text-white w-24"
+      >
+        {{ item }}
+      </li>
+    </ul>
+  </button>
+  
     <div class="relative w-full">
       <input
         type="text"
-        placeholder="Search Apricot"
+        placeholder="Search APAGOR"
         class="w-full px-3 py-2 md:px-3 text-sm pr-10 focus:outline-none"
       />
       <button
@@ -35,11 +47,9 @@
     </div>
   </form>
 </div>
-
-      <!-- Actions -->
       <div class="md:flex items-center gap-4 hidden">
         <div class="flex justify-center items-center gap-4">
-          <RouterLink to="/order-history" class="flex items-center gap-1 cursor-pointer hover:bg-red-900 px-3 py-2 rounded transition duration-200">
+          <RouterLink to="/order-history" class="flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
               <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
               <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
@@ -65,7 +75,6 @@
         </div>
       </div>
 
-      <!-- Mobile Hamburger Menu Button -->
        <div class="lg:hidden flex items-center">
         <RouterLink to="/cart-order" class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
@@ -75,15 +84,18 @@
           </RouterLink>
        </div>
 
-      <!-- Mobile Sidebar Navigation -->
-     <nav class="lg:hidden fixed bottom-4 left-4 right-4 z-50 px-4 py-2 bg-deepMaroon backdrop-blur-md shadow-xl rounded-2xl border border-white/10">
+
+     <nav class="lg:hidden fixed bottom-4 left-4 right-4 z-50 px-2 py-1 bg-deepMaroon backdrop-blur-md shadow-xl rounded-xl border border-white/10">
   <ul class="flex items-center justify-between">
-    <li>
-      <button @click="isSidebarOpen = true" class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition">
-        <Icon icon="mdi:menu" class="w-6 h-6" />
-        <span class="text-xs font-medium">Menu</span>
-      </button>
-    </li>
+<li>
+  <button
+    @click="isSidebarOpen = true"
+    class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition"
+  >
+    <Icon icon="mdi:menu" class="w-6 h-6" />
+    <span class="text-xs font-medium">Menu</span>
+  </button>
+</li>
     <li>
       <RouterLink to="/order-history" class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
@@ -110,33 +122,35 @@
   </ul>
 </nav>
 
-      <transition name="fade" class="overflow-auto">
-        <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-white bg-opacity-40 flex">
-          <div class="bg-deepMaroon w-64 h-full shadow-lg p-6 flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-              <span class="text-lg font-bold text-gray-100">Menu</span>
-              <button @click="isSidebarOpen = false" class="p-2 rounded hover:bg-secondysButton">
-                <Icon icon="mdi:close" class="h-5 w-5 md:w-6 md:h-6 text-gray-100" />
-              </button>
-            </div>
-            <nav class="flex flex-col gap-4 text-white">
-              <a v-for="item in NavItems" :key="item.name" :href="item.link" class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200">
-                {{ item.name }}
-              </a>
-            </nav>
-          </div>
-          <div class="flex-1" @click="isSidebarOpen = false"></div>
+      <transition name="fade">
+  <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
+    <transition name="slide">
+      <div class="bg-deepMaroon w-80 h-full shadow-xl p-6 flex flex-col" v-if="isSidebarOpen">
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-lg font-bold text-gray-100"></span>
+          <button @click="isSidebarOpen = false" class="p-2 rounded hover:bg-secondysButton transition">
+            <Icon icon="mdi:close" class="h-6 w-6 text-gray-100" />
+          </button>
         </div>
-      </transition>
+        <nav class="flex flex-col gap-4 text-white">
+          <a
+            v-for="item in NavItems"
+            :key="item.name"
+            :href="item.link"
+            class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200"
+          >
+            {{ item.name }}
+          </a>
+        </nav>
+      </div>
+    </transition>
+    <div class="flex-1" @click="isSidebarOpen = false"></div>
+  </div>
+</transition>
     </div>
-
-    <!-- Navigation Bar -->
   <div class="hidden lg:flex bg-gray-200 border-y py-2 transition-all duration-300" :class="isNavVisible ? 'bg-gray-200 opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'">
   <nav class="container mx-auto flex items-center justify-between">
-    
-    <!-- Country -->
     <div class="flex items-center gap-2 text-gray-700 hover:text-black cursor-pointer transition">
-  <!-- Country Flag -->
   <div class="flex items-center gap-2">
     <img
       src="@/assets/img/download.png"
@@ -146,7 +160,6 @@
     <span class="text-sm font-medium">Poland</span>
   </div>
 </div>
-    <!-- Navigation Links -->
     <div class="flex items-center gap-4 transition-all duration-300" :class="isHeaderShrunk ? 'py-1' : 'py-2'">
       <RouterLink
         v-for="item in NavItems"
@@ -168,13 +181,9 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Icon from '@/components/Icon.vue';
 import { useCartStore } from '@/stores/useCartStore';
 import { storeToRefs } from 'pinia';
-
 const cart = useCartStore();
 const { cartCount } = storeToRefs(cart);
-
-
 const isSidebarOpen = ref(false);
-const isDropDownOpen = ref(false);
 const NavItems = ref([
   { name: 'Best seller', link: '/best-seller' },
   { name: 'New Releases', link: '/new-release' },
@@ -206,6 +215,15 @@ const handleScroll = () => {
 };
 
 
+const open = ref(false)
+const selected = ref(null)
+const items = [ 'Category' ,'Electronics', 'Fashion', 'Books']
+
+function select(item) {
+  selected.value = item
+  open.value = false
+}
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
 });
@@ -213,15 +231,33 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', handleScroll);
 });
+
 </script>
 
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease;
 }
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease;
+}
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+
 </style>
