@@ -5,8 +5,8 @@
     <div class="flex items-center justify-between px-4 py-1 gap-4"
     :class="isHeaderShrunk ? 'py-1' : 'py-2'"
     >
-      <RouterLink to="/" class="flex items-center gap-2 cursor-pointer py-2">
-       <img src="../assets/img/logo.png" class="h-10 md:h-6 sm:h-8 w-20 md:w-60 object-contain">
+      <RouterLink to="/" class="flex items-center cursor-pointer py-2">
+       <img src="../assets/img/logo.png" class="h-10 md:h-6 sm:h-12 w-20 md:w-32 object-contain">
       </RouterLink>
      <div class="relative flex-grow">
   <form class="flex border border-[#1f2d3a] rounded overflow-hidden bg-deepMaroon">
@@ -88,21 +88,26 @@
      <nav class="lg:hidden fixed bottom-4 left-4 right-4 z-50 px-2 py-1 bg-deepMaroon backdrop-blur-md shadow-xl rounded-xl border border-white/10">
   <ul class="flex items-center justify-between">
 <li>
+  <RouterLink to="/" class="flex flex-col items-center gap-1 text-white hover:text-gray-200">
+    <Icon icon="mdi:home" class="w-6 h-6"/>
+    <span class="text-xs font-medium">Home</span>
+  </RouterLink>
+</li>
+    <li>
   <button
     @click="isSidebarOpen = true"
     class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition"
   >
-    <Icon icon="mdi:menu" class="w-6 h-6" />
-    <span class="text-xs font-medium">Menu</span>
+    <Icon icon="material-symbols:category" class="w-6 h-6" />
+    <span class="text-xs font-medium">Category</span>
   </button>
-</li>
+    </li>
     <li>
-      <RouterLink to="/order-history" class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-          <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-          <path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd" />
-        </svg>
-        <span class="text-xs font-medium">Order</span>
+      <RouterLink to="/cart-order" class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-100" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M3 1a1 1 0 000 2h1.22l.305 1.222 1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+            </svg>
+        <span class="text-xs font-medium">Cart</span>
       </RouterLink>
     </li>
     <li>
@@ -116,7 +121,7 @@
     <li>
       <RouterLink to="/login" class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition">
         <Icon icon="mdi:user-outline" class="w-6 h-6" />
-        <span class="text-xs font-medium">Sign In</span>
+        <span class="text-xs font-medium">Profile</span>
       </RouterLink>
     </li>
   </ul>
@@ -125,7 +130,7 @@
       <transition name="fade">
   <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
     <transition name="slide">
-      <div class="bg-deepMaroon w-80 h-full shadow-xl p-6 flex flex-col" v-if="isSidebarOpen">
+      <div class="bg-deepMaroon w-80 h-full shadow-xl p-6 flex flex-col overflow-auto" v-if="isSidebarOpen">
         <div class="flex justify-between items-center mb-6">
           <span class="text-lg font-bold text-gray-100"></span>
           <button @click="isSidebarOpen = false" class="p-2 rounded hover:bg-secondysButton transition">
@@ -134,7 +139,7 @@
         </div>
         <nav class="flex flex-col gap-4 text-white">
           <a
-            v-for="item in NavItems"
+            v-for="item in CategoryItems"
             :key="item.name"
             :href="item.link"
             class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200"
@@ -195,6 +200,20 @@ const NavItems = ref([
   { name: 'Toys & Games', link: '/toysgame' },
   { name: 'Become a seller', link: '/become-seller' }
 ]);
+
+const CategoryItems = ref([
+  { name: 'Best seller', link: '/best-seller' },
+  { name: 'New Releases', link: '/new-release' },
+  {name: 'Electronics', link: '/electronics'},
+  {name: 'Phone', link: '/phones'},
+  {name: 'Tablet', link: '/tablets'},
+  {name: 'Accessories', link: '/accessories'},
+  {name: 'Computer', link: '/computer'},
+  {name: 'Fashion', link: '/fashion'},
+  {name: 'Health', link: '/health'},
+  {name: 'Pharmacy', link: '/pharmacy'},
+  {name: 'Toys & Game', link: '/toysgame'},
+])
 const isNavVisible = ref(true);
 let lastScrollY = window.scrollY;
 

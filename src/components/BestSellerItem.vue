@@ -1,12 +1,9 @@
 <template>
   <div class="bg-gradient-to-br from-gray-200 via-gray-100 to-gray-200 py-10 text-gray-900">
     <div class="max-w-full mx-auto px-4">
-      <!-- Header -->
       <div class="flex items-center justify-between">
         <h2 class="text-2xl sm:text-2xl font-bold text-black">Best Seller Items</h2>
       </div>
-
-      <!-- Swiper -->
       <swiper
         :slides-per-view="2"
         :space-between="1"

@@ -1,66 +1,50 @@
 <template>
-  <div
-    v-for="section in products"
-    :key="section.id"
-    class="bg-white p-4 sm:p-6 lg:p-8 shadow-inner rounded-lg mb-14"
-  >
-    <div class="mb-8 text-center sm:text-left">
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
-        {{ section.Top }}
-      </h2>
-    </div>
+  <div class="bg-gray-100 py-4 text-gray-900 font-sans">
+    <div class="max-w-full mx-auto px-4">
+      <div class="flex items-center gap-2 justify-start">
+        <h2 class="text-xl sm:text-2xl font-semibold text-black">Offer Sale
 
-    <div
-      class="grid grid-cols-2 lg:grid-cols-4 gap-2"
-    >
-      <div
-        v-for="item in section.products"
-        :key="item.id"
-        class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
+          <a href="/all-products" class="text-xs text-blue-950 font-semibold hover:text-blue-900">See more</a>
+        </h2>
+        
+      </div>
+      <swiper
+        :slides-per-view="2"
+        :space-between="16"
+        :breakpoints="{
+          640: { slidesPerView: 3 },
+          768: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 }
+        }"
+        :navigation="true"
+        class="py-2"
+        :modules="modules"
       >
-        <RouterLink
-          :to="`/product/${item.slug}`"
-          class="block w-full aspect-[16/9] bg-gray-50 flex items-center justify-center overflow-hidden"
+        <swiper-slide
+          v-for="(product, index) in products"
+          :key="index"
+          class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200"
         >
-          <img
-            :src="item.image"
-            :alt="item.title"
-            class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300"
-          />
-          <span
-              v-if="item.discount"
-              class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow">-{{ item.discount }}%
+          <img :src="product.image" alt="Product" class="w-full h-44 object-contain p-2" />
+          <div class="px-4 pb-4">
+            <p class="text-xs font-medium text-gray-500 mb-1">
+              <span class="inline-block bg-discountColor text-black px-2 py-0.5 rounded-full text-[10px] font-semibold mr-2">
+                -{{ product.discount }}%
               </span>
-        </RouterLink>
-        <div class="p-4 sm:p-5 flex flex-col justify-between h-auto">
-          <div>
-            <h3 class="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2" :title="item.title">
-              {{ item.title }}
-            </h3>
-            <p class="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2" :title="item.subtitle">
-              {{ item.subtitle }}
+              <span class="text-[11px]">With Discount</span>
             </p>
-
-            <div class="flex items-baseline space-x-2 mt-3 sm:mt-4">
-              <div class="md:flex flex-col">
-                <span class="text-sm line-through text-gray-400 gap-2">zł {{ item.oldPrice.toFixed(2) }}</span>
-                <span class="text-base sm:text-lg text-red-600 font-bold">zł {{ item.newPrice.toFixed(2) }}</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex justify-between flex-col sm:flex-row">
-            <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
-            <div class="flex items-center space-x-1">
-              <Icon icon="mdi:star" class="text-yellow-500 text-base" />
-              <span class="text-sm font-medium text-gray-700">{{ item.rating }}</span>
-              <RouterLink
-                :to="`/review`"
-                class="text-sm ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
-              >
-                ({{ item.reviews }}) Reviews
-              </RouterLink>
-            </div>
-          </div>
+            <p class="text-base font-semibold" v-if="product.discount">
+              zł {{ product.newPrice.toFixed(2) }}
+              <span class="text-gray-400 font-normal text-sm line-through ml-1">
+                zł {{ product.oldPrice.toFixed(2) }}
+              </span>
+            </p>
+            <p class="text-sm mt-1 text-gray-700 leading-tight line-clamp-2">
+              {{ product.title }}
+            </p>
+              <p class="text-sm mt-1 text-gray-700 hover:text-blue-700 leading-tight line-clamp-2 cursor-pointer">
+              ({{ product.reviews }}) Reviews
+            </p>
            <div class="flex items-center py-1">
               <button
                 @click="handleAddToCart(item)"
@@ -71,13 +55,15 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script setup>
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Navigation } from 'swiper/modules';
 import Watch from '../../assets/img/watch.png';
 import Fashion from '../../assets/img/shirt.jfif';
 import Laptop from '../../assets/img/laptop.jfif';
@@ -86,15 +72,29 @@ import Watch2 from '../../assets/img/watch2.png';
 import Fashion2 from '../../assets/img/pants.jfif';
 import Laptop2 from '../../assets/img/laptop.jfif';
 import Phone2 from '../../assets/img/Oppo.jfif';
+import { useToast } from 'vue-toastification';
+import 'swiper/css'
+import 'swiper/css/navigation'
 
-import { Icon } from '@iconify/vue';
+const modules = [Navigation]
+import { useCartStore } from '../../stores/useCartStore'
+const cart = useCartStore()
+const toast = useToast()
+function handleAddToCart(item) {
+  cart.addToCart({
+    id: item.id,
+    title: item.title,
+    image: item.image,
+    price: item.newPrice,
+    quantity: 1,
+    total: item.newPrice,
+    category: item.tag
+  })
+  toast.success(`${item.title} added to cart`)
+}
 
 const products = [
-  {
-    id: 1,
-    Top: "Electronics",
-    products: [
-     {
+          {
     id: 1,
     orderId: '#FWB127364372',
     title: "Watch",
@@ -104,9 +104,9 @@ const products = [
     image: Watch,
     oldPrice: 48.54,
     newPrice: 38.89,
+    inStock: true,
     discount: 19,
     tag: "watch",
-    inStock: true,
     reviews: 1248,
     rating: 5,
     features: [
@@ -120,17 +120,17 @@ const products = [
 },
       {
         id: 2,
-        orderId: '#FWB127364373',
+        orderId: '#FWD215439065',
         title: "Shirt",
         slug: "fashion-show",
         subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
         oldPrice: 39.96,
         newPrice: 22.91,
+        inStock: true,
         discount: 42,
         tag: "fashion",
          reviews: 1248,
-    inStock: false,
     rating: 5,
     features: [
         'Swiss movement',
@@ -143,7 +143,7 @@ const products = [
       },
       {
         id: 3,
-        orderId: '#FWB127364234',
+        orderId: '#FWB122546348',
         title: "Laptop",
         slug: "computer-laptop",
         subtitle: "High performance laptops for work and play. Reliable and powerful.",
@@ -166,15 +166,15 @@ const products = [
       },
       {
         id: 4,
-        orderId: '#FWB1273644356',
+        orderId: '#FWB122344348',
         title: "Xiaomi",
         slug: "phone",
         subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
         oldPrice: 20.21,
         newPrice: 17.88,
+        inStock: false,
         discount: 32,
-        inStock: true,
         tag: "phone",
         reviews: 1248,
     rating: 5,
@@ -187,15 +187,9 @@ const products = [
     ],
     sizes: ['M', 'XL', 'XXL']
       },
-    ],
-  },
-  {
-    id: 2,
-    Top: "Morden",
-    products: [
       {
-        id: 1,
-        orderId: '#FWB127364432',
+        id: 5,
+        orderId: '#FWB12345659',
         title: "Pants",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
@@ -203,8 +197,8 @@ const products = [
         oldPrice: 48.54,
         newPrice: 38.89,
         discount: 19,
-        tag: "watch",
         inStock: true,
+        tag: "watch",
         reviews: 1248,
     rating: 5,
     features: [
@@ -217,8 +211,8 @@ const products = [
     sizes: ['M', 'XL', 'XXL']
       },
       {
-        id: 2,
-        orderId: '#FWB1273643452',
+        id: 6,
+        orderId: '#FWB126345659',
         title: "Watch",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
@@ -240,8 +234,8 @@ const products = [
     sizes: ['M', 'XL', 'XXL']
       },
       {
-        id: 3,
-        orderId: '#FWB1273643252',
+        id: 7,
+        orderId: '#FWB123456593',
         title: "Desktop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
@@ -249,8 +243,8 @@ const products = [
         oldPrice: 3.27,
         newPrice: 1.90,
         discount: 41,
+        inStock: false,
         tag: "laptop",
-        inStock: true,
         reviews: 1248,
     rating: 5,
     features: [
@@ -263,9 +257,9 @@ const products = [
     sizes: ['M', 'XL', 'XXL']
       },
       {
-        id: 4,
+        id: 8,
+        orderId: '#FWB123456549',
         title: "Oppo",
-        orderId: '#FWB1273643234',
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
         image: Phone2,
@@ -285,42 +279,64 @@ const products = [
     ],
     sizes: ['M', 'XL', 'XXL']
       },
-    ]
-  }
-];
-
-import { useCartStore } from '../../stores/useCartStore'
-const cart = useCartStore()
-import { useToast } from 'vue-toastification';
-const toast = useToast();
-
-function handleAddToCart(item) {
-  if (!item.inStock) {
-    toast.error(`${item.title} is currently out of stock.`);
-    return; 
-  }
-  cart.addToCart({
-    id: item.id,
-    title: item.title,
-    orderId: item.orderId,
-    image: item.image,
-    price: item.newPrice,
-    quantity: 1,
-    total: item.newPrice,
-    category: item.tag
-  })
-  toast.success(`${item.title} added to cart!`);
-}
+      {
+        id: 9,
+        orderId: '#FWB123456369',
+        title: "Atomic Habits",
+        slug: "atomic-habits",
+        category: "Self-help",
+        inStock: true,
+        subtitle: "An Easy & Proven Way to Build Good Habits & Break Bad Ones by James Clear.",
+        image: "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg",
+        oldPrice: 24.99,
+        newPrice: 16.99,
+        discount: 32,
+        tag: "self-help",
+        reviews: 15420,
+        rating: 5,
+        features: [
+          "Practical strategies",
+          "Science-backed methods",
+          "Easy to read",
+          "Bestseller",
+          "Life-changing"
+        ],
+        sizes: []
+      },
+      {
+        id: 10,
+        orderId: '#FWB123456591',
+        title: "The Alchemist",
+        slug: "the-alchemist",
+        category: "Fiction",
+        inStock: true,
+        subtitle: "A fable about following your dream by Paulo Coelho.",
+        image: "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
+        oldPrice: 19.99,
+        newPrice: 11.99,
+        discount: 40,
+        tag: "fiction",
+        reviews: 21000,
+        rating: 5,
+        features: [
+          "Inspirational story",
+          "International bestseller",
+          "Simple language",
+          "Philosophical",
+          "Timeless classic"
+        ],
+        sizes: []
+      },
+]
 </script>
-
-<style scoped>
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+<style>
+.swiper-button-prev,
+.swiper-button-next {
+  width: 36px;
+  height: 36px;
+  font-size: 20px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 9999px;
 }
 </style>
-```

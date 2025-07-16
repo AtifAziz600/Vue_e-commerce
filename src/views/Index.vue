@@ -9,14 +9,18 @@
       />
       </section>
     <HomeCategoryCard/>
+    <ElectronicsCategories/>
     <ProductCard />
     <ProductCardCarsoal/>
     <ProductSlider/>
-    <BestSellerItems/>
+    <Brands/>
     <ProductCardItem/>
+    <Offer/>
     <RecommendedProduct/>
+    <LowestCostItem/>
     <FeatureSection/>
-    <OurPartner/>
+    <Subcription/>
+    <!-- <OurPartner/> -->
     <Pagination/>
     </AppLayout>
 </template>
@@ -30,10 +34,14 @@ import ProductSlider from "@/components/ProductSlider.vue";
 import FeatureSection from "@/components/FeatureSection.vue";
 import Pagination from "@/components//Pagination.vue";
 import ProductCardItem from "@/components/ProductCardItem.vue";
-import BestSellerItems from "@/components/BestSellerItem.vue";
 import RecommendedProduct from "@/components/RecommendedProduct.vue";
-import OurPartner from "@/components/OurPayment.vue";
+// import OurPartner from "@/components/OurPayment.vue";
+import Subcription from "@/components/Subcription.vue";
 import ProductOnHero from "@/components/ProductOnHero.vue";
+import Offer from "./CarusoulCard/Offer.vue";
+import Brands from "@/components/Brands.vue";
+import LowestCostItem from "./CarusoulCard/LowestCostItem.vue";
+import ElectronicsCategories from "./CarusoulCard/ElectronicsCategories.vue";
 </script>
 <style>
 
@@ -58,6 +66,7 @@ import ProductOnHero from "@/components/ProductOnHero.vue";
   .category-cards-grid-container {
     grid-template-columns: 1fr; 
     margin-top: 20px; 
+    display: none;
   }
 }
 </style>

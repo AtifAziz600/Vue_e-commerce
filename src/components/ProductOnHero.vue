@@ -1,5 +1,5 @@
 <template>
-<section class="bg-transparent mx-auto px-4 py-8">
+<section class="bg-transparent mx-auto px-4 mt-2 md:block hidden">
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto">
     <div class="bg-white/60 backdrop-blur-xl p-2 shadow-md border border-gray-200">
       <h2 class="text-xl font-semibold text-gray-900 mb-4">Fashion trends like</h2>

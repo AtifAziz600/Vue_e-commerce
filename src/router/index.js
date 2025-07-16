@@ -153,6 +153,11 @@ const router = createRouter({
       path: '/refund-order',
       name: 'refund-order',
       component: () => import('../views/RefundAndReturn/RefundAndReturn.vue')
+    },
+    {
+      path: '/seller-form',
+      name: "seller-form",
+      component: () => import ('../views/BecomeSeller/SellerRegister.vue')
     }
   ]
 })

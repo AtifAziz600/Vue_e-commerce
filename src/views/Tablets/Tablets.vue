@@ -1,6 +1,7 @@
 <template>
   <AppLayout>
-    <div class="pt-14 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
+    <!-- Header -->
+    <div class="md:pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm">
       <div class="text-gray-700 text-base font-medium">
         <p class="text-center">900 results</p>
       </div>
@@ -29,7 +30,7 @@
           <Icon icon="mdi:filter" class="h-6 w-6" />
         </button>
       </div>
-       <transition name="fade" class="overflow-auto">
+          <transition name="fade" class="overflow-auto">
         <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-40 flex">
           <aside class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6">
         <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
@@ -187,7 +188,7 @@
       </aside>
       <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 tracking-tight text-start">
-                  Tablets
+                    Tablets
                 </h2>
                 <p class="text-sm font-thin text-gray-900 tracking-tight text-start mb-1">
                     Check All the products here
@@ -197,18 +198,17 @@
               :key="section.id"
               class="mb-12"
           >
-              <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+              <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
                   <div
                       v-for="item in section.products"
                       :key="item.title"
                       class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
-                      <!-- Image -->
                       <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"
-                              class="w-full h-full object-fit transition-transform duration-300 group-hover:scale-105"
+                              class="w-full h-full object-fit aspect-[16/9] transition-transform duration-300 group-hover:scale-105"
                           />
                           <span
                               v-if="item.discount"
@@ -225,39 +225,44 @@
                           <p class="text-xs text-gray-500 mb-2 truncate">
                               {{ item.subtitle }}
                           </p>
-                          <!-- Price -->
-                          <div class="flex items-end space-x-2 mb-4">
-                              <span class="text-sm line-through text-gray-400">zł{{ item.oldPrice }}</span>
-                              <span class="text-xl text-blue-600 font-bold">zł{{ item.newPrice }}</span>
-                          </div>
-                          
-                          <div class="flex items-center mb-4">
-                              <svg class="w-4 h-4 text-yellow-400 mr-1" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.561-.955L10 0l2.951 5.955 6.561.955-4.756 4.635 1.122 6.545z"/></svg>
-                              <span class="text-xs text-gray-500">4.8 | </span>
-                              <RouterLink class="text-xs text-blue-600 hover:underline ml-1">
-                                  ({{ item.reviews }} reviews)
-                                  </RouterLink>
-                          </div>
-                            <!-- Footer -->
-                            <div class="mt-auto flex flex-row justify-between items-center gap-2 pt-3 border-t border-gray-100">
-                            <div class="flex flex-col items-start">
-                              
-                              <span
-    :class="[
-      'text-xs font-semibold px-2 py-2 rounded-2xl',
-      item.inStock ? 'text-green-700 bg-green-100' : 'text-red-700 bg-red-100'
-    ]"
+<div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
+  <span
+    v-if="item.oldPrice"
+    class="text-xs sm:text-sm line-through text-gray-400"
   >
-    {{ item.inStock ? 'In Stock' : 'Out Stock' }}
+    zł{{ item.oldPrice }}
   </span>
-                            </div>
-                            <button
-                              @click="handleAddToCart(item)"
-                              class="flex items-center gap-2 bg-primarysButton hover:bg-secondysButton border text-white text-sm font-semibold px-4 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
-                            >
-                            <Icon icon="mdi:cart" class="h-5 w-5 text-white" />
-                              Add to Cart
-                            </button>
+  <span class="text-base sm:text-xl text-red-700 font-bold">
+    zł{{ item.newPrice }}
+  </span>
+</div>
+<div class="flex md:flex-col gap-1 mb-4 flex-wrap text-xs sm:text-sm">
+            <div class="flex items-center space-x-1">
+              <Icon icon="mdi:star" class="text-yellow-500 text-base" />
+              <span class="text-xs font-medium text-gray-700">{{ item.rating }}</span>
+              <RouterLink
+                :to="`/review`"
+                class="text-xs ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
+              >
+                ({{ item.reviews }}) Reviews
+              </RouterLink>
+            </div>
+</div>
+    <div class="border-gray-100 mt-auto pt-3 border-t flex justify-center items-center gap-4 flex-col sm:flex-row">
+  <button
+    @click="handleAddToCart(item)"
+    class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
+  >
+    <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
+    <span>Buy Now</span>
+  </button>
+ <button
+    @click="handleAddToCart(item)"
+    class="flex items-center justify-center gap-2 bg-primarysButton hover:bg-secondysButton text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+  >
+    <Icon icon="mdi:cart" class="h-5 w-5" />
+    <span>Add Cart</span>
+  </button>
                             </div>
                       </div>
                   </div>

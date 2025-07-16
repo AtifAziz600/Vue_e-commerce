@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
       colors: {
         primarysButton: '#8A0000',
         secondysButton: '#3B060A',

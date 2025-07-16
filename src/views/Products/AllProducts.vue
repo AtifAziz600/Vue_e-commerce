@@ -200,7 +200,7 @@
                       class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
                   >
                       <!-- Image -->
-                      <RouterLink :to="`/product/${item.slug}`" class="block w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
+                      <RouterLink :to="`/product/${item.slug}`" class="block w-full aspect-[16/9]  bg-gray-50 flex items-center justify-center overflow-hidden">
                           <img
                               :src="item.image"
                               alt="product"

@@ -1,11 +1,12 @@
 <template>
-  <section class="py-24 bg-[#f5f5f7]">
+  <section class="py-24 bg-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        Feature Section
+        Why APAGOR
       </h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-        Simplify your life with these elegant features built to be intuitive, fast, and powerful.
+        <!--Apagor Description-->
+        premium products at unbeatable prices. Whether you're looking for the latest in fashion, cutting-edge electronics, stylish home essentials, or everyday must-haves, we've got you covered.
       </p>
 
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -27,7 +28,6 @@
 
 <script setup>
 import { ref } from 'vue'
-// import { ShieldCheck, CreditCard, Clock3, Zap } from 'lucide-vue-next' 
 import { Icon } from '@iconify/vue';
 
 const features = ref([
@@ -47,9 +47,9 @@ const features = ref([
     icon: 'mdi:clock-outline'
   },
   {
-    title: 'Simple Interface',
-    description: 'Designed to be beautiful, clean, and intuitive.',
-    icon: 'mdi:credit-card-outline'
+    title: 'Delivery System',
+    description: 'Fast and reliable shipping across the country',
+    icon: 'mdi:truck-delivery'
   }
 ])
 </script>

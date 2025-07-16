@@ -1,6 +1,3 @@
-
-
-/* Scrollbar corner if both horizontal and vertical scrollbars are visible */
 body::-webkit-scrollbar-corner {
     background: transparent;
 }
@@ -13,7 +10,6 @@ body::-webkit-scrollbar-corner {
     scrollbar-width: none;
 }
 
-/*fade transition*/
 
 .fade-enter-active {
     transition: opacity 0.5s ease-out, transform 0.5s ease-in-out;
@@ -38,7 +34,6 @@ body::-webkit-scrollbar-corner {
     opacity: 0;
 }
 
-/*opacity*/
 .opacity-enter-active,
 .opacity-leave-active {
     transition: 0.2s all ease-in-out;
@@ -58,9 +53,9 @@ body::-webkit-scrollbar-corner {
   .toastify__toast {
     width: 90% !important;
     min-height: 3.5rem !important;
-    font-size: 0.875rem !important; /* text-sm */
-    padding: 0.75rem 1rem !important; /* smaller padding */
-    border-radius: 0.75rem !important; /* rounded-xl */
+    font-size: 0.875rem !important; 
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.75rem !important; 
     margin: 0.5rem auto !important;
   }
 }

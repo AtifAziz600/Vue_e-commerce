@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 
+body {
+  @apply font-sans;
+}
+
 @layer{
     .c-toast {
         @apply pt-1 pb-2 px-4 rounded-lg;

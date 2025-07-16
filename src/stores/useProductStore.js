@@ -63,14 +63,14 @@ import Phone5 from '../assets/img/Phone3.png';
 import Phone6 from '../assets/img/Phone4.png';
 import Phone7 from '../assets/img/Phone5.png';
 import Phone8 from '../assets/img/Phone6.png';
-import Accessory0 from '../assets/img/acc1.png'
-import Accessory1 from '../assets/img/acc2.png'
-import Accessory2 from '../assets/img/acc3.png'
-import Accessory3 from '../assets/img/acc4.png'
-import Accessory4 from '../assets/img/acc5.png'
-import Accessory5 from '../assets/img/acc6.png'
-import Accessory6 from '../assets/img/acc7.png'
-import Accessory7 from '../assets/img/acc8.png'
+import Accessory0 from '../assets/img/acc1.png';
+import Accessory1 from '../assets/img/acc2.png';
+import Accessory2 from '../assets/img/acc3.png';
+import Accessory3 from '../assets/img/acc4.png';
+import Accessory4 from '../assets/img/acc5.png';
+import Accessory5 from '../assets/img/acc6.png';
+import Accessory6 from '../assets/img/acc7.png';
+import Accessory7 from '../assets/img/acc8.png';
 
 export const useProductStore = defineStore('productStore', {
     state: () => ({

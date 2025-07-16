@@ -3,7 +3,7 @@
     <div class="backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl shadow-2xl p-8 w-full max-w-md">
       <div class="flex flex-col items-center">
         <form class="flex flex-col gap-6 w-full" @submit.prevent="handleRegister">
-          <h1 class="text-3xl font-semibold text-gray-800 mb-2 text-center tracking-tight">Register Here</h1>
+          <img src="../../assets/img/2931c5c3-f60d-4f7d-a78d-65904b68843c - Edited.jpg" class="w-full h-full object-contain" alt="">
           <div>
             <label class="block text-sm font-medium text-gray-800 mb-1" for="email">First Name</label>
             <input
@@ -40,7 +40,7 @@
                type="password" name="password" placeholder="confirm password" />
           </div>
           <button type="submit"
-            class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-2 rounded-lg shadow transition">
+            class="w-full bg-primarysButton hover:bg-secondysButton text-white font-semibold py-2 rounded-lg shadow transition">
             Register
           </button>
           

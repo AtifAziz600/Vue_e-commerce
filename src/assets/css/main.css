@@ -1,5 +1,8 @@
 @import './base.css';
 @import "./app.css";
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 /* sidebar styles start*/
 /* .sidebar-item{

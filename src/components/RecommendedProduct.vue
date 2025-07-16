@@ -4,8 +4,8 @@
       <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight">
         Featured Products
       </h2>
-      <p class="text-sm md:text-md text-gray-600 font-light">
-        Discover our top picks, hand-selected for you.
+      <p class="text-md md:text-lg text-gray-600 font-light">
+        Discover our top picks, and all the the prodcuts that were featured
       </p>
     </div>
     <div v-for="section in products" :key="section.id" class="gap-12">
@@ -19,7 +19,7 @@
       >
         <RouterLink
           :to="`/product/${item.slug}`"
-          class="block w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden"
+          class="block w-full aspect-[16/9] bg-gray-50 flex items-center justify-center overflow-hidden"
         >
           <img
             :src="item.image"

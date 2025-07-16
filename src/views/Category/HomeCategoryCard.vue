@@ -1,39 +1,37 @@
 <template>
-  <div class="bg-white shadow-2xl overflow-hidden border border-gray-200 ">
-    <!-- Header -->
-    <div class="flex items-center justify-between px-8 py-6 border-b border-gray-100 bg-white shadow-sm">
-      <h2 class="text-4xl font-semibold text-gray-800 flex items-center">
-        {{ category.name }}
-      </h2>
-      <RouterLink
-        :to="`/category/${category.slug}`"
-        class="text-sm text-blue-600 font-medium hover:underline hover:text-blue-800 transition px-4 py-1 bg-white/70 shadow"
+<div class="bg-white shadow-2xl overflow-hidden border border-gray-200">
+    <div v-if="category.children_recursive.length" class="p-1">
+      <Swiper
+        :slides-per-view="2"
+        :space-between="20"
+        :breakpoints="{
+          640: { slidesPerView: 3 },
+          768: { slidesPerView: 4 },
+          1024: { slidesPerView: 6 }
+        }"
+        class="!px-2"
       >
-        See More
-      </RouterLink>
-    </div>
-
-    <!-- Subcategories Grid -->
-    <div v-if="category.children_recursive.length" class="p-2">
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-        <RouterLink
+        <SwiperSlide
           v-for="child in category.children_recursive"
           :key="child.id"
-          :to="child.slug"
-          class="flex flex-col items-center group border border-gray-200 rounded-2xl p-4 bg-gradient-to-b from-white to-[#f5f6fa] hover:shadow-xl hover:scale-105 transition-all duration-200"
         >
-          <div class="w-30 h-full rounded-full bg-gray-50 overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center mb-2">
-            <img
-              :src="child.photo"
-              :alt="child.name"
-              class="w-16 h-16 object-contain transition-transform duration-300 group-hover:scale-110"
-            />
-          </div>
-          <span class="mt-2 text-base font-medium text-gray-700 group-hover:text-black transition">
-            {{ child.name }}
-          </span>
-        </RouterLink>
-      </div>
+          <RouterLink
+            :to="child.slug"
+            class="flex flex-col items-center group border border-gray-200 rounded-2xl p-4 bg-gradient-to-b from-white to-[#f5f6fa] hover:shadow-xl hover:scale-105 transition-all duration-200"
+          >
+            <div class="w-30 h-full rounded-full bg-gray-50 overflow-hidden border border-gray-200 shadow-sm flex items-center justify-center mb-2">
+              <img
+                :src="child.photo"
+                :alt="child.name"
+                class="w-20 h-20 object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <span class="mt-2 text-base font-medium text-gray-700 group-hover:text-black transition">
+              {{ child.name }}
+            </span>
+          </RouterLink>
+        </SwiperSlide>
+      </Swiper>
     </div>
     <div v-else class="relative p-8">
       <ProductSlider :products="category.products" />
@@ -62,10 +60,15 @@ import PhonesIcon from '../../assets/img/phone.jfif';
 import TabletsIcon from '../../assets/img/download (2).jfif';
 import AccessoriesIcon from '../../assets/img/download (3).jfif';
 import FashionIcon from '../../assets/img/images (2).jfif';
+import Health from '../../assets/img/health.jpg';
+import Pharmacy from '../../assets/img/Aspirin75mgTablets.png';
+import ToyGameIcon from '../../assets/img/LEGOClassicBricks.png'
 import ProductSlider from '@/components/ProductSlider.vue'
-
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 const category = ref({
-  name: 'Category',
   slug: 'Category',
   children_recursive: [
     {
@@ -103,6 +106,24 @@ const category = ref({
       name: 'Fashion',
       slug: 'fashion',
       photo: FashionIcon
+    },
+    {
+      id: 7,
+      name: 'Health',
+      slug: 'health',
+      photo: Health
+    },
+    {
+      id: 8,
+      name: 'Pharmacy',
+      slug: 'pharmacy',
+      photo: Pharmacy
+    },
+    {
+      id: 9,
+      name: 'Toys And Game',
+      slug: 'toysgames',
+      photo: ToyGameIcon
     }
   ]
 });
