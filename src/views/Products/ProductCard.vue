@@ -16,7 +16,7 @@
       <div
         v-for="item in section.products"
         :key="item.id"
-        class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
+        class="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >
         <RouterLink
           :to="`/product/${item.slug}`"

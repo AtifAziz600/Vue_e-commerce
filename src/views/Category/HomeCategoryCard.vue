@@ -1,5 +1,6 @@
 <template>
 <div class="bg-white shadow-2xl overflow-hidden border border-gray-200">
+  <div class="text-start text-4xl font-semibold ml-3">Category</div>
     <div v-if="category.children_recursive.length" class="p-1">
       <Swiper
         :slides-per-view="2"

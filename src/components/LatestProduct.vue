@@ -89,17 +89,6 @@
         </div>
       </div>
     </div>
-    <RouterLink
-      to="/all-products"
-      class="flex items-center justify-center mt-6"
-    >
-      <button
-        class="flex items-center gap-1 text-blue-600 hover:text-blue-800 font-medium transition"
-      >
-        See More
-        <Icon icon="mdi:arrow-right" class="w-4 h-4" />
-      </button>
-    </RouterLink>
   </div>
 </template>
 

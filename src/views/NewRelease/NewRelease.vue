@@ -239,7 +239,6 @@
   </span>
 </div>
                           
-                          <!-- Rating -->
 <div class="flex md:flex-col gap-1 mb-4 flex-wrap text-xs sm:text-sm">
             <div class="flex items-center space-x-1">
               <Icon icon="mdi:star" class="text-yellow-500 text-base" />

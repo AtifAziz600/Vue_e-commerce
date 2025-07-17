@@ -2,9 +2,9 @@
   <div class="bg-gray-100 py-4 text-gray-900 font-sans">
     <div class="max-w-full mx-auto px-4">
       <div class="flex items-center gap-2 justify-start">
-        <h2 class="text-xl sm:text-2xl font-semibold text-black">For you with the lowest price guarante
+        <h2 class="text-xl sm:text-2xl font-semibold text-black">Offers inspired by your searches
 
-          <a href="/all-products" class="text-xs text-blue-950 font-semibold hover:text-blue-900 whitespace-nowrap">See more</a>
+          <a href="/all-products" class="text-xs text-blue-950 font-semibold hover:text-blue-900">See more</a>
         </h2>
         
       </div>
@@ -42,7 +42,7 @@
             <p class="text-sm mt-1 text-gray-700 leading-tight line-clamp-2">
               {{ product.title }}
             </p>
-            <p class="text-sm mt-1 text-gray-700 hover:text-blue-700 leading-tight line-clamp-2 cursor-pointer">
+              <p class="text-sm mt-1 text-gray-700 hover:text-blue-700 leading-tight line-clamp-2 cursor-pointer">
               ({{ product.reviews }}) Reviews
             </p>
            <div class="flex items-center py-1">
@@ -60,19 +60,19 @@
     </div>
   </div>
 </template>
-
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules';
-import Watch from '../../assets/img/watch.png';
-import Fashion from '../../assets/img/shirt.jfif';
-import Fashion25 from '../../assets/img/cloths.png';
-import Pharmacy1 from '../../assets/img/para.png'
-import Pharmacy4 from '../../assets/img/VitaminC1000mgTablets.png';
 import { useToast } from 'vue-toastification';
 import 'swiper/css'
 import 'swiper/css/navigation'
-
+import Watch2 from '../../assets/img/watch2.png';
+import Fashion2 from '../../assets/img/pants.jfif';
+import Fashion25 from '../../assets/img/cloths.png';
+import Fashion45 from '../../assets/img/best-british-fashion-brands-1.jpg';
+import Pharmacy1 from '../../assets/img/para.png'
+import Pharmacy4 from '../../assets/img/VitaminC1000mgTablets.png';
+import Watch from '../../assets/img/watch.png';
 const modules = [Navigation]
 import { useCartStore } from '../../stores/useCartStore'
 const cart = useCartStore()
@@ -89,8 +89,7 @@ function handleAddToCart(item) {
   })
   toast.success(`${item.title} added to cart`)
 }
-
-const products =  [
+const products = [
   {
     id: 2,
     orderId: '#FWD215439065',
@@ -98,7 +97,7 @@ const products =  [
     slug: "fashion-show",
     category: "Fashion",
     subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
-    image: Fashion,
+    image: Fashion2,
     oldPrice: 39.96,
     newPrice: 22.91,
     inStock: true,
@@ -107,9 +106,6 @@ const products =  [
     reviews: 1248,
     rating: 5,
     features: [
-      'Swiss movement',
-      'Sapphire crystal glass',
-      'Water resistant up to 50m',
       'Cotton blend fabric',
       'Breathable and lightweight'
     ],
@@ -122,7 +118,7 @@ const products =  [
     slug: "luxury-watch",
     category: "Watches / Luxury",
     subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
+    image: Watch2,
     oldPrice: 48.54,
     newPrice: 38.89,
     inStock: true,
@@ -146,7 +142,7 @@ const products =  [
     slug: "electric-toothbrush",
     category: "Personal Care",
     subtitle: "Advanced sonic technology for a brighter, healthier smile.",
-    image: Fashion,
+    image: Fashion45,
     oldPrice: 59.99,
     newPrice: 39.99,
     inStock: true,
@@ -350,8 +346,10 @@ const products =  [
     ],
     sizes: ["Pack of 30", "Pack of 60"]
   }
-]
+];
+
 </script>
+
 <style>
 .swiper-button-prev,
 .swiper-button-next {

@@ -1,10 +1,10 @@
 <template>
   <header
     class="bg-deepMaroon shadow-md border-b"
-    :class="isHeaderShrunk ? 'h-16' : 'h-20'"
+    :class="isHeaderShrunk ? 'h-20' : 'h-24'"
   >
     <div
-      class="flex items-center justify-between px-4 py-1 gap-4"
+      class="flex items-center justify-between px-4 py-4 gap-4"
       :class="isHeaderShrunk ? 'py-1' : 'py-2'"
     >
       <RouterLink to="/" class="flex items-center cursor-pointer py-2">
@@ -27,10 +27,10 @@
               type="submit"
               class="absolute inset-y-0 right-0 px-2 flex items-center justify-center text-blue-950"
             >
-              <Icon icon="mdi:magnify" class="h-5 w-5" />
+              <Icon icon="mdi:magnify" class="h-7 w-7" />
             </button>
           </div>
-          <button class="md:block hidden sm:block w-28 text-center">
+          <button class="md:block hidden sm:block w-24 text-center">
             <div
               @click.prevent="open = !open"
               class="bg-deepMaroon text-white font-bold text-sm px-1 py-2 rounded focus:outline-none text-start"
@@ -39,7 +39,7 @@
             </div>
             <ul
               v-if="open"
-              class="absolute z-10 bg-white border border-black rounded shadow-md text-start"
+              class="absolute z-10 bg-white border border-white rounded shadow-md text-start"
             >
               <li
                 v-for="item in items"
@@ -61,7 +61,7 @@
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-gray-100"
+              class="h-6 w-6 text-gray-100"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -80,7 +80,7 @@
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-gray-100"
+              class="h-6 w-6 text-gray-100"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -98,7 +98,7 @@
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5 text-gray-100"
+              class="h-6 w-6 text-gray-100"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -129,7 +129,7 @@
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-5 w-5 text-gray-100"
+            class="h-6 w-6 text-gray-100"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
@@ -145,59 +145,57 @@
         </RouterLink>
       </div>
 
-      <nav
-        class="lg:hidden fixed bottom-4 left-4 right-4 z-50 px-2 py-1 bg-deepMaroon backdrop-blur-md shadow-xl rounded-xl border border-white/10"
-      >
-        <ul class="flex items-center justify-between">
-          <li>
-            <RouterLink
-              to="/"
-              class="flex flex-col items-center gap-1 text-white hover:text-gray-200"
-            >
-              <Icon icon="mdi:home" class="w-6 h-6" />
-              <span class="text-xs font-medium">Home</span>
-            </RouterLink>
-          </li>
-          <li>
-            <button
-              @click="isSidebarOpen = true"
-              class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition"
-            >
-              <Icon icon="material-symbols:category" class="w-6 h-6" />
-              <span class="text-xs font-medium">Category</span>
-            </button>
-          </li>
-          <li>
-            <RouterLink
-              to="/wishlist"
-              class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-5 h-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <span class="text-xs font-medium">Favorite</span>
-            </RouterLink>
-          </li>
-          <li>
-            <RouterLink
-              to="/login"
-              class="flex flex-col items-center gap-1 text-white hover:text-gray-200 transition"
-            >
-              <Icon icon="mdi:user-outline" class="w-6 h-6" />
-              <span class="text-xs font-medium">Profile</span>
-            </RouterLink>
-          </li>
-        </ul>
-      </nav>
+  <nav
+    class="lg:hidden fixed bottom-2 left-2 right-2 z-50 px-3 py-2 bg-deepMaroon backdrop-blur-md shadow-xl rounded-2xl border border-white/10"
+  >
+    <ul class="flex items-center justify-between text-white">
+      <li>
+        <RouterLink
+          to="/"
+          class="flex flex-col items-center gap-1"
+        >
+          <Icon icon="mdi:home-outline" class="w-6 h-6" />
+          <span class="text-xs">Home</span>
+        </RouterLink>
+      </li>
+      <li>
+        <button
+          @click="isSidebarOpen = true"
+          class="flex flex-col items-center gap-1"
+        >
+          <Icon icon="material-symbols:category" class="w-6 h-6" />
+          <span class="text-xs">Categories</span>
+        </button>
+      </li>
+      <li>
+          <RouterLink
+            to="/order-history"
+            class="flex flex-col items-center gap-1"
+          >
+          <Icon icon="mdi:basket" class="w-6 h-6"/>
+            <span class="text-white">Orders</span>
+          </RouterLink>
+      </li>
+      <li>
+        <RouterLink
+          to="/wishlist"
+          class="flex flex-col items-center gap-1"
+        >
+          <Icon icon="mdi:heart" class="w-6 h-6" />
+          <span class="text-xs">Favorites</span>
+        </RouterLink>
+      </li>
+      <li>
+        <RouterLink
+          to="/login"
+          class="flex flex-col items-center gap-1"
+        >
+          <Icon icon="mdi:account-outline" class="w-6 h-6" />
+          <span class="text-xs">Account</span>
+        </RouterLink>
+      </li>
+    </ul>
+  </nav>
 
       <transition name="fade">
         <div
@@ -246,11 +244,11 @@
         <div
           class="flex items-center gap-2 text-gray-700 hover:text-black cursor-pointer transition"
         >
-          <div class="flex items-center gap-2 mx-4">
+          <div class="flex items-center gap-1">
             <img
               src="@/assets/img/download.png"
               alt="Poland Flag"
-              class="h-5 w-full object-cover rounded-sm shadow-sm md:h-8 md:w-12"
+              class="h-5 w-full object-fit rounded-sm shadow-sm md:h-8 md:w-12"
             />
             <span class="text-sm font-medium">Poland</span>
           </div>

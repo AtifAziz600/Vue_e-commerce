@@ -22,14 +22,6 @@
       </a>
     </div>
   </div>
-          <div class="w-full flex md:justify-start lg:justify-start py-6">
-          <div class="flex items-center space-x-4">
-            <img src="../assets/img/ameexp.png" class="h-6 object-contain" alt="">
-            <img src="../assets/img/master.png" class="h-6 object-contain" alt="">
-            <img src="../assets/img/visa.png" class="h-6 object-contain" alt="">
-            <img src="../assets/img/paypal.png" class="h-6 object-contain" alt="">
-          </div>
-        </div>
         </div>
         <div class="lg:mx-auto text-left py-2">
   <h4 class="text-lg text-white font-semibold mb-6">APAGOR</h4>

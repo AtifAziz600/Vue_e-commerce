@@ -23,7 +23,7 @@
         <swiper-slide
           v-for="(product, index) in products"
           :key="index"
-          class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200"
+          class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl"
         >
           <img :src="product.image" alt="Product" class="w-full h-44 object-contain p-2" />
           <div class="px-4 pb-4">

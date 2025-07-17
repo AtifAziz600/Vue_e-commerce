@@ -1,11 +1,10 @@
 <template>
-  <section class="py-24 bg-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <section class="py-12 bg-gray-200">
+    <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
         Why APAGOR
       </h2>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-12">
-        <!--Apagor Description-->
         premium products at unbeatable prices. Whether you're looking for the latest in fashion, cutting-edge electronics, stylish home essentials, or everyday must-haves, we've got you covered.
       </p>
 
@@ -13,10 +12,10 @@
         <div
           v-for="(feature, index) in features"
           :key="index"
-          class="rounded-3xl bg-white hover:bg-red-700 hover:text-white transition-all duration-300 p-6 shadow-xl"
+          class="rounded-3xl bg-white hover:bg-secondysButton hover:text-white transition-all duration-300 p-6 shadow-xl"
         >
           <div class="w-14 h-14 mb-4 mx-auto flex items-center justify-center rounded-full bg-gray-100">
-            <Icon :icon="feature.icon" class="w-8 h-8 text-gray-600" />
+            <Icon :icon="feature.icon" class="w-8 h-8 text-primarysButton" />
           </div>
           <h3 class="text-lg font-semibold mb-2">{{ feature.title }}</h3>
           <p class="text-sm">{{ feature.description }}</p>

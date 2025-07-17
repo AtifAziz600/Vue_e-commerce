@@ -15,14 +15,19 @@
     </section>
     <HomeCategoryCard />
     <RecommendedProduct />
+    <BannerImage/>
     <ElectronicsCategories />
     <ProductCard />
+    <BannerImage2/>
     <ProductCardCarsoal />
     <ProductSlider />
     <Brands />
     <ProductCardItem />
     <Offer />
     <LowestCostItem />
+    <BannerImage3/>
+    <Offersinspired/>
+    <DiscoverNewProduct/>
     <FeatureSection />
     <Subcription />
     <!-- <OurPartner/> -->
@@ -47,6 +52,11 @@ import Offer from "./CarusoulCard/Offer.vue";
 import Brands from "@/components/Brands.vue";
 import LowestCostItem from "./CarusoulCard/LowestCostItem.vue";
 import ElectronicsCategories from "./CarusoulCard/ElectronicsCategories.vue";
+import BannerImage from "@/components/BannerImage.vue";
+import BannerImage2 from "@/components/BannerImage2.vue";
+import BannerImage3 from "@/components/BannerImage3.vue";
+import Offersinspired from "./CarusoulCard/Offersinspired.vue";
+import DiscoverNewProduct from "./CarusoulCard/DiscoverNewProduct.vue";
 </script>
 <style>
 .category-cards-grid-container {

@@ -204,7 +204,6 @@
                       :key="item.title"
                       class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
                   >
-                      <!-- Image -->
                       <RouterLink :to="`/product/${item.slug}`" class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden">
                           <img
                               :src="item.image"
@@ -218,7 +217,6 @@
                               -{{ item.discount }}%
                           </span>
                       </RouterLink>
-                      <!-- Info -->
                       <div class="flex-1 flex flex-col p-5">
                           <h3 class="text-lg font-semibold text-gray-900 truncate mb-1">
                               {{ item.title }}
@@ -226,7 +224,6 @@
                           <p class="text-xs text-gray-500 mb-2 truncate">
                               {{ item.subtitle }}
                           </p>
-<!-- Price -->
 <div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
   <span
     v-if="item.oldPrice"

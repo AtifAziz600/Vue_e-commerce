@@ -63,10 +63,10 @@
           class="flex flex-col items-center text-center"
         >
           <img :src="item.image" :alt="item.title" class="w-full h-24 object-contain rounded-md" />
-          <span class="mt-2 text-sm text-gray-700">{{ item.title }}</span>
+          <span class="mt-1 text-sm text-gray-700">{{ item.title }}</span>
         </div>
       </div>
-      <div class="flex justify-center">
+      <div class="flex justify-center mb-1">
         <RouterLink to="/all-products" class="text-blue-800 hover:underline hover:text-blue-900 text-sm cursor-pointer">See More</RouterLink>
       </div>
     </div>
