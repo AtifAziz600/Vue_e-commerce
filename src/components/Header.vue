@@ -113,19 +113,56 @@
             >
             <span class="text-white">Cart</span>
           </RouterLink>
-          <RouterLink
+                    <RouterLink
             to="/login"
             class="cursor-pointer border border-black px-3 py-2 rounded hover:bg-secondysButton transition duration-200"
           >
             <span class="text-white">Sign in</span>
           </RouterLink>
+          <!-- <div class="relative">
+            <button
+              @click="toggleUserDropdown"
+              class="cursor-pointer px-3 py-2 rounded-full hover:bg-secondysButton transition duration-200 flex items-center gap-1"
+            >
+              <Icon
+                icon="mdi:account-circle-outline"
+                class="text-white w-6 h-6"
+              />
+            </button>
+
+            <transition name="fade">
+              <ul
+                v-if="isUserDropdownOpen"
+                class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg z-50 text-sm text-gray-700"
+              >
+                <li>
+                  <RouterLink
+                    to="/login"
+                    class="block px-4 py-2 hover:bg-gray-100"
+                    @click="closeUserDropdown"
+                  >
+                    Login
+                  </RouterLink>
+                </li>
+                <li>
+                  <RouterLink
+                    to="/register"
+                    class="block px-4 py-2 hover:bg-gray-100"
+                    @click="closeUserDropdown"
+                  >
+                    Register
+                  </RouterLink>
+                </li>
+              </ul>
+            </transition>
+          </div> -->
         </div>
       </div>
 
       <div class="lg:hidden flex items-center">
         <RouterLink
           to="/cart-order"
-          class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200"
+          class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded-full transition duration-200"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -145,57 +182,48 @@
         </RouterLink>
       </div>
 
-  <nav
-    class="lg:hidden fixed bottom-2 left-2 right-2 z-50 px-3 py-2 bg-deepMaroon backdrop-blur-md shadow-xl rounded-2xl border border-white/10"
-  >
-    <ul class="flex items-center justify-between text-white">
-      <li>
-        <RouterLink
-          to="/"
-          class="flex flex-col items-center gap-1"
-        >
-          <Icon icon="mdi:home-outline" class="w-6 h-6" />
-          <span class="text-xs">Home</span>
-        </RouterLink>
-      </li>
-      <li>
-        <button
-          @click="isSidebarOpen = true"
-          class="flex flex-col items-center gap-1"
-        >
-          <Icon icon="material-symbols:category" class="w-6 h-6" />
-          <span class="text-xs">Categories</span>
-        </button>
-      </li>
-      <li>
-          <RouterLink
-            to="/order-history"
-            class="flex flex-col items-center gap-1"
-          >
-          <Icon icon="mdi:basket" class="w-6 h-6"/>
-            <span class="text-white">Orders</span>
-          </RouterLink>
-      </li>
-      <li>
-        <RouterLink
-          to="/wishlist"
-          class="flex flex-col items-center gap-1"
-        >
-          <Icon icon="mdi:heart" class="w-6 h-6" />
-          <span class="text-xs">Favorites</span>
-        </RouterLink>
-      </li>
-      <li>
-        <RouterLink
-          to="/login"
-          class="flex flex-col items-center gap-1"
-        >
-          <Icon icon="mdi:account-outline" class="w-6 h-6" />
-          <span class="text-xs">Account</span>
-        </RouterLink>
-      </li>
-    </ul>
-  </nav>
+      <nav
+        class="lg:hidden fixed bottom-2 left-2 right-2 z-50 px-3 py-2 bg-deepMaroon backdrop-blur-md shadow-xl rounded-2xl border border-white/10"
+      >
+        <ul class="flex items-center justify-between text-white">
+          <li>
+            <RouterLink to="/" class="flex flex-col items-center gap-1">
+              <Icon icon="mdi:home-outline" class="w-6 h-6" />
+              <span class="text-xs">Home</span>
+            </RouterLink>
+          </li>
+          <li>
+            <button
+              @click="isSidebarOpen = true"
+              class="flex flex-col items-center gap-1"
+            >
+              <Icon icon="material-symbols:category" class="w-6 h-6" />
+              <span class="text-xs">Categories</span>
+            </button>
+          </li>
+          <li>
+            <RouterLink
+              to="/order-history"
+              class="flex flex-col items-center gap-1"
+            >
+              <Icon icon="mdi:basket" class="w-6 h-6" />
+              <span class="text-white">Orders</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/wishlist" class="flex flex-col items-center gap-1">
+              <Icon icon="mdi:heart" class="w-6 h-6" />
+              <span class="text-xs">Favorites</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/login" class="flex flex-col items-center gap-1">
+              <Icon icon="mdi:account-outline" class="w-6 h-6" />
+              <span class="text-xs">Account</span>
+            </RouterLink>
+          </li>
+        </ul>
+      </nav>
 
       <transition name="fade">
         <div
@@ -339,6 +367,16 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
+
+const isUserDropdownOpen = ref(false);
+
+const toggleUserDropdown = () => {
+  isUserDropdownOpen.value = !isUserDropdownOpen.value;
+};
+
+const closeUserDropdown = () => {
+  isUserDropdownOpen.value = false;
+};
 </script>
 
 <style scoped>
