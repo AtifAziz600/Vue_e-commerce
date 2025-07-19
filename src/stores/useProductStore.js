@@ -2031,3 +2031,31 @@ export const useProductStore = defineStore('productStore', {
     }
   }
 })
+
+// import axios from 'axios'
+// import { defineStore } from 'pinia'
+
+// export const useApiProductStore = defineStore("productApiStore", {
+//   state: () => ({
+//     products: [],
+//     loading: false,
+//   }),
+//   actions: {
+//     async fetchProducts(params = {}) {
+//       this.loading = true;
+//       try {
+//         const response = await axios.get("http://localhost:8000/api/public/product", { params });
+//         this.products = response.data.data || response.data; 
+//       } catch (error) {
+//         console.error("Failed to fetch products:", error);
+//       } finally {
+//         this.loading = false;
+//       }
+//     },
+//   },
+//     getters: {
+//      getProductBySlug: (state) => (slug) => {
+//        return state.products.find(product => product.slug === slug)
+//      }
+//    }
+// });

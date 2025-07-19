@@ -54,11 +54,11 @@
         </div>
       </div>
       <div class="py-1">
-        <PolandInfo/>
+        <PolandInfo />
       </div>
       <hr class="my-4 border-gray-300" />
       <div class="py-1">
-        <Fees/>
+        <Fees />
       </div>
       <div class="bg-white py-2">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

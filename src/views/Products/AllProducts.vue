@@ -381,9 +381,10 @@
           Check All the products here
         </p>
         <div class="mb-2">
+          <!--Product card-->
           <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
             <div
-              v-for="item in productStore.products"
+              v-for="item in productApiStore.products"
               :key="item.title"
               class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
             >
@@ -392,10 +393,11 @@
                 class="block w-full aspect-[16/9] bg-gray-50 flex items-center justify-center overflow-hidden"
               >
                 <img
-                  :src="item.image"
+                  :src="item.cover_image_url"
                   alt="product"
                   class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
                 />
+                <!-- {{ item }} -->
                 <span
                   v-if="item.discount"
                   class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
@@ -416,13 +418,13 @@
 
                 <div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
                   <span
-                    v-if="item.oldPrice"
+                    v-if="item.discount_price"
                     class="text-xs sm:text-sm line-through text-gray-400"
                   >
-                    zł{{ item.oldPrice }}
+                    zł{{ item.discount_price }}
                   </span>
                   <span class="text-base sm:text-xl text-red-700 font-bold">
-                    zł{{ item.newPrice }}
+                    zł{{ item.price }}
                   </span>
                 </div>
 
@@ -473,10 +475,18 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
-import { useProductStore } from "../../stores/useProductStore";
+import { onMounted } from "vue";
+// import { useProductStore } from "../../stores/useProductStore";
+import { useApiProductStore } from '../../stores/useApiProductStore'
 
 const toast = useToast();
-const productStore = useProductStore();
+const productApiStore = useApiProductStore();
+
+onMounted(async () => {
+  await productApiStore.fetchProducts();
+  console.log(productApiStore.products); 
+});
+
 
 import { useCartStore } from "../../stores/useCartStore";
 const cart = useCartStore();
@@ -497,10 +507,10 @@ function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
     title: item.title,
-    image: item.image,
-    price: item.newPrice,
+    image: item.cover_image_url,
+    price: item.price,
     quantity: 1,
-    total: item.newPrice,
+    total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);

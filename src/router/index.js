@@ -127,7 +127,7 @@ const router = createRouter({
     {
       path: '/category/:slug',
       name: "category",
-      component: () => import('../views/Category/HomeCategoryCard.vue')
+      component: () => import('../views/Category/Category.vue')
     },
     {
       path: "/accessories",

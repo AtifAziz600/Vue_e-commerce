@@ -5,14 +5,14 @@
     class="bg-white p-4 sm:p-6 lg:p-8 shadow-inner rounded-lg mb-14"
   >
     <div class="mb-8 text-center sm:text-left">
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight">
+      <h2
+        class="text-3xl sm:text-4xl font-extrabold text-gray-800 tracking-tight"
+      >
         {{ section.Top }}
       </h2>
     </div>
 
-    <div
-      class="grid grid-cols-2 lg:grid-cols-4 gap-2"
-    >
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
       <div
         v-for="item in section.products"
         :key="item.id"
@@ -28,40 +28,55 @@
             class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300"
           />
           <span
-              v-if="item.discount"
-              class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow">-{{ item.discount }}%
-              </span>
+            v-if="item.discount"
+            class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
+            >-{{ item.discount }}%
+          </span>
         </RouterLink>
         <div class="p-4 sm:p-5 flex flex-col justify-between h-auto">
           <div>
-            <h3 class="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2" :title="item.title">
+            <h3
+              class="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2"
+              :title="item.title"
+            >
               {{ item.title }}
             </h3>
-            <p class="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2" :title="item.subtitle">
+            <p
+              class="text-xs sm:text-sm text-gray-500 mt-1 line-clamp-2"
+              :title="item.subtitle"
+            >
               {{ item.subtitle }}
             </p>
 
             <div class="flex items-baseline space-x-2 mt-3 sm:mt-4">
               <div class="md:flex flex-col">
-                <span class="text-sm line-through text-gray-400 gap-2">zł {{ item.oldPrice.toFixed(2) }}</span>
-                <span class="text-base sm:text-lg text-red-600 font-bold">zł {{ item.newPrice.toFixed(2) }}</span>
+                <span class="text-sm line-through text-gray-400 gap-2"
+                  >zł {{ item.oldPrice.toFixed(2) }}</span
+                >
+                <span class="text-base sm:text-lg text-red-600 font-bold"
+                  >zł {{ item.newPrice.toFixed(2) }}</span
+                >
               </div>
             </div>
           </div>
           <div class="flex justify-between flex-col sm:flex-row">
-            <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
-            <div class="flex items-center space-x-1">
-              <Icon icon="mdi:star" class="text-yellow-500 text-base" />
-              <span class="text-sm font-medium text-gray-700">{{ item.rating }}</span>
-              <RouterLink
-                :to="`/review`"
-                class="text-sm ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
-              >
-                ({{ item.reviews }}) Reviews
-              </RouterLink>
+            <div
+              class="mt-4 flex items-center justify-between text-sm text-gray-500"
+            >
+              <div class="flex items-center space-x-1">
+                <Icon icon="mdi:star" class="text-yellow-500 text-base" />
+                <span class="text-sm font-medium text-gray-700">{{
+                  item.rating
+                }}</span>
+                <RouterLink
+                  :to="`/review`"
+                  class="text-sm ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
+                >
+                  ({{ item.reviews }}) Reviews
+                </RouterLink>
+              </div>
             </div>
-          </div>
-           <div class="flex items-center py-1">
+            <div class="flex items-center py-1">
               <button
                 @click="handleAddToCart(item)"
                 class="flex items-center justify-center bg-primarysButton hover:bg-secondysButton text-white text-sm font-medium px-4 py-2 rounded-2xl shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 mt-4"
@@ -78,98 +93,102 @@
 </template>
 
 <script setup>
-import Watch from '../../assets/img/watch.png';
-import Fashion from '../../assets/img/shirt.jfif';
-import Laptop from '../../assets/img/laptop.jfif';
-import Phone from '../../assets/img/xiaomi.jfif';
-import Watch2 from '../../assets/img/watch2.png';
-import Fashion2 from '../../assets/img/pants.jfif';
-import Laptop2 from '../../assets/img/laptop.jfif';
-import Phone2 from '../../assets/img/Oppo.jfif';
+import Watch from "../../assets/img/watch.png";
+import Fashion from "../../assets/img/shirt.jfif";
+import Laptop from "../../assets/img/laptop.jfif";
+import Phone from "../../assets/img/xiaomi.jfif";
+import Watch2 from "../../assets/img/watch2.png";
+import Fashion2 from "../../assets/img/pants.jfif";
+import Laptop2 from "../../assets/img/laptop.jfif";
+import Phone2 from "../../assets/img/Oppo.jfif";
 
-import { Icon } from '@iconify/vue';
+import { Icon } from "@iconify/vue";
 
 const products = [
   {
     id: 1,
     Top: "Electronics",
     products: [
-     {
-    id: 1,
-    orderId: '#FWB127364372',
-    title: "Watch",
-    slug: "luxury-watch",
-    category: "Watches / Luxury",
-    subtitle: "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    tag: "watch",
-    inStock: true,
-    reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'Stainless steel case',
-        '2-year warranty'
-    ],
-    sizes: ['Small', 'Medium', 'Large']
-},
+      {
+        id: 1,
+        orderId: "#FWB127364372",
+        title: "Watch",
+        slug: "luxury-watch",
+        category: "Watches / Luxury",
+        subtitle:
+          "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
+        image: Watch,
+        oldPrice: 48.54,
+        newPrice: 38.89,
+        discount: 19,
+        tag: "watch",
+        inStock: true,
+        reviews: 1248,
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "Stainless steel case",
+          "2-year warranty",
+        ],
+        sizes: ["Small", "Medium", "Large"],
+      },
       {
         id: 2,
-        orderId: '#FWB127364373',
+        orderId: "#FWB127364373",
         title: "Shirt",
         slug: "fashion-show",
-        subtitle: "Latest trends in fashion. Elevate your style with our exclusive collection.",
+        subtitle:
+          "Latest trends in fashion. Elevate your style with our exclusive collection.",
         image: Fashion,
         oldPrice: 39.96,
         newPrice: 22.91,
         discount: 42,
         tag: "fashion",
-         reviews: 1248,
-    inStock: false,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        reviews: 1248,
+        inStock: false,
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
       {
         id: 3,
-        orderId: '#FWB127364234',
+        orderId: "#FWB127364234",
         title: "Laptop",
         slug: "computer-laptop",
-        subtitle: "High performance laptops for work and play. Reliable and powerful.",
+        subtitle:
+          "High performance laptops for work and play. Reliable and powerful.",
         image: Laptop,
         oldPrice: 3.27,
-        newPrice: 1.90,
+        newPrice: 1.9,
         discount: 41,
         inStock: true,
         tag: "laptop",
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
       {
         id: 4,
-        orderId: '#FWB1273644356',
+        orderId: "#FWB1273644356",
         title: "Xiaomi",
         slug: "phone",
-        subtitle: "Smartphones for daily use. Stay connected with the latest technology.",
+        subtitle:
+          "Smartphones for daily use. Stay connected with the latest technology.",
         image: Phone,
         oldPrice: 20.21,
         newPrice: 17.88,
@@ -177,15 +196,15 @@ const products = [
         inStock: true,
         tag: "phone",
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
     ],
   },
@@ -195,7 +214,7 @@ const products = [
     products: [
       {
         id: 1,
-        orderId: '#FWB127364432',
+        orderId: "#FWB127364432",
         title: "Pants",
         slug: "eco-watch",
         subtitle: "Eco-friendly watches crafted with sustainable materials.",
@@ -206,19 +225,19 @@ const products = [
         tag: "watch",
         inStock: true,
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
       {
         id: 2,
-        orderId: '#FWB1273643452',
+        orderId: "#FWB1273643452",
         title: "Watch",
         slug: "sustainable-fashion",
         subtitle: "Organic fashion wear for a greener planet.",
@@ -229,43 +248,43 @@ const products = [
         inStock: true,
         tag: "fashion",
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
       {
         id: 3,
-        orderId: '#FWB1273643252',
+        orderId: "#FWB1273643252",
         title: "Desktop",
         slug: "eco-laptop",
         subtitle: "Energy-efficient laptops with eco-friendly packaging.",
         image: Laptop2,
         oldPrice: 3.27,
-        newPrice: 1.90,
+        newPrice: 1.9,
         discount: 41,
         tag: "laptop",
         inStock: true,
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
       {
         id: 4,
         title: "Oppo",
-        orderId: '#FWB1273643234',
+        orderId: "#FWB1273643234",
         slug: "recycled-phone",
         subtitle: "Phones made with recycled materials.",
         image: Phone2,
@@ -275,29 +294,29 @@ const products = [
         tag: "phone",
         inStock: true,
         reviews: 1248,
-    rating: 5,
-    features: [
-        'Swiss movement',
-        'Sapphire crystal glass',
-        'Water resistant up to 50m',
-        'cotton blend fabric',
-        'Breathable and lightweight',
-    ],
-    sizes: ['M', 'XL', 'XXL']
+        rating: 5,
+        features: [
+          "Swiss movement",
+          "Sapphire crystal glass",
+          "Water resistant up to 50m",
+          "cotton blend fabric",
+          "Breathable and lightweight",
+        ],
+        sizes: ["M", "XL", "XXL"],
       },
-    ]
-  }
+    ],
+  },
 ];
 
-import { useCartStore } from '../../stores/useCartStore'
-const cart = useCartStore()
-import { useToast } from 'vue-toastification';
+import { useCartStore } from "../../stores/useCartStore";
+const cart = useCartStore();
+import { useToast } from "vue-toastification";
 const toast = useToast();
 
 function handleAddToCart(item) {
   if (!item.inStock) {
     toast.error(`${item.title} is currently out of stock.`);
-    return; 
+    return;
   }
   cart.addToCart({
     id: item.id,
@@ -307,14 +326,13 @@ function handleAddToCart(item) {
     price: item.newPrice,
     quantity: 1,
     total: item.newPrice,
-    category: item.tag
-  })
+    category: item.tag,
+  });
   toast.success(`${item.title} added to cart!`);
 }
 </script>
 
 <style scoped>
-
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
