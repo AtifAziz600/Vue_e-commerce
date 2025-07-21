@@ -373,7 +373,7 @@
         <h2
           class="text-xl md:text-2xl font-bold text-gray-900 tracking-tight text-center"
         >
-          All Products
+           New Release
         </h2>
         <p
           class="text-sm font-thin text-gray-900 tracking-tight text-center mb-8"
@@ -381,7 +381,6 @@
           Check All the products here
         </p>
         <div class="mb-2">
-          <!--Product card-->
           <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
             <div
               v-for="item in productApiStore.products"
@@ -397,7 +396,6 @@
                   alt="product"
                   class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
                 />
-                <!-- {{ item }} -->
                 <span
                   v-if="item.discount"
                   class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
@@ -476,17 +474,15 @@
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { onMounted } from "vue";
-// import { useProductStore } from "../../stores/useProductStore";
-import { useApiProductStore } from '../../stores/useApiProductStore'
+import { useApiProductStore } from "../../stores/useApiProductStore";
 
 const toast = useToast();
 const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products); 
+  console.log(productApiStore.products);
 });
-
 
 import { useCartStore } from "../../stores/useCartStore";
 const cart = useCartStore();
@@ -506,15 +502,21 @@ function buyNow(item) {
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
+    product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
     quantity: 1,
+    shop_id: 1,             
+    category_id: 1,     
     total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);
 }
+
+console.log("Cart items before sending:", cartItems.value)
+
 </script>
 
 <style scoped>

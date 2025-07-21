@@ -35,38 +35,12 @@
         </SwiperSlide>
       </Swiper>
     </div>
-    <!-- <div v-else class="relative p-8">
-      <ProductSlider :products="category.products" />
-      <div class="relative w-full aspect-[3/1] mt-6 rounded-full overflow-hidden shadow-md">
-        <img
-          :src="category.photo"
-          alt="Category"
-          class="w-full h-full object-cover transition-transform duration-300 hover:scale-105 rounded-3xl"
-        />
-        <div
-          class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm text-gray-800 text-sm px-4 py-2 shadow rounded-full"
-        >
-          {{ category.name }}
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
-import ElectronicsIcon from '../../assets/img/electorcis.jfif';
-import ComputerIcons from '../../assets/img/images.jfif';
-import PhonesIcon from '../../assets/img/phone.jfif';
-import TabletsIcon from '../../assets/img/download (2).jfif';
-import AccessoriesIcon from '../../assets/img/download (3).jfif';
-import FashionIcon from '../../assets/img/images (2).jfif';
-import Health from '../../assets/img/health.jpg';
-import Pharmacy from '../../assets/img/Aspirin75mgTablets.png';
-import ToyGameIcon from '../../assets/img/LEGOClassicBricks.png';
-import ProductSlider from '@/components/ProductSlider.vue';
-import BookIcon from '../../assets/img/book1.jpg'
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -80,7 +54,6 @@ const getCategory = async() => {
   if(res){
     categories.value = res.data
   }
-
 }
 
 onMounted(() => getCategory())

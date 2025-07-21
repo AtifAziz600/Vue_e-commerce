@@ -1,139 +1,192 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-200">
-    <div
-      class="backdrop-blur-xl bg-white/80 border border-gray-200 rounded-2xl shadow-2xl p-8 w-full max-w-md"
-    >
-      <div class="flex flex-col items-center">
-        <form
-          class="flex flex-col gap-6 w-full"
-          @submit.prevent="handleRegister"
-        >
-          <img
-            src="../../assets/img/2931c5c3-f60d-4f7d-a78d-65904b68843c - Edited.jpg"
-            class="w-full h-full object-contain"
-            alt=""
-          />
+    <div class="min-h-screen w-full flex justify-center items-center py-10 lg:py-20">
+      <div
+        class="w-[90%] max-w-4xl bg-boxColor flex flex-wrap rounded-xl shadow-xl p-4"
+      >
+        <div class="w-full lg:w-1/2 lg:pr-5 lg:pt-10">
+          <h3 class="text-2xl font-semibold mb-3">Create Account</h3>
+
           <div>
-            <label
-              class="block text-sm font-medium text-gray-800 mb-1"
-              for="email"
-              >First Name</label
-            >
+            <label for="name" class="block pb-1 text-xs">Name</label>
             <input
-              v-model="firstName"
-              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
-              type="name"
-              name="name"
-              placeholder="Enter Here"
+              type="text"
+              id="name"
+              v-model="state.name"
+              class="bg-transparent block w-full rounded-md p-2 shadow-sm border border-primary focus:outline-none placeholder:text-gray-400 px-3 mb-2"
             />
           </div>
+
           <div>
-            <label
-              class="block text-sm font-medium text-gray-800 mb-1"
-              for="email"
-              >Last Name</label
-            >
-            <input
-              v-model="lastName"
-              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
-              type="name"
-              name="name"
-              placeholder="Enter Here"
-            />
+            <label for="phone" class="block pb-1 text-xs">Phone</label>
+            <div class="flex items-center space-x-2">
+       
+              <div class="relative w-1/2 lg:w-2/5">
+                <div
+                  @click="toggleDropdown"
+                  class="p-2 border rounded-full w-full text-[10px] lg:text-[12px] cursor-pointer flex items-center bg-boxColor"                >
+                  <img
+                    v-if="selectedCountry"
+                    :src="selectedCountry.flags.png"
+                    class="w-5 h-5 mr-2"
+                  />
+                  <span
+                    >{{ selectedCountry?.cca2 }} (+{{ selectedCountry?.idd.root
+                    }}{{ selectedCountry?.idd.suffixes?.[0] || "" }})</span
+                  >
+                </div>
+                <div
+                  v-if="showDropdown"
+                  class="absolute bg-white shadow-md rounded-md text-[10px] lg:text-[12px] w-full mt-1 max-h-60 overflow-auto z-10"
+                >
+                  <div
+                    v-for="country in countries"
+                    :key="country.cca2"
+                    @click="selectCountry(country)"
+                    class="p-2 flex items-center hover:bg-gray-200 cursor-pointer"
+                  >
+                    <img :src="country.flags.png" class="w-6 h-5 mr-2" />
+                    <span
+                      >{{ country.cca2 }} (+{{ country.idd.root
+                      }}{{ country.idd.suffixes?.[0] || "" }})</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div class="w-1/2 lg:w-3/5">
+                <input
+                  type="tel"
+                  id="phone"
+                  v-model="state.phone"
+                  class="bg-transparent block w-full rounded-md p-2 shadow-sm border border-primary focus:outline-none placeholder:text-gray-400 px-3"
+                />
+              </div>
+            </div>
           </div>
           <div>
-            <label
-              class="block text-sm font-medium text-gray-800 mb-1"
-              for="email"
-              >Email</label
-            >
+            <label for="email" class="block pb-1 text-xs">Email</label>
             <input
-              v-model="email"
-              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
-              i
               type="email"
-              name="email"
-              placeholder="youremail@gmail.com"
+              id="email"
+              v-model="state.email"
+              class="bg-transparent block w-full rounded-md p-2 shadow-sm border border-primary focus:outline-none placeholder:text-gray-400 px-3 mb-2"
             />
           </div>
+
           <div>
-            <label
-              class="block text-sm font-medium text-gray-800 mb-1"
-              for="password"
-              >Password</label
-            >
+            <label for="password" class="block pb-1 text-xs">Password</label>
             <input
-              v-model="password"
-              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
               type="password"
-              name="password"
-              placeholder="password"
+              id="password"
+              v-model="state.password"
+              class="bg-transparent block w-full rounded-md p-2 shadow-sm border border-primary focus:outline-none placeholder:text-gray-400 px-3 mb-2"
             />
           </div>
-          <div>
-            <label
-              class="block text-sm font-medium text-gray-800 mb-1"
-              for="password"
-              >Confirm Password</label
+
+          <div class="text-center py-5">
+            <button
+              @click="handleRegister"
+              :disabled="isRegistering"
+              class="w-full py-2 bg-primary text-white font-bold text-center rounded-lg my-2 disabled:opacity-50"
             >
-            <input
-              v-model="confirmPassword"
-              class="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 text-gray-900 px-4 py-2 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 transition"
-              type="password"
-              name="password"
-              placeholder="confirm password"
-            />
+              {{ isRegistering ? "Registering..." : "Register Now" }}
+            </button>
           </div>
-          <button
-            type="submit"
-            class="w-full bg-primarysButton hover:bg-secondysButton text-white font-semibold py-2 rounded-lg shadow transition"
-          >
-            Register
-          </button>
-        </form>
-        <div class="mt-8 text-center text-gray-600 dark:text-gray-400 text-sm">
-          <span>If you have an account?</span>
-          <RouterLink
-            to="/login"
-            class="text-blue-500 underline hover:text-blue-600 ml-1"
-            >Login</RouterLink
-          >
+
+          <p>
+            Already have an account
+            <RouterLink to="/login" class="text-primary">Login Here</RouterLink>
+          </p>
+        </div>
+
+        <div class="hidden lg:block w-1/2">
+          <img
+            class="w-full h-96 object-cover rounded-xl"
+            src="https://i.pinimg.com/564x/7b/3f/e1/7b3fe1e66e263b7e0c0e1f1cfb4086c7.jpg"
+          />
         </div>
       </div>
     </div>
-  </div>
 </template>
+
 <script setup>
-import { ref } from "vue";
+import { useAuthStore } from "../../stores/useAuthStore";
+// import { useStore } from "@/stores/useStore.js";
+import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
-import { useToast } from "vue-toastification"; // or your toast lib
-
+import { useToast } from "vue-toastification";
+const authStore = useAuthStore();
 const router = useRouter();
+// const store = useStore();
 const toast = useToast();
+const state = ref({
+  name: "",
+  phone: "",
+  email: "",
+  password: "",
+});
 
-const firstName = ref("");
-const lastName = ref("");
-const email = ref("");
-const password = ref("");
-const confirmPassword = ref("");
+const isRegistering = ref(false);
+const handleRegister = async () => {
+  try {
+    isRegistering.value = true;
 
-const handleRegister = () => {
-  if (
-    !firstName.value ||
-    !lastName.value ||
-    !email.value ||
-    !password.value ||
-    !confirmPassword.value
-  ) {
-    toast.error("All fields are required.");
-    return;
+    const phoneWithCode = `+${selectedCountry.value.idd.root}${
+      selectedCountry.value.idd.suffixes?.[0] || ""
+    }${state.value.phone}`;
+
+    const payload = {
+      name: state.value.name,
+      phone: phoneWithCode,
+      email: state.value.email,
+      password: state.value.password,
+    };
+
+    const response = await authStore.register(payload);
+
+    if (response.data.status === 200) {
+      toast.success(
+        "Registration successful! Please check your email for OTP."
+      );
+      store.setEmail(state.value.email);
+      await router.push("/verify-email-otp");
+    }
+  } catch (error) {
+    toast.error(error.response?.data?.message || "Registration failed");
+  } finally {
+    isRegistering.value = false;
   }
-
-  if (password.value !== confirmPassword.value) {
-    toast.error("Passwords do not match.");
-    return;
-  }
-  toast.success("Registration successful!");
-  router.push("/login");
 };
+
+const countries = ref([]);
+const selectedCountry = ref(null);
+const showDropdown = ref(false);
+
+const fetchCountries = async () => {
+  try {
+    const response = await fetch("https://restcountries.com/v3.1/all");
+    const data = await response.json();
+    countries.value = data.map((country) => ({
+      name: country.name,
+      cca2: country.cca2,
+      flags: country.flags,
+      idd: country.idd || { root: "", suffixes: [""] },
+    }));
+    selectedCountry.value =
+      countries.value.find((c) => c.cca2 === "BD") || null;
+  } catch (error) {
+    console.error("Error fetching country data:", error);
+  }
+};
+
+const toggleDropdown = () => {
+  showDropdown.value = !showDropdown.value;
+};
+
+const selectCountry = (country) => {
+  selectedCountry.value = country;
+  showDropdown.value = false;
+};
+
+onMounted(fetchCountries);
 </script>

@@ -303,12 +303,14 @@ const cart = useCartStore();
 
 function handleAddToCart(item) {
   cart.addToCart({
-    id: item.id,
+    product_id: item.id,
     title: item.title,
-    image: item.image,
-    price: item.newPrice,
+    image: item.cover_image_url,
+    price: item.price,
     quantity: 1,
-    total: item.newPrice,
+    shop_id: item.shop_id,             
+    category_id: item.category_id,     
+    total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);

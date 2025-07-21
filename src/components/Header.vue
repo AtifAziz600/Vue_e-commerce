@@ -113,49 +113,12 @@
             >
             <span class="text-white">Cart</span>
           </RouterLink>
-                    <RouterLink
+          <RouterLink
             to="/login"
             class="cursor-pointer border border-black px-3 py-2 rounded hover:bg-secondysButton transition duration-200"
           >
             <span class="text-white">Sign in</span>
           </RouterLink>
-          <!-- <div class="relative">
-            <button
-              @click="toggleUserDropdown"
-              class="cursor-pointer px-3 py-2 rounded-full hover:bg-secondysButton transition duration-200 flex items-center gap-1"
-            >
-              <Icon
-                icon="mdi:account-circle-outline"
-                class="text-white w-6 h-6"
-              />
-            </button>
-
-            <transition name="fade">
-              <ul
-                v-if="isUserDropdownOpen"
-                class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded shadow-lg z-50 text-sm text-gray-700"
-              >
-                <li>
-                  <RouterLink
-                    to="/login"
-                    class="block px-4 py-2 hover:bg-gray-100"
-                    @click="closeUserDropdown"
-                  >
-                    Login
-                  </RouterLink>
-                </li>
-                <li>
-                  <RouterLink
-                    to="/register"
-                    class="block px-4 py-2 hover:bg-gray-100"
-                    @click="closeUserDropdown"
-                  >
-                    Register
-                  </RouterLink>
-                </li>
-              </ul>
-            </transition>
-          </div> -->
         </div>
       </div>
 
@@ -245,14 +208,20 @@
                 </button>
               </div>
               <nav class="flex flex-col gap-4 text-white">
-                <a
+                <RouterLink
                   v-for="item in CategoryItems"
                   :key="item.name"
-                  :href="item.link"
+                  :to="`/category/${item?.slug}`"
                   class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200"
                 >
                   {{ item.name }}
-                </a>
+                </RouterLink>
+                <RouterLink
+                  to="/login"
+                  class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200"
+                >
+                  <span class="text-white">Sign in</span>
+                </RouterLink>
               </nav>
             </div>
           </transition>
@@ -286,12 +255,24 @@
           :class="isHeaderShrunk ? 'py-1' : 'py-2'"
         >
           <RouterLink
-            v-for="item in NavItems"
+            to="/all-products"
+            class="cursor-pointer rounded-full py-1 px-2 text-sm font-medium hover:bg-gray-100"
+          >
+            New Release
+          </RouterLink>
+          <RouterLink
+            v-for="item in CategoryItems"
             :key="item.name"
-            :to="item.link"
+            :to="`/category/${item?.slug}`"
             class="cursor-pointer rounded-full py-1 px-2 text-sm font-medium hover:bg-gray-100"
           >
             {{ item.name }}
+          </RouterLink>
+          <RouterLink
+            to="/become-seller"
+            class="cursor-pointer rounded-full py-1 px-2 text-sm font-medium hover:bg-gray-100"
+          >
+            Become Seller
           </RouterLink>
         </div>
       </nav>
@@ -304,34 +285,33 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import Icon from "@/components/Icon.vue";
 import { useCartStore } from "@/stores/useCartStore";
 import { storeToRefs } from "pinia";
+import axios from "axios";
 const cart = useCartStore();
 const { cartCount } = storeToRefs(cart);
 const isSidebarOpen = ref(false);
-const NavItems = ref([
-  { name: "Best seller", link: "/best-seller" },
-  { name: "New Releases", link: "/new-release" },
-  { name: "Books", link: "/books" },
-  { name: "Computers", link: "/computer" },
-  { name: "Fashion", link: "/fashion" },
-  { name: "Health", link: "/health" },
-  { name: "Pharmacy", link: "/pharmacy" },
-  { name: "Toys & Games", link: "/toysgame" },
-  { name: "Become a seller", link: "/become-seller" },
-]);
+const CategoryItems = ref([]);
 
-const CategoryItems = ref([
-  { name: "Best seller", link: "/best-seller" },
-  { name: "New Releases", link: "/new-release" },
-  { name: "Electronics", link: "/electronics" },
-  { name: "Phone", link: "/phones" },
-  { name: "Tablet", link: "/tablets" },
-  { name: "Accessories", link: "/accessories" },
-  { name: "Computer", link: "/computer" },
-  { name: "Fashion", link: "/fashion" },
-  { name: "Health", link: "/health" },
-  { name: "Pharmacy", link: "/pharmacy" },
-  { name: "Toys & Game", link: "/toysgame" },
-]);
+const getNavItems = async () => {
+  const res = await axios.get(
+    "http://localhost:8000/api/public/get-all-page-list"
+  );
+  if (res) {
+    NavItems.value = res.value;
+  }
+};
+
+const getCategory = async () => {
+  const res = await axios.get(
+    "http://localhost:8000/api/public/get-all-category-list"
+  );
+  if (res) {
+    console.log(res);
+    CategoryItems.value = res.data;
+  }
+};
+
+onMounted(() => getCategory());
+onMounted(() => getNavItems());
 const isNavVisible = ref(true);
 let lastScrollY = window.scrollY;
 

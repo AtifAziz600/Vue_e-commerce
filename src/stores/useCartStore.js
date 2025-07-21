@@ -1,20 +1,33 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
 export const useCartStore = defineStore('cart', () => {
-  const cartItems = ref([]);
+  const storedCart = localStorage.getItem('cart');
+  const cartItems = ref(storedCart ? JSON.parse(storedCart) : []);
+
+  watch(cartItems, (newVal) => {
+    localStorage.setItem('cart', JSON.stringify(newVal));
+  }, { deep: true });
 
   const cartCount = computed(() =>
-  cartItems.value.reduce((total, item) => total + item.quantity, 0)
-);
+    cartItems.value.reduce((total, item) => total + item.quantity, 0)
+  );
 
   function addToCart(product) {
-    const existing = cartItems.value.find(item => item.id === product.id);
+    const existing = cartItems.value.find(item =>
+      item.id === product.id &&
+      (product.sku ? item.sku === product.sku && item.variant === product.variant : true)
+    );
+
     if (existing) {
-      existing.quantity += 1;
+      existing.quantity += product.quantity || 1;
       existing.total = existing.price * existing.quantity;
     } else {
-      cartItems.value.push({ ...product, quantity: 1, total: product.price });
+      cartItems.value.push({
+        ...product,
+        quantity: product.quantity || 1,
+        total: product.price * (product.quantity || 1),
+      });
     }
   }
 
@@ -29,15 +42,25 @@ export const useCartStore = defineStore('cart', () => {
       item.total = item.price * item.quantity;
     }
   }
-  
 
   function removeItem(item) {
     cartItems.value = cartItems.value.filter(i =>
-      i.id !== item.id);
+      i.id !== item.id ||
+      (item.sku && i.sku !== item.sku) ||
+      (item.variant && i.variant !== item.variant)
+    );
   }
 
-  const subtotal = computed(() => cartItems.value.reduce((sum, item) => sum + item.total, 0));
-  const total = computed(() => subtotal.value); 
+  function clearCart() {
+    cartItems.value = [];
+    localStorage.removeItem("cart");
+  }
+
+  const subtotal = computed(() =>
+    cartItems.value.reduce((sum, item) => sum + item.total, 0)
+  );
+
+  const total = computed(() => subtotal.value);
 
   return {
     cartItems,
@@ -45,6 +68,7 @@ export const useCartStore = defineStore('cart', () => {
     removeItem,
     increment,
     decrement,
+    clearCart,
     cartCount,
     subtotal,
     total,

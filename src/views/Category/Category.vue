@@ -389,7 +389,6 @@
               :key="item.id"
               class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
             >
-              <!-- Image -->
               <RouterLink
                 :to="`/product/${item?.slug}`"
                 class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden"
@@ -405,7 +404,6 @@
                   -32%
                 </span>
               </RouterLink>
-              <!-- Info -->
               <div class="flex-1 flex flex-col p-5">
                 <h3 class="text-lg font-semibold text-gray-900 truncate mb-1">
                   {{ item?.title }}
@@ -413,7 +411,6 @@
                 <p class="text-xs text-gray-500 mb-2 truncate">
                   {{ item.subtitle }}
                 </p>
-                <!-- Price -->
                 <div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
                   <span
                     v-if="item.price"
@@ -425,8 +422,6 @@
                     zł{{ item.discount_price }}
                   </span>
                 </div>
-
-                <!-- Rating -->
                 <div
                   class="flex md:flex-col gap-1 mb-4 flex-wrap text-xs sm:text-sm"
                 >
@@ -443,7 +438,7 @@
                     </RouterLink>
                   </div>
                 </div>
-                <!-- Footer -->
+
                 <div
                   class="border-gray-100 mt-auto pt-3 border-t flex justify-center items-center gap-4 flex-col sm:flex-row"
                 >
@@ -497,12 +492,15 @@ const cart = useCartStore();
 
 function handleAddToCart(item) {
   cart.addToCart({
-    id: item.id,
+    id: 1,
+    product_id: item.id,
     title: item.title,
-    image: item.cover_image,
-    price: item.discount_price,
+    image: item.cover_image_url,
+    price: item.price,
     quantity: 1,
-    total: item.discount_price,
+    shop_id: 1,           
+    category_id: 1,     
+    total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);

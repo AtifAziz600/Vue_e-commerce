@@ -5,7 +5,6 @@
     >
       <div class="w-full max-w-7xl px-2 sm:px-4 md:px-8 mx-auto relative z-10">
         <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-8">
-          <!-- Cart Items -->
           <div
             class="col-span-1 xl:col-span-8 pt-8 pb-6 md:py-16 w-full max-xl:max-w-8xl max-xl:mx-auto sm:px-4 px-2"
           >
@@ -52,7 +51,6 @@
               :key="item.id"
               class="flex flex-col md:flex-row items-stretch px-8 gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
             >
-              <!-- Image -->
               <div
                 class="flex-shrink-0 flex items-center justify-center md:w-28 w-full"
               >
@@ -62,21 +60,19 @@
                   class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border border-gray-200 shadow"
                 />
               </div>
-              <!-- Details -->
               <div
                 class="flex flex-1 flex-col md:flex-row md:items-center w-full max-w-8xl gap-2"
               >
                 <div
                   class="flex-1 flex flex-col justify-center md:items-start items-center text-center md:text-left"
                 >
-                  <h6 class="font-semibold text-lg text-gray-900 truncate">
+                  <h6 class="font-semibold text-sm text-gray-900 line-clamp-2">
                     {{ item.title }}
                   </h6>
                   <span class="text-sm text-gray-500 mt-1">{{
                     item.category
                   }}</span>
                 </div>
-                <!-- Price -->
                 <div class="flex items-center justify-center px-8 mt-2 md:mt-0">
                   <h6
                     class="font-medium text-base text-gray-600 group-hover:text-rose-900 transition-all"
@@ -84,7 +80,6 @@
                     zł{{ item.price }}
                   </h6>
                 </div>
-                <!-- Quantity Controls -->
                 <div
                   class="flex items-center justify-center md:justify-start mt-2 md:mt-0"
                 >
@@ -111,7 +106,6 @@
                     </button>
                   </div>
                 </div>
-                <!-- Total Price -->
                 <div
                   class="flex items-center justify-center md:justify-end mt-2 md:mt-0 min-w-[80px]"
                 >
@@ -144,7 +138,6 @@
               </button>
             </RouterLink>
           </div>
-          <!-- Order Summary -->
           <div
             class="col-span-1 xl:col-span-4 bg-white/90 rounded-2xl shadow-lg mx-auto py-8 px-3 sm:px-6 max-w-full sm:max-w-md w-full"
           >
@@ -163,7 +156,6 @@
                 </p>
               </div>
               <form @submit.prevent>
-                <!-- Shipping -->
                 <label
                   class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
                   >Shipping</label
@@ -184,7 +176,6 @@
                     </select>
                   </div>
                 </div>
-                <!-- Promo Code -->
                 <label
                   class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
                   >Promo Code</label
@@ -192,7 +183,7 @@
                 <div class="flex pb-3 w-full gap-2">
                   <input
                     type="text"
-                    v-model="promoCode"
+                    v-model="grand_total_coupon"
                     class="block w-full h-10 px-3 text-base font-normal text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-rose-400 shadow"
                     placeholder="xxxx xxxx xxxx"
                   />
@@ -204,7 +195,6 @@
                     Apply
                   </button>
                 </div>
-                <!-- Payment Method -->
                 <label
                   class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
                   >Payment Method</label
@@ -223,7 +213,6 @@
                     </select>
                   </div>
                 </div>
-                <!-- Coupon Code -->
                 <label
                   class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
                   >Coupon Code</label
@@ -265,9 +254,9 @@
                     zł{{ total.toFixed(2) }}
                   </p>
                 </div>
-                <RouterLink to="/order-confirm">
+                <RouterLink>
                   <button
-                    @click="handleCheckout"
+                    @click="paymentAndPlaceOrder"
                     class="w-full text-center bg-primarysButton hover:bg-secondysButton rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
                     type="button"
                   >
@@ -289,15 +278,18 @@ import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "../../stores/useCartStore";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "../../stores/useAuthStore";
 import { useOrderStore } from "../../stores/useStoreOrder";
 import { useCouponCode } from "../../stores/useCouponCode";
+import axios from "axios";
 const toast = useToast();
 const cart = useCartStore();
+const authStore = useAuthStore();
 const cartItems = computed(() => cart.cartItems);
 const couponStore = useCouponCode();
 const selectedMethod = ref("");
 const selectedShipping = ref("");
-const promoCode = ref("");
+const grand_total_coupon = ref("");
 const couponCode = ref("");
 const shippingCost = computed(() =>
   selectedShipping.value === "express" ? 10 : 5
@@ -330,8 +322,8 @@ const discount = computed(() => {
     : 0;
 });
 function applyPromo() {
-  if (promoCode.value) {
-    toast.success("Promo code applied: " + promoCode.value);
+  if (grand_total_coupon.value) {
+    toast.success("Promo code applied: " + grand_total_coupon.value);
   } else {
     toast.error("Please enter a promo code");
   }
@@ -348,36 +340,70 @@ function methodPay() {
 }
 const router = useRouter();
 
-function handleCheckout() {
-  if (!selectedShipping.value || !selectedMethod.value || !promoCode.value) {
+
+
+
+const form = ref({
+  user_id: computed(() => authStore?.user?.user?.id),
+  name: computed(() => authStore?.user?.user?.name),
+  email: computed(() => authStore?.user?.user?.email),
+  phone: computed(() => authStore?.user?.user?.phone),
+  country: authStore?.user?.country ?? "Bangladesh",
+  state: "Dhaka",
+  city: "Dhaka",
+  zip_code: "1212",
+  street_address: "Dhaka",
+  sub_total: subtotal.value,
+  order_items: cartItems.value.map((item) => ({
+    id: item.id,
+    product_id: item.id,
+    product_name: item.title,
+    category_id: item.category_id,
+    shop_id: 1,
+    quantity: item.quantity,
+    price: item.price,
+    total: item.total,
+  })),
+  payment_method: 'stripe',
+  payment_status:'pending',
+  grand_total_coupon: parseFloat(grand_total_coupon.value) || 0,
+  coupon_code: couponStore.appliedCoupon,
+  delivery_charge: shippingCost.value,
+  total: total.value,
+});
+
+const paymentAndPlaceOrder = async () => {
+  if (
+    !selectedShipping.value ||
+    !selectedMethod.value ||
+    !grand_total_coupon.value
+  ) {
     toast.error(
       "Please fill all required fields: shipping, payment method and promo code."
     );
     return;
   }
 
-  toast.success("Checkout successful!");
+  try {
+    const response = await axios.post(
+      "http://localhost:8000/api/customer/order", form.value);
 
-  order.setOrder({
-    customerName: "John",
-    orderItems: cartItems.value.map((item) => ({
-      id: item.id,
-      title: item.title,
-      qty: item.quantity,
-      image: item.image,
-      total: item.total,
-    })),
-    paymentMethod: selectedMethod.value,
-    shippingMethod: selectedShipping.value,
-    promoCode: promoCode.value,
-    couponCode: couponStore.value,
-    shipping: shippingCost.value,
-    subtotal: subtotal.value,
-    total: total.value,
-  });
+    if (response?.data) {
+      // cart.clearCart();
+      toast.success("Checkout successful!");
+      router.push("/order-confirm")
+      if (response.data?.url) {
+        window.location.href = response.data.url;
+      }
+    } else {
+      toast.error("Something went wrong with the payment.");
+    }
+  } catch (error) {
+    toast.error("Payment failed. Please try again.");
+    console.error("Stripe checkout error:", error);
+  }
+};
 
-  router.push({ name: "order-confirm" });
-}
 function removeItem(item) {
   cart.removeItem(item);
   toast.error(`Removed "${item.title}" from cart`);

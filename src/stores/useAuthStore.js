@@ -1,88 +1,178 @@
-import { defineStore } from 'pinia'
-import {ref, computed, onMounted} from "vue"
 import useAxios from "@/composables/useAxios";
-import { useRouter } from 'vue-router';
-const {loading,error,sendRequest,} = useAxios();
+import axios from "axios";
+import { defineStore } from "pinia";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 
-export const useAuthStore = defineStore('auth', ()=>{
-    
-    const router = useRouter();
-    const user = ref(JSON.parse(localStorage.getItem("user")) ?? null)
-    const isLoggedIn = computed(() => !! user.value)
+export const useAuthStore = defineStore("auth", () => {
+  const router = useRouter();
+  const user = ref(JSON.parse(localStorage.getItem("user")) || null);
+  const isLoggedIn = computed(() => !!user.value);
 
-    async function fetchUser(){
-        const user = JSON.parse(await getLocalStoreage());
-        if(user){
-            const data = await sendRequest({ 
-                method: 'get',
-                url: "/user",
-                headers:{
-                    "Authorization": `Bearer ${user?.token}`
-                }
-            })
-            if(data?.data){
-                user.value = data?.data
-            }else{
-                await clearLocalStoreage();
-            }
-        }else{
-            await clearLocalStoreage();
+  const { loading, error, sendRequest } = useAxios();
+  const nav = ref({ isMobileMenu: false });
+
+  async function fetchUser() {
+    const storedUser = JSON.parse(await getLocalStorage());
+
+    if (storedUser) {
+      try {
+        const { data } = await sendRequest({
+          method: "get",
+          url: "http://localhost:8000/user",
+          headers: {
+            Authorization: `Bearer ${storedUser?.token}`,
+          },
+        });
+
+        if (data) {
+          user.value = data;
+          tokenStore.setAuthUser(data);
+        } else {
+          await clearLocalStorage();
         }
-
-
+      } catch (err) {
+        await clearLocalStorage();
+      }
+    } else {
+      await clearLocalStorage();
     }
+  }
 
-    async function login(credential){
-        await sendRequest({
-            method: 'get',
-            url: "/sanctum/csrf-cookie",
-        })
+  async function login(credential) {
+    try {
+      axios.get(`${import.meta.env.VITE_APP_URL}/sanctum/csrf-cookie`);
 
-        const login = await sendRequest({
-            method:"POST",
-            url:"/frontend/login",
-            data:credential
-        })
-
-        await setLocalStoreage(login.data?.data)
-        user.value = login.data?.data
-
-        return login;
+      const loginResponse = await sendRequest({
+        method: "POST",
+        url: "http://localhost:8000/api/customer/login",
+        data: credential,
+      });
+      if (loginResponse?.data) {
+        await setLocalStorage(loginResponse.data);
+        user.value = loginResponse.data;
+        return loginResponse;
+      }
+    } catch (err) {
+      throw err;
     }
+  }
 
-    async function signup(signupData){
-        const singup = await sendRequest("/register")
-        console.log(singup)
-        return singup;
+
+
+  async function logout() {
+    try {
+      // await sendRequest({
+      //     url: "/api/logout",
+      //     method: "GET"
+      // });
+      router.push("/");
+      user.value = null;
+      await clearLocalStorage();
+    } catch (err) {
+      console.error("Logout failed", error.value);
     }
+  }
 
-    async function logout(){
-        await sendRequest({
-            url:"/api/logout",
-            method:"GET"
-        })
+  async function setLocalStorage(user) {
+    localStorage.setItem("user", JSON.stringify(user));
+  }
 
-        user.value = null;
-        await clearLocalStoreage();
-        router.push({name:"home"})
+  async function clearLocalStorage() {
+    localStorage.removeItem("user");
+  }
+
+  async function getLocalStorage() {
+    return localStorage.getItem("user");
+  }
+
+  function getToken() {
+    try {
+      return JSON.parse(localStorage.getItem("user"))?.token || "";
+    } catch (error) {
+      return "";
     }
+  }
 
-    async function setLocalStoreage(user){
-        localStorage.setItem('user', JSON.stringify(user));
-    }
-    
-    async function clearLocalStoreage(){
-        localStorage.removeItem('user');
-    }
-    
-    async function getLocalStoreage(){
-        return localStorage.getItem('user');
-    }
+  function toggleMobileMenu() {
+    nav.value.isMobileMenu = !nav.value.isMobileMenu;
+  }
 
-    function getToken(){
-        return JSON.parse(localStorage.getItem("user"))?.token;
+  async function register(credentials) {
+    try {
+      const response = await sendRequest({
+        method: "POST",
+        url: "/register",
+        data: credentials,
+      });
+
+      if (response) {
+        user.value = response.data;
+        localStorage.setItem('user', JSON.stringify(response.data));
+        return response;
+      }
+    } catch (err) {
+      throw err;
     }
+  }
 
-    return {user, login, signup, isLoggedIn, fetchUser, logout, loading, error, getLocalStoreage, getToken}
 
-})
+async function verifyOtp(verificationData) {
+  try {
+    const response = await sendRequest({
+      method: "POST",
+      url: "/verify-otp",
+      data: verificationData
+    });
+
+    if (response) {
+     
+      return response;
+    }
+  } catch (err) {
+    throw err;
+  }
+}
+
+// Add this function if missing
+// async function fetchUser() {
+//   try {
+//     const { data } = await sendRequest({
+//       method: "GET",
+//       url: "/user"
+//     });
+//     user.value = data;
+//     localStorage.setItem('user', JSON.stringify(data));
+//   } catch (error) {
+//     this.logout();
+//   }
+// }
+  async function resendOtp(phone) {
+    try {
+      await sendRequest({
+        method: "POST",
+        url: "/resend-otp",
+        data: { phone },
+      });
+      return true;
+    } catch (err) {
+      throw err;
+    }
+  }
+ 
+ 
+  return {
+    user,
+    login,
+    register,
+    isLoggedIn,
+    fetchUser,
+    logout,
+    loading,
+    error,
+    getToken,
+    verifyOtp,
+    resendOtp,
+
+  };
+});

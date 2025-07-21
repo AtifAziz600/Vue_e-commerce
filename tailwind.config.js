@@ -17,7 +17,10 @@ export default {
         cardColour: '#C83F12',
         discountColor: '#FFF287',
         deepMaroon: '#a6102d',
-        midnight: '#FFA500'
+        midnight: '#FFA500',
+        primary: '#0867dc',		
+        boxColor: '#F7F7F7'
+
       }
     },
   },
