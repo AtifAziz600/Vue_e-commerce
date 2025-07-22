@@ -206,10 +206,7 @@
                       class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
                     >
                       <option disabled value="">Choose</option>
-                      <option value="Paypal">Paypal</option>
-                      <option value="American Express">American Express</option>
                       <option value="Card">Card</option>
-                      <option value="Paypal">PayPal</option>
                     </select>
                   </div>
                 </div>
@@ -254,7 +251,6 @@
                     zł{{ total.toFixed(2) }}
                   </p>
                 </div>
-                <RouterLink>
                   <button
                     @click="paymentAndPlaceOrder"
                     class="w-full text-center bg-primarysButton hover:bg-secondysButton rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
@@ -262,7 +258,6 @@
                   >
                     Checkout
                   </button>
-                </RouterLink>
               </form>
             </div>
           </div>
@@ -273,7 +268,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "../../stores/useCartStore";
@@ -340,9 +335,6 @@ function methodPay() {
 }
 const router = useRouter();
 
-
-
-
 const form = ref({
   user_id: computed(() => authStore?.user?.user?.id),
   name: computed(() => authStore?.user?.user?.name),
@@ -372,6 +364,13 @@ const form = ref({
   total: total.value,
 });
 
+onMounted(() => {
+  if(!authStore?.user?.token) {
+    toast.error("Please Login first!")
+    router.push('/login')
+  }
+})
+
 const paymentAndPlaceOrder = async () => {
   if (
     !selectedShipping.value ||
@@ -389,11 +388,11 @@ const paymentAndPlaceOrder = async () => {
       "http://localhost:8000/api/customer/order", form.value);
 
     if (response?.data) {
-      // cart.clearCart();
       toast.success("Checkout successful!");
-      router.push("/order-confirm")
       if (response.data?.url) {
         window.location.href = response.data.url;
+      } else {
+        router.push("/order-confirm")
       }
     } else {
       toast.error("Something went wrong with the payment.");

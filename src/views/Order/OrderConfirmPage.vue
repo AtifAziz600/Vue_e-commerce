@@ -75,7 +75,7 @@
                     </div>
                   </div>
                   <h4 class="text-right text-gray-900 text-lg font-semibold">
-                    zł {{ item.total.toFixed(2) }}
+                    zł {{ item.total }}
                   </h4>
                 </div>
               </div>
@@ -115,13 +115,13 @@
                 <div class="flex justify-between items-center">
                   <span class="text-gray-500 font-medium">Subtotal</span>
                   <span class="text-gray-900 font-semibold"
-                    >zł {{ subtotal.toFixed(2) }}</span
+                    >zł {{ subtotal }}</span
                   >
                 </div>
                 <div class="flex justify-between items-center">
                   <span class="text-gray-500 font-medium">Shipping</span>
                   <span class="text-gray-900 font-semibold"
-                    >zł {{ shipping.toFixed(2) }}</span
+                    >zł {{ shipping }}</span
                   >
                 </div>
 
@@ -129,7 +129,7 @@
                 <div class="flex justify-between items-center">
                   <span class="text-deepMaroon text-lg font-bold">Total</span>
                   <span class="text-deepMaroon text-lg font-bold"
-                    >zł {{ total.toFixed(2) }}
+                    >zł {{ total }}
                   </span>
                 </div>
               </div>
@@ -156,30 +156,22 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { ref, computed } from "vue";
 import { useOrderStore } from "../../stores/useStoreOrder";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
-const order = useOrderStore();
-const orderId = order.orderId;
-const customerName = order.customerName;
-const orderItems = order.orderItems;
-const shippingMethod = order.shippingMethod;
-const promoCode = order.promoCode;
-const paymentMethod = order.paymentMethod;
-const subtotal = order.subtotal;
-const shipping = order.shipping;
-const total = computed(() => subtotal + shipping);
+const orderStore = useOrderStore();
 
-const estimatedDelivery = new Date(
-  Date.now() + 5 * 24 * 60 * 60 * 1000
-).toLocaleDateString(undefined, {
-  weekday: "long",
-  day: "numeric",
-  month: "short",
-  year: "numeric",
-});
 
-const deliveryAddress = "123 Main St, Springfield, IL 62701";
+const customerName = ref(route.query.customer_name || "Customer");
+const estimatedDelivery = ref("3-5 Business Days");
+const deliveryAddress = ref(route.query.customer_address || "N/A");
+const paymentMethod = ref(orderStore.paymentMethod || "Credit Card");
+
+
+const subtotal = ref(route.query.subtotal);
+const shipping = ref(route.query.shipping);
+const total = ref(route.query.total);
 </script>
+

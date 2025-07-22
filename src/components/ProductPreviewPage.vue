@@ -76,7 +76,7 @@
               </p>
               <ul class="grid gap-y-3 mb-8">
                 <li
-                  v-for="(feature, i) in item?.features"
+                  v-for="(feature, i) in product?.features"
                   :key="i"
                   class="flex items-center gap-3"
                 >
@@ -130,6 +130,7 @@
                   />
                 </button>
                 <button
+                @click="handleBuyNow"
                   class="text-center w-full px-5 py-4 rounded-xl bg-primarysButton hover:bg-secondysButton flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300"
                 >
                   Buy Now
@@ -507,7 +508,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "@/stores/useCartStore";
 import { Icon } from "@iconify/vue";
@@ -515,7 +516,7 @@ import Modal from "../components/Modal.vue";
 import { useApiProductStore } from "../stores/useApiProductStore";
 import { useSingleProductStore } from "../stores/useSingleProductStore";
 const productApiStore = useApiProductStore();
-
+const router = useRouter();
 onMounted(async () => {
   await productApiStore.fetchProducts();
   console.log(productApiStore.products);
@@ -557,20 +558,36 @@ const toast = useToast();
 const singleProductStore = useSingleProductStore();
 function handleAddToCart(item) {
   cart.addToCart({
-    id: item.id,
+    id: item.id, 
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: 1,
-    shop_id: item.shop_id,             
-    category_id: item.category_id,     
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
     total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);
 }
-
+function handleBuyNow(item) {
+  const checkoutProduct = {
+    id: item.id, 
+    product_id: item.id,
+    title: item.title,
+    image: item.cover_image_url,
+    price: item.price,
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
+    total: item.price,
+    category: item.tag,
+  };
+  localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
+  toast.success(`${item.title} is bought`)
+  router.push("/checkout");
+}
 onMounted(async () => {
   await singleProductStore.fetchProductBySlug(route.params.slug);
   console.log('Fetched product:', singleProductStore.item);

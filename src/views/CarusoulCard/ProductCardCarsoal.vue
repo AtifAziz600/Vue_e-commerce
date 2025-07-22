@@ -3,7 +3,7 @@
     <div class="max-w-full mx-auto px-4">
       <div class="flex items-center gap-2 justify-start">
         <h2 class="text-xl sm:text-2xl font-semibold text-black">
-          Discover Our New Products
+          Catch Low Prices in Each Category
 
           <a
             href="/all-products"

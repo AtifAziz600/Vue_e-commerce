@@ -13,23 +13,26 @@ export const useCartStore = defineStore('cart', () => {
     cartItems.value.reduce((total, item) => total + item.quantity, 0)
   );
 
-  function addToCart(product) {
-    const existing = cartItems.value.find(item =>
+function addToCart(product) {
+  const existing = cartItems.value.find(item => {
+    return (
       item.id === product.id &&
-      (product.sku ? item.sku === product.sku && item.variant === product.variant : true)
+      item.sku === product.sku &&
+      item.variant === product.variant
     );
+  });
 
-    if (existing) {
-      existing.quantity += product.quantity || 1;
-      existing.total = existing.price * existing.quantity;
-    } else {
-      cartItems.value.push({
-        ...product,
-        quantity: product.quantity || 1,
-        total: product.price * (product.quantity || 1),
-      });
-    }
+  if (existing) {
+    existing.quantity += product.quantity || 1;
+    existing.total = existing.price * existing.quantity;
+  } else {
+    cartItems.value.push({
+      ...product,
+      quantity: product.quantity || 1,
+      total: product.price * (product.quantity || 1),
+    });
   }
+}
 
   function increment(item) {
     item.quantity += 1;

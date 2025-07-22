@@ -447,7 +447,7 @@
                   class="mt-auto pt-3 border-t border-gray-100 flex justify-center items-center gap-3 flex-col sm:flex-row"
                 >
                   <button
-                    @click="handleAddToCart(item)"
+                    @click="handleBuyNow(item)"
                     class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
                   >
                     <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
@@ -473,9 +473,10 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useApiProductStore } from "../../stores/useApiProductStore";
-
+const router = useRouter();
+const route = useRoute();
 const toast = useToast();
 const productApiStore = useApiProductStore();
 
@@ -485,18 +486,25 @@ onMounted(async () => {
 });
 
 import { useCartStore } from "../../stores/useCartStore";
+import { useRoute, useRouter } from "vue-router";
+import axios from "axios";
 const cart = useCartStore();
-
-function buyNow(item) {
-  buyNow.buyItem({
-    id: item.id,
+function handleBuyNow(item) {
+  const checkoutProduct = {
+    id: item.id, 
+    product_id: item.id,
     title: item.title,
-    image: item.image,
-    price: item.newPrice,
-    quantity: 1,
-    total: item.newPrice,
+    image: item.cover_image_url,
+    price: item.price,
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
+    total: item.price,
     category: item.tag,
-  });
+  };
+  localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
+  toast.success(`${item.title} is bought`)
+  router.push("/checkout");
 }
 
 function handleAddToCart(item) {
@@ -515,7 +523,17 @@ function handleAddToCart(item) {
   toast.success(`${item.title} added to cart`);
 }
 
-console.log("Cart items before sending:", cartItems.value)
+const products = ref(null);
+async function fetchProductsByCategory() {
+  const res = await axios.get(
+    `http://localhost:8000/api/product?category=${route.params.slug}`
+  );
+  products.value = res.data;
+}
+
+onMounted(() => {
+  fetchProductsByCategory();
+});
 
 </script>
 

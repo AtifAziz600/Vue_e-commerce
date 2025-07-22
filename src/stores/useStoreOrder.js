@@ -1,41 +1,26 @@
-import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { defineStore } from "pinia";
 
-export const useOrderStore = defineStore('order', () => {
-  const customerName = ref('')
-  const orderId = ref([]);
-  const orderItems = ref([])
-  const paymentMethod = ref('')
-  const shippingMethod = ref('')
-  const promoCode = ref('')
-  const couponCode = ref('')
-  const shipping = ref(0)
-  const subtotal = ref(0)
-  const total = ref(0)
-
-  function setOrder(order) {
-    customerName.value = order.customerName
-    orderId.value = order.orderId
-    orderItems.value = order.orderItems
-    paymentMethod.value = order.paymentMethod
-    shippingMethod.value = order.shippingMethod
-    promoCode.value = order.promoCode
-    couponCode.value = order.couponCode
-    shipping.value = order.shipping
-    subtotal.value = order.subtotal
-    total.value = order.total
-  }
-
-  return {
-    customerName,
-    orderId,
-    orderItems,
-    paymentMethod,
-    shippingMethod,
-    promoCode,
-    shipping,
-    subtotal,
-    total,
-    setOrder
-  }
-})
+export const useOrderStore = defineStore("order", {
+  state: () => ({
+    customerName: "",
+    orderItems: [],
+    paymentMethod: "",
+    shippingMethod: "",
+    promoCode: "",
+    subtotal: "",
+    shipping: "",
+    total: "",
+  }),
+  actions: {
+    setOrder(data) {
+      this.customerName = data.customerName;
+      this.orderItems = data.orderItems;
+      this.paymentMethod = data.paymentMethod;
+      this.shippingMethod = data.shippingMethod;
+      this.promoCode = data.promoCode;
+      this.subtotal = data.subtotal;
+      this.shipping = data.shipping;
+      this.total = data.total;
+    },
+  },
+});

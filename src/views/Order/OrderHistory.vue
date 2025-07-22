@@ -138,14 +138,25 @@
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "../../stores/useAuthStore";
+import { onMounted } from "vue";
+
 const toast = useToast();
 const route = useRouter();
+const authStore = useAuthStore();
 const statusIcons = {
   "Pre-order": "mdi:clock-outline",
   "In transit": "mdi:truck-delivery-outline",
   Confirmed: "mdi:check-circle-outline",
   Cancelled: "mdi:close-circle-outline",
 };
+
+onMounted(() => {
+  if(!authStore?.user?.token) {
+    toast.error("Please Login first!")
+    route.push('/login')
+  }
+})
 
 const orders = [
   {

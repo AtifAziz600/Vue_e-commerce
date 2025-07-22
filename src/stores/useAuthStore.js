@@ -57,9 +57,6 @@ export const useAuthStore = defineStore("auth", () => {
       throw err;
     }
   }
-
-
-
   async function logout() {
     try {
       // await sendRequest({
@@ -117,22 +114,22 @@ export const useAuthStore = defineStore("auth", () => {
   }
 
 
-async function verifyOtp(verificationData) {
-  try {
-    const response = await sendRequest({
-      method: "POST",
-      url: "/verify-otp",
-      data: verificationData
-    });
+// async function verifyOtp(verificationData) {
+//   try {
+//     const response = await sendRequest({
+//       method: "POST",
+//       url: "/verify-otp",
+//       data: verificationData
+//     });
 
-    if (response) {
+//     if (response) {
      
-      return response;
-    }
-  } catch (err) {
-    throw err;
-  }
-}
+//       return response;
+//     }
+//   } catch (err) {
+//     throw err;
+//   }
+// }
 
 // Add this function if missing
 // async function fetchUser() {
@@ -171,7 +168,7 @@ async function verifyOtp(verificationData) {
     loading,
     error,
     getToken,
-    verifyOtp,
+    // verifyOtp,
     resendOtp,
 
   };

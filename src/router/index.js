@@ -158,6 +158,11 @@ const router = createRouter({
       path: '/seller-form',
       name: "seller-form",
       component: () => import ('../views/BecomeSeller/SellerRegister.vue')
+    },
+    {
+      path: "/checkout",
+      name: "checkout",
+      component: () => import('../views/Order/Checkout.vue')
     }
   ]
 })

@@ -59,53 +59,21 @@
             to="/order-history"
             class="flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-gray-100"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-              <path
-                fill-rule="evenodd"
-                d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            <Icon icon="mdi:basket" class="w-6 h-6 text-white" />
             <span class="text-white">Orders</span>
           </RouterLink>
           <RouterLink
             to="/wishlist"
             class="flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-gray-100"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <span class="text-white">Favorites</span>
+            <Icon icon="mdi:heart" class="w-6 h-6 text-white" />
+            <span class="text-white">Wishlist</span>
           </RouterLink>
           <RouterLink
             to="/cart-order"
             class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6 text-gray-100"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                d="M3 1a1 1 0 000 2h1.22l.305 1.222 1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-              />
-            </svg>
+            <Icon icon="solar:cart-bold" class="w-6 h-6 text-white" />
             <RouterLink
               to="/cart-order"
               class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
@@ -113,12 +81,52 @@
             >
             <span class="text-white">Cart</span>
           </RouterLink>
-          <RouterLink
-            to="/login"
-            class="cursor-pointer border border-black px-3 py-2 rounded hover:bg-secondysButton transition duration-200"
-          >
-            <span class="text-white">Sign in</span>
-          </RouterLink>
+          <div class="relative">
+            <div v-if="!authStore.isLoggedIn">
+              <RouterLink
+                to="/login"
+                class="cursor-pointer border border-black px-3 py-2 rounded hover:bg-secondysButton transition duration-200"
+              >
+                <span class="text-white">Sign in</span>
+              </RouterLink>
+            </div>
+
+            <div v-else class="relative" ref="dropdownRef">
+              <button
+                @click="toggleDropdown"
+                class="flex items-center justify-center gap-2 px-3 py-2 rounded hover:bg-secondysButton transition duration-200"
+              >
+                <Icon icon="mdi:user" class="w-6 h-6 text-white" />
+                <span class="text-white hidden sm:inline">
+                   {{ authStore.user?.user?.name?.split(' ')[0] || authStore.user.user.name }}
+                </span>
+              </button>
+
+              <div
+                v-if="dropdownOpen"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border"
+              >
+                <RouterLink
+                  to="/dashboard"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Dashboard
+                </RouterLink>
+                <RouterLink
+                  to="/profile"
+                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Profile
+                </RouterLink>
+                <button
+                  @click="logout"
+                  class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -127,16 +135,7 @@
           to="/cart-order"
           class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded-full transition duration-200"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 text-gray-100"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              d="M3 1a1 1 0 000 2h1.22l.305 1.222 1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-            />
-          </svg>
+          <Icon icon="solar:cart-bold" class="w-6 h-6 text-white" />
           <RouterLink
             to="/cart-order"
             class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full"
@@ -209,7 +208,7 @@
               </div>
               <nav class="flex flex-col gap-4 text-white">
                 <RouterLink
-                  v-for="item in CategoryItems"
+                  v-for="item in CategoryItemsNav"
                   :key="item.name"
                   :to="`/category/${item?.slug}`"
                   class="py-2 px-3 rounded hover:bg-secondysButton transition duration-200"
@@ -286,10 +285,34 @@ import Icon from "@/components/Icon.vue";
 import { useCartStore } from "@/stores/useCartStore";
 import { storeToRefs } from "pinia";
 import axios from "axios";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { onClickOutside } from "@vueuse/core";
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+const dropdownOpen = ref(false);
+const dropdownRef = ref(null);
+
+onClickOutside(dropdownRef, () => {
+  dropdownOpen.value = false;
+});
+
+function toggleDropdown() {
+  dropdownOpen.value = !dropdownOpen.value;
+}
+
+function logout() {
+  authStore.logout();
+  dropdownOpen.value = false;
+  router.push("/");
+}
 const cart = useCartStore();
 const { cartCount } = storeToRefs(cart);
 const isSidebarOpen = ref(false);
 const CategoryItems = ref([]);
+const CategoryItemsNav = ref([]);
 
 const getNavItems = async () => {
   const res = await axios.get(
@@ -300,17 +323,29 @@ const getNavItems = async () => {
   }
 };
 
-const getCategory = async () => {
+const getCategoryNav = async () => {
   const res = await axios.get(
     "http://localhost:8000/api/public/get-all-category-list"
   );
   if (res) {
     console.log(res);
-    CategoryItems.value = res.data;
+    CategoryItemsNav.value = res.data;
+  }
+};
+
+const getCategory = async () => {
+  const res = await axios.get(
+    "http://localhost:8000/api/public/apricot"
+  );
+  if (res) {
+    console.log(res);
+    CategoryItems.value = res.data?.header_categories;
   }
 };
 
 onMounted(() => getCategory());
+onMounted(() => getCategoryNav());
+onMounted(() => authStore.fetchUser())
 onMounted(() => getNavItems());
 const isNavVisible = ref(true);
 let lastScrollY = window.scrollY;

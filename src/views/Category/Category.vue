@@ -1,42 +1,44 @@
 <template>
   <AppLayout>
-    <!-- Header -->
-    <div
-      class="md:pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm"
-    >
-      <div class="text-gray-700 text-base font-medium">
-        <p class="text-center">900 results</p>
-      </div>
-      <div class="flex items-center gap-3">
-        <label for="sort-by" class="text-gray-700 text-base font-normal"
-          >Sort by:</label
-        >
-        <div class="relative w-40">
-          <select
-            class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
+    <div class="pt-8">
+      <div
+        class="md:pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm"
+      >
+        <div class="text-gray-700 text-base font-medium">
+          <p class="text-center">900 results</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <label for="sort-by" class="text-gray-700 text-base font-normal"
+            >Sort by:</label
           >
-            <option value="price_low_to_high">Price: Low to High</option>
-            <option value="price_high_to_low">Price: High to Low</option>
-            <option value="avg_customer_review">Avg. Customer Review</option>
-            <option value="newest_arrival">Newest Arrivals</option>
-            <option value="best_seller">Best Seller</option>
-          </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-          >
-            <svg
-              class="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
+          <div class="relative w-40">
+            <select
+              class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
             >
-              <path
-                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z"
-              />
-            </svg>
+              <option value="price_low_to_high">Price: Low to High</option>
+              <option value="price_high_to_low">Price: High to Low</option>
+              <option value="avg_customer_review">Avg. Customer Review</option>
+              <option value="newest_arrival">Newest Arrivals</option>
+              <option value="best_seller">Best Seller</option>
+            </select>
+            <div
+              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            >
+              <svg
+                class="fill-current h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
     <section class="md:flex md:justify-between md:items-start px-4 md:px-0">
       <div class="lg:hidden flex items-end justify-end">
         <button
@@ -52,7 +54,7 @@
           class="fixed inset-0 z-50 bg-black bg-opacity-40 flex"
         >
           <aside
-            class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 pb-6"
+            class="w-72 h-full space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28"
           >
             <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
             <div>
@@ -212,7 +214,6 @@
           <div class="flex-1" @click="isSidebarOpen = false"></div>
         </div>
       </transition>
-      <!-- Main Content -->
       <aside
         class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden"
       >
@@ -443,7 +444,7 @@
                   class="border-gray-100 mt-auto pt-3 border-t flex justify-center items-center gap-4 flex-col sm:flex-row"
                 >
                   <button
-                    @click="handleAddToCart(item)"
+                    @click="handleBuyNow(item)"
                     class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
                   >
                     <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
@@ -469,12 +470,12 @@
 <script setup>
 import Icon from "@/components/Icon.vue";
 import { useToast } from "vue-toastification";
-import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { computed,onMounted, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import axios from "axios";
 const toast = useToast();
+const router = useRouter();
 const route = useRoute();
-
 const products = ref(null);
 async function fetchProductsByCategory() {
   const res = await axios.get(
@@ -486,26 +487,41 @@ async function fetchProductsByCategory() {
 onMounted(() => {
   fetchProductsByCategory();
 });
-
 import { useCartStore } from "../../stores/useCartStore";
 const cart = useCartStore();
 
 function handleAddToCart(item) {
   cart.addToCart({
-    id: 1,
+    id: item.id, 
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: 1,
-    shop_id: 1,           
-    category_id: 1,     
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
     total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);
 }
-
+function handleBuyNow(item) {
+  const checkoutProduct = {
+    id: item.id, 
+    product_id: item.id,
+    title: item.title,
+    image: item.cover_image_url,
+    price: item.price,
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
+    total: item.price,
+    category: item.tag,
+  };
+  localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
+  toast.success(`${item.title} is bought`)
+  router.push("/checkout");
+}
 const isSidebarOpen = ref(false);
 </script>
 

@@ -138,9 +138,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import image from "../../assets/img/1705474950.png";
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toastification";
+import { useAuthStore } from '../../stores/useAuthStore';
 import { Icon } from "@iconify/vue";
+import image from "../../assets/img/1705474950.png";
+
+const router = useRouter();
+const toast = useToast();
+const authStore = useAuthStore();
+
+onMounted(() => {
+  if (!authStore?.user?.token) {
+    toast.error("Please Login first!");
+    router.push("/login");
+  }
+});
 
 const favoriteItems = ref([
   {

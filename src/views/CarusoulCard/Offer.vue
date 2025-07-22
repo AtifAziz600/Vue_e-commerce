@@ -25,12 +25,12 @@
         :modules="modules"
       >
         <swiper-slide
-          v-for="(product, index) in products"
-          :key="index"
+          v-for="item in productApiStore.products"
+          :key="item.title"
           class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl"
         >
           <img
-            :src="product.image"
+            :src="item.cover_image_url"
             alt="Product"
             class="w-full h-44 object-contain p-2"
           />
@@ -39,23 +39,23 @@
               <span
                 class="inline-block bg-discountColor text-black px-2 py-0.5 rounded-full text-[10px] font-semibold mr-2"
               >
-                -{{ product.discount }}%
+                -32%
               </span>
               <span class="text-[11px]">With Discount</span>
             </p>
-            <p class="text-base font-semibold" v-if="product.discount">
-              zł {{ product.newPrice.toFixed(2) }}
+            <p class="text-base font-semibold" v-if="item.discount_price">
+              zł {{ item.discount_price }}
               <span class="text-gray-400 font-normal text-sm line-through ml-1">
-                zł {{ product.oldPrice.toFixed(2) }}
+                zł {{ item.price }}
               </span>
             </p>
             <p class="text-sm mt-1 text-gray-700 leading-tight line-clamp-2">
-              {{ product.title }}
+              {{ item.title }}
             </p>
             <p
               class="text-sm mt-1 text-gray-700 hover:text-blue-700 leading-tight line-clamp-2 cursor-pointer"
             >
-              ({{ product.reviews }}) Reviews
+              ({{ item.reviews }}) Reviews
             </p>
             <div class="flex items-center py-1">
               <button
@@ -74,277 +74,54 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
-import Watch from "../../assets/img/watch.png";
-import Fashion from "../../assets/img/shirt.jfif";
-import Laptop from "../../assets/img/laptop.jfif";
-import Phone from "../../assets/img/xiaomi.jfif";
-import Watch2 from "../../assets/img/watch2.png";
-import Fashion2 from "../../assets/img/pants.jfif";
-import Laptop2 from "../../assets/img/laptop.jfif";
-import Phone2 from "../../assets/img/Oppo.jfif";
 import { useToast } from "vue-toastification";
+import { useCartStore } from "../../stores/useCartStore";
 import "swiper/css";
 import "swiper/css/navigation";
+import { useApiProductStore } from "../../stores/useApiProductStore";
+const productApiStore = useApiProductStore();
 
-const modules = [Navigation];
-import { useCartStore } from "../../stores/useCartStore";
-const cart = useCartStore();
+onMounted(async () => {
+  await productApiStore.fetchProducts();
+  console.log(productApiStore.products);
+});
 const toast = useToast();
+const cart = useCartStore();
+const modules = [Navigation];
+
+const products = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:8000/api/product?category=${route.params.slug}"
+    );
+    products.value = response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    toast.error("Failed to load products");
+  }
+});
+
 function handleAddToCart(item) {
   cart.addToCart({
     id: item.id,
+    product_id: item.id,
     title: item.title,
-    image: item.image,
-    price: item.newPrice,
-    quantity: 1,
-    total: item.newPrice,
+    image: item.cover_image_url,
+    price: item.price,
+    quantity: item.quantity,
+    shop_id: 1,
+    category_id: 1,
+    total: item.price,
     category: item.tag,
   });
   toast.success(`${item.title} added to cart`);
 }
-
-const products = [
-  {
-    id: 1,
-    orderId: "#FWB127364372",
-    title: "Watch",
-    slug: "luxury-watch",
-    category: "Watches / Luxury",
-    subtitle:
-      "Premium watches from Switzerland, Germany, and Austria. Timeless elegance for every occasion.",
-    image: Watch,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    inStock: true,
-    discount: 19,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "Stainless steel case",
-      "2-year warranty",
-    ],
-    sizes: ["Small", "Medium", "Large"],
-  },
-  {
-    id: 2,
-    orderId: "#FWD215439065",
-    title: "Shirt",
-    slug: "fashion-show",
-    subtitle:
-      "Latest trends in fashion. Elevate your style with our exclusive collection.",
-    image: Fashion,
-    oldPrice: 39.96,
-    newPrice: 22.91,
-    inStock: true,
-    discount: 42,
-    tag: "fashion",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 3,
-    orderId: "#FWB122546348",
-    title: "Laptop",
-    slug: "computer-laptop",
-    subtitle:
-      "High performance laptops for work and play. Reliable and powerful.",
-    image: Laptop,
-    oldPrice: 3.27,
-    newPrice: 1.9,
-    discount: 41,
-    inStock: true,
-    tag: "laptop",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 4,
-    orderId: "#FWB122344348",
-    title: "Xiaomi",
-    slug: "phone",
-    subtitle:
-      "Smartphones for daily use. Stay connected with the latest technology.",
-    image: Phone,
-    oldPrice: 20.21,
-    newPrice: 17.88,
-    inStock: false,
-    discount: 32,
-    tag: "phone",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 5,
-    orderId: "#FWB12345659",
-    title: "Pants",
-    slug: "eco-watch",
-    subtitle: "Eco-friendly watches crafted with sustainable materials.",
-    image: Fashion2,
-    oldPrice: 48.54,
-    newPrice: 38.89,
-    discount: 19,
-    inStock: true,
-    tag: "watch",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 6,
-    orderId: "#FWB126345659",
-    title: "Watch",
-    slug: "sustainable-fashion",
-    subtitle: "Organic fashion wear for a greener planet.",
-    image: Watch2,
-    oldPrice: 39.96,
-    newPrice: 22.91,
-    discount: 42,
-    inStock: true,
-    tag: "fashion",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 7,
-    orderId: "#FWB123456593",
-    title: "Desktop",
-    slug: "eco-laptop",
-    subtitle: "Energy-efficient laptops with eco-friendly packaging.",
-    image: Laptop2,
-    oldPrice: 3.27,
-    newPrice: 1.9,
-    discount: 41,
-    inStock: false,
-    tag: "laptop",
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 8,
-    orderId: "#FWB123456549",
-    title: "Oppo",
-    slug: "recycled-phone",
-    subtitle: "Phones made with recycled materials.",
-    image: Phone2,
-    oldPrice: 20.21,
-    newPrice: 17.88,
-    discount: 32,
-    tag: "phone",
-    inStock: true,
-    reviews: 1248,
-    rating: 5,
-    features: [
-      "Swiss movement",
-      "Sapphire crystal glass",
-      "Water resistant up to 50m",
-      "cotton blend fabric",
-      "Breathable and lightweight",
-    ],
-    sizes: ["M", "XL", "XXL"],
-  },
-  {
-    id: 9,
-    orderId: "#FWB123456369",
-    title: "Atomic Habits",
-    slug: "atomic-habits",
-    category: "Self-help",
-    inStock: true,
-    subtitle:
-      "An Easy & Proven Way to Build Good Habits & Break Bad Ones by James Clear.",
-    image: "https://images-na.ssl-images-amazon.com/images/I/91bYsX41DVL.jpg",
-    oldPrice: 24.99,
-    newPrice: 16.99,
-    discount: 32,
-    tag: "self-help",
-    reviews: 15420,
-    rating: 5,
-    features: [
-      "Practical strategies",
-      "Science-backed methods",
-      "Easy to read",
-      "Bestseller",
-      "Life-changing",
-    ],
-    sizes: [],
-  },
-  {
-    id: 10,
-    orderId: "#FWB123456591",
-    title: "The Alchemist",
-    slug: "the-alchemist",
-    category: "Fiction",
-    inStock: true,
-    subtitle: "A fable about following your dream by Paulo Coelho.",
-    image: "https://images-na.ssl-images-amazon.com/images/I/71aFt4+OTOL.jpg",
-    oldPrice: 19.99,
-    newPrice: 11.99,
-    discount: 40,
-    tag: "fiction",
-    reviews: 21000,
-    rating: 5,
-    features: [
-      "Inspirational story",
-      "International bestseller",
-      "Simple language",
-      "Philosophical",
-      "Timeless classic",
-    ],
-    sizes: [],
-  },
-];
 </script>
 <style>
 .swiper-button-prev,
