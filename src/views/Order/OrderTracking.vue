@@ -159,7 +159,7 @@ if (route.query.items) {
 }
 const getCustomer = async () => {
   const response = await axios.get(
-    `http://localhost:8000/api/customer/orders/${route.params.slug}`,
+    `https://admin.welkin.ctpbd.info/api/customer/orders/${route.params.slug}`,
     {
       headers: {
         Authorization: `Bearer ${authStore.user?.token}`,

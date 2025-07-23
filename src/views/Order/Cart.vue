@@ -402,7 +402,7 @@ const paymentAndPlaceOrder = async () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/api/customer/order",
+      "https://admin.welkin.ctpbd.info/api/customer/order",
       form.value
     );
 

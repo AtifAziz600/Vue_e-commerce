@@ -99,7 +99,7 @@ const products = ref([]);
 onMounted(async () => {
   try {
     const response = await axios.get(
-      `http://localhost:8000/api/product?category=${route.params.slug}`
+      `https://admin.welkin.ctpbd.info/api/product?category=${route.params.slug}`
     );
     products.value = response.data;
   } catch (error) {

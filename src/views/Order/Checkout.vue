@@ -194,7 +194,7 @@ const placeOrder = async () => {
     };
 
     const response = await axios.post(
-      "http://localhost:8000/api/customer/order",
+      "https://admin.welkin.ctpbd.info/api/customer/order",
       payload
     );
 

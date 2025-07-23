@@ -50,7 +50,7 @@ import axios from 'axios';
 const categories = ref(null);
 
 const getCategory = async() => {
-  const res = await axios.get('http://localhost:8000/api/public/get-all-category-list')
+  const res = await axios.get('https://admin.welkin.ctpbd.info/api/public/get-all-category-list')
   if(res){
     categories.value = res.data
   }

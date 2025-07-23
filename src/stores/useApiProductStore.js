@@ -11,7 +11,7 @@ export const useApiProductStore = defineStore("productApiStore", {
     async fetchProducts(params = {}) {
       this.loading = true;
       try {
-        const response = await axios.get("http://localhost:8000/api/public/product/", { params });
+        const response = await axios.get("https://admin.welkin.ctpbd.info/api/public/product/", { params });
         this.products = response?.data?.data;
       } catch (error) {
         console.error("Failed to fetch products:", error);

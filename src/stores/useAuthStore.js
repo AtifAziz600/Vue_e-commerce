@@ -19,7 +19,7 @@ export const useAuthStore = defineStore("auth", () => {
     //   try {
     //     const { data } = await sendRequest({
     //       method: "get",
-    //       url: "http://localhost:8000/api/user",
+    //       url: "https://admin.welkin.ctpbd.info/api/user",
     //       headers: {
     //         Authorization: `Bearer ${storedUser?.token}`,
     //       },
@@ -45,7 +45,7 @@ export const useAuthStore = defineStore("auth", () => {
 
       const loginResponse = await sendRequest({
         method: "POST",
-        url: "http://localhost:8000/api/customer/login",
+        url: "https://admin.welkin.ctpbd.info/api/customer/login",
         data: credential,
       });
       if (loginResponse?.data) {

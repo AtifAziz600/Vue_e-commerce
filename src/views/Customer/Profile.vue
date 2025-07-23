@@ -156,7 +156,7 @@ const customerLoading = ref(false);
 const getCustomer = async () => {
   customerLoading.value = true;
   const response = await axios.get(
-    `http://localhost:8000/api/customer/customer/${authStore.user?.user?.id}`,
+    `https://admin.welkin.ctpbd.info/api/customer/customer/${authStore.user?.user?.id}`,
     {
       headers: {
         Authorization: `Bearer ${authStore.user.token}`,

@@ -479,7 +479,7 @@ const route = useRoute();
 const products = ref(null);
 async function fetchProductsByCategory() {
   const res = await axios.get(
-    `http://localhost:8000/api/product?category=${route.params.slug}`
+    `https://admin.welkin.ctpbd.info/api/product?category=${route.params.slug}`
   );
   products.value = res.data;
 }

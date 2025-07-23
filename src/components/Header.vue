@@ -356,7 +356,7 @@ const CategoryItemsNav = ref([]);
 
 const getNavItems = async () => {
   const res = await axios.get(
-    "http://localhost:8000/api/public/get-all-page-list"
+    "https://admin.welkin.ctpbd.info/api/public/get-all-page-list"
   );
   if (res) {
     NavItems.value = res.value;
@@ -365,7 +365,7 @@ const getNavItems = async () => {
 
 const getCategoryNav = async () => {
   const res = await axios.get(
-    "http://localhost:8000/api/public/get-all-category-list"
+    "https://admin.welkin.ctpbd.info/api/public/get-all-category-list"
   );
   if (res) {
     // console.log(res);
@@ -374,7 +374,7 @@ const getCategoryNav = async () => {
 };
 
 const getCategory = async () => {
-  const res = await axios.get("http://localhost:8000/api/public/apricot");
+  const res = await axios.get("https://admin.welkin.ctpbd.info/api/public/apricot");
   if (res) {
     // console.log(res);
     CategoryItems.value = res.data?.header_categories;

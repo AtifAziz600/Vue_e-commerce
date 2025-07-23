@@ -100,7 +100,7 @@ const handleLogin = async () => {
       toast.success("Login successful!", { autoClose: 1000 });
       loading.value = false;
       setTimeout(() => {
-        window.location.href = "http://localhost:8000/admin/dashboard";
+        window.location.href = "https://admin.welkin.ctpbd.info/admin/dashboard";
       }, 1000);
     } catch (error) {
       loading.value = false;
