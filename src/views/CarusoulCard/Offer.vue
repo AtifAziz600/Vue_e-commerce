@@ -87,7 +87,7 @@ const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products);
+  // console.log(productApiStore.products);
 });
 const toast = useToast();
 const cart = useCartStore();
@@ -102,7 +102,7 @@ onMounted(async () => {
     );
     products.value = response.data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    // console.error("Error fetching products:", error);
     toast.error("Failed to load products");
   }
 });

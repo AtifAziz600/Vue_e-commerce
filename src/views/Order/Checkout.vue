@@ -110,7 +110,7 @@ const placeOrder = async () => {
     }
   } catch (error) {
     toast.error("Failed to place order.");
-    console.error(error);
+    // console.error(error);
   }
 };
 onMounted(() => {

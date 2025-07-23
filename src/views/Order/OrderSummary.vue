@@ -22,7 +22,7 @@
                     Product Cost
                   </p>
                   <p class="font-medium text-lg leading-8 text-gray-900">
-                    zł {{ total.toFixed(2) }}
+                    zł {{ total }}
                   </p>
                 </div>
                 <div class="flex items-center justify-between gap-4 mb-5">
@@ -32,7 +32,7 @@
                     Shipping
                   </p>
                   <p class="font-medium text-lg leading-8 text-gray-600">
-                    zł {{ shippingCost.toFixed(2) }}
+                    zł {{ shippingCost }}
                   </p>
                 </div>
                 <div class="flex items-center justify-between gap-4">
@@ -56,7 +56,7 @@
                 <h5
                   class="font-manrope font-bold text-2xl leading-9 text-red-600"
                 >
-                  zł {{ subtotal.toFixed(2) }}
+                  zł {{ subtotal }}
                 </h5>
               </div>
             </div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="flex items-center justify-between gap-8">
                   <h6 class="font-medium text-xl leading-8 text-red-600">
-                    zł {{ product.total.toFixed(2) }}
+                    zł {{ product.total }}
                   </h6>
                 </div>
               </div>

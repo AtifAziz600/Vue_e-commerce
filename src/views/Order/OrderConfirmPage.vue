@@ -141,12 +141,22 @@
               >
                 Order Summary
               </RouterLink>
-              <RouterLink
-                to="/order-tracking"
-                class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-red-800 text-white font-semibold shadow transition"
-              >
-                Track My Order
-              </RouterLink>
+<RouterLink
+  :to="{
+    path: '/order-tracking',
+    query: {
+      customer_name: customerName,
+      order_id: orderStore.orderId,
+      items: encodeURIComponent(JSON.stringify(orderItems)),
+      subtotal,
+      shipping,
+      total
+    }
+  }"
+  class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-red-800 text-white font-semibold shadow transition"
+>
+  Track My Order
+</RouterLink>
             </div>
           </div>
         </div>
@@ -162,13 +172,20 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 const orderStore = useOrderStore();
+const orderItems = ref([]);
 
+if (route.query.items) {
+  try {
+    orderItems.value = JSON.parse(decodeURIComponent(route.query.items));
+  } catch (e) {
+    console.error("Failed to parse order items:", e);
+  }
+}
 
 const customerName = ref(route.query.customer_name || "Customer");
 const estimatedDelivery = ref("3-5 Business Days");
 const deliveryAddress = ref(route.query.customer_address || "N/A");
 const paymentMethod = ref(orderStore.paymentMethod || "Credit Card");
-
 
 const subtotal = ref(route.query.subtotal);
 const shipping = ref(route.query.shipping);

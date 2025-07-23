@@ -1,22 +1,38 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 
-export const useFavoriteStore = defineStore('favorite', () => {
-  const cartItems = ref([]);
+export const useFavorite = defineStore('favorite', () => {
+  const storedFavorite = localStorage.getItem('favorite');
+  const favoriteItems = ref(storedFavorite ? JSON.parse(storedFavorite) : []);
 
-  const cartCount = computed(() =>
-  cartItems.value.reduce((total, item) => total + item.quantity, 0)
-);
+  watch(favoriteItems, (newVal) => {
+    localStorage.setItem('cart', JSON.stringify(newVal));
+  }, { deep: true });
 
-  function addToCart(product) {
-    const existing = cartItems.value.find(item => item.id === product.id);
-    if (existing) {
-      existing.quantity += 1;
-      existing.total = existing.price * existing.quantity;
-    } else {
-      cartItems.value.push({ ...product, quantity: 1, total: product.price });
-    }
+  const favCount = computed(() =>
+    favoriteItems.value.reduce((total, item) => total + item.quantity, 0)
+  );
+
+function addToFavorite(product) {
+  const existing = favoriteItems.value.find(item => {
+    return (
+      item.id === product.id &&
+      item.sku === product.sku &&
+      item.variant === product.variant
+    );
+  });
+
+  if (existing) {
+    existing.quantity += product.quantity || 1;
+    existing.total = existing.price * existing.quantity;
+  } else {
+    favoriteItems.value.push({
+      ...product,
+      quantity: product.quantity || 1,
+      total: product.price * (product.quantity || 1),
+    });
   }
+}
 
   function increment(item) {
     item.quantity += 1;
@@ -29,23 +45,34 @@ export const useFavoriteStore = defineStore('favorite', () => {
       item.total = item.price * item.quantity;
     }
   }
-  
 
   function removeItem(item) {
-    cartItems.value = cartItems.value.filter(i =>
-      i.id !== item.id);
+    favoriteItems.value = favoriteItems.value.filter(i =>
+      i.id !== item.id ||
+      (item.sku && i.sku !== item.sku) ||
+      (item.variant && i.variant !== item.variant)
+    );
   }
 
-  const subtotal = computed(() => cartItems.value.reduce((sum, item) => sum + item.total, 0));
-  const total = computed(() => subtotal.value); 
+  function clearCart() {
+    favoriteItems.value = [];
+    localStorage.removeItem("cart");
+  }
+
+  const subtotal = computed(() =>
+    favoriteItems.value.reduce((sum, item) => sum + item.total, 0)
+  );
+
+  const total = computed(() => subtotal.value);
 
   return {
-    cartItems,
-    addToCart,
+    favoriteItems,
+    addToFavorite,
     removeItem,
     increment,
     decrement,
-    cartCount,
+    clearCart,
+    favCount,
     subtotal,
     total,
   };

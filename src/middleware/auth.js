@@ -6,7 +6,7 @@ export default (to, from, next) => {
 	let exceptionalRoutes = ['login', 'register', 'forgot-password']
 	let isGoingExceptionalRoutes = exceptionalRoutes.includes(to.name)
 
-	let authProtected = ['dashboard', 'customer.order', 'payment', 'checkout']
+	let authProtected = ['customer-dashboard', 'order-history', 'payment', 'checkout']
 	let isAuthProtected = authProtected.includes(to.name)
 	if (!auth.isLoggedIn && isAuthProtected) {
 	// 	// if (isGoingExceptionalRoutes) {
@@ -16,7 +16,7 @@ export default (to, from, next) => {
 	// 	// 	next({ name: 'login' })
 	// 	// 	return
 	// 	// } 
-		console.log(to.params)
+		// console.log(to.params)
 		next({
 			name: 'login',
 			query:to?.query

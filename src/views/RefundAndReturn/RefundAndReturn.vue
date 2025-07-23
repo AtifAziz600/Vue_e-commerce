@@ -7,7 +7,6 @@
         <div
           class="w-full flex-col justify-start items-end lg:gap-16 gap-12 inline-flex"
         >
-          <!-- Header -->
           <div class="w-full flex-col justify-start items-center gap-14 flex">
             <div class="w-full flex-col justify-start items-start gap-3 flex">
               <h2
@@ -23,9 +22,7 @@
               </p>
             </div>
 
-            <!-- Return Form Section -->
             <div class="w-full flex-col justify-start items-start gap-8 flex">
-              <!-- Item Section -->
               <div class="w-full flex-col justify-start items-start gap-5 flex">
                 <h4 class="text-black text-xl font-semibold leading-8">
                   Item Select for Return
@@ -33,7 +30,6 @@
                 <div
                   class="w-full p-8 rounded-xl border border-gray-200 bg-white/60 backdrop-blur-md shadow-md flex-col justify-start items-start gap-8 flex"
                 >
-                  <!-- Order Info -->
                   <div
                     class="w-full justify-between items-center gap-4 flex sm:flex-row flex-col pb-8 border-b border-gray-200"
                   >
@@ -41,29 +37,30 @@
                       class="text-gray-900 text-lg font-semibold leading-normal"
                     >
                       Order:
-                      <span class="text-gray-500 font-normal">#2015656</span>
+                      <span class="text-gray-500 font-normal">{{
+                        orderId
+                      }}</span>
                     </h5>
                     <h5
                       class="text-gray-900 text-lg font-semibold leading-normal"
                     >
                       Order Date:
-                      <span class="text-gray-500 font-normal"
-                        >25th May, 2024 2:00 PM</span
-                      >
+                      <span class="text-gray-500 font-normal">{{
+                        orderDate
+                      }}</span>
                     </h5>
                   </div>
 
-                  <!-- Items -->
                   <div
                     class="w-full flex-col justify-start items-start gap-6 flex"
                   >
-                    <!-- Item 1 -->
                     <div
                       class="w-full flex sm:items-start items-center sm:gap-8 gap-4 sm:flex-row flex-col"
                     >
                       <img
                         class="w-[122px] h-[120px] rounded-lg object-cover"
-                        src="https://pagedone.io/asset/uploads/1701158078.png"
+                        :src="orderImage"
+                        alt="Order Image"
                       />
                       <div
                         class="w-full pt-1 flex-col justify-start sm:items-start items-center gap-3 inline-flex"
@@ -74,8 +71,7 @@
                           <h4
                             class="text-gray-900 text-xl font-semibold text-center sm:text-left"
                           >
-                            Golden Frame & Blue Round Sunglasses with UV
-                            Protected Lens
+                            {{ orderTitle || "Item Name" }}
                           </h4>
                           <input
                             type="checkbox"
@@ -87,49 +83,10 @@
                           class="flex-col justify-center items-start gap-1 flex"
                         >
                           <h6 class="text-gray-900 text-base font-medium">
-                            Color:
-                            <span class="text-gray-500">Blue & Golden</span>
-                          </h6>
-                          <h6 class="text-gray-900 text-base font-medium">
-                            QTY: <span class="text-gray-500">1</span>
-                          </h6>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div
-                      class="w-full flex sm:items-start items-center sm:gap-8 gap-4 sm:flex-row flex-col"
-                    >
-                      <img
-                        class="w-[122px] h-[120px] rounded-lg object-cover"
-                        src="https://pagedone.io/asset/uploads/1718103938.png"
-                      />
-                      <div
-                        class="w-full pt-1 flex-col justify-start sm:items-start items-center gap-3 inline-flex"
-                      >
-                        <div
-                          class="w-full justify-between items-center flex sm:flex-row flex-col gap-3"
-                        >
-                          <h4
-                            class="text-gray-900 text-xl font-semibold text-center sm:text-left"
-                          >
-                            Rolex Datejust Lexington Two Tone Casual Watch
-                          </h4>
-                          <input
-                            type="checkbox"
-                            class="w-5 h-5 appearance-none border border-gray-300 rounded-md checked:bg-no-repeat checked:bg-center checked:border-blue-500 checked:bg-blue-400"
-                          />
-                        </div>
-                        <div
-                          class="flex-col justify-center items-start gap-1 flex"
-                        >
-                          <h6 class="text-gray-900 text-base font-medium">
-                            Color:
-                            <span class="text-gray-500">Silver & Golden</span>
-                          </h6>
-                          <h6 class="text-gray-900 text-base font-medium">
-                            QTY: <span class="text-gray-500">1</span>
+                            QTY:
+                            <span class="text-gray-500">{{
+                              orderQty || 1
+                            }}</span>
                           </h6>
                         </div>
                       </div>
@@ -138,7 +95,6 @@
                 </div>
               </div>
 
-              <!-- Reason Section -->
               <div class="w-full flex-col justify-start items-start gap-8 flex">
                 <h4 class="text-black text-xl font-semibold leading-8">
                   Select Reason for Returning
@@ -170,7 +126,6 @@
                 </div>
               </div>
 
-              <!-- Delivery Method -->
               <div class="w-full flex-col justify-start items-start gap-8 flex">
                 <h4 class="text-black text-xl font-semibold leading-8">
                   Select the Method of Delivery of Product
@@ -215,7 +170,6 @@
                 </div>
               </div>
 
-              <!-- Refund Option -->
               <div class="w-full flex-col justify-start items-start gap-8 flex">
                 <h4 class="text-black text-xl font-semibold leading-8">
                   Select Refund Option
@@ -249,12 +203,11 @@
             </div>
           </div>
 
-          <!-- Submit Button -->
           <button
             @click="handleApplication"
             class="sm:w-fit w-full px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 transition text-white font-semibold shadow-md"
           >
-            Save Application
+            Send Application
           </button>
         </div>
       </div>
@@ -264,10 +217,18 @@
 
 <script setup>
 import { useToast } from "vue-toastification";
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useRoute } from "vue-router";
 
 const toast = useToast();
 const reason = ref("");
+const route = useRoute();
+
+const orderId = computed(() => route.query.orderId || "");
+const orderDate = computed(() => route.query.orderDate || "");
+const orderImage = computed(() => route.query.orderImage || "");
+const orderTitle = computed(() => route.query.orderTitle || "");
+const orderQty = computed(() => route.query.orderQty || 1);
 
 function handleApplication() {
   if (!reason.value.trim()) {
@@ -279,7 +240,5 @@ function handleApplication() {
 </script>
 
 <style scoped>
-input[type="checkbox"]:checked {
-  background-image: url("https://pagedone.io/asset/uploads/1689406942.svg");
-}
+
 </style>

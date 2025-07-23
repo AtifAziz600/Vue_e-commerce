@@ -16,7 +16,7 @@ export const useSingleProductStore = defineStore('singleProductStore', {
         const response = await axios.get(`http://localhost:8000/api/public/product/${slug}`);
         this.product = response?.data;
       } catch (err) {
-        console.error("Failed to fetch single product", err);
+        // console.error("Failed to fetch single product", err);
         this.error = err;
       } finally {
         this.loading = false;

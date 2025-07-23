@@ -98,7 +98,10 @@
               >
                 <Icon icon="mdi:user" class="w-6 h-6 text-white" />
                 <span class="text-white hidden sm:inline">
-                   {{ authStore.user?.user?.name?.split(' ')[0] || authStore.user.user.name }}
+                  {{
+                    authStore.user?.user?.name?.split(" ")[0] ||
+                    authStore.user.user.name
+                  }}
                 </span>
               </button>
 
@@ -107,13 +110,7 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border"
               >
                 <RouterLink
-                  to="/dashboard"
-                  class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                >
-                  Dashboard
-                </RouterLink>
-                <RouterLink
-                  to="/profile"
+                  to="/customer/profile"
                   class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Profile
@@ -306,6 +303,7 @@ function toggleDropdown() {
 function logout() {
   authStore.logout();
   dropdownOpen.value = false;
+  toast.success(`${authStore.user} has been Log Out`);
   router.push("/");
 }
 const cart = useCartStore();
@@ -328,24 +326,22 @@ const getCategoryNav = async () => {
     "http://localhost:8000/api/public/get-all-category-list"
   );
   if (res) {
-    console.log(res);
+    // console.log(res);
     CategoryItemsNav.value = res.data;
   }
 };
 
 const getCategory = async () => {
-  const res = await axios.get(
-    "http://localhost:8000/api/public/apricot"
-  );
+  const res = await axios.get("http://localhost:8000/api/public/apricot");
   if (res) {
-    console.log(res);
+    // console.log(res);
     CategoryItems.value = res.data?.header_categories;
   }
 };
 
 onMounted(() => getCategory());
 onMounted(() => getCategoryNav());
-onMounted(() => authStore.fetchUser())
+onMounted(() => authStore.fetchUser());
 onMounted(() => getNavItems());
 const isNavVisible = ref(true);
 let lastScrollY = window.scrollY;

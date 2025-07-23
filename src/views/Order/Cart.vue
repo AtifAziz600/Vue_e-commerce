@@ -1,55 +1,122 @@
 <template>
   <AppLayout>
     <section
-      class="relative z-10 bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen py-12"
+      class="relative z-10 bg-gradient-to-br from-gray-50 to-gray-200 min-h-screen py-16 font-sans"
     >
-      <div class="w-full max-w-7xl px-2 sm:px-4 md:px-8 mx-auto relative z-10">
-        <div class="grid grid-cols-1 xl:grid-cols-12 gap-4 md:gap-8">
-          <div
-            class="col-span-1 xl:col-span-8 pt-8 pb-6 md:py-16 w-full max-xl:max-w-8xl max-xl:mx-auto sm:px-4 px-2"
-          >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+          <div class="col-span-1 xl:col-span-8 space-y-6">
             <div
-              class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-gray-200 gap-2"
+              class="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-gray-300"
             >
-              <h2
-                class="font-semibold text-2xl sm:text-3xl text-gray-900 tracking-tight"
-              >
+              <h2 class="text-3xl font-semibold text-gray-900">
                 Shopping Cart
               </h2>
-              <h2 class="font-medium text-lg sm:text-xl text-gray-500">
-                {{ cartItems.length }} Items
-              </h2>
+              <span class="text-lg font-medium text-gray-500"
+                >{{ cartItems.length }} Items</span
+              >
             </div>
             <div
-              class="hidden md:grid grid-cols-12 mt-8 pb-6 border-b border-gray-100"
+              class="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <div class="col-span-12 md:col-span-7">
-                <p class="font-normal text-lg text-gray-600">Product Details</p>
+              <h3 class="text-xl font-semibold text-gray-800 border-b pb-2">
+                Shipping Information
+              </h3>
+              <div>
+                <label
+                  for="street"
+                  class="block text-sm font-medium text-gray-600"
+                  >Street Address</label
+                >
+                <input
+                  v-model="form.street_address"
+                  type="text"
+                  id="street"
+                  placeholder="Enter Street Address"
+                  class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                />
               </div>
-              <div class="col-span-12 md:col-span-5">
-                <div class="grid grid-cols-5">
-                  <div class="col-span-2">
-                    <p class="font-normal text-lg text-gray-600 text-center">
-                      Price
-                    </p>
-                  </div>
-                  <div class="col-span-2">
-                    <p class="font-normal text-lg text-gray-600 text-center">
-                      Quantity
-                    </p>
-                  </div>
-                  <div class="col-span-1">
-                    <p class="font-normal text-lg text-gray-600 text-center">
-                      Total
-                    </p>
-                  </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="city"
+                    class="block text-sm font-medium text-gray-600"
+                    >City</label
+                  >
+                  <input
+                    v-model="form.city"
+                    type="text"
+                    id="city"
+                    placeholder="Enter City"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  />
                 </div>
+
+                <div>
+                  <label
+                    for="state"
+                    class="block text-sm font-medium text-gray-600"
+                    >State/Province</label
+                  >
+                  <input
+                    v-model="form.state"
+                    type="text"
+                    id="state"
+                    placeholder="Enter Division"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="zip_code"
+                    class="block text-sm font-medium text-gray-600"
+                    >ZIP/Postal Code</label
+                  >
+                  <input
+                    v-model="form.zip_code"
+                    type="text"
+                    id="zip_code"
+                    placeholder="Enter Zip Code"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  />
+                </div>
+
+                <div>
+                  <label
+                    for="country"
+                    class="block text-sm font-medium text-gray-600"
+                    >Country</label
+                  >
+                  <input
+                    v-model="form.country"
+                    type="text"
+                    id="country"
+                    placeholder="Enter Country Name"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="hidden md:grid grid-cols-12 pb-4 border-b border-gray-200 text-sm text-gray-500 font-medium"
+            >
+              <div class="col-span-7">Product Details</div>
+              <div class="col-span-5 grid grid-cols-6">
+                <div class="col-span-2 text-center">Price</div>
+                <div class="col-span-1 text-center">Quantity</div>
+                <div class="col-span-1 text-center">Total</div>
+                <div class="col-span-1 text-center">Action</div>
               </div>
             </div>
             <div
               v-for="item in cartItems"
               :key="item.id"
-              class="flex flex-col md:flex-row items-stretch px-8 gap-4 py-4 border-b border-gray-100 group bg-white/90 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 mb-3"
+              class="bg-white border border-gray-200 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col md:flex-row gap-4"
             >
               <div
                 class="flex-shrink-0 flex items-center justify-center md:w-28 w-full"
@@ -57,209 +124,159 @@
                 <img
                   :src="item.image"
                   :alt="item.title"
-                  class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border border-gray-200 shadow"
+                  class="w-24 h-24 md:w-28 md:h-28 rounded-xl object-cover border border-gray-200"
                 />
               </div>
               <div
-                class="flex flex-1 flex-col md:flex-row md:items-center w-full max-w-8xl gap-2"
+                class="flex-1 flex flex-col md:flex-row md:items-center gap-4"
               >
-                <div
-                  class="flex-1 flex flex-col justify-center md:items-start items-center text-center md:text-left"
-                >
-                  <h6 class="font-semibold text-sm text-gray-900 line-clamp-2">
+                <div class="flex-1 text-center md:text-left">
+                  <h6
+                    class="text-base font-semibold text-gray-900 line-clamp-2"
+                  >
                     {{ item.title }}
                   </h6>
-                  <span class="text-sm text-gray-500 mt-1">{{
-                    item.category
-                  }}</span>
+                  <span class="text-sm text-gray-500">{{ item.category }}</span>
                 </div>
-                <div class="flex items-center justify-center px-8 mt-2 md:mt-0">
-                  <h6
-                    class="font-medium text-base text-gray-600 group-hover:text-rose-900 transition-all"
+
+                <div class="text-center">
+                  <span class="text-gray-600 font-medium"
+                    >zł{{ item.price }}</span
                   >
-                    zł{{ item.price }}
-                  </h6>
                 </div>
-                <div
-                  class="flex items-center justify-center md:justify-start mt-2 md:mt-0"
-                >
+
+                <div class="flex items-center justify-center">
                   <div
-                    class="flex items-center h-9 bg-gray-100 rounded-lg shadow-inner"
+                    class="flex items-center bg-gray-100 rounded-lg overflow-hidden"
                   >
                     <button
                       @click="decrement(item)"
-                      class="rounded-l-lg px-3 py-1 border-r border-gray-200 bg-white hover:bg-gray-50 transition"
+                      class="px-3 py-1 bg-white border-r border-gray-200 hover:bg-gray-50"
                     >
-                      <Icon icon="mdi:minus" width="10" height="18" />
+                      <Icon icon="mdi:minus" class="w-4 h-4" />
                     </button>
                     <input
                       type="text"
-                      class="bg-transparent w-10 text-center font-semibold text-base outline-none"
                       :value="item.quantity"
                       readonly
+                      class="w-10 text-center bg-transparent text-base font-semibold"
                     />
                     <button
                       @click="increment(item)"
-                      class="rounded-r-lg px-3 py-1 border-l border-gray-200 bg-white hover:bg-gray-50 transition"
+                      class="px-3 py-1 bg-white border-l border-gray-200 hover:bg-gray-50"
                     >
-                      <Icon icon="mdi:plus" width="10" height="18" />
+                      <Icon icon="mdi:plus" class="w-4 h-4" />
                     </button>
                   </div>
                 </div>
-                <div
-                  class="flex items-center justify-center md:justify-end mt-2 md:mt-0 min-w-[80px]"
-                >
-                  <p
-                    class="font-bold text-base md:text-lg text-gray-700 group-hover:text-rose-600 transition"
-                  >
-                    zł{{ item.total }}
-                  </p>
+
+                <div class="text-right font-bold text-gray-700">
+                  zł{{ item.total }}
                 </div>
               </div>
-              <div class="flex items-center justify-center mt-2 md:mt-0">
+
+              <div class="flex items-center justify-end">
                 <button
                   @click="removeItem(item)"
-                  class="text-sm text-red-500 hover:text-red-700 font-medium transition"
+                  class="text-red-500 hover:text-red-700 transition"
                 >
-                  <Icon icon="mdi:trash" class="w-8 h-8" />
+                  <Icon icon="mdi:trash" class="w-6 h-6" />
                 </button>
               </div>
             </div>
-
-            <RouterLink
-              to="/add-coupon-code"
-              class="flex flex-col sm:flex-row items-center justify-end mt-6"
-            >
+            <RouterLink to="/add-coupon-code" class="flex justify-end">
               <button
-                class="flex items-center px-4 py-2 rounded-full gap-2 border-none outline-0 font-semibold text-base sm:text-lg text-red-600 hover:text-white bg-white shadow hover:bg-secondysButton transition"
+                class="flex items-center gap-2 text-base font-semibold text-red-600 hover:text-white bg-white hover:bg-red-500 transition px-5 py-2 rounded-full shadow"
               >
                 Add Coupon Code
-                <Icon icon="mdi:arrow-right" class="w-6 h-6" />
+                <Icon icon="mdi:arrow-right" class="w-5 h-5" />
               </button>
             </RouterLink>
           </div>
           <div
-            class="col-span-1 xl:col-span-4 bg-white/90 rounded-2xl shadow-lg mx-auto py-8 px-3 sm:px-6 max-w-full sm:max-w-md w-full"
+            class="col-span-1 xl:col-span-4 bg-white rounded-2xl shadow-xl p-6 space-y-6"
           >
-            <h2
-              class="font-semibold text-2xl sm:text-3xl text-gray-900 pb-6 border-b border-gray-200"
-            >
+            <h2 class="text-2xl font-semibold text-gray-900 border-b pb-4">
               Order Summary
             </h2>
-            <div class="mt-6">
-              <div class="flex items-center justify-between pb-4">
-                <p class="font-normal text-base sm:text-lg text-gray-700">
-                  {{ cartItems.length }} Items
-                </p>
-                <p class="font-medium text-base sm:text-lg text-gray-900">
-                  zł{{ subtotal }}
-                </p>
-              </div>
-              <form @submit.prevent>
-                <label
-                  class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
-                  >Shipping</label
-                >
-                <div class="flex pb-4">
-                  <div class="relative w-full">
-                    <select
-                      v-model="selectedShipping"
-                      class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
-                    >
-                      <option value="">Select Delivery</option>
-                      <option value="standard">
-                        Standard Delivery - zł5.00
-                      </option>
-                      <option value="express">
-                        Express Delivery - zł10.00
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <label
-                  class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
-                  >Promo Code</label
-                >
-                <div class="flex pb-3 w-full gap-2">
-                  <input
-                    type="text"
-                    v-model="grand_total_coupon"
-                    class="block w-full h-10 px-3 text-base font-normal text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-rose-400 shadow"
-                    placeholder="xxxx xxxx xxxx"
-                  />
-                  <button
-                    type="button"
-                    @click="applyPromo"
-                    class="px-3 py-2 rounded-lg bg-primarysButton hover:bg-secondysButton text-white font-semibold transition text-sm"
-                  >
-                    Apply
-                  </button>
-                </div>
-                <label
-                  class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
-                  >Payment Method</label
-                >
-                <div class="flex pb-3 w-full">
-                  <div class="relative w-full">
-                    <select
-                      v-model="selectedMethod"
-                      class="block w-full h-10 px-3 text-base font-normal text-gray-400 bg-white border border-gray-300 rounded-lg focus:outline-rose-400 shadow"
-                    >
-                      <option disabled value="">Choose</option>
-                      <option value="Card">Card</option>
-                    </select>
-                  </div>
-                </div>
-                <label
-                  class="flex items-center mb-1.5 text-gray-600 text-xs sm:text-sm font-medium"
-                  >Coupon Code</label
-                >
-                <div class="flex items-center justify-between">
-                  <p
-                    class="text-gray-600 py-1.5 text-xs sm:text-sm font-normal"
-                  >
-                    Code
-                  </p>
-                  <p class="py-1.5 text-sm sm:text-sm font-bold text-green-500">
-                    #{{ couponStore.appliedCoupon || "None" }}
-                  </p>
-                </div>
-                <div class="flex items-center justify-between">
-                  <p
-                    class="text-gray-600 py-1.5 text-xs sm:text-sm font-normal"
-                  >
-                    Discount
-                  </p>
-                  <p class="text-gray-900 py-1.5 text-xs sm:text-sm font-thin">
-                    zł {{ discount.toFixed(2) }}
-                  </p>
-                </div>
-                <div class="flex items-center border-b border-gray-200 pb-6">
-                  <button
-                    @click="methodPay"
-                    class="rounded-lg w-full bg-slate-700 py-2 px-3 text-white text-sm font-semibold text-center transition hover:bg-slate-900"
-                    type="button"
-                  >
-                    Apply
-                  </button>
-                </div>
-                <div class="flex items-center justify-between py-6">
-                  <p class="font-medium text-lg sm:text-xl text-gray-900">
-                    {{ cartItems.length }} Items
-                  </p>
-                  <p class="font-semibold text-lg sm:text-xl text-deepMaroon">
-                    zł{{ total.toFixed(2) }}
-                  </p>
-                </div>
-                  <button
-                    @click="paymentAndPlaceOrder"
-                    class="w-full text-center bg-primarysButton hover:bg-secondysButton rounded-xl py-3 px-4 font-semibold text-base sm:text-lg text-white shadow transition"
-                    type="button"
-                  >
-                    Checkout
-                  </button>
-              </form>
+
+            <div class="flex justify-between text-gray-700">
+              <span>{{ cartItems.length }} Items</span>
+              <span class="font-medium">zł{{ subtotal }}</span>
             </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-600">Shipping</label>
+              <select
+                v-model="selectedShipping"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400"
+              >
+                <option value="">Select Delivery</option>
+                <option value="standard">Standard Delivery - zł5.00</option>
+                <option value="express">Express Delivery - zł10.00</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block mb-1 text-sm text-gray-600">Promo Code</label>
+              <div class="flex gap-2">
+                <input
+                  v-model="grand_total_coupon"
+                  type="text"
+                  placeholder="xxxx xxxx xxxx"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
+                />
+                <button
+                  @click="applyPromo"
+                  class="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 transition"
+                >
+                  Apply
+                </button>
+              </div>
+            </div>
+            <div>
+              <label class="block mb-1 text-sm text-gray-600"
+                >Payment Method</label
+              >
+              <select
+                v-model="selectedMethod"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400"
+              >
+                <option disabled value="">Choose</option>
+                <option value="Card">Card</option>
+              </select>
+            </div>
+
+            <div class="space-y-2 border-t pt-4 text-sm text-gray-700">
+              <div class="flex justify-between">
+                <span>Coupon</span>
+                <span class="font-bold text-green-500"
+                  >#{{ couponStore.appliedCoupon || "None" }}</span
+                >
+              </div>
+              <div class="flex justify-between">
+                <span>Discount</span>
+                <span>zł {{ discount.toFixed(2) }}</span>
+              </div>
+            </div>
+            <button
+              @click="methodPay"
+              class="w-full bg-gray-800 hover:bg-black text-white py-2 rounded-md text-sm font-semibold"
+            >
+              Apply
+            </button>
+            <div
+              class="flex justify-between text-lg font-semibold text-gray-900 border-t pt-6"
+            >
+              <span>Total</span>
+              <span class="text-deepMaroon">zł{{ total.toFixed(2) }}</span>
+            </div>
+            <button
+              @click="paymentAndPlaceOrder"
+              class="w-full bg-primarysButton hover:bg-secondysButton text-white py-3 rounded-xl font-semibold text-base transition"
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>
@@ -341,10 +358,10 @@ const form = ref({
   email: computed(() => authStore?.user?.user?.email),
   phone: computed(() => authStore?.user?.user?.phone),
   country: authStore?.user?.country ?? "Bangladesh",
-  state: "Dhaka",
-  city: "Dhaka",
-  zip_code: "1212",
-  street_address: "Dhaka",
+  state: "",
+  city: "",
+  zip_code: "",
+  street_address: "",
   sub_total: subtotal.value,
   order_items: cartItems.value.map((item) => ({
     id: item.id,
@@ -356,8 +373,8 @@ const form = ref({
     price: item.price,
     total: item.total,
   })),
-  payment_method: 'stripe',
-  payment_status:'pending',
+  payment_method: "stripe",
+  payment_status: "pending",
   grand_total_coupon: parseFloat(grand_total_coupon.value) || 0,
   coupon_code: couponStore.appliedCoupon,
   delivery_charge: shippingCost.value,
@@ -365,11 +382,11 @@ const form = ref({
 });
 
 onMounted(() => {
-  if(!authStore?.user?.token) {
-    toast.error("Please Login first!")
-    router.push('/login')
+  if (!authStore?.user?.token) {
+    toast.error("Please Login first!");
+    router.push("/login");
   }
-})
+});
 
 const paymentAndPlaceOrder = async () => {
   if (
@@ -385,21 +402,23 @@ const paymentAndPlaceOrder = async () => {
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/api/customer/order", form.value);
+      "http://localhost:8000/api/customer/order",
+      form.value
+    );
 
     if (response?.data) {
       toast.success("Checkout successful!");
       if (response.data?.url) {
         window.location.href = response.data.url;
       } else {
-        router.push("/order-confirm")
+        router.push("/order-confirm");
       }
     } else {
       toast.error("Something went wrong with the payment.");
     }
   } catch (error) {
     toast.error("Payment failed. Please try again.");
-    console.error("Stripe checkout error:", error);
+    // console.error("Stripe checkout error:", error);
   }
 };
 

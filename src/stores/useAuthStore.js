@@ -13,30 +13,30 @@ export const useAuthStore = defineStore("auth", () => {
   const nav = ref({ isMobileMenu: false });
 
   async function fetchUser() {
-    const storedUser = JSON.parse(await getLocalStorage());
+    // const storedUser = JSON.parse(await getLocalStorage());
 
-    if (storedUser) {
-      try {
-        const { data } = await sendRequest({
-          method: "get",
-          url: "http://localhost:8000/user",
-          headers: {
-            Authorization: `Bearer ${storedUser?.token}`,
-          },
-        });
+    // if (storedUser) {
+    //   try {
+    //     const { data } = await sendRequest({
+    //       method: "get",
+    //       url: "http://localhost:8000/api/user",
+    //       headers: {
+    //         Authorization: `Bearer ${storedUser?.token}`,
+    //       },
+    //     });
 
-        if (data) {
-          user.value = data;
-          tokenStore.setAuthUser(data);
-        } else {
-          await clearLocalStorage();
-        }
-      } catch (err) {
-        await clearLocalStorage();
-      }
-    } else {
-      await clearLocalStorage();
-    }
+    //     if (data) {
+    //       user.value = data;
+    //       tokenStore.setAuthUser(data);
+    //     } else {
+    //       await clearLocalStorage();
+    //     }
+    //   } catch (err) {
+    //     await clearLocalStorage();
+    //   }
+    // } else {
+    //   await clearLocalStorage();
+    // }
   }
 
   async function login(credential) {
@@ -49,7 +49,8 @@ export const useAuthStore = defineStore("auth", () => {
         data: credential,
       });
       if (loginResponse?.data) {
-        await setLocalStorage(loginResponse.data);
+        // console.log('auth data', loginResponse?.data)
+        await setLocalStorage(loginResponse?.data);
         user.value = loginResponse.data;
         return loginResponse;
       }

@@ -99,12 +99,12 @@ import { useRouter, useRoute } from "vue-router";
 import axios from "axios";
 const toast = useToast();
 const cart = useCartStore();
-const products = ref([]);
+// const products = ref([]);
 const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products);
+  // console.log(productApiStore.products);
 });
 
 function handleAddToCart(item) {

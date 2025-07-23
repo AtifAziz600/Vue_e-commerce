@@ -23,7 +23,9 @@
     "primevue": "^4.3.6",
     "swiper": "^11.1.4",
     "vue": "^3.4.21",
+    "vue-laravel-sanctum": "^2.4.2",
     "vue-lazyload": "^3.0.0",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.5.1",
     "vue-toastification": "^2.0.0-rc.5",
     "vue3-carousel": "^0.3.3"

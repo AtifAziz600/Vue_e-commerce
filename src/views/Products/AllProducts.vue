@@ -400,7 +400,7 @@
                   v-if="item.discount"
                   class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
                 >
-                  -{{ item.discount }}%
+                  -21%
                 </span>
               </RouterLink>
               <div class="flex-1 flex flex-col p-5">
@@ -482,7 +482,7 @@ const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products);
+  // console.log(productApiStore.products);
 });
 
 import { useCartStore } from "../../stores/useCartStore";

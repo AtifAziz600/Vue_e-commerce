@@ -2,23 +2,25 @@
   <section class="py-24 relative bg-gray-100">
     <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
       <div class="w-full flex-col justify-start items-start gap-12 inline-flex">
-        <!-- Order Header -->
         <div
           class="w-full flex-col justify-center sm:items-start items-center gap-1 flex"
         >
           <h2
             class="text-gray-500 text-2xl font-semibold font-manrope leading-9"
           >
-            Order <span class="text-indigo-600">{{ orderId }}</span>
+            Order <span class="text-indigo-600">{{ order_code }}</span>
           </h2>
           <span class="text-gray-500 text-base font-medium leading-relaxed">{{
             orderDate
           }}</span>
-          <button
-            class="bg-gradient-to-r from-primarysButton to-midnight hover:from-secondysButton hover:to-secondysButton text-white px-5 py-2 rounded-xl shadow transition duration-300"
-          >
-            Print Invoice
-          </button>
+          <div class="flex justify-center items-center">
+            <RouterLink
+            to="/"
+              class="bg-primarysButton hover:bg-secondysButton text-white px-5 py-2 rounded-xl shadow transition duration-300"
+            >
+              Continue Shopping
+            </RouterLink>
+          </div>
         </div>
 
         <div class="w-full bg-white p-8 rounded-xl flex-col gap-5 flex">
@@ -66,7 +68,6 @@
           </ol>
         </div>
 
-        <!-- Order Items -->
         <div class="w-full bg-white p-8 rounded-xl flex-col gap-5 flex">
           <h2
             class="text-gray-900 text-2xl font-semibold font-manrope border-b pb-5"
@@ -98,31 +99,30 @@
                   zł {{ item.price }} x {{ item.qty }}
                 </h4>
                 <h4 class="text-gray-900 text-xl font-semibold">
-                  zł {{ item.total.toFixed(2) }}
+                  zł {{ item.total }}
                 </h4>
               </div>
             </div>
           </div>
 
-          <!-- Summary -->
           <div class="flex flex-col gap-4">
             <div
               class="flex justify-between text-gray-500 text-base font-medium"
             >
               <span>Subtotal</span>
-              <span>zł {{ subtotal.toFixed(2) }}</span>
+              <span>zł {{ subtotal }}</span>
             </div>
             <div
               class="flex justify-between text-gray-500 text-base font-medium"
             >
               <span>Shipping Charge</span>
-              <span>zł {{ shipping.toFixed(2) }}</span>
+              <span>zł {{ shipping }}</span>
             </div>
             <div
               class="flex justify-between text-gray-900 text-lg font-semibold"
             >
               <span>Total</span>
-              <span>zł {{ total.toFixed(2) }}</span>
+              <span>zł {{ total }}</span>
             </div>
           </div>
         </div>
@@ -141,19 +141,58 @@
 </template>
 
 <script setup>
-import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { RouterLink, useRoute } from "vue-router";
+import { computed, onMounted, ref } from "vue";
 import { useOrderStore } from "../../stores/useStoreOrder";
+
+import axios from "axios";
 
 const route = useRoute();
 const order = useOrderStore();
+const itemsFromQuery = ref([]);
+if (route.query.items) {
+  try {
+    itemsFromQuery.value = JSON.parse(decodeURIComponent(route.query.items));
+  } catch (e) {
+    console.error("Failed to parse items from query", e);
+  }
+}
+const getCustomer = async () => {
+  const response = await axios.get(
+    `http://localhost:8000/api/customer/orders/${route.params.slug}`,
+    {
+      headers: {
+        Authorization: `Bearer ${authStore.user?.token}`,
+        Accept: "application/json",
+      },
+    }
+  );
+  if (response) {
+    order.value = response.data;
+  }
+};
 
-const customerName = computed(() => order.customerName);
-const orderId = computed(() => order.orderId);
-const orderItems = computed(() => order.orderItems);
-const subtotal = computed(() => order.subtotal);
-const shipping = computed(() => order.shipping);
-const total = computed(() => subtotal.value + shipping.value);
+onMounted(async () => {
+  window.scrollTo(0, 0);
+  await getCustomer();
+});
+
+const customerName = computed(
+  () => order.customerName || route.query.customer_name
+);
+const orderItems = computed(() =>
+  order.orderItems?.length ? order.orderItems : itemsFromQuery.value
+);
+const subtotal = computed(
+  () => order.subtotal || Number(route.query.subtotal) || 0
+);
+const shipping = computed(
+  () => order.shipping || Number(route.query.shipping) || 0
+);
+const total = computed(
+  () =>
+    order.total || Number(route.query.total) || subtotal.value + shipping.value
+);
 
 const estimatedDelivery = new Date(
   Date.now() + 5 * 24 * 60 * 60 * 1000
@@ -170,14 +209,4 @@ const trackingSteps = [
   { title: "Shipped", completed: false },
   { title: "Delivered", completed: false },
 ];
-
-import { watchEffect } from "vue";
-
-watchEffect(() => {
-  console.log("customerName:", customerName.value);
-  console.log("orderItems:", orderItems.value);
-  console.log("subtotal:", subtotal.value);
-  console.log("shipping:", shipping.value);
-  console.log("total:", total.value);
-});
 </script>

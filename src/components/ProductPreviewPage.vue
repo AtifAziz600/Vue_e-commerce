@@ -130,7 +130,7 @@
                   />
                 </button>
                 <button
-                @click="handleBuyNow"
+                  @click="handleBuyNow"
                   class="text-center w-full px-5 py-4 rounded-xl bg-primarysButton hover:bg-secondysButton flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300"
                 >
                   Buy Now
@@ -501,6 +501,9 @@
             </p>
           </div>
         </div>
+        <div class="mx-auto">
+          <Offer/>
+        </div>
       </div>
     </section>
   </AppLayout>
@@ -515,11 +518,12 @@ import { Icon } from "@iconify/vue";
 import Modal from "../components/Modal.vue";
 import { useApiProductStore } from "../stores/useApiProductStore";
 import { useSingleProductStore } from "../stores/useSingleProductStore";
+import Offer from "@/views/CarusoulCard/Offer.vue";
 const productApiStore = useApiProductStore();
 const router = useRouter();
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products);
+  // console.log(productApiStore.products);
 });
 const rating = ref(0);
 const isReviewModalOpen = ref(false);
@@ -558,7 +562,7 @@ const toast = useToast();
 const singleProductStore = useSingleProductStore();
 function handleAddToCart(item) {
   cart.addToCart({
-    id: item.id, 
+    id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
@@ -573,7 +577,7 @@ function handleAddToCart(item) {
 }
 function handleBuyNow(item) {
   const checkoutProduct = {
-    id: item.id, 
+    id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
@@ -585,12 +589,12 @@ function handleBuyNow(item) {
     category: item.tag,
   };
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
-  toast.success(`${item.title} is bought`)
+  toast.success(`${item.title} is bought`);
   router.push("/checkout");
 }
 onMounted(async () => {
   await singleProductStore.fetchProductBySlug(route.params.slug);
-  console.log('Fetched product:', singleProductStore.item);
+  // console.log("Fetched product:", singleProductStore.item);
 });
 
 const product = computed(() => singleProductStore.product);

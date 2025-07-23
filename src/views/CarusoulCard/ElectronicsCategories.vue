@@ -87,7 +87,7 @@ const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  console.log(productApiStore.products);
+  // console.log(productApiStore.products);
 });
 const toast = useToast();
 const cart = useCartStore();

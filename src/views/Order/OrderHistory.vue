@@ -3,7 +3,6 @@
     <section class="bg-gray-100 py-8 antialiased md:py-16 min-h-screen">
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div class="mx-auto max-w-full">
-          <!-- Header -->
           <div class="gap-4 sm:flex sm:items-center sm:justify-between mb-8">
             <h2
               class="text-3xl font-extrabold sm:text-4xl flex items-center gap-2"
@@ -54,7 +53,7 @@
           <div class="mt-6 flow-root sm:mt-8">
             <div class="divide-y rounded-xl bg-white shadow-lg overflow-hidden">
               <div
-                v-for="order in orders"
+                v-for="order in data?.combine_orders"
                 :key="order.id"
                 class="flex flex-wrap items-center gap-y-4 py-8 px-6 transition"
               >
@@ -67,25 +66,28 @@
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt class="text-base font-medium text-gray-600">Date:</dt>
                   <dd class="mt-1.5 text-base font-semibold text-gray-900">
-                    {{ order.date }}
+                    {{ order.created_at }}
                   </dd>
                 </dl>
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt class="text-base font-medium text-gray-600">Price:</dt>
                   <dd class="mt-1.5 text-base font-semibold text-gray-900">
-                    {{ order.price }}
+                    {{ order.grand_total }}
                   </dd>
                 </dl>
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt class="text-base font-medium text-gray-600">Status:</dt>
                   <dd
                     class="me-2 mt-1.5 inline-flex items-center rounded px-2.5 py-0.5 text-xs font-medium"
-                    :class="statusClass(order.status)"
+                    :class="statusClass(order.order_status)"
                   >
                     <span class="mr-1">
-                      <Icon :icon="statusIcons[order.status]" class="w-4 h-4" />
+                      <Icon
+                        :icon="statusIcons[order.order_status.toLowerCase()]"
+                        class="w-4 h-4"
+                      />
                     </span>
-                    {{ order.status }}
+                    {{ order.order_status }}
                   </dd>
                 </dl>
                 <div
@@ -93,8 +95,8 @@
                 >
                   <button
                     v-if="
-                      order.status === 'Pre-order' ||
-                      order.status === 'In transit'
+                      order.order_status === 'Pre-order' ||
+                      order.order_status === 'In transit'
                     "
                     type="button"
                     @click="handleCancel"
@@ -119,7 +121,17 @@
                   </RouterLink>
                   <RouterLink
                     @click="handleRefunds"
-                    to="/refund-order"
+                    :to="{
+                      path: '/refund-order',
+                      query: {
+                        orderId: order.order_code,
+                        orderDate: order.created_at,
+                        orderItem: order.item,
+                        orderTitle: order.title,
+                        orderImage: order.cover_image_url,
+                        orderQty: order.quantity,
+                      },
+                    }"
                     class="w-full rounded-lg border border-slate-700 px-3 py-2 text-center text-sm font-medium text-primarysButton hover:bg-secondysButton hover:text-white focus:outline-none focus:ring-4 focus:ring-secondysButton transition"
                   >
                     Refund Order
@@ -139,102 +151,59 @@ import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/useAuthStore";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
 
 const toast = useToast();
 const route = useRouter();
 const authStore = useAuthStore();
 const statusIcons = {
-  "Pre-order": "mdi:clock-outline",
-  "In transit": "mdi:truck-delivery-outline",
-  Confirmed: "mdi:check-circle-outline",
-  Cancelled: "mdi:close-circle-outline",
+  "pre-order": "mdi:clock-outline",
+  "in transit": "mdi:truck-delivery-outline",
+  confirmed: "mdi:check-circle-outline",
+  cancelled: "mdi:close-circle-outline",
 };
 
-onMounted(() => {
-  if(!authStore?.user?.token) {
-    toast.error("Please Login first!")
-    route.push('/login')
-  }
-})
+const data = ref();
 
-const orders = [
-  {
-    id: "#FWB127364372",
-    date: "20.12.2023",
-    price: "zł4,756",
-    status: "Pre-order",
-  },
-  {
-    id: "#FWB125467980",
-    date: "11.12.2023",
-    price: "zł499",
-    status: "In transit",
-  },
-  {
-    id: "#FWB139485607",
-    date: "08.12.2023",
-    price: "zł85",
-    status: "Confirmed",
-  },
-  {
-    id: "#FWB137364371",
-    date: "16.11.2023",
-    price: "zł119",
-    status: "Confirmed",
-  },
-  {
-    id: "#FWB134567890",
-    date: "02.11.2023",
-    price: "zł2,056",
-    status: "Confirmed",
-  },
-  {
-    id: "#FWB146284623",
-    date: "26.09.2023",
-    price: "zł180",
-    status: "Cancelled",
-  },
-  {
-    id: "#FWB145967376",
-    date: "17.07.2023",
-    price: "zł756",
-    status: "Confirmed",
-  },
-  {
-    id: "#FWB148756352",
-    date: "30.06.2023",
-    price: "zł235",
-    status: "Confirmed",
-  },
-  {
-    id: "#FWB159873546",
-    date: "04.06.2023",
-    price: "zł90",
-    status: "Cancelled",
-  },
-  {
-    id: "#FWB156475937",
-    date: "11.02.2023",
-    price: "zł1,845",
-    status: "Confirmed",
-  },
-];
+onMounted(async () => {
+  if (!authStore?.user?.token) {
+    toast.error("Please login first!");
+    return route.push("/login");
+  }
+  try {
+    const response = await axios.get(
+      `http://localhost:8000/api/customer/customer/${authStore.user?.user?.id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authStore.user.token}`,
+          Accept: "application/json",
+        },
+      }
+    );
+
+    data.value = response.data;
+  } catch (error) {
+    toast.error("Failed to fetch orders.");
+  }
+});
 
 function statusClass(status) {
-  switch (status) {
-    case "Pre-order":
+  const normalizedStatus = status.toLowerCase();
+  switch (normalizedStatus) {
+    case "pre-order":
       return "bg-blue-100 text-blue-800";
-    case "In transit":
+    case "in transit":
       return "bg-yellow-100 text-yellow-800";
-    case "Confirmed":
+    case "confirmed":
       return "bg-green-100 text-green-800";
-    case "Cancelled":
+    case "cancelled":
       return "bg-red-100 text-red-800";
     default:
       return "bg-gray-100 text-gray-800";
   }
 }
+
 function handleCancel() {
   toast.error("Order Have Been Cancel");
 }
