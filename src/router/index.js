@@ -35,41 +35,6 @@ const router = createRouter({
       component: () => import('../views/Order/Cart.vue')
     },
     {
-      path: '/new-release',
-      name:'new-release',
-      component: () => import('../views/NewRelease/NewRelease.vue')
-    },
-    {
-      path: '/books',
-      name: 'books',
-      component: () => import('../views/Books/Books.vue')
-    },
-    {
-      path: "/computer",
-      name: 'computer',
-      component: () => import('../views/Computer/Computer.vue')
-    },
-    {
-      path: "/health",
-      name: 'health',
-      component: () => import('../views/Health/Heath.vue')
-    },
-    {
-      path: '/fashion',
-      name: 'fashion',
-      component: () => import('../views/Fashion/Fashion.vue')
-    },
-    {
-      path: '/toysgame',
-      name: "toysgames",
-      component: () => import('../views/Toy&Game/Toy&Games.vue')
-    },
-    {
-      path: "/pharmacy",
-      name: "pharmacy",
-      component: () => import('../views/Pharmacy/Pharmacy.vue')
-    },
-    {
       path: "/best-seller",
       name: "best-seller",
       component: () => import('../views/BestSeller/SellerBestItems.vue')
@@ -110,29 +75,9 @@ const router = createRouter({
       component: () => import('../views/Review/Review.vue')
     },
     {
-      path: "/electronics",
-      name: "electronics",
-      component: () => import('../views/Electronics/Electronics.vue')
-    },
-    {
-      path: "/phones",
-      name: "phones",
-      component: () => import('../views/Phone/Phone.vue')
-    },
-    {
-      path: "/tablets",
-      name: "tablets",
-      component: () => import('../views/Tablets/Tablets.vue')
-    },
-    {
       path: '/category/:slug',
       name: "category",
       component: () => import('../views/Category/Category.vue')
-    },
-    {
-      path: "/accessories",
-      name: "accessories",
-      component: () => import('../views/Accessories/Accessories.vue')
     },
     {
       path: '/order-tracking',
