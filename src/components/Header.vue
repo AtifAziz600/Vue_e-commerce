@@ -175,11 +175,37 @@
               <span class="text-xs">Favorites</span>
             </RouterLink>
           </li>
-          <li>
-            <RouterLink to="/login" class="flex flex-col items-center gap-1">
+          <li class="relative">
+            <button
+              @click="handleAccountClick"
+              class="flex flex-col items-center gap-1"
+              aria-haspopup="true"
+              :aria-expanded="mobileAccountDropdownOpen.toString()"
+            >
               <Icon icon="mdi:account-outline" class="w-6 h-6" />
               <span class="text-xs">Account</span>
-            </RouterLink>
+            </button>
+
+            <transition name="fade">
+              <div
+                v-if="authStore.isLoggedIn && mobileAccountDropdownOpen"
+                class="absolute bottom-10 right-0 bg-white rounded-md shadow-lg z-50 border w-40 text-gray-700"
+              >
+                <RouterLink
+                  to="/customer/profile"
+                  class="block px-4 py-2 hover:bg-gray-100"
+                  @click="mobileAccountDropdownOpen = false"
+                >
+                  Profile
+                </RouterLink>
+                <button
+                  @click="logoutMobile"
+                  class="w-full text-left px-4 py-2 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            </transition>
           </li>
         </ul>
       </nav>
@@ -291,6 +317,22 @@ const router = useRouter();
 
 const dropdownOpen = ref(false);
 const dropdownRef = ref(null);
+const mobileAccountDropdownOpen = ref(false);
+
+function handleAccountClick() {
+  if (authStore.isLoggedIn) {
+    mobileAccountDropdownOpen.value = !mobileAccountDropdownOpen.value;
+  } else {
+    router.push('/login');
+  }
+}
+
+function logoutMobile() {
+  authStore.logout();
+  mobileAccountDropdownOpen.value = false;
+  toast.success(`${authStore.user} has been Log Out`);
+  router.push('/');
+}
 
 onClickOutside(dropdownRef, () => {
   dropdownOpen.value = false;
