@@ -35,11 +35,6 @@ const router = createRouter({
       component: () => import('../views/Order/Cart.vue')
     },
     {
-      path: "/best-seller",
-      name: "best-seller",
-      component: () => import('../views/BestSeller/SellerBestItems.vue')
-    },
-    {
       path: '/wishlist',
       name: 'wishlist',
       component: () => import('../views/Order/Favorite.vue')
