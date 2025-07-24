@@ -10,7 +10,7 @@
 
     <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
       <div
-        v-for="item in productApiStore.products.slice(4, 8)"
+        v-for="item in productApiStore.products.slice(0, 4)"
         :key="item.id"
         class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >

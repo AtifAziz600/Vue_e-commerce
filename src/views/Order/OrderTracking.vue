@@ -144,9 +144,9 @@
 import { RouterLink, useRoute } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 import { useOrderStore } from "../../stores/useStoreOrder";
+import useAxios from "@/composables/useAxios";
 
-import axios from "axios";
-
+const { sendRequest } = useAxios();
 const route = useRoute();
 const order = useOrderStore();
 const itemsFromQuery = ref([]);
@@ -158,15 +158,23 @@ if (route.query.items) {
   }
 }
 const getCustomer = async () => {
-  const response = await axios.get(
-    `https://admin.welkin.ctpbd.info/api/customer/orders/${route.params.slug}`,
-    {
-      headers: {
-        Authorization: `Bearer ${authStore.user?.token}`,
-        Accept: "application/json",
-      },
-    }
-  );
+  // const response = await axios.get(
+  //   `${import.meta.env.VITE_APP_URL}customer/orders/${route.params.slug}`,
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${authStore.user?.token}`,
+  //       Accept: "application/json",
+  //     },
+  //   }
+  // );
+  const response = await sendRequest({
+    url: `customer/orders/${route.params.slug}`,
+    method: 'GET',
+    header: {
+      Authorization: `Bearer ${authStore.user?.token}`,
+      Accept: "application/json",
+    },
+  })
   if (response) {
     order.value = response.data;
   }

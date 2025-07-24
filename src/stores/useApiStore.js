@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
-
+// import axios from 'axios'
+import { useAxios } from "@/composables/useAxios";
 export const useApiStore = defineStore('apiStore', {
   state: () => ({
     products: [],
@@ -8,7 +8,12 @@ export const useApiStore = defineStore('apiStore', {
   actions: {
     async fetchProductsByCategory(slug) {
       try {
-        const res = await axios.get(`https://admin.welkin.ctpbd.info/api/product?category=${slug}`);
+        const { sendRequest } = useAxios()
+        // const res = await axios.get(`${import.meta.env.VITE_APP_URL}product?category=${slug}`);
+        const res = await sendRequest({
+          url: `product?category=${slug}`,
+          method: 'GET',
+        })
         this.products = res.data;
       } catch (error) {
         console.error("Failed to fetch products:", error);

@@ -130,7 +130,7 @@
                   />
                 </button>
                 <button
-                  @click="handleBuyNow"
+                  @click="handleBuyNow(product)"
                   class="text-center w-full px-5 py-4 rounded-xl bg-primarysButton hover:bg-secondysButton flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300"
                 >
                   Buy Now
@@ -502,7 +502,7 @@
           </div>
         </div>
         <div class="mx-auto">
-          <Offer/>
+          <Offer />
         </div>
       </div>
     </section>
@@ -577,7 +577,7 @@ function handleAddToCart(item) {
 }
 function handleBuyNow(item) {
   const checkoutProduct = {
-    id: item.id,
+    id: item.id, 
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
@@ -589,7 +589,7 @@ function handleBuyNow(item) {
     category: item.tag,
   };
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
-  toast.success(`${item.title} is bought`);
+  toast.success(`${item.title} is bought`)
   router.push("/checkout");
 }
 onMounted(async () => {

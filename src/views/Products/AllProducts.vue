@@ -474,6 +474,7 @@
 import { Icon } from "@iconify/vue";
 import { useToast } from "vue-toastification";
 import { onMounted, ref } from "vue";
+import useAxios from "@/composables/useAxios.js"
 import { useApiProductStore } from "../../stores/useApiProductStore";
 const router = useRouter();
 const route = useRoute();
@@ -487,7 +488,7 @@ onMounted(async () => {
 
 import { useCartStore } from "../../stores/useCartStore";
 import { useRoute, useRouter } from "vue-router";
-import axios from "axios";
+
 const cart = useCartStore();
 function handleBuyNow(item) {
   const checkoutProduct = {
@@ -522,12 +523,13 @@ function handleAddToCart(item) {
   });
   toast.success(`${item.title} added to cart`);
 }
-
+const {sendRequest} = useAxios();
 const products = ref(null);
 async function fetchProductsByCategory() {
-  const res = await axios.get(
-    `https://admin.welkin.ctpbd.info/api/product?category=${route.params.slug}`
-  );
+  const res = await sendRequest({
+    url: '/public/product',
+    method: 'GET',
+  });
   products.value = res.data;
 }
 

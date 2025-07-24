@@ -470,17 +470,22 @@
 <script setup>
 import Icon from "@/components/Icon.vue";
 import { useToast } from "vue-toastification";
-import { computed,onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import axios from "axios";
+import useAxios from "@/composables/useAxios.js";
 const toast = useToast();
 const router = useRouter();
 const route = useRoute();
 const products = ref(null);
+const {sendRequest} = useAxios();
 async function fetchProductsByCategory() {
-  const res = await axios.get(
-    `https://admin.welkin.ctpbd.info/api/product?category=${route.params.slug}`
-  );
+  // const res = await axios.get(
+  //   `${import.meta.env.VITE_APP_URL}product?category=${route.params.slug}`
+  // );
+  const res = await sendRequest({
+    url: `product?category=${route.params.slug}`,
+    method: "GET",
+  })
   products.value = res.data;
 }
 
@@ -488,6 +493,7 @@ onMounted(() => {
   fetchProductsByCategory();
 });
 import { useCartStore } from "../../stores/useCartStore";
+
 const cart = useCartStore();
 
 function handleAddToCart(item) {

@@ -152,11 +152,13 @@ import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { onMounted, ref } from "vue";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "@/composables/useAxios";
 
 const toast = useToast();
 const route = useRouter();
 const authStore = useAuthStore();
+const { sendRequest } = useAxios();
 const statusIcons = {
   "pre-order": "mdi:clock-outline",
   "in transit": "mdi:truck-delivery-outline",
@@ -172,16 +174,24 @@ onMounted(async () => {
     return route.push("/login");
   }
   try {
-    const response = await axios.get(
-      `https://admin.welkin.ctpbd.info/api/customer/customer/${authStore.user?.user?.id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${authStore.user.token}`,
-          Accept: "application/json",
-        },
+    // const response = await axios.get(
+    //   `${import.meta.env.VITE_APP_URL}customer/customer/${authStore.user?.user?.id}`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${authStore.user.token}`,
+    //       Accept: "application/json",
+    //     },
+    //   }
+    // );
+    
+    const response = await sendRequest({
+      url: `customer/customer/${authStore.user?.user?.id}`,
+      method: 'GET',
+      header: {
+        Authorization: `Bearer ${authStore.user.token}`,
+        Accept: "application/json",
       }
-    );
-
+    })
     data.value = response.data;
   } catch (error) {
     toast.error("Failed to fetch orders.");

@@ -1,17 +1,16 @@
 <template>
-  <div class="w-full mx-auto px-1 sm:px-1 lg:px-2 py-4 bg-gray-100">
-    <div class="mb-8 text-center">
-      <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight">
-        Latest Product
+  <div class="w-full mx-auto bg-white p-4 sm:p-6 lg:p-8 shadow-inner rounded-lg mb-14">
+    <div class="mb-8 text-start">
+      <h2
+        class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight"
+      >
+        Recommended
       </h2>
-      <p class="text-md md:text-lg text-gray-600 font-light">
-        Discover our top picks, and all the products that were featured
-      </p>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
       <div
-        v-for="item in productApiStore.products.slice(0, 8)"
+        v-for="item in productApiStore.products.slice(12, 16)"
         :key="item.id"
         class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >
@@ -60,10 +59,14 @@
           </div>
 
           <div class="flex justify-between flex-col sm:flex-row">
-            <div class="mt-4 flex items-center justify-between text-sm text-gray-500">
+            <div
+              class="mt-4 flex items-center justify-between text-sm text-gray-500"
+            >
               <div class="flex items-center space-x-1">
                 <Icon icon="mdi:star" class="text-yellow-500 text-base" />
-                <span class="text-sm font-medium text-gray-700">{{ item.rating }}</span>
+                <span class="text-sm font-medium text-gray-700">{{
+                  item.rating
+                }}</span>
                 <RouterLink
                   :to="`/review`"
                   class="text-sm ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
@@ -93,10 +96,10 @@
 import { Icon } from "@iconify/vue";
 import { ref, onMounted } from "vue";
 import { useToast } from "vue-toastification";
-import { useApiProductStore } from "../stores/useApiProductStore";
-import { useCartStore } from "../stores/useCartStore";
+import { useApiProductStore } from "../../stores/useApiProductStore";
+import { useCartStore } from "../../stores/useCartStore";
 import { useRouter, useRoute } from "vue-router";
-import axios from "axios";
+// import axios from "axios";
 const toast = useToast();
 const cart = useCartStore();
 // const products = ref([]);

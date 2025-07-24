@@ -45,12 +45,17 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import axios from 'axios';
+// import axios from 'axios';
+import useAxios from "@/composables/useAxios";
 
 const categories = ref(null);
-
+const { sendRequest } = useAxios();
 const getCategory = async() => {
-  const res = await axios.get('https://admin.welkin.ctpbd.info/api/public/get-all-category-list')
+  // const res = await axios.get(`${import.meta.env.VITE_APP_URL}public/get-all-category-list`)
+  const res = await sendRequest({
+    url: 'public/get-all-category-list',
+    method: 'GET'
+  })
   if(res){
     categories.value = res.data
   }

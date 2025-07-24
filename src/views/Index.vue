@@ -16,9 +16,11 @@
     <HomeCategoryCard />
     <RecommendedProduct />
     <BannerImage/>
+    <ProductCard2/>
     <ElectronicsCategories />
     <ProductCard />
     <BannerImage2/>
+    <ProductCard3/>
     <ProductCardCarsoal />
     <ProductSlider />
     <Brands />
@@ -44,7 +46,7 @@ import ProductSlider from "@/components/ProductSlider.vue";
 import FeatureSection from "@/components/FeatureSection.vue";
 import Pagination from "@/components//Pagination.vue";
 import ProductCardItem from "@/components/ProductCardItem.vue";
-import RecommendedProduct from "@/components/LatestProduct.vue";
+import RecommendedProduct from "@/views/Products/LatestProduct.vue";
 // import OurPartner from "@/components/OurPayment.vue";
 import Subcription from "@/components/Subcription.vue";
 import ProductOnHero from "@/components/ProductOnHero.vue";
@@ -57,6 +59,8 @@ import BannerImage2 from "@/components/BannerImage2.vue";
 import BannerImage3 from "@/components/BannerImage3.vue";
 import Offersinspired from "./CarusoulCard/Offersinspired.vue";
 import DiscoverNewProduct from "./CarusoulCard/DiscoverNewProduct.vue";
+import ProductCard3 from "./Products/ProductCard3.vue";
+import ProductCard2 from "./Products/ProductCard2.vue";
 </script>
 <style>
 .category-cards-grid-container {

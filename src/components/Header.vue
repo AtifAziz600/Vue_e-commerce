@@ -307,11 +307,12 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import Icon from "@/components/Icon.vue";
 import { useCartStore } from "@/stores/useCartStore";
 import { storeToRefs } from "pinia";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "@/composables/useAxios";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { onClickOutside } from "@vueuse/core";
-
+const { sendRequest } = useAxios();
 const authStore = useAuthStore();
 const router = useRouter();
 
@@ -353,20 +354,27 @@ const { cartCount } = storeToRefs(cart);
 const isSidebarOpen = ref(false);
 const CategoryItems = ref([]);
 const CategoryItemsNav = ref([]);
-
+  // const res = await axios.get(
+  //   `${import.meta.env.VITE_APP_URL}public/get-all-page-list`
+  // );
 const getNavItems = async () => {
-  const res = await axios.get(
-    "https://admin.welkin.ctpbd.info/api/public/get-all-page-list"
-  );
+  const res = await sendRequest({
+    url: 'public/get-all-page-list',
+    method: 'GET',
+  });
   if (res) {
     NavItems.value = res.value;
   }
 };
 
+// const res = await axios.get(
+//   `${import.meta.env.VITE_APP_URL}public/get-all-category-list`
+// );
 const getCategoryNav = async () => {
-  const res = await axios.get(
-    "https://admin.welkin.ctpbd.info/api/public/get-all-category-list"
-  );
+  const res = await sendRequest({
+    url: 'public/get-all-category-list',
+    method: 'GET',
+  })
   if (res) {
     // console.log(res);
     CategoryItemsNav.value = res.data;
@@ -374,7 +382,11 @@ const getCategoryNav = async () => {
 };
 
 const getCategory = async () => {
-  const res = await axios.get("https://admin.welkin.ctpbd.info/api/public/apricot");
+  // const res = await axios.get(`${import.meta.env.VITE_APP_URL}public/apricot`);
+  const res = await sendRequest({
+    url: 'public/apricot',
+    method: 'GET',
+  });
   if (res) {
     // console.log(res);
     CategoryItems.value = res.data?.header_categories;

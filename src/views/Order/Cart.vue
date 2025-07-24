@@ -293,11 +293,13 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useOrderStore } from "../../stores/useStoreOrder";
 import { useCouponCode } from "../../stores/useCouponCode";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "@/composables/useAxios";
 const toast = useToast();
 const cart = useCartStore();
 const authStore = useAuthStore();
 const cartItems = computed(() => cart.cartItems);
+const { sendRequest } = useAxios();
 const couponStore = useCouponCode();
 const selectedMethod = ref("");
 const selectedShipping = ref("");
@@ -401,11 +403,16 @@ const paymentAndPlaceOrder = async () => {
   }
 
   try {
-    const response = await axios.post(
-      "https://admin.welkin.ctpbd.info/api/customer/order",
-      form.value
-    );
+    // const response = await axios.post(
+    //   `${import.meta.env.VITE_APP_URL}customer/order`,
+    //   form.value
+    // );
 
+    const response = await sendRequest({
+      url: 'customer/order',
+      method: 'POST',
+      data: form.value
+    })
     if (response?.data) {
       toast.success("Checkout successful!");
       if (response.data?.url) {

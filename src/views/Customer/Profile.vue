@@ -24,7 +24,10 @@
               <span
                 class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 font-medium text-xs px-2.5 py-1 rounded-md"
               >
-                <Icon name="mdi:check-decagram" class="text-blue-600 text-base" />
+                <Icon
+                  name="mdi:check-decagram"
+                  class="text-blue-600 text-base"
+                />
                 Verified Account
               </span>
             </div>
@@ -32,7 +35,9 @@
         </div>
       </div>
       <div class="mt-10">
-        <div class="flex justify-between items-center mb-5 bg-white rounded-lg px-4 py-2 shadow-sm border">
+        <div
+          class="flex justify-between items-center mb-5 bg-white rounded-lg px-4 py-2 shadow-sm border"
+        >
           <div class="flex gap-4">
             <button
               v-for="(tab, index) in tabs"
@@ -42,7 +47,7 @@
                 'text-sm px-3 py-1 rounded-md font-medium transition',
                 activeTab === index
                   ? 'bg-blue-600 text-white'
-                  : 'text-gray-600 hover:bg-gray-100'
+                  : 'text-gray-600 hover:bg-gray-100',
               ]"
             >
               {{ tab }}
@@ -57,10 +62,7 @@
           </button>
         </div>
         <div v-if="activeTab === 0">
-          <div
-            v-if="customer?.combine_orders?.length"
-            class="space-y-4"
-          >
+          <div v-if="customer?.combine_orders?.length" class="space-y-4">
             <div
               v-for="(order, i) in customer.combine_orders"
               :key="i"
@@ -68,7 +70,10 @@
             >
               <div class="w-28 h-28 rounded-lg bg-gray-100 overflow-hidden">
                 <img
-                  :src="order?.orders?.[0]?.order_details?.[0]?.product?.cover_image_url || 'https://via.placeholder.com/150'"
+                  :src="
+                    order?.orders?.[0]?.order_details?.[0]?.product
+                      ?.cover_image_url || 'https://via.placeholder.com/150'
+                  "
                   class="w-full h-full object-cover"
                 />
               </div>
@@ -79,21 +84,29 @@
                 >
                   View Details
                 </RouterLink>
-                <h4 class="text-base font-semibold mb-1">{{ order?.order_code }}</h4>
-                <p class="text-sm text-gray-600">Date: {{ order?.order_date || "N/A" }}</p>
+                <h4 class="text-base font-semibold mb-1">
+                  {{ order?.order_code }}
+                </h4>
+                <p class="text-sm text-gray-600">
+                  Date: {{ order?.order_date || "N/A" }}
+                </p>
                 <p class="text-sm text-gray-600">
                   Total: {{ data?.currency_symbol }}{{ order?.grand_total }}
                 </p>
                 <p class="text-sm text-gray-600 capitalize">
-                  Status: <span class="font-medium">{{ order?.order_status }}</span>
+                  Status:
+                  <span class="font-medium">{{ order?.order_status }}</span>
                 </p>
                 <p class="text-sm text-gray-600 capitalize">
-                  Payment: <span class="font-medium">{{ order?.payment_status }}</span>
+                  Payment:
+                  <span class="font-medium">{{ order?.payment_status }}</span>
                 </p>
               </div>
             </div>
           </div>
-          <p v-else class="text-sm text-gray-500 text-center mt-10">No orders found.</p>
+          <p v-else class="text-sm text-gray-500 text-center mt-10">
+            No orders found.
+          </p>
         </div>
 
         <div v-if="activeTab === 1" class="mt-4">
@@ -106,7 +119,10 @@
             <div class="h-4 w-64 bg-gray-200 rounded"></div>
           </div>
 
-          <div v-else class="bg-white p-5 rounded-xl shadow border border-gray-200">
+          <div
+            v-else
+            class="bg-white p-5 rounded-xl shadow border border-gray-200"
+          >
             <h3 class="text-lg font-semibold mb-3">{{ customer?.name }}</h3>
             <div class="space-y-2 text-sm text-gray-700">
               <div class="flex items-center gap-2">
@@ -125,11 +141,21 @@
             >
               <h4 class="text-base font-medium mb-3">Address Info</h4>
               <ul class="space-y-1">
-                <li><strong>Country:</strong> {{ customer.addresses[0].country }}</li>
+                <li>
+                  <strong>Country:</strong> {{ customer.addresses[0].country }}
+                </li>
                 <li><strong>City:</strong> {{ customer.addresses[0].city }}</li>
-                <li><strong>State:</strong> {{ customer.addresses[0].state }}</li>
-                <li><strong>Street:</strong> {{ customer.addresses[0].street_address }}</li>
-                <li><strong>Post Code:</strong> {{ customer.addresses[0].zip_code }}</li>
+                <li>
+                  <strong>State:</strong> {{ customer.addresses[0].state }}
+                </li>
+                <li>
+                  <strong>Street:</strong>
+                  {{ customer.addresses[0].street_address }}
+                </li>
+                <li>
+                  <strong>Post Code:</strong>
+                  {{ customer.addresses[0].zip_code }}
+                </li>
               </ul>
             </div>
           </div>
@@ -144,26 +170,35 @@ import { useAuthStore } from "../../stores/useAuthStore.js";
 import { ref, onMounted } from "vue";
 import moment from "moment";
 import { inject } from "vue";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "@/composables/useAxios";
 
 const data = inject("data");
 const authStore = useAuthStore();
 const tabs = ["Order", "Profile"];
-
+const { sendRequest } = useAxios();
 const activeTab = ref(0);
 const customer = ref(null);
 const customerLoading = ref(false);
 const getCustomer = async () => {
   customerLoading.value = true;
-  const response = await axios.get(
-    `https://admin.welkin.ctpbd.info/api/customer/customer/${authStore.user?.user?.id}`,
-    {
-      headers: {
-        Authorization: `Bearer ${authStore.user.token}`,
-        Accept: "application/json",
-      },
-    }
-  );
+  // const response = await axios.get(
+  //   `${import.meta.env.VITE_APP_URL}customer/customer/${authStore.user?.user?.id}`,
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${authStore.user.token}`,
+  //       Accept: "application/json",
+  //     },
+  //   }
+  // );
+  const response = await sendRequest({
+    url: `customer/customer/${authStore.user?.user?.id}`,
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${authStore.user.token}`,
+      Accept: "application/json",
+    },
+  });
   if (response) {
     customer.value = response.data;
     customerLoading.value = false;

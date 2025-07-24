@@ -27,14 +27,14 @@
               </p>
             </div>
             <div class="flex gap-2">
-              <RouterLink
-                to="/seller-form"
+              <button
+                @click="goToBackend"
                 class="sm:w-fit w-full px-3.5 py-2 bg-primarysButton hover:bg-secondysButton transition-all duration-700 ease-in-out rounded-lg justify-center items-center flex"
               >
                 <span class="px-1.5 text-white text-sm font-medium leading-6"
                   >Register Account</span
                 >
-              </RouterLink>
+              </button>
               <button
                 class="sm:w-fit w-full px-3.5 py-2 bg-white hover:bg-secondysButton transition-all duration-700 ease-in-out rounded-lg justify-center items-center flex"
               >
@@ -304,4 +304,10 @@ import FAQ from "../FAQ/FAQ.vue";
 import BecomeSellerContactpage from "./BecomeSellerContactpage.vue";
 import Fees from "./Fees.vue";
 import PolandInfo from "./PolandInfo.vue";
+
+const appUrl = import.meta.env.VITE_APP_URL;
+
+const goToBackend = () => {
+  window.location.href = appUrl;
+};
 </script>

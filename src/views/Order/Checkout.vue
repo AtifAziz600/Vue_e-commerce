@@ -130,7 +130,8 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-import axios from "axios";
+// import axios from "axios";
+import useAxios from "@/composables/useAxios";
 import { useToast } from "vue-toastification";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "vue-router";
@@ -138,7 +139,7 @@ const router = useRouter();
 const toast = useToast();
 const product = ref(null);
 const authStore = useAuthStore();
-
+const { sendRequest } = useAxios();
 const userId = computed(() => authStore?.user?.user?.id);
 const name = computed(() => authStore?.user?.user?.name);
 const email = computed(() => authStore?.user?.user?.email);
@@ -193,10 +194,15 @@ const placeOrder = async () => {
       ],
     };
 
-    const response = await axios.post(
-      "https://admin.welkin.ctpbd.info/api/customer/order",
-      payload
-    );
+    // const response = await axios.post(
+    //   `${import.meta.env.VITE_APP_URL}customer/order`,
+    //   payload
+    // );
+    const response = await sendRequest({
+      url: `customer/order`,
+      method: 'POST',
+      data: payload,
+    })
 
     if (response.data?.url) {
       window.location.href = response.data.url;

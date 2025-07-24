@@ -75,7 +75,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import axios from "axios";
+import useAxios from "@/composables/useAxios";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
 import { useToast } from "vue-toastification";
@@ -83,8 +83,10 @@ import { useCartStore } from "../../stores/useCartStore";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useApiProductStore } from "../../stores/useApiProductStore";
+import { useRoute } from "vue-router";
 const productApiStore = useApiProductStore();
-
+const { sendRequest } = useAxios();
+const route = useRoute();
 onMounted(async () => {
   await productApiStore.fetchProducts();
   // console.log(productApiStore.products);
@@ -97,12 +99,16 @@ const products = ref([]);
 
 onMounted(async () => {
   try {
-    const response = await axios.get(
-      "https://admin.welkin.ctpbd.info/api/product?category=${route.params.slug}"
-    );
+    // const response = await axios.get(
+    //   `${import.meta.env.VITE_APP_URL}product?category=${route.params.slug}`
+    // );
+    const response = await sendRequest({
+      url: `product?category=${route.params.slug}`,
+      method: "GET",
+    })
     products.value = response.data;
   } catch (error) {
-    console.error("Error fetching products:", error);
+    // console.error("Error fetching products:", error);
     toast.error("Failed to load products");
   }
 });

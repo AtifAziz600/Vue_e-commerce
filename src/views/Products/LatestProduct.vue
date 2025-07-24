@@ -1,16 +1,19 @@
 <template>
-  <div class="w-full mx-auto bg-white p-4 sm:p-6 lg:p-8 shadow-inner rounded-lg mb-14">
-    <div class="mb-8 text-start">
+  <div class="w-full mx-auto px-1 sm:px-1 lg:px-2 py-4 bg-gray-100">
+    <div class="mb-8 text-center">
       <h2
         class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight"
       >
-        Recommended
+        Latest Product
       </h2>
+      <p class="text-md md:text-lg text-gray-600 font-light">
+        Discover our top picks, and all the products that were featured
+      </p>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
       <div
-        v-for="item in productApiStore.products.slice(4, 8)"
+        v-for="item in productApiStore.products.slice(0, 8)"
         :key="item.id"
         class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >

@@ -1,5 +1,6 @@
 import useAxios from "@/composables/useAxios";
 import axios from "axios";
+// import { useAxios } from "@/composables/useAxios";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
@@ -8,7 +9,6 @@ export const useAuthStore = defineStore("auth", () => {
   const router = useRouter();
   const user = ref(JSON.parse(localStorage.getItem("user")) || null);
   const isLoggedIn = computed(() => !!user.value);
-
   const { loading, error, sendRequest } = useAxios();
   const nav = ref({ isMobileMenu: false });
 
@@ -19,7 +19,7 @@ export const useAuthStore = defineStore("auth", () => {
     //   try {
     //     const { data } = await sendRequest({
     //       method: "get",
-    //       url: "https://admin.welkin.ctpbd.info/api/user",
+    //       url: `${import.meta.env.VITE_APP_URL}user`,
     //       headers: {
     //         Authorization: `Bearer ${storedUser?.token}`,
     //       },
@@ -42,10 +42,10 @@ export const useAuthStore = defineStore("auth", () => {
   async function login(credential) {
     try {
       axios.get(`${import.meta.env.VITE_APP_URL}/sanctum/csrf-cookie`);
-
+      
       const loginResponse = await sendRequest({
         method: "POST",
-        url: "https://admin.welkin.ctpbd.info/api/customer/login",
+        url: '/customer/login',
         data: credential,
       });
       if (loginResponse?.data) {
@@ -100,7 +100,7 @@ export const useAuthStore = defineStore("auth", () => {
     try {
       const response = await sendRequest({
         method: "POST",
-        url: "/register",
+        url: "/customer/register",
         data: credentials,
       });
 

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+// import axios from 'axios';
+import useAxios from "@/composables/useAxios";
 
 export const useSingleProductStore = defineStore('singleProductStore', {
   state: () => ({
@@ -13,7 +14,12 @@ export const useSingleProductStore = defineStore('singleProductStore', {
       this.loading = true;
       this.error = null;
       try {
-        const response = await axios.get(`https://admin.welkin.ctpbd.info/api/public/product/${slug}`);
+        const { sendRequest } = useAxios();
+        // const response = await axios.get(`${import.meta.env.VITE_APP_URL}public/product/${slug}`);
+        const response = await sendRequest({
+          url: `public/product/${slug}`,
+          method: 'GET',
+        })
         this.product = response?.data;
       } catch (err) {
         // console.error("Failed to fetch single product", err);
