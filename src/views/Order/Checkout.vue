@@ -186,7 +186,7 @@ const placeOrder = async () => {
           product_id: product.value.id,
           product_name: product.value.title,
           category_id: product.value.category_id,
-          shop_id: 1,
+          shop_id: product.value.shop_id,
           quantity: quantity.value,
           price: product.value.price,
           total: sub_total.value,

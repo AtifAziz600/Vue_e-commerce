@@ -26,6 +26,7 @@ function addToCart(product) {
     existing.quantity += product.quantity || 1;
     existing.total = existing.price * existing.quantity;
   } else {
+    console.log(product);
     cartItems.value.push({
       ...product,
       quantity: product.quantity || 1,

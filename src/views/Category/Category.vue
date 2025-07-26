@@ -504,8 +504,8 @@ function handleAddToCart(item) {
     image: item.cover_image_url,
     price: item.price,
     quantity: item.quantity,
-    shop_id: 1,
-    category_id: 1,
+    shop_id: item.shop_id,
+    category_id: item.category_id,
     total: item.price,
     category: item.tag,
   });
@@ -519,8 +519,8 @@ function handleBuyNow(item) {
     image: item.cover_image_url,
     price: item.price,
     quantity: item.quantity,
-    shop_id: 1,
-    category_id: 1,
+    shop_id: item.shop_id,
+    category_id: item.category_id,
     total: item.price,
     category: item.tag,
   };

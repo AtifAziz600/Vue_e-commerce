@@ -108,7 +108,7 @@ const router = createRouter({
       path: "/customer/profile",
       name: "customer-profile",
       component: () => import('../views/Customer/Profile.vue')
-    }
+    },
   ]
 })
 export default router
