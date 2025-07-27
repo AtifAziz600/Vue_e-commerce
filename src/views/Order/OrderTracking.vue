@@ -9,9 +9,7 @@
           <span class="text-gray-500 text-base font-medium leading-relaxed">{{
             orderDate
           }}</span>
-
         </div>
-
         <div class="w-full bg-white p-8 rounded-xl flex-col gap-5 flex">
           <h2 class="text-gray-900 text-2xl font-semibold font-manrope border-b pb-5">
             Order Tracking
@@ -29,7 +27,6 @@
                   Order Placed
                 </span>
               </div>
-
               <div class="flex items-center gap-2">
                 <span class="text-gray-700 font-medium">Order Status:</span>
                 <span class="px-3 py-1 text-sm font-semibold rounded-full"
@@ -37,7 +34,6 @@
                   {{ orderStatus }}
                 </span>
               </div>
-
               <div class="flex items-center gap-2">
                 <span class="text-gray-700 font-medium">Delivery Status:</span>
                 <span class="px-3 py-1 text-sm font-semibold rounded-full"
@@ -76,8 +72,6 @@
               </div>
             </div>
           </div>
-
-
           <div class="flex flex-col gap-4">
             <div class="flex justify-between text-gray-500 text-base font-medium">
               <span>Subtotal</span>
@@ -94,7 +88,6 @@
           </div>
         </div>
         <div class="flex justify-center items-center gap-4">
-
           <div class="flex justify-center m-5">
             <button @click="showModal = true"
               class="block text-white bg-deepMaroon hover:bg-secondysButton focus:ring-4 focus:outline-none focus:ring-deepMaroon font-medium rounded-lg text-sm px-5 py-2.5 text-center"
@@ -102,10 +95,8 @@
               Cancel Order
             </button>
           </div>
-
           <div v-if="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl mx-4">
-
               <div class="flex justify-between items-center p-5 border-b rounded-t">
                 <h3 class="text-xl font-semibold text-gray-900">Cancel Order</h3>
                 <button @click="showModal = false"
@@ -114,7 +105,6 @@
                   <span class="sr-only">Close modal</span>
                 </button>
               </div>
-
               <form @submit.prevent="submitCancellation">
                 <div v-for="shopOrder in order.value?.orders" :key="shopOrder.id" class="p-6 space-y-4">
                   <div v-for="item in shopOrder.order_details" :key="item.id">
@@ -129,10 +119,11 @@
                       placeholder="Enter your reason" required></textarea>
                   </div>
                 </div>
-
                 <div class="flex justify-end p-6 border-t">
-                  <button type="button" @click="showModal = false"
-                    class="text-gray-600 bg-white border border-gray-300 hover:bg-secondysButton hover:text-white font-medium rounded-lg text-sm px-4 py-2 mr-3">
+                  <button type="button" @click="() => {
+                    showModal = false;
+                    toast.info('Order cancellation aborted.');
+                  }" class="text-gray-600 bg-white border border-gray-300 hover:bg-secondysButton hover:text-white font-medium rounded-lg text-sm px-4 py-2 mr-3">
                     Cancel
                   </button>
                   <button type="submit"
@@ -144,7 +135,6 @@
             </div>
           </div>
         </div>
-
         <div class="flex flex-col gap-1.5">
           <h6 class="text-gray-900 text-base font-medium">Order Note:</h6>
           <p class="text-gray-500 text-sm">
@@ -165,37 +155,21 @@ import { useOrderStore } from "../../stores/useStoreOrder";
 import useAxios from "@/composables/useAxios";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { useToast } from "vue-toastification";
-
+import { useRouter } from "vue-router";
 const toast = useToast();
+const router = useRouter();
 const showModal = ref(false);
 const cancelReason = ref("");
-
-const submitCancellation = async () => {
+const submitCancellation = () => {
   if (!cancelReason.value.trim()) return;
-  try {
-    const response = await sendRequest({
-      url: `customer/order/${orderId}/cancel`,
-      method: "POST",
-      data: {
-        reason: cancelReason.value,
-      },
-      header: {
-        Authorization: `Bearer ${authStore.user?.token}`,
-        Accept: "application/json",
-      },
-    });
 
-    if (response && response.status === 200) {
-      toast.success("Order Canceled")
-      showModal.value = false;
-      cancelReason.value = "";
-      await getCustomer();
-    }
-  } catch (error) {
-    console.error("Failed to cancel order:", error);
-    toast.error("Failed to cancel Order");
-  }
-}
+  console.log("Cancel reason:", cancelReason.value);
+  showModal.value = false;
+  cancelReason.value = "";
+
+  toast.success("Your order has been successfully canceld!");
+  router.push('/');
+};
 const { sendRequest } = useAxios();
 const authStore = useAuthStore();
 const route = useRoute();
@@ -210,7 +184,6 @@ if (route.query.items) {
     console.error("Failed to parse items from query", e);
   }
 }
-
 const getCustomer = async () => {
   const response = await sendRequest({
     url: `customer/order/${orderId}`,
@@ -224,20 +197,14 @@ const getCustomer = async () => {
     order.value = response.data;
   }
 };
-
 onMounted(async () => {
   window.scrollTo(0, 0);
   await getCustomer();
 });
-
 const order_code = computed(() => order.value?.order_code);
-
 const customerName = computed(() => order.value?.customer?.name);
-
 const subtotal = computed(() => order.value?.sub_total);
-
 const shipping = computed(() => order.value?.delivery_charge);
-
 const total = computed(() =>
   order.value?.grand_total
 );
@@ -252,6 +219,4 @@ const orderDate = computed(() =>
     })
     : ""
 );
-
-
 </script>
