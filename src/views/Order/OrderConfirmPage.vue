@@ -87,20 +87,12 @@
               </div>
             </div>
             <div class="flex justify-center gap-4 mt-4">
-              <RouterLink to="/order-summary"
+              <RouterLink to="/"
                 class="px-6 py-2.5 rounded-xl bg-white border border-deepMaroon text-deepMaroon hover:text-white font-semibold shadow hover:bg-red-800 transition">
                 Return To Shopping
               </RouterLink>
               <RouterLink :to="{
-                path: '/order-tracking',
-                query: {
-                  customer_name: customerName,
-                  order_id: orderStore.orderId,
-                  items: encodeURIComponent(JSON.stringify(orderItems)),
-                  subtotal,
-                  shipping,
-                  total
-                }
+                path: `/order-tracking/${route.query.order_code}`,
               }" class="px-6 py-2.5 rounded-xl bg-deepMaroon hover:bg-red-800 text-white font-semibold shadow transition">
                 Track My Order
               </RouterLink>

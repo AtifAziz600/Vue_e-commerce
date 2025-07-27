@@ -411,7 +411,7 @@ const handleScroll = () => {
     isNavVisible.value = true;
   }
 
-  isHeaderShrunk.value = currentY > 180;
+  isHeaderShrunk.value = currentY > 240;
 
   lastScrollY = currentY;
 };

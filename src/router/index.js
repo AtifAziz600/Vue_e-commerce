@@ -45,9 +45,9 @@ const router = createRouter({
       component: () => import('../views/Order/OrderConfirmPage.vue')
     },
     {
-      path: '/order-summary',
-      name: 'order-summary',
-      component: () => import('../views/Order/OrderSummary.vue')
+      path: '/order-cancel',
+      name: 'order-cancel',
+      component: () => import('../views/Order/OrderCancel.vue')
     },
     {
       path: "/all-products",
@@ -75,7 +75,7 @@ const router = createRouter({
       component: () => import('../views/Category/Category.vue')
     },
     {
-      path: '/order-tracking',
+      path: '/order-tracking/:id',
       name: 'order-tracking',
       component: () => import('../views/Order/OrderTracking.vue')
     },
