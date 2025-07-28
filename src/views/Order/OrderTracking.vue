@@ -149,7 +149,7 @@
 </template>
 
 <script setup>
-import { RouterLink, useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 import { computed, onMounted, ref } from "vue";
 import { useOrderStore } from "../../stores/useStoreOrder";
 import useAxios from "@/composables/useAxios";
@@ -160,22 +160,42 @@ const toast = useToast();
 const router = useRouter();
 const showModal = ref(false);
 const cancelReason = ref("");
-const submitCancellation = () => {
-  if (!cancelReason.value.trim()) return;
-
-  console.log("Cancel reason:", cancelReason.value);
-  showModal.value = false;
-  cancelReason.value = "";
-
-  toast.success("Your order has been successfully canceld!");
-  router.push('/');
-};
 const { sendRequest } = useAxios();
 const authStore = useAuthStore();
 const route = useRoute();
 const orderId = route.params.id;
 const order = useOrderStore();
 const itemsFromQuery = ref([]);
+
+const submitCancellation = async () => {
+  if (!cancelReason.value.trim()) {
+    return toast.warning("Please enter a reason for cancellation.");
+  }
+
+  try {
+    const res = await sendRequest({
+      method: "POST",
+      url: `/customer/order/${order?.value?.id}/cancel`,
+      data: {
+        combined_order_id: order?.value?.id,
+        message: cancelReason.value,
+      },
+      headers: {
+        Authorization: `Bearer ${authStore?.user?.token}`,
+      },
+    });
+
+    if (res && res.status === 200) {
+      toast.success("Your cancellation request has been submitted.");
+      showModal.value = false;
+      cancelReason.value = "";
+      router.push('/')
+    }
+  } catch (error) {
+    console.error(error);
+    toast.error("Failed to submit cancellation request.");
+  }
+};
 
 if (route.query.items) {
   try {
@@ -188,9 +208,8 @@ const getCustomer = async () => {
   const response = await sendRequest({
     url: `customer/order/${orderId}`,
     method: 'GET',
-    header: {
-      Authorization: `Bearer ${authStore.user?.token}`,
-      Accept: "application/json",
+    headers: {
+      Authorization: `Bearer ${authStore?.user?.token}`,
     },
   });
   if (response) {
@@ -201,6 +220,7 @@ onMounted(async () => {
   window.scrollTo(0, 0);
   await getCustomer();
 });
+
 const order_code = computed(() => order.value?.order_code);
 const customerName = computed(() => order.value?.customer?.name);
 const subtotal = computed(() => order.value?.sub_total);
@@ -219,4 +239,5 @@ const orderDate = computed(() =>
     })
     : ""
 );
+
 </script>

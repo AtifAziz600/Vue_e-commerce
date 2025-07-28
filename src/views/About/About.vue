@@ -161,12 +161,12 @@
       </div>
     </section>
     <FeatureSection />
-    <OurPartner />
+    <Subcription />
   </AppLayout>
 </template>
 
 <script setup>
 import FeatureSection from "@/components/FeatureSection.vue";
-import OurPartner from "@/components/OurPayment.vue";
+import Subcription from "@/components/Subcription.vue";
 import { Icon } from "@iconify/vue";
 </script>
