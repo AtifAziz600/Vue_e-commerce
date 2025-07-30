@@ -110,10 +110,17 @@ const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
-  // console.log(productApiStore.products);
 });
 
 function handleAddToCart(item) {
+      const existingCartItems = cart.cartItems; 
+  if (existingCartItems.length > 0) {
+    const existingVendorId = existingCartItems[0].shop_id;
+    if (existingVendorId !== item.shop_id) {
+      toast.error("You can only order from one vendor at a time.");
+      return;
+    }
+  }
   cart.addToCart({
     id: item.id,
     product_id: item.id,

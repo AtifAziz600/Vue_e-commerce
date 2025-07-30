@@ -33,7 +33,7 @@
           <button class="md:block hidden sm:block w-24 text-center">
             <div
               @click.prevent="open = !open"
-              class="bg-deepMaroon text-white font-bold text-sm px-1 py-2 rounded focus:outline-none text-start"
+              class="bg-deepMaroon text-white font-bold text-sm mx-2 px-1 py-2 rounded focus:outline-none text-start"
             >
               {{ selected || "Category" }}
             </div>

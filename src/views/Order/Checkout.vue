@@ -165,6 +165,11 @@ const form = ref({
   country: "",
 });
 const placeOrder = async () => {
+    if (!authStore?.user?.token) {
+    toast.error("Please login first!");
+    router.push("/login");
+    return;
+  }
   try {
     const payload = {
       user_id: userId.value,

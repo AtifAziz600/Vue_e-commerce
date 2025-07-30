@@ -35,15 +35,17 @@
             class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800"
           />
         </div>
-        <div class="mb-4">
+        <div class="mb-4 relative">
           <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
           <input
-            type="password"
+            :type="showPassword ? 'text' : 'password'"
             id="password"
             v-model="state.password"
             placeholder="Enter Password"
             class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800"
           />
+          <Icon :icon="showPassword ? 'ri:eye-close-line' : 'ri:eye-2-line'"
+            class="absolute top-8 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword"/>
         </div>
         <div class="mb-4">
           <button
@@ -54,7 +56,25 @@
             {{ isRegistering ? "Registering..." : "Register Now" }}
           </button>
         </div>
-        <p class="text-sm text-gray-600">
+         <div class="relative flex items-center py-1">
+          <div class="flex-grow border-t border-gray-200"></div>
+          <span class="flex-shrink mx-4 text-gray-400 text-sm">Or Continue with</span>
+          <div class="flex-grow border-t border-gray-200"></div>
+        </div>
+        <div class="mb-4 relative">
+          <button class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+            <Icon icon="flat-color-icons:google" class="w-6 h-6" />
+            <span class="font-medium text-gray-700">SignUp with Google</span>
+          </button>
+
+        </div>
+        <div class="mb-4 relative">
+          <button class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+            <Icon class="w-6 h-6" icon="logos:facebook" />
+            SignUp With FaceBook
+          </button>
+        </div>
+        <p class="text-sm text-gray-600 text-center">
           Already have an account?
           <RouterLink to="/login" class="text-deepMaroon hover:text-secondysButton font-medium hover:underline ml-1">Login Here</RouterLink>
         </p>
@@ -71,6 +91,7 @@
 </template>
 
 <script setup>
+import { Icon } from "@iconify/vue";
 import { useAuthStore } from "../../stores/useAuthStore";
 // import { useStore } from "@/stores/useStore.js";
 import { onMounted, ref } from "vue";
@@ -87,6 +108,7 @@ const state = ref({
   password: "",
 });
 
+const showPassword = ref(false);
 const isRegistering = ref(false);
 const handleRegister = async () => {
   try {

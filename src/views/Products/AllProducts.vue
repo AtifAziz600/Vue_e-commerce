@@ -509,14 +509,22 @@ function handleBuyNow(item) {
 }
 
 function handleAddToCart(item) {
+    const existingCartItems = cart.cartItems; 
+  if (existingCartItems.length > 0) {
+    const existingVendorId = existingCartItems[0].shop_id;
+    if (existingVendorId !== item.shop_id) {
+      toast.error("You can only order from one vendor at a time.");
+      return;
+    }
+  }
   cart.addToCart({
     id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: 1,
-    shop_id: 1,             
+    quantity: item.quantity,
+    shop_id: item.shop_id,           
     category_id: item.category_id,     
     total: item.price,
     category: item.tag,

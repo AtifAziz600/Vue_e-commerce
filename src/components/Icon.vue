@@ -10,3 +10,4 @@
 <template>
     <Icon :icon="name"></Icon>
 </template>
+

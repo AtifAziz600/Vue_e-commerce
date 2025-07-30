@@ -1,5 +1,5 @@
 <template>
-    <div class="relative max-w-screen-full mx-auto mt-6 overflow-hidden shadow-2xl border border-gray-300/30">
+    <div class="relative max-w-screen-full mx-auto mt-6 overflow-hidden shadow-2xl">
     <swiper
       :spaceBetween="0"
       :effect="'fade'"
@@ -52,8 +52,6 @@ import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 // import { Icon } from '@iconify/vue'; 
 
 const modules = [EffectFade, Navigation, Pagination, Autoplay];
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation'; 

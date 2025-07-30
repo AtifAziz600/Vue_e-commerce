@@ -147,7 +147,10 @@
               <select v-model="selectedMethod"
                 class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
                 <option disabled value="">Choose</option>
-                <option value="Card">Card</option>
+                <option value="Card">Visa</option>
+                <option value="Card">Master Card</option>
+                <option value="Card">American Express</option>
+                <option value="COD">Cash On Delivery</option>
               </select>
             </div>
 
@@ -176,7 +179,6 @@
           </div>
         </div>
       </div>
-      
     </section>
   </AppLayout>
 </template>
@@ -190,7 +192,6 @@ import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useOrderStore } from "../../stores/useStoreOrder";
 import { useCouponCode } from "../../stores/useCouponCode";
-// import axios from "axios";
 import useAxios from "@/composables/useAxios";
 const toast = useToast();
 const cart = useCartStore();
@@ -250,13 +251,12 @@ function methodPay() {
   }
 }
 const router = useRouter();
-
 const form = ref({
   user_id: computed(() => authStore?.user?.user?.id),
   name: computed(() => authStore?.user?.user?.name),
   email: computed(() => authStore?.user?.user?.email),
   phone: computed(() => authStore?.user?.user?.phone),
-  country: authStore?.user?.country ?? "Bangladesh",
+  country: authStore?.user?.country ?? "",
   state: "",
   city: "",
   zip_code: "",
@@ -280,14 +280,13 @@ const form = ref({
   total: total.value,
 });
 
-onMounted(() => {
-  if (!authStore?.user?.token) {
-    toast.error("Please Login first!");
-    router.push("/login");
-  }
-});
 
 const paymentAndPlaceOrder = async () => {
+  if (!authStore?.user?.token) {
+    toast.error("Please login first!");
+    router.push("/login");
+    return;
+  }
   if (
     !selectedShipping.value ||
     !selectedMethod.value ||
@@ -300,11 +299,6 @@ const paymentAndPlaceOrder = async () => {
   }
 
   try {
-    // const response = await axios.post(
-    //   `${import.meta.env.VITE_APP_URL}customer/order`,
-    //   form.value
-    // );
-
     const response = await sendRequest({
       url: 'customer/order',
       method: 'POST',
@@ -322,7 +316,6 @@ const paymentAndPlaceOrder = async () => {
     }
   } catch (error) {
     toast.error("Payment failed. Please try again.");
-    // console.error("Stripe checkout error:", error);
   }
 };
 
