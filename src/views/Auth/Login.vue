@@ -36,14 +36,14 @@
           <div class="flex-grow border-t border-gray-200"></div>
         </div>
         <div class="mb-4 relative">
-          <button class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleGoogleLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon icon="flat-color-icons:google" class="w-6 h-6" />
             <span class="font-medium text-gray-700">Login with Google</span>
           </button>
 
         </div>
         <div class="mb-4 relative">
-          <button class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleFaceBookLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon class="w-6 h-6" icon="logos:facebook" />
             Login With FaceBook
           </button>
@@ -64,7 +64,7 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { useAuthStore } from "../../stores/useAuthStore";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useToast } from "vue-toastification";
 
@@ -79,7 +79,28 @@ const loginCredential = ref({
 });
 
 const showPassword = ref(false)
+const handleGoogleLogin = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+  window.location.href = `${apiUrl}/auth/google/redirect`;
+};
 
+const handleFaceBookLogin = () => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+  window.location.href = `${apiUrl}/auth/facebook/redirect`;
+}
+onMounted(() => {
+
+  if (route.query.user) {
+    try {
+      const user = JSON.parse(route.query.user);
+      localStorage.setItem('user', JSON.stringify(user));
+      toast.success("Login successful");
+      router.push('/dashboard')
+    } catch (e) {
+      console.error("Failed to parse user data from query:", e);
+    }
+  }
+});
 const handleLogin = async () => {
   const loginResponse = await authStore.login(loginCredential.value);
   if (loginResponse) {

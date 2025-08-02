@@ -1,503 +1,479 @@
 <template>
   <AppLayout>
-    <div class="pt-8">
-      <div
-        class="md:pt-10 flex justify-between items-center px-6 bg-white border-b border-gray-200 shadow-sm"
-      >
-        <div class="text-gray-700 text-base font-medium">
-          <p class="text-center">900 results</p>
+    <div class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+      <div class="max-w-full mx-auto px-4 pt-12 flex flex-col sm:flex-row justify-between items-center">
+        <div class="text-gray-700 text-sm pt-4">
+          <p>{{ filteredProducts.length }} results</p>
         </div>
+        
         <div class="flex items-center gap-3">
-          <label for="sort-by" class="text-gray-700 text-base font-normal"
-            >Sort by:</label
-          >
-          <div class="relative w-40">
+          <label for="sort-by" class="text-gray-700 text-sm">Sort by:</label>
+          <div class="relative">
             <select
-              class="block w-full px-3 py-2 text-sm md:text-base text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 appearance-none pr-8 cursor-pointer"
+              v-model="sortOption"
+              class="block w-full px-3 py-2 text-sm text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-deepMaroon focus:border-deepMaroon appearance-none pr-8 cursor-pointer"
             >
               <option value="price_low_to_high">Price: Low to High</option>
               <option value="price_high_to_low">Price: High to Low</option>
               <option value="avg_customer_review">Avg. Customer Review</option>
               <option value="newest_arrival">Newest Arrivals</option>
-              <option value="best_seller">Best Seller</option>
             </select>
-            <div
-              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-            >
-              <svg
-                class="fill-current h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 6.757 7.586 5.343 9z"
-                />
-              </svg>
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <Icon icon="mdi:chevron-down" class="h-4 w-4" />
             </div>
           </div>
+          <button
+            @click="isSidebarOpen = true"
+            class="sm:hidden p-2 rounded-lg border border-gray-300 flex items-center gap-1"
+          >
+            <Icon icon="mdi:filter" class="h-5 w-5" />
+            <span class="text-sm">Filters</span>
+          </button>
         </div>
       </div>
     </div>
-
-    <section class="md:flex md:justify-between md:items-start px-4 md:px-0">
-      <div class="lg:hidden flex items-end justify-end">
-        <button
-          @click="isSidebarOpen = !isSidebarOpen"
-          class="p-2 rounded hover:bg-gray-200 focus:outline-none"
-        >
-          <Icon icon="mdi:filter" class="h-6 w-6" />
-        </button>
-      </div>
-      <transition name="fade" class="overflow-auto">
-        <div
-          v-if="isSidebarOpen"
-          class="fixed inset-0 z-50 bg-black bg-opacity-40 flex"
-        >
-          <aside
-            class="w-72 h-full space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28"
-          >
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-            <div>
-              <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
-              <div class="space-y-2 text-sm text-gray-600">
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="department"
-                    value="all"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                    checked
-                  />
-                  All
-                </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="department"
-                    value="amazon"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                  />
-                  Devices & Accessories
-                </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="department"
-                    value="appliances"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                  />
-                  Appliances
-                </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="department"
-                    value="apps"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                  />
-                  Apps & Games
-                </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="department"
-                    value="crafts"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                  />
-                  Arts, Crafts & Sewing
-                </label>
-                <button class="text-blue-500 text-xs mt-1 hover:underline">
-                  See more
-                </button>
+    <div class="max-w-full mx-auto pt-6 py-2">
+      <div class="flex flex-col md:flex-row gap-6">
+        <aside class="hidden sm:block w-64 space-y-6">
+          <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+            <h2 class="text-lg font-bold text-gray-800 mb-4">Filters</h2>
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-700 mb-3">Price Range</h3>
+              <div class="px-2">
+                <input
+                  type="range"
+                  v-model="priceRange[0]"
+                  :min="minPrice"
+                  :max="maxPrice"
+                  class="w-full accent-deepMaroon mb-2 bg-gray-300"
+                  @input="updatePriceRange"
+                />
+                <input
+                  type="range"
+                  v-model="priceRange[1]"
+                  :min="minPrice"
+                  :max="maxPrice"
+                  class="w-full accent-deepMaroon bg-gray-300"
+                  @input="updatePriceRange"
+                />
+              </div>
+              <div class="flex justify-between text-sm text-gray-600 mt-2">
+                <span>zł{{ priceRange[0] }}</span>
+                <span>zł{{ priceRange[1] }}</span>
               </div>
             </div>
-            <div>
-              <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
-              <div class="space-y-2 text-sm text-gray-600">
-                <label class="flex items-center gap-2">
+            
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-700 mb-3">Discount</h3>
+              <div class="space-y-2">
+                <label class="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    class="form-checkbox text-blue-500 focus:ring-blue-500"
+                    v-model="discountFilter"
+                    value="10"
+                    class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
                   />
-                  Garmin
+                  <span class="text-sm">10% & above</span>
                 </label>
-                <label class="flex items-center gap-2">
+                <label class="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    class="form-checkbox text-blue-500 focus:ring-blue-500"
+                    v-model="discountFilter"
+                    value="20"
+                    class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
                   />
-                  Shark
+                  <span class="text-sm">20% & above</span>
                 </label>
-                <label class="flex items-center gap-2">
+                <label class="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    class="form-checkbox text-blue-500 focus:ring-blue-500"
+                    v-model="discountFilter"
+                    value="30"
+                    class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
                   />
-                  Crest
+                  <span class="text-sm">30% & above</span>
                 </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    class="form-checkbox text-blue-500 focus:ring-blue-500"
-                  />
-                  ECOVACS
-                </label>
-                <button class="text-blue-500 text-xs mt-1 hover:underline">
-                  See more
-                </button>
               </div>
             </div>
-            <div>
-              <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
-              <div class="space-y-2 text-sm text-gray-600">
-                <label class="flex items-center gap-2">
+            
+            <div class="mb-6">
+              <h3 class="font-semibold text-gray-700 mb-3">Customer Rating</h3>
+              <div class="space-y-2">
+                <label 
+                  v-for="rating in [4, 3, 2, 1]" 
+                  :key="rating"
+                  class="flex items-center gap-2 cursor-pointer"
+                >
                   <input
-                    type="radio"
-                    name="reviews"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
-                    checked
-                  />
-                  All
-                </label>
-                <label class="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="reviews"
-                    class="form-radio text-blue-500 focus:ring-blue-500"
+                    type="checkbox"
+                    v-model="ratingFilter"
+                    :value="rating"
+                    class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
                   />
                   <span class="flex items-center">
                     <Icon
-                      icon="mdi:star"
-                      class="w-4 h-4 text-yellow-500 hover:scale-125"
-                    />
-                    <Icon
-                      icon="mdi:star"
-                      class="w-4 h-4 text-yellow-500 hover:scale-125"
-                    />
-                    <Icon
-                      icon="mdi:star"
-                      class="w-4 h-4 text-yellow-500 hover:scale-125"
-                    />
-                    <Icon
-                      icon="mdi:star"
-                      class="w-4 h-4 text-yellow-500 hover:scale-125"
-                    />
-                    <Icon
-                      icon="mdi:star-outline"
-                      class="w-4 h-4 text-yellow-500 hover:scale-125"
+                      v-for="i in 5"
+                      :key="i"
+                      :icon="i <= rating ? 'mdi:star' : 'mdi:star-outline'"
+                      class="w-4 h-4 text-yellow-500"
                     />
                   </span>
+                  <span class="text-sm ml-1">& Up</span>
                 </label>
               </div>
             </div>
-            <div>
-              <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
-              <input
-                type="range"
-                min="0"
-                max="2500"
-                class="w-full accent-blue-500"
-              />
-              <div class="text-sm text-gray-600">zł0 – zł2,500</div>
-            </div>
-            <div>
-              <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
-              <input
-                type="range"
-                min="0"
-                max="100"
-                class="w-full accent-blue-500"
-              />
-              <div class="text-sm text-gray-600">0% – 100%</div>
-            </div>
-          </aside>
-          <div class="flex-1" @click="isSidebarOpen = false"></div>
-        </div>
-      </transition>
-      <aside
-        class="w-72 space-y-6 p-6 bg-white rounded-xl shadow-md self-start sticky top-28 md:block hidden"
-      >
-        <h2 class="text-xl font-bold text-gray-800 mb-4">Filters</h2>
-        <div>
-          <h3 class="font-semibold text-gray-700 mb-2">Department</h3>
-          <div class="space-y-2 text-sm text-gray-600">
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="department"
-                value="all"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-                checked
-              />
-              All
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="department"
-                value="amazon"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-              />
-              Devices & Accessories
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="department"
-                value="appliances"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-              />
-              Appliances
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="department"
-                value="apps"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-              />
-              Apps & Games
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="department"
-                value="crafts"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-              />
-              Arts, Crafts & Sewing
-            </label>
-            <button class="text-blue-500 text-xs mt-1 hover:underline">
-              See more
-            </button>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-700 mb-2">Brands</h3>
-          <div class="space-y-2 text-sm text-gray-600">
-            <label class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                class="form-checkbox text-blue-500 focus:ring-blue-500"
-              />
-              Garmin
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                class="form-checkbox text-blue-500 focus:ring-blue-500"
-              />
-              Shark
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                class="form-checkbox text-blue-500 focus:ring-blue-500"
-              />
-              Crest
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="checkbox"
-                class="form-checkbox text-blue-500 focus:ring-blue-500"
-              />
-              ECOVACS
-            </label>
-            <button class="text-blue-500 text-xs mt-1 hover:underline">
-              See more
-            </button>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-700 mb-2">Customer Reviews</h3>
-          <div class="space-y-2 text-sm text-gray-600">
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="reviews"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-                checked
-              />
-              All
-            </label>
-            <label class="flex items-center gap-2">
-              <input
-                type="radio"
-                name="reviews"
-                class="form-radio text-blue-500 focus:ring-blue-500"
-              />
-              <span class="flex items-center">
-                <Icon
-                  icon="mdi:star"
-                  class="w-4 h-4 text-yellow-500 hover:scale-125"
-                />
-                <Icon
-                  icon="mdi:star"
-                  class="w-4 h-4 text-yellow-500 hover:scale-125"
-                />
-                <Icon
-                  icon="mdi:star"
-                  class="w-4 h-4 text-yellow-500 hover:scale-125"
-                />
-                <Icon
-                  icon="mdi:star"
-                  class="w-4 h-4 text-yellow-500 hover:scale-125"
-                />
-                <Icon
-                  icon="mdi:star-outline"
-                  class="w-4 h-4 text-yellow-500 hover:scale-125"
-                />
-              </span>
-            </label>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-700 mb-2">Price</h3>
-          <input
-            type="range"
-            min="0"
-            max="2500"
-            class="w-full accent-blue-500"
-          />
-          <div class="text-sm text-gray-600">zł0 – zł2,500</div>
-        </div>
-        <div>
-          <h3 class="font-semibold text-gray-700 mb-2">Discount</h3>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            class="w-full accent-blue-500"
-          />
-          <div class="text-sm text-gray-600">0% – 100%</div>
-        </div>
-      </aside>
-      <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-2">
-        <h2
-          class="text-xl md:text-2xl font-bold text-gray-900 tracking-tight text-start"
-        >
-          {{ products?.category }}
-        </h2>
-        <p
-          class="text-sm font-thin text-gray-900 tracking-tight text-start mb-1"
-        >
-          Check All the products here
-        </p>
-        <div class="mb-12">
-          <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
-            <div
-              v-for="item in products?.data"
-              :key="item.id"
-              class="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 flex flex-col group"
+            
+            <button 
+              @click="resetFilters"
+              class="mt-4 text-deepMaroon text-sm font-medium hover:underline"
             >
+              Reset all filters
+            </button>
+          </div>
+        </aside>
+
+        <transition name="slide">
+          <div 
+            v-if="isSidebarOpen"
+            class="fixed inset-0 z-50 bg-black bg-opacity-50 flex sm:hidden"
+          >
+            <div 
+              class="w-4/5 max-w-sm bg-white h-full overflow-y-auto"
+              @click.stop
+            >
+              <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-lg font-bold text-gray-800">Filters</h2>
+                <button @click="isSidebarOpen = false">
+                  <Icon icon="mdi:close" class="h-6 w-6 text-gray-500" />
+                </button>
+              </div>
+              
+              <div class="p-4 space-y-6">
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-3">Price Range</h3>
+                  <div class="px-2">
+                    <input
+                      type="range"
+                      v-model="priceRange[0]"
+                      :min="minPrice"
+                      :max="maxPrice"
+                      class="w-full accent-deepMaroon mb-2"
+                      @input="updatePriceRange"
+                    />
+                    <input
+                      type="range"
+                      v-model="priceRange[1]"
+                      :min="minPrice"
+                      :max="maxPrice"
+                      class="w-full accent-deepMaroon"
+                      @input="updatePriceRange"
+                    />
+                  </div>
+                  <div class="flex justify-between text-sm text-gray-600 mt-2">
+                    <span>zł{{ priceRange[0] }}</span>
+                    <span>zł{{ priceRange[1] }}</span>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-3">Discount</h3>
+                  <div class="space-y-2">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        v-model="discountFilter"
+                        value="10"
+                        class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
+                      />
+                      <span class="text-sm">10% & above</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        v-model="discountFilter"
+                        value="20"
+                        class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
+                      />
+                      <span class="text-sm">20% & above</span>
+                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        v-model="discountFilter"
+                        value="30"
+                        class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
+                      />
+                      <span class="text-sm">30% & above</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 class="font-semibold text-gray-700 mb-3">Customer Rating</h3>
+                  <div class="space-y-2">
+                    <label 
+                      v-for="rating in [4, 3, 2, 1]" 
+                      :key="rating"
+                      class="flex items-center gap-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        v-model="ratingFilter"
+                        :value="rating"
+                        class="form-checkbox text-deepMaroon focus:ring-deepMaroon rounded"
+                      />
+                      <span class="flex items-center">
+                        <Icon
+                          v-for="i in 5"
+                          :key="i"
+                          :icon="i <= rating ? 'mdi:star' : 'mdi:star-outline'"
+                          class="w-4 h-4 text-yellow-500"
+                        />
+                      </span>
+                      <span class="text-sm ml-1">& Up</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-4 border-t border-gray-200 flex justify-between">
+                <button 
+                  @click="resetFilters"
+                  class="text-deepMaroon text-sm font-medium hover:underline"
+                >
+                  Reset
+                </button>
+                <button 
+                  @click="isSidebarOpen = false"
+                  class="bg-deepMaroon text-white px-4 py-2 rounded-lg text-sm font-medium"
+                >
+                  Apply Filters
+                </button>
+              </div>
+            </div>
+          </div>
+        </transition>
+
+        <div class="flex-1 w-full">
+          <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">{{ products?.category }}</h2>
+          <p class="text-sm text-gray-500 mb-6">Check all the products here</p>
+          
+          <div v-if="filteredProducts.length > 0" class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
+            <div
+              v-for="item in filteredProducts"
+              :key="item.id"
+              class="relative bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 group overflow-hidden"
+            >
+
+              <div 
+                v-if="item.discount_price && item.price"
+                class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-2 py-1 rounded-full z-10"
+              >
+                -{{ calculateDiscountPercentage(item.price, item.discount_price) }}%
+              </div>
+
               <RouterLink
-                :to="`/product/${item?.slug}`"
-                class="relative bg-gradient-to-br from-gray-50 to-gray-200 h-48 flex items-center justify-center rounded-t-xl overflow-hidden"
+                :to="`/product/${item.slug}`"
+                class="block w-full aspect-square bg-gradient-to-br from-gray-50 to-gray-200 flex items-center justify-center overflow-hidden relative"
               >
                 <img
-                  :src="item?.cover_image_url"
-                  alt="product"
-                  class="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  :src="item.cover_image_url"
+                  :alt="item.title"
+                  class="w-full h-full object-contain p-4 transform group-hover:scale-105 transition-transform duration-300"
                 />
-                <span
-                  class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
-                >
-                  -32%
-                </span>
               </RouterLink>
-              <div class="flex-1 flex flex-col p-5">
-                <h3 class="text-lg font-semibold text-gray-900 truncate mb-1">
-                  {{ item?.title }}
-                </h3>
-                <p class="text-xs text-gray-500 mb-2 truncate">
-                  {{ item.subtitle }}
+            
+              <div class="p-4">
+                <RouterLink :to="`/product/${item.slug}`">
+                  <h3 class="text-base font-semibold text-gray-900 mb-1 line-clamp-2">
+                    {{ item.title }}
+                  </h3>
+                </RouterLink>
+                
+                <p class="text-xs text-gray-500 mb-2 line-clamp-2">
+                  {{ item.short_description || item.subtitle }}
                 </p>
-                <div class="flex items-baseline gap-2 mb-3 sm:mb-4 flex-wrap">
-                  <span
-                    v-if="item.price"
-                    class="text-xs sm:text-sm line-through text-gray-400"
+                
+                <div class="flex items-baseline gap-2 mb-3">
+                  <span v-if="item.discount_price" class="text-base font-bold text-red-700">
+                    zł{{ item.discount_price }}
+                  </span>
+                  <span 
+                    v-if="item.discount_price && item.price"
+                    class="text-xs line-through text-gray-400"
                   >
                     zł{{ item.price }}
                   </span>
-                  <span class="text-base sm:text-xl text-red-700 font-bold">
-                    zł{{ item.discount_price }}
+                  <span v-else class="text-base font-bold text-gray-900">
+                    zł{{ item.price }}
                   </span>
                 </div>
-                <div
-                  class="flex md:flex-col gap-1 mb-4 flex-wrap text-xs sm:text-sm"
-                >
-                  <div class="flex items-center space-x-1">
-                    <Icon icon="mdi:star" class="text-yellow-500 text-base" />
-                    <span class="text-xs font-medium text-gray-700">{{
-                      item.rating
-                    }}</span>
-                    <RouterLink
-                      :to="`/review`"
-                      class="text-xs ml-1 text-blue-600 hover:underline whitespace-nowrap font-semibold"
-                    >
-                      ({{ item.reviews }}) Reviews
-                    </RouterLink>
+                
+                <div class="flex items-center mb-4">
+                  <div class="flex items-center">
+                    <Icon 
+                      v-for="i in 5"
+                      :key="i"
+                      icon="mdi:star"
+                      class="h-4 w-4"
+                      :class="i <= Math.round(item.rating || 0) ? 'text-yellow-500' : 'text-gray-300'"
+                    />
                   </div>
+                  <span class="text-xs text-gray-500 ml-1">
+                    ({{ item.review_count || 0 }})
+                  </span>
                 </div>
-
-                <div
-                  class="border-gray-100 mt-auto pt-3 border-t flex justify-center items-center gap-4 flex-col sm:flex-row"
-                >
+                
+                <div class="flex justify-between gap-2">
                   <button
-                    @click="handleBuyNow(item)"
-                    class="flex items-center justify-center gap-2 bg-black text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:bg-blue-950 hover:border-blue-950 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-blue-950"
+                    @click.stop="handleBuyNow(item)"
+                    class="flex-1 flex items-center justify-center gap-1 bg-black text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-gray-800 transition-colors"
                   >
-                    <Icon icon="mdi:credit-card-check" class="h-5 w-5" />
+                    <Icon icon="mdi:credit-card-check" class="h-4 w-4" />
                     <span>Buy Now</span>
                   </button>
                   <button
-                    @click="handleAddToCart(item)"
-                    class="flex items-center justify-center gap-2 bg-primarysButton hover:bg-secondysButton text-white text-xs font-semibold px-2 py-1.5 rounded-lg shadow hover:border-red-900 transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-red-400"
+                    @click.stop="handleAddToCart(item)"
+                    class="flex-1 flex items-center justify-center gap-1 bg-primarysButton text-white text-xs font-semibold px-3 py-2 rounded-lg hover:bg-secondysButton transition-colors"
                   >
-                    <Icon icon="mdi:cart" class="h-5 w-5" />
+                    <Icon icon="mdi:cart" class="h-4 w-4" />
                     <span>Add Cart</span>
                   </button>
                 </div>
               </div>
             </div>
           </div>
+          
+          <div v-else class="bg-white rounded-lg p-8 text-center">
+            <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 class="text-lg font-medium text-gray-900 mb-1">No products found</h3>
+            <p class="text-sm text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
+            <button 
+              @click="resetFilters"
+              class="text-deepMaroon text-sm font-medium hover:underline"
+            >
+              Reset all filters
+            </button>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   </AppLayout>
 </template>
 
 <script setup>
-import Icon from "@/components/Icon.vue";
-import { useToast } from "vue-toastification";
-import { onMounted, ref } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import useAxios from "@/composables/useAxios.js";
-const toast = useToast();
+import { ref, computed, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
+import { Icon } from '@iconify/vue';
+import useAxios from '@/composables/useAxios.js';
+import { useCartStore } from '../../stores/useCartStore';
+
 const router = useRouter();
 const route = useRoute();
+const toast = useToast();
+const cart = useCartStore();
+const { sendRequest } = useAxios();
+const isSidebarOpen = ref(false);
+const sortOption = ref('newest_arrival');
+const priceRange = ref([0, 100000000000000000]);
+const discountFilter = ref([]);
+const ratingFilter = ref([]);
 const products = ref(null);
-const {sendRequest} = useAxios();
-async function fetchProductsByCategory() {
-  // const res = await axios.get(
-  //   `${import.meta.env.VITE_APP_URL}product?category=${route.params.slug}`
-  // );
+
+onMounted(async () => {
   const res = await sendRequest({
     url: `product?category=${route.params.slug}`,
     method: "GET",
-  })
+  });
   products.value = res.data;
+  
+  if (products.value?.data?.length > 0) {
+    const prices = products.value.data.map(p => p.price || 0).filter(p => p > 0);
+    if (prices.length > 0) {
+      priceRange.value = [
+        Math.min(...prices),
+        Math.max(...prices)
+      ];
+    }
+  }
+});
+
+const minPrice = computed(() => {
+  if (!products.value?.data) return 0;
+  const prices = products.value.data.map(p => p.price || 0).filter(p => p > 0);
+  return prices.length > 0 ? Math.min(...prices) : 0;
+});
+
+const maxPrice = computed(() => {
+  if (!products.value?.data) return 2500;
+  const prices = products.value.data.map(p => p.price || 0).filter(p => p > 0);
+  return prices.length > 0 ? Math.max(...prices) : 2500;
+});
+
+const filteredProducts = computed(() => {
+  if (!products.value?.data) return [];
+  
+  let filtered = [...products.value.data];
+
+  filtered = filtered.filter(p => {
+    const price = p.discount_price || p.price || 0;
+    return price >= priceRange.value[0] && price <= priceRange.value[1];
+  });
+  
+  if (discountFilter.value.length > 0) {
+    filtered = filtered.filter(p => {
+      if (!p.price || !p.discount_price) return false;
+      const discount = ((p.price - p.discount_price) / p.price) * 100;
+      return discountFilter.value.some(d => discount >= parseInt(d));
+    });
+  }
+  
+  if (ratingFilter.value.length > 0) {
+    filtered = filtered.filter(p => {
+      return ratingFilter.value.some(r => (p.rating || 0) >= r);
+    });
+  }
+  
+  switch (sortOption.value) {
+    case 'price_low_to_high':
+      filtered.sort((a, b) => (a.discount_price || a.price || 0) - (b.discount_price || b.price || 0));
+      break;
+    case 'price_high_to_low':
+      filtered.sort((a, b) => (b.discount_price || b.price || 0) - (a.discount_price || a.price || 0));
+      break;
+    case 'avg_customer_review':
+      filtered.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      break;
+    case 'newest_arrival':
+      filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      break;
+  }
+  
+  return filtered;
+});
+
+function calculateDiscountPercentage(originalPrice, discountPrice) {
+  if (!originalPrice || !discountPrice) return 0;
+  return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
 }
 
-onMounted(() => {
-  fetchProductsByCategory();
-});
-import { useCartStore } from "../../stores/useCartStore";
+function updatePriceRange() {
+  if (priceRange.value[0] > priceRange.value[1]) {
+    const temp = priceRange.value[0];
+    priceRange.value[0] = priceRange.value[1];
+    priceRange.value[1] = temp;
+  }
+}
 
-const cart = useCartStore();
+function resetFilters() {
+  priceRange.value = [minPrice.value, maxPrice.value];
+  discountFilter.value = [];
+  ratingFilter.value = [];
+}
 
 function handleAddToCart(item) {
-      const existingCartItems = cart.cartItems; 
+  const existingCartItems = cart.cartItems; 
   if (existingCartItems.length > 0) {
     const existingVendorId = existingCartItems[0].shop_id;
     if (existingVendorId !== item.shop_id) {
@@ -505,46 +481,73 @@ function handleAddToCart(item) {
       return;
     }
   }
+  
   cart.addToCart({
-    id: item.id, 
+    id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: item.quantity,
+    quantity: 1,
     shop_id: item.shop_id,
     category_id: item.category_id,
     total: item.price,
     category: item.tag,
   });
+  
   toast.success(`${item.title} added to cart`);
 }
+
 function handleBuyNow(item) {
   const checkoutProduct = {
-    id: item.id, 
+    id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: item.quantity,
+    quantity: 1,
     shop_id: item.shop_id,
     category_id: item.category_id,
     total: item.price,
     category: item.tag,
   };
+  
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
-  toast.success(`${item.title} is bought`)
+  toast.success(`${item.title} is bought`);
   router.push("/checkout");
 }
-const isSidebarOpen = ref(false);
 </script>
 
 <style scoped>
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.3s ease;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateX(-100%);
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #3b82f6;
+  border-radius: 50%;
+  cursor: pointer;
 }
 </style>

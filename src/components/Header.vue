@@ -100,7 +100,7 @@
                 <span class="text-white hidden sm:inline">
                   {{
                     authStore.user?.user?.name?.split(" ")[0] ||
-                    authStore.user.user.name
+                    authStore.user?.user?.name
                   }}
                 </span>
               </button>
@@ -110,7 +110,7 @@
                 class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border"
               >
                 <RouterLink
-                  to="/customer/profile"
+                  to="/dashboard"
                   class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
                 >
                   Profile
@@ -192,7 +192,7 @@
                 class="absolute bottom-10 right-0 bg-white rounded-md shadow-lg z-50 border w-40 text-gray-700"
               >
                 <RouterLink
-                  to="/customer/profile"
+                  to="/dashboard"
                   class="block px-4 py-2 hover:bg-gray-100"
                   @click="mobileAccountDropdownOpen = false"
                 >
@@ -283,6 +283,12 @@
             New Release
           </RouterLink>
           <RouterLink
+          to="/shop"
+          class="cursor-pointer rounded-full py-1 px-2 text-sm font-medium hover:bg-gray-100"
+          >
+          Shop
+          </RouterLink>
+          <RouterLink
             v-for="item in CategoryItems"
             :key="item.name"
             :to="`/category/${item?.slug}`"
@@ -307,7 +313,6 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import Icon from "@/components/Icon.vue";
 import { useCartStore } from "@/stores/useCartStore";
 import { storeToRefs } from "pinia";
-// import axios from "axios";
 import useAxios from "@/composables/useAxios";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -319,7 +324,23 @@ const router = useRouter();
 const dropdownOpen = ref(false);
 const dropdownRef = ref(null);
 const mobileAccountDropdownOpen = ref(false);
+onMounted(() => {
+  const script = document.createElement("script");
+  script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+  document.head.appendChild(script);
 
+
+  window.googleTranslateElementInit = () => {
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: "pl",          
+        includedLanguages: "en",   
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+      },
+      "google_translate_element"
+    );
+  };
+});
 function handleAccountClick() {
   if (authStore.isLoggedIn) {
     mobileAccountDropdownOpen.value = !mobileAccountDropdownOpen.value;
@@ -354,9 +375,6 @@ const { cartCount } = storeToRefs(cart);
 const isSidebarOpen = ref(false);
 const CategoryItems = ref([]);
 const CategoryItemsNav = ref([]);
-  // const res = await axios.get(
-  //   `${import.meta.env.VITE_APP_URL}public/get-all-page-list`
-  // );
 const getNavItems = async () => {
   const res = await sendRequest({
     url: 'public/get-all-page-list',
@@ -367,28 +385,22 @@ const getNavItems = async () => {
   }
 };
 
-// const res = await axios.get(
-//   `${import.meta.env.VITE_APP_URL}public/get-all-category-list`
-// );
 const getCategoryNav = async () => {
   const res = await sendRequest({
     url: 'public/get-all-category-list',
     method: 'GET',
   })
   if (res) {
-    // console.log(res);
     CategoryItemsNav.value = res.data;
   }
 };
 
 const getCategory = async () => {
-  // const res = await axios.get(`${import.meta.env.VITE_APP_URL}public/apricot`);
   const res = await sendRequest({
     url: 'public/apricot',
     method: 'GET',
   });
   if (res) {
-    // console.log(res);
     CategoryItems.value = res.data?.header_categories;
   }
 };
@@ -418,7 +430,6 @@ const handleScroll = () => {
 
 const open = ref(false);
 const selected = ref(null);
-const items = ["Category", "Electronics", "Fashion", "Books"];
 
 function select(item) {
   selected.value = item;
@@ -435,13 +446,6 @@ onBeforeUnmount(() => {
 
 const isUserDropdownOpen = ref(false);
 
-const toggleUserDropdown = () => {
-  isUserDropdownOpen.value = !isUserDropdownOpen.value;
-};
-
-const closeUserDropdown = () => {
-  isUserDropdownOpen.value = false;
-};
 </script>
 
 <style scoped>

@@ -3,15 +3,12 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
         class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10">
-        <div class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
+        <div id="google_translate_element" class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
           <img src="../assets/img/logo.png" class="w-30 h-10 rounded-2xl" alt="">
           <br>
           <br>
           <span class="text-xl font-bold text-white sm:inline"></span>
-
           <div class="flex items-center gap-4 py-6">
-
-            <!-- Store Buttons -->
             <div class="flex gap-2">
               <a href="https://www.apple.com/app-store/" target="_blank">
                 <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
@@ -114,3 +111,5 @@
     </div>
   </footer>
 </template>
+
+

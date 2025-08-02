@@ -105,7 +105,7 @@ const router = createRouter({
       component: () => import("../views/Order/Checkout.vue"),
     },
     {
-      path: "/customer/profile",
+      path: "/dashboard",
       name: "customer-profile",
       component: () => import("../views/Customer/Profile.vue"),
     },
@@ -114,6 +114,16 @@ const router = createRouter({
       name: "OrderDetail",
       component: () => import("../views/Order/OrderDetails.vue"),
     },
+    {
+      path: "/shop",
+      name: "Shop",
+      component: () => import("../views/Shop/Index.vue"),
+    },
+    {
+      path: "/shop/:slug",
+      name: "SingleShop",
+      component: () => import("../views/Shop/ShopItem.vue")
+    }
   ],
 });
 export default router;

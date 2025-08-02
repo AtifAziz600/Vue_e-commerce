@@ -12,7 +12,6 @@ export const useApiProductStore = defineStore("productApiStore", {
     async fetchProducts() {
       this.loading = true;
       try {
-        // const response = await axios.get(`${import.meta.env.VITE_APP_URL}public/product`, { params });
         const { sendRequest } = useAxios();
         const response = await sendRequest({
           url: '/public/product',

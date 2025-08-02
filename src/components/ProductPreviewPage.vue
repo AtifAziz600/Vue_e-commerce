@@ -1,156 +1,192 @@
 <template>
   <AppLayout>
-    <section class="relative py-12 bg-[#f5f5f7] min-h-screen">
-      <div class="w-full mx-auto px-4 sm:px-6 lg:px-0">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2">
-          <div class="img flex items-center justify-center">
-            <div
-              class="h-96 max-lg:mx-auto rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white"
-            >
+    <section class="relative py-12 bg-gray-50 min-h-screen">
+      <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div class="space-y-4">
+            <div class="relative rounded-xl overflow-hidden bg-white shadow-lg border border-gray-100 aspect-square">
               <img
                 :src="product?.cover_image_url"
                 :alt="product?.title"
-                class="max-lg:mx-auto lg:ml-auto h-full w-full object-fit transition-transform duration-300 hover:scale-105"
+                class="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
               />
-              {{ product }}
+              <div v-if="product?.discount_percentage" class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
+                -{{ product.discount_percentage }}%
+              </div>
+            </div>
+            <div class="grid grid-cols-4 gap-3">
+              <div v-for="(image, index) in product?.images" :key="index" class="cursor-pointer border rounded-lg overflow-hidden bg-white aspect-square">
+                <img :src="image" :alt="`${product?.title} thumbnail ${index}`" class="w-full h-full object-cover" />
+              </div>
             </div>
           </div>
-          <div
-            class="w-full lg:pr-8 pr-0 xl:justify-start justify-center flex items-center max-lg:pb-10 xl:my-2 lg:my-5 my-0"
-          >
-            <div class="w-full max-w-xl">
-              <h2
-                class="font-sans font-bold text-4xl leading-tight text-gray-900 mb-3 capitalize tracking-tight"
-              >
-                {{ product?.title }}
-              </h2>
-              <p
-                class="text-base font-medium leading-8 text-gray-500 py-2 tracking-wide uppercase"
-              >
-                {{ product?.short_description }}
-              </p>
-              <div class="flex flex-col sm:flex-row sm:items-center mb-6">
-                <h6
-                  class="font-semibold text-3xl leading-9 text-gray-900 pr-5 sm:border-r border-gray-200 mr-5"
-                >
-                  zł {{ product?.discount_price }}
-                </h6>
-                <div class="flex items-center gap-2">
-                  <div class="flex items-center gap-1">
-                    <div v-for="i in 5" :key="i">
-                      <svg
-                        v-if="i <= product?.rating"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                      >
-                        <path
-                          d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                          fill="#ffcc00"
-                        />
+
+          <div class="lg:sticky lg:top-24 self-start">
+            <div class="space-y-6">
+              <div>
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ product?.title }}</h1>
+                <div class="flex items-center mt-2 space-x-4">
+                  <div class="flex items-center bg-blue-50 px-2 py-1 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span class="text-sm font-medium ml-1">{{ product?.rating }}</span>
+                    <span class="text-gray-500 text-sm ml-1">({{ product?.reviews }} reviews)</span>
+                  </div>
+                  <span class="text-sm text-green-600 font-medium">In Stock</span>
+                </div>
+              </div>
+
+              <div class="space-y-2">
+                <p class="text-gray-700">{{ product?.description }}</p>
+                <p class="text-gray-500 text-sm">SKU: {{ product?.sku || 'N/A' }}</p>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div class="text-3xl font-bold text-gray-900">zł {{ product?.discount_price }}</div>
+                <div v-if="product?.price !== product?.discount_price" class="text-xl text-gray-500 line-through">zł {{ product?.price }}</div>
+              </div>
+
+                <div v-if="product?.key_features" class="border-t border-b border-gray-200 py-4">
+                <h3 class="font-medium text-lg mb-2">Key Features</h3>
+                <ul class="space-y-2">
+                  <li v-for="(feature, i) in parseKeyFeatures(product.key_features)" :key="i" class="flex items-start">
+                    <Icon icon="mdi:check-circle" class="h-5 w-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                    <span class="text-gray-700">{{ feature.name || 'N/A' }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="space-y-4">
+                <div class="flex items-center space-x-4">
+                  <div class="flex items-center border border-gray-300 rounded-full">
+                    <button @click="decrement" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-l-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
                       </svg>
-                      <svg
-                        v-else
-                        width="20"
-                        height="20"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                      >
-                        <path
-                          d="M9.10326 2.31699C9.47008 1.57374 10.5299 1.57374 10.8967 2.31699L12.7063 5.98347C12.8519 6.27862 13.1335 6.48319 13.4592 6.53051L17.5054 7.11846C18.3256 7.23765 18.6531 8.24562 18.0596 8.82416L15.1318 11.6781C14.8961 11.9079 14.7885 12.2389 14.8442 12.5632L15.5353 16.5931C15.6754 17.41 14.818 18.033 14.0844 17.6473L10.4653 15.7446C10.174 15.5915 9.82598 15.5915 9.53466 15.7446L5.91562 17.6473C5.18199 18.033 4.32456 17.41 4.46467 16.5931L5.15585 12.5632C5.21148 12.2389 5.10393 11.9079 4.86825 11.6781L1.94038 8.82416C1.34687 8.24562 1.67438 7.23765 2.4946 7.11846L6.54081 6.53051C6.86652 6.48319 7.14808 6.27862 7.29374 5.98347L9.10326 2.31699Z"
-                          fill="#e5e7eb"
-                        />
+                    </button>
+                    <input type="text" :value="quantity" readonly class="w-12 text-center border-t border-b border-gray-300 py-2 bg-transparent focus:outline-none" />
+                    <button @click="increment" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-r-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                       </svg>
+                    </button>
+                  </div>
+                  <button
+                    @click="handleAddToCart(product)"
+                    class="flex-1 bg-deepMaroon hover:bg-secondysButton text-white px-6 py-3 rounded-full font-medium flex items-center justify-center space-x-2 transition-colors"
+                  >
+                    <Icon icon="mdi:cart" class="h-5 w-5" />
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+
+                <div class="flex space-x-4">
+                  <button
+                    @click="wishlisted = !wishlisted"
+                    class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
+                    :class="{ 'bg-red-50 border-red-200': wishlisted }"
+                  >
+                    <Icon
+                      icon="mdi:heart"
+                      class="h-6 w-6"
+                      :class="wishlisted ? 'text-red-500' : 'text-gray-500'"
+                    />
+                  </button>
+                  <button
+                    @click="handleBuyNow(product)"
+                    class="flex-1 bg-gray-900 hover:bg-gray-800 text-white px-6 py-3 rounded-full font-medium transition-colors"
+                  >
+                    Buy Now
+                  </button>
+                </div>
+              </div>
+
+              <div class="bg-blue-50 p-4 rounded-lg">
+                <div class="flex items-start space-x-3">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  <div>
+                    <h4 class="font-medium text-gray-900">Secure Payment</h4>
+                    <p class="text-sm text-gray-600 mt-1">All transactions are secure and encrypted</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-16">
+          <div class="border-b border-gray-200">
+            <nav class="flex space-x-8">
+              <button
+                v-for="tab in tabs"
+                :key="tab.id"
+                @click="activeTab = tab.id"
+                :class="[activeTab === tab.id ? 'border-deepMaroon text-deepMaroon' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300', 'whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm']"
+              >
+                {{ tab.name }}
+              </button>
+            </nav>
+          </div>
+
+          <div class="py-6">
+            <div v-show="activeTab === 'description'">
+              <div class="prose max-w-none" v-html="product?.description"></div>
+            </div>
+
+            <div v-show="activeTab === 'specifications'" class="space-y-4">
+              <table class="min-w-full divide-y divide-gray-200">
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr v-for="(spec, key) in product?.specifications" :key="key">
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">{{ key }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ spec }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div v-show="activeTab === 'reviews'" class="space-y-8">
+              <GiveReview :product-id="product?.id" />
+              <div v-if="product?.reviews && product.reviews.length > 0">
+                <div v-for="review in product.reviews" :key="review.id" class="border-b border-gray-200 pb-6 last:border-0">
+                  <div class="flex items-center space-x-3">
+                    <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                      <span class="text-gray-600">{{ review.user_name.charAt(0).toUpperCase() }}</span>
+                    </div>
+                    <div>
+                      <h4 class="font-medium">{{ review.user_name }}</h4>
+                      <div class="flex items-center">
+                        <div class="flex">
+                          <svg v-for="i in 5" :key="i" class="h-4 w-4" :class="i <= review.rating ? 'text-yellow-400' : 'text-gray-300'" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        </div>
+                        <span class="text-xs text-gray-500 ml-2">{{ formatDate(review.created_at) }}</span>
+                      </div>
                     </div>
                   </div>
-                  <span
-                    class="pl-2 font-normal leading-7 text-gray-500 text-sm"
-                  >
-                    {{ product?.reviews }} reviews
-                  </span>
+                  <p class="mt-2 text-gray-700">{{ review.comment }}</p>
                 </div>
               </div>
-              <p class="text-gray-700 text-lg font-normal mb-5 leading-relaxed">
-                {{ product?.subtitle }}
-              </p>
-              <ul class="grid gap-y-3 mb-8">
-                <li
-                  v-for="(feature, i) in product?.features"
-                  :key="i"
-                  class="flex items-center gap-3"
-                >
-                  <span
-                    class="inline-block w-2.5 h-2.5 rounded-full bg-red-800"
-                  ></span>
-                  <span class="font-normal text-base text-gray-900">{{
-                    feature
-                  }}</span>
-                </li>
-              </ul>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-8">
-                <div class="flex sm:items-center sm:justify-center w-full">
-                  <button
-                    class="py-3 px-5 border border-gray-300 rounded-l-full bg-white hover:bg-gray-100"
-                    @click="decrement"
-                  >
-                    <span class="text-xl font-bold text-gray-700">-</span>
-                  </button>
-                  <input
-                    type="text"
-                    class="font-semibold text-gray-900 text-lg py-2 px-6 w-20 text-center border-y border-gray-300 bg-transparent outline-none"
-                    :value="quantity"
-                    readonly
-                  />
-                  <button
-                    class="py-3 px-5 border border-gray-300 rounded-r-full bg-white hover:bg-gray-100"
-                    @click="increment"
-                  >
-                    <span class="text-xl font-bold text-gray-700">+</span>
-                  </button>
-                </div>
-                <button
-                  @click="handleAddToCart(product)"
-                  class="py-3 px-5 rounded-full bg-primarysButton hover:bg-secondysButton text-white font-semibold text-lg w-full flex items-center justify-center gap-2 shadow transition-all duration-300"
-                >
-                  <Icon icon="mdi:cart" class="h-6 w-6" />
-                  Add to cart
-                </button>
-              </div>
-              <div class="flex items-center gap-3">
-                <button
-                  class="transition-all duration-300 p-4 rounded-full bg-white border border-gray-200 hover:bg-gray-100"
-                  :class="{ 'ring-2 ring-indigo-400': wishlisted }"
-                  @click="wishlisted = !wishlisted"
-                >
-                  <Icon
-                    icon="mdi:heart"
-                    class="h-6 w-6 text-gray-500 hover:text-gray-800"
-                  />
-                </button>
-                <button
-                  @click="handleBuyNow(product)"
-                  class="text-center w-full px-5 py-4 rounded-xl bg-primarysButton hover:bg-secondysButton flex items-center justify-center font-semibold text-lg text-white shadow transition-all duration-300"
-                >
-                  Buy Now
-                </button>
-              </div>
-              <div class="mt-8 flex justify-center gap-2 opacity-70">
-                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
-                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
-                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+              <div v-else class="text-center py-8 text-gray-500">
+                No reviews yet. Be the first to review!
               </div>
             </div>
+
+            <div v-show="activeTab === 'shipping'" class="prose max-w-none" v-html="product?.shipping_return"></div>
+          </div>
+        </div>
+
+
+        <div class="mt-16">
+          <h3 class="text-2xl font-bold mb-6">You may also like</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ProductCard v-for="relatedProduct in relatedProducts" :key="relatedProduct.id" :product="relatedProduct" />
           </div>
         </div>
       </div>
-      <div class="mx-auto">
-        <GiveReview/>
-      </div>
-        <div class="mx-auto">
-          <Offer />
-        </div>
     </section>
   </AppLayout>
 </template>
@@ -161,24 +197,44 @@ import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "@/stores/useCartStore";
 import { Icon } from "@iconify/vue";
-import Modal from "../components/Modal.vue";
 import { useApiProductStore } from "../stores/useApiProductStore";
 import { useSingleProductStore } from "../stores/useSingleProductStore";
-import Offer from "@/views/CarusoulCard/Offer.vue";
 import GiveReview from "@/views/Review/GiveReview.vue";
-const productApiStore = useApiProductStore();
-const router = useRouter();
-onMounted(async () => {
-  await productApiStore.fetchProducts();
-  // console.log(productApiStore.products);
-});
 
 const route = useRoute();
-const cart = useCartStore();
+const router = useRouter();
 const toast = useToast();
+const cart = useCartStore();
+const productApiStore = useApiProductStore();
 const singleProductStore = useSingleProductStore();
+
+const quantity = ref(1);
+const wishlisted = ref(false);
+const activeTab = ref('description');
+const tabs = [
+  { id: 'description', name: 'Description' },
+  { id: 'specifications', name: 'Specifications' },
+  { id: 'reviews', name: 'Reviews' },
+  { id: 'shipping', name: 'Shipping & Returns' }
+];
+
+const product = computed(() => singleProductStore.product);
+const relatedProducts = computed(() => {
+  return productApiStore.products
+    .filter(p => p.category_id === product.value?.category_id && p.id !== product.value?.id)
+    .slice(0, 4);
+});
+
+function increment() {
+  quantity.value++;
+}
+
+function decrement() {
+  if (quantity.value > 1) quantity.value--;
+}
+
 function handleAddToCart(item) {
-      const existingCartItems = cart.cartItems; 
+  const existingCartItems = cart.cartItems; 
   if (existingCartItems.length > 0) {
     const existingVendorId = existingCartItems[0].shop_id;
     if (existingVendorId !== item.shop_id) {
@@ -186,58 +242,100 @@ function handleAddToCart(item) {
       return;
     }
   }
+  
   cart.addToCart({
     id: item.id,
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
-    price: item.price,
-    quantity: item.quantity,
+    price: item.discount_price || item.price,
+    quantity: quantity.value,
     shop_id: item.shop_id,
     category_id: item.category_id,
-    total: item.price,
+    total: (item.discount_price || item.price) * quantity.value,
     category: item.tag,
   });
+  
   toast.success(`${item.title} added to cart`);
 }
+
 function handleBuyNow(item) {
   const checkoutProduct = {
     id: item.id, 
     product_id: item.id,
     title: item.title,
     image: item.cover_image_url,
-    price: item.price,
-    quantity: item.quantity,
+    price: item.discount_price || item.price,
+    quantity: quantity.value,
     shop_id: item.shop_id,
     category_id: item.category_id,
-    total: item.price,
+    total: (item.discount_price || item.price) * quantity.value,
     category: item.tag,
   };
+  
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
-  toast.success(`${item.title} is bought`)
+  toast.success(`${item.title} is bought`);
   router.push("/checkout");
 }
+
+function formatDate(dateString) {
+  const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString(undefined, options);
+}
+
 onMounted(async () => {
-  await singleProductStore.fetchProductBySlug(route.params.slug);
-  // console.log("Fetched product:", singleProductStore.item);
+  await Promise.all([
+    productApiStore.fetchProducts(),
+    singleProductStore.fetchProductBySlug(route.params.slug)
+  ]);
 });
-
-const product = computed(() => singleProductStore.product);
-
-const quantity = ref(1);
-const wishlisted = ref(false);
-
-function increment() {
-  quantity.value++;
-}
-function decrement() {
-  if (quantity.value > 1) quantity.value--;
-}
 </script>
 
 <style scoped>
-input[readonly]::-webkit-input-placeholder {
-  color: #111;
-  opacity: 1;
+.prose :deep(p) {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.prose :deep(ul) {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose :deep(li) {
+  margin-bottom: 0.5rem;
+}
+
+.prose :deep(h2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.prose :deep(h3) {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose :deep(table) {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.prose :deep(th) {
+  background-color: #f3f4f6;
+  text-align: left;
+  padding: 0.75rem;
+  font-weight: 600;
+}
+
+.prose :deep(td) {
+  padding: 0.75rem;
+  border-top: 1px solid #e5e7eb;
 }
 </style>
