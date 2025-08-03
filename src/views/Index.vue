@@ -16,6 +16,7 @@
     <HomeCategoryCard />
     <RecommendedProduct />
     <BannerImage/>
+    <TopDeals/>
     <ProductCard2/>
     <ElectronicsCategories />
     <ProductCard />
@@ -24,6 +25,7 @@
     <ProductCardCarsoal />
     <ProductSlider />
     <Brands />
+    <FeatureProducts/>
     <ProductCardItem />
     <Offer />
     <LowestCostItem />
@@ -61,6 +63,8 @@ import Offersinspired from "./CarusoulCard/Offersinspired.vue";
 import DiscoverNewProduct from "./CarusoulCard/DiscoverNewProduct.vue";
 import ProductCard3 from "./Products/ProductCard3.vue";
 import ProductCard2 from "./Products/ProductCard2.vue";
+import FeatureProducts from "./Products/FeatureProducts.vue";
+import TopDeals from "./Products/TopDeals.vue";
 </script>
 <style>
 .category-cards-grid-container {

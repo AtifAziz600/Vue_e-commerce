@@ -4,7 +4,7 @@
       <h2
         class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight"
       >
-        Latest Product
+        New Arrivals
       </h2>
       <p class="text-md md:text-lg text-gray-600 font-light">
         Discover our top picks, and all the products that were featured
@@ -26,12 +26,12 @@
             :alt="item.title"
             class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
           />
-          <span
-            v-if="item.discount_price"
-            class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-3 py-1 rounded-full shadow"
-          >
-            -32%
-          </span>
+               <div 
+                v-if="item.discount_price && item.price"
+                class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-2 py-1 rounded-full z-10"
+              >
+                -{{ calculateDiscountPercentage(item.price, item.discount_price) }}%
+              </div>
         </RouterLink>
 
         <div class="p-4 sm:p-5 flex flex-col justify-between h-auto">
@@ -111,7 +111,10 @@ const productApiStore = useApiProductStore();
 onMounted(async () => {
   await productApiStore.fetchProducts();
 });
-
+function calculateDiscountPercentage(originalPrice, discountPrice) {
+  if (!originalPrice || !discountPrice) return 0;
+  return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
+}
 function handleAddToCart(item) {
       const existingCartItems = cart.cartItems; 
   if (existingCartItems.length > 0) {

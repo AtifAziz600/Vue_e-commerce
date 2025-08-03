@@ -114,37 +114,6 @@ export const useAuthStore = defineStore("auth", () => {
     }
   }
 
-
-// async function verifyOtp(verificationData) {
-//   try {
-//     const response = await sendRequest({
-//       method: "POST",
-//       url: "/verify-otp",
-//       data: verificationData
-//     });
-
-//     if (response) {
-     
-//       return response;
-//     }
-//   } catch (err) {
-//     throw err;
-//   }
-// }
-
-// Add this function if missing
-// async function fetchUser() {
-//   try {
-//     const { data } = await sendRequest({
-//       method: "GET",
-//       url: "/user"
-//     });
-//     user.value = data;
-//     localStorage.setItem('user', JSON.stringify(data));
-//   } catch (error) {
-//     this.logout();
-//   }
-// }
   async function resendOtp(phone) {
     try {
       await sendRequest({

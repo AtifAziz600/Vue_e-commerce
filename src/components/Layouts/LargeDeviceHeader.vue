@@ -50,8 +50,6 @@
           </ul>
         </div>
       </nav>
-
-
       <div class="absolute">
         <div class="fixed top-0 left-0 bottom-0 w-full transition-all ease-in-out duration-500"
              :class="categoryToggle ? 'bg-black/75 z-40' : 'scale-0'">

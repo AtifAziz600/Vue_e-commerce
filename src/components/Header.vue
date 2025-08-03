@@ -324,23 +324,6 @@ const router = useRouter();
 const dropdownOpen = ref(false);
 const dropdownRef = ref(null);
 const mobileAccountDropdownOpen = ref(false);
-onMounted(() => {
-  const script = document.createElement("script");
-  script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-  document.head.appendChild(script);
-
-
-  window.googleTranslateElementInit = () => {
-    new window.google.translate.TranslateElement(
-      {
-        pageLanguage: "pl",          
-        includedLanguages: "en",   
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-      },
-      "google_translate_element"
-    );
-  };
-});
 function handleAccountClick() {
   if (authStore.isLoggedIn) {
     mobileAccountDropdownOpen.value = !mobileAccountDropdownOpen.value;

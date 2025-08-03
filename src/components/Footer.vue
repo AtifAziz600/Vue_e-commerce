@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div
         class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-6 md:gap-10 max-sm:max-w-sm max-sm:mx-auto gap-y-10">
-        <div id="google_translate_element" class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
+        <div class="col-span-full mb-8 lg:col-span-2 lg:mb-0 text-center lg:text-left">
           <img src="../assets/img/logo.png" class="w-30 h-10 rounded-2xl" alt="">
           <br>
           <br>

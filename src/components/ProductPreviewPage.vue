@@ -83,7 +83,7 @@
 
                 <div class="flex space-x-4">
                   <button
-                    @click="wishlisted = !wishlisted"
+                    @click="wishlistStore.addToWishlist(product)"
                     class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
                     :class="{ 'bg-red-50 border-red-200': wishlisted }"
                   >
@@ -182,8 +182,8 @@
 
         <div class="mt-16">
           <h3 class="text-2xl font-bold mb-6">You may also like</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <ProductCard v-for="relatedProduct in relatedProducts" :key="relatedProduct.id" :product="relatedProduct" />
+          <div class="w-full h-full">
+            <RelatedProduct :data="relatedProducts" />
           </div>
         </div>
       </div>
@@ -197,19 +197,19 @@ import { useRoute, useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "@/stores/useCartStore";
 import { Icon } from "@iconify/vue";
+import { useWishlistStore } from "@/stores/useWishlistStore.js";
 import { useApiProductStore } from "../stores/useApiProductStore";
 import { useSingleProductStore } from "../stores/useSingleProductStore";
 import GiveReview from "@/views/Review/GiveReview.vue";
-
+import RelatedProduct from "./RelatedProduct.vue";
 const route = useRoute();
 const router = useRouter();
 const toast = useToast();
 const cart = useCartStore();
 const productApiStore = useApiProductStore();
 const singleProductStore = useSingleProductStore();
-
+const wishlistStore = useWishlistStore();
 const quantity = ref(1);
-const wishlisted = ref(false);
 const activeTab = ref('description');
 const tabs = [
   { id: 'description', name: 'Description' },

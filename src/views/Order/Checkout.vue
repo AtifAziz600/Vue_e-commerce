@@ -198,7 +198,7 @@ const placeOrder = async () => {
         },
       ],
     };
-
+    console.log("Product object:", product.value);
     // const response = await axios.post(
     //   `${import.meta.env.VITE_APP_URL}customer/order`,
     //   payload

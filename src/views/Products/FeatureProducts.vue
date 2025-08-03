@@ -1,16 +1,19 @@
 <template>
-  <div class="w-full mx-auto bg-white p-4 sm:p-6 lg:p-8 shadow-inner rounded-lg mb-14">
-    <div class="mb-8 text-start">
+  <div class="w-full mx-auto px-1 sm:px-1 lg:px-2 py-4 bg-gray-100">
+    <div class="mb-8 text-center">
       <h2
         class="text-2xl md:text-3xl font-bold text-gray-900 mb-3 tracking-tight"
       >
-        Recommended
+        Feature Products
       </h2>
+      <p class="text-md md:text-lg text-gray-600 font-light">
+        Discover our top picks, and all the products that were featured
+      </p>
     </div>
 
     <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
       <div
-        v-for="item in productApiStore.products.slice(12, 16)"
+        v-for="item in productApiStore.products.slice(8, 16)"
         :key="item.id"
         class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >
@@ -23,7 +26,7 @@
             :alt="item.title"
             class="w-full h-full object-fit transform group-hover:scale-105 transition-transform duration-300 p-2"
           />
-              <div 
+               <div 
                 v-if="item.discount_price && item.price"
                 class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-2 py-1 rounded-full z-10"
               >
@@ -99,19 +102,19 @@ import { useToast } from "vue-toastification";
 import { useApiProductStore } from "../../stores/useApiProductStore";
 import { useCartStore } from "../../stores/useCartStore";
 import { useRouter, useRoute } from "vue-router";
+// import axios from "axios";
 const toast = useToast();
 const cart = useCartStore();
+// const products = ref([]);
 const productApiStore = useApiProductStore();
 
 onMounted(async () => {
   await productApiStore.fetchProducts();
 });
-
 function calculateDiscountPercentage(originalPrice, discountPrice) {
   if (!originalPrice || !discountPrice) return 0;
   return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
 }
-
 function handleAddToCart(item) {
       const existingCartItems = cart.cartItems; 
   if (existingCartItems.length > 0) {
