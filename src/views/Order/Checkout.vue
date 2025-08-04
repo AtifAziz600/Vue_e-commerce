@@ -92,7 +92,15 @@
                   class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                 />
               </div>
-
+              <div>
+              <label class="block mb-1 text-sm text-gray-600">Shipping</label>
+              <select v-model="selectedShipping"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
+                <option value="">Select Delivery</option>
+                <option value="standard">Standard Delivery - zł6.50</option>
+                <option value="express">Express Delivery - zł11.80</option>
+              </select>
+            </div>
               <div>
                 <label
                   for="country"

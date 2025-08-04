@@ -99,12 +99,6 @@
           </div>
         </div>
 
-               <div class="mt-16">
-          <h3 class="text-2xl font-bold mb-6">You may also like</h3>
-          <div class="w-full h-full">
-            <RelatedProduct :data="relatedProducts" />
-          </div>
-        </div>
       </div>
     </div>
   </AppLayout>
@@ -117,12 +111,17 @@ import { useCartStore } from '@/stores/useCartStore.js';
 import { useToast } from "vue-toastification";
 import { useRouter } from 'vue-router';
 import { Icon } from "@iconify/vue";
+import { useApiProductStore } from "../../stores/useApiProductStore";
+import { useSingleProductStore } from "../../stores/useSingleProductStore";
 import RelatedProduct from "@/components/RelatedProduct.vue";
 import { computed } from "vue";
+const singleProductStore = useSingleProductStore();
 const router = useRouter();
 const wishlistStore = useWishlistStore();
+const productApiStore = useApiProductStore();
 const toast = useToast();
 const cart = useCartStore();
+const product = computed(() => singleProductStore.product);
 const relatedProducts = computed(() => {
   return productApiStore.products
     .filter(p => p.category_id === product.value?.category_id && p.id !== product.value?.id)

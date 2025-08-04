@@ -120,8 +120,8 @@
               <select v-model="selectedShipping"
                 class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
                 <option value="">Select Delivery</option>
-                <option value="standard">Standard Delivery - zł5.00</option>
-                <option value="express">Express Delivery - zł10.00</option>
+                <option value="standard">Standard Delivery - zł6.50</option>
+                <option value="express">Express Delivery - zł11.80</option>
               </select>
             </div>
 
