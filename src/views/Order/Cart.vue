@@ -120,9 +120,10 @@
               <select v-model="selectedShipping"
                 class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
                 <option value="">Select Delivery</option>
-                <option value="standard">Standard Delivery - zł6.50</option>
-                <option value="express">Express Delivery - zł11.80</option>
+                <option value="standard">Standard Delivery - zł{{ vendorShippingCharge }}</option>
+                <option value="express">Express Delivery - zł{{ vendorShippingCharge2 }}</option>
               </select>
+
             </div>
 
             <div>
@@ -137,8 +138,7 @@
               </div>
             </div>
             <RouterLink to="/add-coupon-code" class="flex justify-center">
-              <button
-                class="w-full bg-gray-800 hover:bg-black text-white py-2 rounded-md text-sm font-semibold">
+              <button class="w-full bg-gray-800 hover:bg-black text-white py-2 rounded-md text-sm font-semibold">
                 Add Coupon Code
               </button>
             </RouterLink>
@@ -203,9 +203,22 @@ const selectedMethod = ref("");
 const selectedShipping = ref("");
 const grand_total_coupon = ref("");
 const couponCode = ref("");
-const shippingCost = computed(() =>
-  selectedShipping.value === "express" ? 10 : 5
+const vendorShippingCharge = computed(() =>
+  cartItems.value.length > 0 ? Number(cartItems.value[0].shipping_charge) : 0
 );
+const vendorShippingCharge2 = computed(() =>
+  cartItems.value.length > 0 ? Number(cartItems.value[0].shipping_charge2) : 0
+);
+
+const shippingCost = computed(() => {
+  if (selectedShipping.value === "express") {
+    return vendorShippingCharge2.value;
+  } else if (selectedShipping.value === "standard") {
+    return vendorShippingCharge.value;
+  }
+  return 0;
+});
+
 const subtotal = computed(() => cart.subtotal);
 const total = computed(
   () => cart.subtotal + shippingCost.value - discount.value

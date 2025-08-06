@@ -114,6 +114,8 @@ function calculateDiscountPercentage(originalPrice, discountPrice) {
   return Math.round(((originalPrice - discountPrice) / originalPrice) * 100);
 }
 function handleAddToCart(item) {
+    console.log('Shipping Charge:', item.shop?.shipping_charge);
+  console.log('Shipping Charge 2:', item.shop?.shipping_charge2);
       const existingCartItems = cart.cartItems; 
   if (existingCartItems.length > 0) {
     const existingVendorId = existingCartItems[0].shop_id;
@@ -133,6 +135,8 @@ function handleAddToCart(item) {
     category_id: item.category_id,
     total: item.price,
     category: item.tag,
+      shipping_charge: item.shop?.shipping_charge || 0,
+  shipping_charge2: item.shop?.shipping_charge2 || 0,
   });
   toast.success(`${item.title} added to cart`);
 }

@@ -97,9 +97,10 @@
               <select v-model="selectedShipping"
                 class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
                 <option value="">Select Delivery</option>
-                <option value="standard">Standard Delivery - zł6.50</option>
-                <option value="express">Express Delivery - zł11.80</option>
+                <option value="standard">Standard Delivery - zł{{ vendorShippingCharge }}</option>
+                <option value="express">Express Delivery - zł{{ vendorShippingCharge2 }}</option>
               </select>
+
             </div>
               <div>
                 <label
@@ -138,33 +139,44 @@
 
 <script setup>
 import { ref, onMounted, computed } from "vue";
-// import axios from "axios";
 import useAxios from "@/composables/useAxios";
 import { useToast } from "vue-toastification";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { useRouter } from "vue-router";
+
 const router = useRouter();
 const toast = useToast();
 const product = ref(null);
+const selectedShipping = ref("");
 const authStore = useAuthStore();
 const { sendRequest } = useAxios();
+
 const userId = computed(() => authStore?.user?.user?.id);
 const name = computed(() => authStore?.user?.user?.name);
 const email = computed(() => authStore?.user?.user?.email);
 const phone = computed(() => authStore?.user?.user?.phone);
-const delivery_charge = 5;
-const sub_total = computed(() => product.value?.price * quantity.value || 0);
-const total_price = computed(() => sub_total.value + delivery_charge);
-const payment_method = "stripe";
 
 const quantity = computed(() => product.value?.quantity || 1);
+const sub_total = computed(() => (product.value?.price || 0) * quantity.value);
 
-onMounted(() => {
-  const stored = localStorage.getItem("checkoutProduct");
-  if (stored) {
-    product.value = JSON.parse(stored);
+const vendorShippingCharge = computed(() =>
+  product.value?.shipping_charge ? Number(product.value.shipping_charge) : 0
+);
+const vendorShippingCharge2 = computed(() =>
+  product.value?.shipping_charge2 ? Number(product.value.shipping_charge2) : 0
+);
+
+const shippingCost = computed(() => {
+  if (selectedShipping.value === "express") {
+    return vendorShippingCharge2.value;
+  } else if (selectedShipping.value === "standard") {
+    return vendorShippingCharge.value;
   }
+  return 0;
 });
+
+const total_price = computed(() => sub_total.value + shippingCost.value);
+
 const form = ref({
   street_address: "",
   city: "",
@@ -172,12 +184,19 @@ const form = ref({
   zip_code: "",
   country: "",
 });
+
 const placeOrder = async () => {
-    if (!authStore?.user?.token) {
+  if (!authStore?.user?.token) {
     toast.error("Please login first!");
     router.push("/login");
     return;
   }
+
+  if (!selectedShipping.value) {
+    toast.error("Please select a shipping method");
+    return;
+  }
+
   try {
     const payload = {
       user_id: userId.value,
@@ -189,11 +208,12 @@ const placeOrder = async () => {
       city: form.value.city,
       zip_code: form.value.zip_code,
       street_address: form.value.street_address,
-      delivery_charge,
+      delivery_charge: shippingCost.value,
       quantity: quantity.value,
-      payment_method,
+      payment_method: "stripe",
       payment_status: "pending",
       sub_total: sub_total.value,
+      total: total_price.value,
       order_items: [
         {
           product_id: product.value.id,
@@ -206,16 +226,14 @@ const placeOrder = async () => {
         },
       ],
     };
-    console.log("Product object:", product.value);
-    // const response = await axios.post(
-    //   `${import.meta.env.VITE_APP_URL}customer/order`,
-    //   payload
-    // );
+
+    console.log("Order Payload:", payload);
+
     const response = await sendRequest({
       url: `customer/order`,
-      method: 'POST',
+      method: "POST",
       data: payload,
-    })
+    });
 
     if (response.data?.url) {
       window.location.href = response.data.url;

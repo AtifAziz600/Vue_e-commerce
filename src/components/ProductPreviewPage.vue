@@ -254,6 +254,8 @@ function handleAddToCart(item) {
     category_id: item.category_id,
     total: (item.discount_price || item.price) * quantity.value,
     category: item.tag,
+  shipping_charge: item.shop?.shipping_charge || 0,
+  shipping_charge2: item.shop?.shipping_charge2 || 0,
   });
   
   toast.success(`${item.title} added to cart`);
@@ -271,6 +273,8 @@ function handleBuyNow(item) {
     category_id: item.category_id,
     total: (item.discount_price || item.price) * quantity.value,
     category: item.tag,
+      shipping_charge: item.shop?.shipping_charge || 0,
+  shipping_charge2: item.shop?.shipping_charge2 || 0,
   };
   
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));

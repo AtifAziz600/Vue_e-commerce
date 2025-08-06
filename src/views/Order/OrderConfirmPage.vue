@@ -5,11 +5,7 @@
         class="w-full max-w-full px-6 mx-auto rounded-2xl shadow-2xl bg-white/80 backdrop-blur-md border border-gray-200">
         <div class="flex flex-col items-center gap-10 py-10">
           <div class="flex flex-col items-center gap-2">
-            <svg class="w-16 h-16 text-green-500 mb-2" fill="none" stroke="currentColor" stroke-width="2"
-              viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="white" />
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 12l2.5 2.5L16 9" />
-            </svg>
+            <Icon class="w-16 h-16 text-green-500 mb-2" icon="material-symbols:check-rounded"/>
             <h2 class="text-center text-gray-900 text-3xl font-bold font-sans tracking-tight">
               {{ customerName }}, Thank You for Your Order!
             </h2>
@@ -108,6 +104,7 @@
 import { ref, computed } from "vue";
 import { useOrderStore } from "../../stores/useStoreOrder";
 import { useRoute } from "vue-router";
+import { Icon } from "@iconify/vue";
 
 const route = useRoute();
 const orderStore = useOrderStore();
