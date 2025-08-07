@@ -73,8 +73,12 @@
             <span class="text-sm text-white">Order</span>
           </RouterLink>
           <RouterLink to="/wishlist"
-            class="flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200">
+            class="relative flex items-center gap-1 cursor-pointer hover:bg-secondysButton px-3 py-2 rounded transition duration-200">
             <Icon icon="mdi:heart" class="w-6 h-6 text-white" />
+            <span
+              class="absolute -top-1 -right-1 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {{ getWishlistLength }}
+            </span>
             <span class="text-sm text-white">Wishlist</span>
           </RouterLink>
           <!-- <RouterLink to="/"
@@ -131,17 +135,17 @@
                 </span>
               </button>
               <transition enter-active-class="transition ease-out duration-100"
-                  enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
-                  leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
-                  leave-to-class="transform opacity-0 scale-95">
-                  <div v-if="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border">
-                <RouterLink to="/dashboard" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Profile
-                </RouterLink>
-                <button @click="logout" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
-                  Logout
-                </button>
-              </div>
+                enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95">
+                <div v-if="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 border">
+                  <RouterLink to="/dashboard" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    Profile
+                  </RouterLink>
+                  <button @click="logout" class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    Logout
+                  </button>
+                </div>
               </transition>
             </div>
           </div>
@@ -180,9 +184,13 @@
             </RouterLink>
           </li>
           <li>
-            <RouterLink to="/wishlist" class="flex flex-col items-center gap-1">
+            <RouterLink to="/wishlist" class="flex flex-col items-center gap-1 relative">
               <Icon icon="mdi:heart" class="w-6 h-6" />
-              <span class="text-xs">Favorites</span>
+              <span
+                class="absolute -top-2 left-6 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {{ getWishlistLength }}
+              </span>
+              <span class="text-xs">Wishlist</span>
             </RouterLink>
           </li>
           <li class="relative">
@@ -277,6 +285,9 @@ import useAxios from "@/composables/useAxios";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { onClickOutside } from "@vueuse/core";
+import { useWishlistStore } from '@/stores/useWishlistStore';
+const wishlistStore = useWishlistStore();
+const { getWishlistLength } = storeToRefs(wishlistStore);
 const searchQuery = ref('')
 const selectedCategory = ref('All')
 const searchResults = ref(null)
@@ -296,7 +307,7 @@ const performSearch = async () => {
   showResults.value = true;
 
   try {
-    const response = await sendRequest({ 
+    const response = await sendRequest({
       method: 'get',
       url: '/public/product',
       params: {

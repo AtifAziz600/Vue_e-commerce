@@ -97,6 +97,15 @@
             </select>
           </div>
         </div>
+        <div class="gap-3">
+          <label class="block text-gray-700 font-medium mb-1">Message</label>
+          <textarea
+            rows="4"
+            class="w-full bg-gray-100 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-400 transition"
+            placeholder="Enter your message here..."
+            v-model="message"
+            ></textarea>
+        </div>
         <div class="flex items-center justify-between">
           <div class="md:col-span-2 flex items-start space-x-2">
             <input
@@ -138,6 +147,7 @@ const tin = ref("");
 const name = ref("");
 const phone = ref("");
 const email = ref("");
+const message = ref("");
 const country = ref("Poland");
 const agreedToTerms = ref(false);
 

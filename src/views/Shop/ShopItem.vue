@@ -97,7 +97,6 @@
           </div>
         </div>
       </div>
-<!--this part needs to be at work-->
     </section>
   </AppLayout>
 </template>
@@ -143,8 +142,8 @@ import { useCartStore } from "../../stores/useCartStore";
 const cart = useCartStore();
 
 function handleAddToCart(item) {
-    console.log('Shipping Charge:', item.shop?.shipping_charge);
-  console.log('Shipping Charge 2:', item.shop?.shipping_charge2);
+    console.log('Shipping Charge:', item.shipping_charge);
+  console.log('Shipping Charge 2:', item.shipping_charge2);
   const existingCartItems = cart.cartItems;
   if (existingCartItems.length > 0) {
     const existingVendorId = existingCartItems[0].shop_id;
@@ -159,13 +158,13 @@ function handleAddToCart(item) {
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: item.quantity,
+    quantity: item.quantity || 1,
     shop_id: item.shop_id,
-    category_id: 1,
+    category_id: item.category_id || 1,
     total: item.price,
     category: item.tag,
-    shipping_charge: item.shop?.shipping_charge || 0,
-    shipping_charge2: item.shop?.shipping_charge2 || 0,
+    shipping_charge: shop.value?.shipping_charge || 0,
+    shipping_charge2: shop.value?.shipping_charge2 || 0,
   });
   toast.success(`${item.title} added to cart`);
 }
@@ -178,9 +177,9 @@ function handleBuyNow(item) {
     title: item.title,
     image: item.cover_image_url,
     price: item.price,
-    quantity: item.quantity,
+    quantity: item.quantity || 1,
     shop_id: item.shop_id,
-    category_id: item.category_id,
+    category_id: item.category_id || 1,
     total: item.price,
     category: item.tag,
     shipping_charge: item?.shipping_charge || 0,
