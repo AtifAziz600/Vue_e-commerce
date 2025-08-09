@@ -130,7 +130,10 @@
                 <Icon icon="mdi:user" class="w-6 h-6 text-white" />
                 <span class="text-white hidden sm:inline text-sm">
                   {{
+                    // using slice here to show only the first name
                     authStore.user?.user?.name
+                      ? authStore.user?.user?.name.split(" ")[0]
+                      : "Account"
                   }}
                 </span>
               </button>
@@ -207,7 +210,7 @@
                   @click="mobileAccountDropdownOpen = false">
                   Profile
                 </RouterLink>
-                <button @click="logoutMobile" class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                <button @click="logout" class="w-full text-left px-4 py-2 hover:bg-gray-100">
                   Logout
                 </button>
               </div>
@@ -380,8 +383,8 @@ function toggleDropdown2() {
 function logout() {
   authStore.logout();
   dropdownOpen.value = false;
-  toast.success(`${authStore.user} has been Log Out`);
-  router.push("/");
+  toast.success(`Your Log Out is Successful`);
+  router.push("/logout");
 }
 const cart = useCartStore();
 const { cartCount } = storeToRefs(cart);

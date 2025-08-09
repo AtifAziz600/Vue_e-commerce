@@ -1,8 +1,8 @@
 <template>
   <AppLayout>
-    <section class="max-w-4xl mx-auto py-16 px-6">
+    <section class="max-w-full mx-auto py-16 px-6">
       <h1 class="text-3xl font-semibold text-gray-900 mb-10 text-center">
-        Review & Confirm
+        Checkout
       </h1>
 
       <div
@@ -116,6 +116,14 @@
                   class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"
                 />
               </div>
+            <div>
+              <label class="block mb-1 text-sm text-gray-600">Payment Method</label>
+              <select v-model="selectedMethod"
+                class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
+                <option disabled value="">Choose</option>
+                <option value="Card">Stripe</option>
+              </select>
+            </div>
             </div>
           </div>
           <button
@@ -150,7 +158,7 @@ const product = ref(null);
 const selectedShipping = ref("");
 const authStore = useAuthStore();
 const { sendRequest } = useAxios();
-
+const selectedMethod = ref("");
 const userId = computed(() => authStore?.user?.user?.id);
 const name = computed(() => authStore?.user?.user?.name);
 const email = computed(() => authStore?.user?.user?.email);

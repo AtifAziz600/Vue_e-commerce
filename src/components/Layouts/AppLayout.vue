@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-screen-2xl mx-auto">
+  <div class="max-w-screen-full mx-auto">
     <Header class="sticky top-0 z-50" />
     <div v-if="isMobile">
       <div id="google_translate_element_mobile" class=""></div>

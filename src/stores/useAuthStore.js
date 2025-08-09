@@ -45,7 +45,7 @@ export const useAuthStore = defineStore("auth", () => {
       
       const loginResponse = await sendRequest({
         method: "POST",
-        url: '/customer/login',
+        url: '/login',
         data: credential,
       });
       if (loginResponse?.data) {
@@ -96,23 +96,24 @@ export const useAuthStore = defineStore("auth", () => {
     nav.value.isMobileMenu = !nav.value.isMobileMenu;
   }
 
-  async function register(credentials) {
-    try {
-      const response = await sendRequest({
-        method: "POST",
-        url: "/customer/register",
-        data: credentials,
-      });
-
-      if (response) {
-        user.value = response.data;
-        localStorage.setItem('user', JSON.stringify(response.data));
-        return response;
-      }
-    } catch (err) {
-      throw err;
+async function register(credentials) {
+  try {
+    const response = await sendRequest({
+      method: "POST",
+      url: "/register",
+      data: credentials,
+    });
+    if (!response || response.status >= 400) {
+      throw response;
     }
+    user.value = response.data;
+    localStorage.setItem('user', JSON.stringify(response.data));
+    return response;
+  } catch (err) {
+    throw err; 
   }
+}
+
 
   async function resendOtp(phone) {
     try {

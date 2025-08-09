@@ -11,46 +11,6 @@
               </h2>
               <span class="text-lg font-medium text-gray-500">{{ cartItems.length }} Items</span>
             </div>
-            <div
-              class="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all duration-300">
-              <h3 class="text-xl font-semibold text-gray-800 border-b pb-2">
-                Shipping Information
-              </h3>
-              <div>
-                <label for="street" class="block text-sm font-medium text-gray-600">Street Address</label>
-                <input v-model="form.street_address" type="text" id="street" placeholder="Enter Street Address"
-                  class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="city" class="block text-sm font-medium text-gray-600">City</label>
-                  <input v-model="form.city" type="text" id="city" placeholder="Enter City"
-                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                </div>
-
-                <div>
-                  <label for="state" class="block text-sm font-medium text-gray-600">State/Province</label>
-                  <input v-model="form.state" type="text" id="state" placeholder="Enter Division"
-                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label for="zip_code" class="block text-sm font-medium text-gray-600">ZIP/Postal Code</label>
-                  <input v-model="form.zip_code" type="text" id="zip_code" placeholder="Enter Zip Code"
-                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                </div>
-
-                <div>
-                  <label for="country" class="block text-sm font-medium text-gray-600">Country</label>
-                  <input v-model="form.country" type="text" id="country" placeholder="Enter Country Name"
-                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
-                </div>
-              </div>
-            </div>
-
             <div class="hidden md:grid grid-cols-12 pb-4 border-b border-gray-200 text-sm text-gray-500 font-medium">
               <div class="col-span-7">Product Details</div>
               <div class="col-span-5 grid grid-cols-6">
@@ -104,6 +64,47 @@
                 </button>
               </div>
             </div>
+            <div
+              class="bg-white border border-gray-200 rounded-2xl p-6 space-y-4 shadow-sm hover:shadow-md transition-all duration-300">
+              <h3 class="text-xl font-semibold text-gray-800 border-b pb-2">
+                Shipping Information
+              </h3>
+              <div>
+                <label for="street" class="block text-sm font-medium text-gray-600">Street Address</label>
+                <input v-model="form.street_address" type="text" id="street" placeholder="Enter Street Address"
+                  class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="city" class="block text-sm font-medium text-gray-600">City</label>
+                  <input v-model="form.city" type="text" id="city" placeholder="Enter City"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                </div>
+
+                <div>
+                  <label for="state" class="block text-sm font-medium text-gray-600">State/Province</label>
+                  <input v-model="form.state" type="text" id="state" placeholder="Enter Division"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label for="zip_code" class="block text-sm font-medium text-gray-600">ZIP/Postal Code</label>
+                  <input v-model="form.zip_code" type="text" id="zip_code" placeholder="Enter Zip Code"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                </div>
+
+                <div>
+                  <label for="country" class="block text-sm font-medium text-gray-600">Country</label>
+                  <input v-model="form.country" type="text" id="country" placeholder="Enter Country Name"
+                    class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400" />
+                </div>
+              </div>
+            </div>
+
+            
           </div>
           <div class="col-span-1 xl:col-span-4 bg-white rounded-2xl shadow-xl p-6 space-y-6">
             <h2 class="text-2xl font-semibold text-gray-900 border-b pb-4">
@@ -123,7 +124,6 @@
                 <option value="standard">Standard Delivery - zł{{ vendorShippingCharge }}</option>
                 <option value="express">Express Delivery - zł{{ vendorShippingCharge2 }}</option>
               </select>
-
             </div>
 
             <div>
@@ -147,10 +147,7 @@
               <select v-model="selectedMethod"
                 class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-700 shadow-sm focus:outline-rose-400">
                 <option disabled value="">Choose</option>
-                <option value="Card">Visa</option>
-                <option value="Card">Master Card</option>
-                <option value="Card">American Express</option>
-                <option value="COD">Cash On Delivery</option>
+                <option value="Card">Stripe</option>
               </select>
             </div>
 
@@ -302,11 +299,10 @@ const paymentAndPlaceOrder = async () => {
   }
   if (
     !selectedShipping.value ||
-    !selectedMethod.value ||
-    !grand_total_coupon.value
+    !selectedMethod.value 
   ) {
     toast.error(
-      "Please fill all required fields: shipping, payment method and promo code."
+      "Please fill all required fields: shipping, payment method."
     );
     return;
   }

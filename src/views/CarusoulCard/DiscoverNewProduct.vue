@@ -29,6 +29,8 @@
           :key="item.title"
           class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl"
         >
+        <RouterLink :to="`/product/${item.slug}`" class="block h-full">
+          <div class="p-4">
           <img
             :src="item.cover_image_url"
             alt="Product"
@@ -67,6 +69,8 @@
               </button>
             </div>
           </div>
+          </div>
+        </RouterLink>
         </swiper-slide>
       </swiper>
     </div>
@@ -83,7 +87,7 @@ import { useCartStore } from "../../stores/useCartStore";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useApiProductStore } from "../../stores/useApiProductStore";
-import { useRoute } from "vue-router";
+import { RouterLink, useRoute } from "vue-router";
 const productApiStore = useApiProductStore();
 const { sendRequest } = useAxios();
 const route = useRoute();

@@ -1,90 +1,82 @@
 <template>
-  <div class="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-slate-100 to-slate-200 py-10 lg:py-20">
-    <div class="w-[95%] max-w-4xl bg-white/70 backdrop-blur-md flex flex-wrap rounded-2xl shadow-2xl border border-gray-200 p-6 transition-all duration-300">
-      
+  <div
+    class="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-slate-100 to-slate-200 py-10 lg:py-20">
+    <div
+      class="w-[95%] max-w-4xl bg-white/70 backdrop-blur-md flex flex-wrap rounded-2xl shadow-2xl border border-gray-200 p-6 transition-all duration-300">
+
       <div class="w-full lg:w-1/2 px-2 lg:px-6 lg:pt-6">
         <h3 class="text-3xl font-semibold text-gray-800 mb-6">Create Account</h3>
 
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-600">Full Name</label>
-          <input
-            type="text"
-            id="name"
-            v-model="state.name"
-            placeholder="Enter name"
-            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800"
-          />
+          <input autofocus type="text" id="name" v-model="state.name" placeholder="Enter name"
+            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
         </div>
         <div class="mb-4">
           <label for="name" class="block text-sm font-medium text-gray-600">Phone Number</label>
-          <input
-            type="tel"
-            id="phone"
-            v-model="state.phone"
-            placeholder="Enter Phone Number"
-            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800"
-          />
+          <input type="tel" id="phone" v-model="state.phone" placeholder="Enter Phone Number"
+            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
         </div>
         <div class="mb-4">
           <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
-          <input
-            type="email"
-            id="email"
-            v-model="state.email"
-            placeholder="you@example.com"
-            class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800"
-          />
+          <input type="email" id="email" v-model="state.email" placeholder="you@example.com"
+            class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
         </div>
         <div class="mb-4 relative">
           <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
-          <input
-            :type="showPassword ? 'text' : 'password'"
-            id="password"
-            v-model="state.password"
+          <input :type="showPassword ? 'text' : 'password'" id="password" v-model="state.password"
             placeholder="Enter Password"
-            class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800"
-          />
+            class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
           <Icon :icon="showPassword ? 'ri:eye-close-line' : 'ri:eye-2-line'"
-            class="absolute top-8 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword"/>
+            class="absolute top-8 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword" />
         </div>
         <div class="mb-4">
-          <button
-            @click="handleRegister"
-            :disabled="isRegistering"
-            class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md hover:bg-opacity-90 disabled:opacity-50 transition"
-          >
-            {{ isRegistering ? "Registering..." : "Register Now" }}
+          <button @click="handleRegister" :disabled="isRegistering"
+            class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md hover:bg-opacity-90 disabled:opacity-50 transition flex justify-center items-center">
+            <template v-if="isRegistering">
+              <svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4l3.5-3.5L12 0v4a8 8 0 100 16v-4l-3.5 3.5L12 24v-4a8 8 0 01-8-8z"></path>
+              </svg>
+              Registering...
+            </template>
+            <template v-else>
+              Register
+            </template>
           </button>
+
         </div>
-         <div class="relative flex items-center py-1">
+        <div class="relative flex items-center py-1">
           <div class="flex-grow border-t border-gray-200"></div>
           <span class="flex-shrink mx-4 text-gray-400 text-sm">Or Continue with</span>
           <div class="flex-grow border-t border-gray-200"></div>
         </div>
         <div class="mb-4 relative">
-          <button @click="handleGoogleLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleGoogleLogin"
+            class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon icon="flat-color-icons:google" class="w-6 h-6" />
             <span class="font-medium text-gray-700">SignUp with Google</span>
           </button>
 
         </div>
         <div class="mb-4 relative">
-          <button @click="handleFaceBookLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleFaceBookLogin"
+            class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon class="w-6 h-6" icon="logos:facebook" />
             SignUp With FaceBook
           </button>
         </div>
         <p class="text-sm text-gray-600 text-center">
           Already have an account?
-          <RouterLink to="/login" class="text-deepMaroon hover:text-secondysButton font-medium hover:underline ml-1">Login Here</RouterLink>
+          <RouterLink to="/login" class="text-deepMaroon hover:text-secondysButton font-medium hover:underline ml-1">
+            Login Here</RouterLink>
         </p>
       </div>
       <div class="hidden lg:block w-1/2">
-        <img
-          class="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-md"
-          src="https://i.pinimg.com/564x/7b/3f/e1/7b3fe1e66e263b7e0c0e1f1cfb4086c7.jpg"
-          alt="Register Illustration"
-        />
+        <img class="w-full h-full object-cover rounded-xl transition-all duration-300 shadow-md"
+          src="https://i.pinimg.com/564x/7b/3f/e1/7b3fe1e66e263b7e0c0e1f1cfb4086c7.jpg" alt="Register Illustration" />
       </div>
     </div>
   </div>
@@ -131,21 +123,28 @@ const handleGoogleLogin = () => {
 }
 
 const handleFaceBookLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   window.location.href = `${apiUrl}/auth/facebook/redirect`;
 }
 
 const handleRegister = async () => {
+  if (!state.value.name || !state.value.phone || !state.value.email || !state.value.password) {
+    toast.error("Please fill in all fields");
+    return;
+  }
   try {
     isRegistering.value = true;
     const response = await authStore.register(state.value);
     if (response) {
       toast.success("Registration successful");
-      router.push({ name: "login" });
+      router.push({ name: "home" });
     }
-    
   } catch (error) {
-    toast.error(error.response?.data?.message || "Registration failed");
+    if (error && error.status === 422) {
+      toast.error("Registration failed");
+    } else {
+      toast.error("Email already exists. Please try another one");
+    }
   } finally {
     isRegistering.value = false;
   }
@@ -153,12 +152,11 @@ const handleRegister = async () => {
 
 // const countries = ref([]);
 // const selectedCountry = ref(null);
-const showDropdown = ref(false);
+// const showDropdown = ref(false);
 
-
-const toggleDropdown = () => {
-  showDropdown.value = !showDropdown.value;
-};
+// const toggleDropdown = () => {
+//   showDropdown.value = !showDropdown.value;
+// };
 
 // const selectCountry = (country) => {
 //   selectedCountry.value = country;

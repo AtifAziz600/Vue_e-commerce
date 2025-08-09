@@ -19,6 +19,26 @@ const router = createRouter({
       name: "login",
       component: () => import("../views/Auth/Login.vue"),
     },
+        {
+        path: "/forget-password",
+        name: "ForgetPassword",
+        component: () => import("../views/Auth/ForgetPassword.vue"),
+    },  
+        {
+      path: "/verify-otp",
+      name: "VerifyOtp",
+      component: () => import("../views/Auth/opt/Verify.vue"),
+  },    
+    {
+      path: "/verify-email-otp",
+      name: "VerifyEmailOTP",
+      component: () => import("../views/Auth/VerifyCustomerOtp.vue"),
+  },  
+  {
+    path: "/update-password",
+    name: "updatePassword",
+    component: () => import("../views/Auth/UpdatePassword.vue"),
+  },
     {
       path: "/order-history",
       name: "order-history",

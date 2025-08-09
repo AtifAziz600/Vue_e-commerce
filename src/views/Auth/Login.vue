@@ -25,10 +25,22 @@
           </RouterLink>
         </div>
         <div class="mb-4">
-          <button @click="handleLogin"
-            class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md transition duration-200">
-            Log In
+          <button @click="handleLogin" :disabled="isLoading"
+            class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md transition disabled:opacity-50 duration-200 flex justify-center items-center">
+            <template v-if="isLoading">
+              <svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8v4l3.5-3.5L12 0v4a8 8 0 100 16v-4l-3.5 3.5L12 24v-4a8 8 0 01-8-8z"></path>
+              </svg>
+              Processing...
+            </template>
+            <template v-else>
+              Log In
+            </template>
           </button>
+
         </div>
         <div class="relative flex items-center py-5">
           <div class="flex-grow border-t border-gray-200"></div>
@@ -36,14 +48,16 @@
           <div class="flex-grow border-t border-gray-200"></div>
         </div>
         <div class="mb-4 relative">
-          <button @click="handleGoogleLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleGoogleLogin"
+            class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon icon="flat-color-icons:google" class="w-6 h-6" />
             <span class="font-medium text-gray-700">Login with Google</span>
           </button>
 
         </div>
         <div class="mb-4 relative">
-          <button @click="handleFaceBookLogin" class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
+          <button @click="handleFaceBookLogin"
+            class="w-full py-2 flex items-center justify-center gap-2 border rounded-lg hover:bg-gray-100">
             <Icon class="w-6 h-6" icon="logos:facebook" />
             Login With FaceBook
           </button>
@@ -72,6 +86,7 @@ const toast = useToast();
 const authStore = useAuthStore();
 const router = useRouter();
 const route = useRoute();
+const isLoading = ref(false);
 
 const loginCredential = ref({
   email: "",
@@ -80,12 +95,12 @@ const loginCredential = ref({
 
 const showPassword = ref(false)
 const handleGoogleLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   window.location.href = `${apiUrl}/auth/google/redirect`;
 };
 
 const handleFaceBookLogin = () => {
-    const apiUrl = import.meta.env.VITE_API_URL;
+  const apiUrl = import.meta.env.VITE_API_URL;
   window.location.href = `${apiUrl}/auth/facebook/redirect`;
 }
 onMounted(() => {
@@ -101,16 +116,26 @@ onMounted(() => {
     }
   }
 });
+
 const handleLogin = async () => {
+  if (!loginCredential.value.email || !loginCredential.value.password) {
+    toast.error("Please fill in all fields");
+    return;
+  }
+  isLoading.value = true;
   const loginResponse = await authStore.login(loginCredential.value);
   if (loginResponse) {
+    isLoading.value = false;
     if (loginResponse.data.status === 403) {
       toast.error("Email not verified. Please verify your email.");
     } else {
       toast.success("Login successful!", { autoClose: 1000 });
-      const redirectPath = route.query.redirect || "/";
+      const redirectPath = route.query.redirect || "/dashboard";
       router.push(redirectPath);
     }
+  } else {
+    isLoading.value = false;
+    toast.error("Login failed. Please try with another email");
   }
 };
 </script>
