@@ -9,7 +9,6 @@
       :modules="modules"
       class="modern-swiper"
     > 
-      <!-- Slide 1 -->
        <swiper-slide class="relative">
         <img
           src="../assets/img/png-1.png"
@@ -26,7 +25,6 @@
         </div>
       </swiper-slide> 
 
-      <!-- Slide 2 -->
        <swiper-slide class="relative">
         <img
           src="../assets//img/bgAzNiK7sVcCvUPltURoK845dgqKZTh4vGAujK4p.jpeg"
@@ -50,13 +48,11 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 // import { Icon } from '@iconify/vue'; 
-
 const modules = [EffectFade, Navigation, Pagination, Autoplay];
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation'; 
 import 'swiper/css/pagination'; 
-
 </script>
 
 <style scoped>

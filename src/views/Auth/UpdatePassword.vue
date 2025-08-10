@@ -1,5 +1,4 @@
 <template>
-    <AppLayout>
       <div class="w-full flex justify-center items-center py-10 lg:py-20">
         <div
           class="w-full max-w-4xl bg-white flex flex-wrap rounded-xl shadow-xl p-4 justify-center items-center"
@@ -44,7 +43,6 @@
           </div>
         </div>
       </div>
-    </AppLayout>
   </template>
   
   <script setup>

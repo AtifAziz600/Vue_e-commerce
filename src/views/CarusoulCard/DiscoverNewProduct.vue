@@ -30,12 +30,13 @@
           class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl"
         >
         <RouterLink :to="`/product/${item.slug}`" class="block h-full">
-          <div class="p-4">
+          
           <img
             :src="item.cover_image_url"
             alt="Product"
             class="w-full h-44 object-contain p-2"
           />
+                  </RouterLink>
           <div class="px-4 pb-4">
             <p class="text-xs font-medium text-gray-500 mb-1">
               <span
@@ -69,8 +70,7 @@
               </button>
             </div>
           </div>
-          </div>
-        </RouterLink>
+
         </swiper-slide>
       </swiper>
     </div>
@@ -103,16 +103,12 @@ const products = ref([]);
 
 onMounted(async () => {
   try {
-    // const response = await axios.get(
-    //   `${import.meta.env.VITE_APP_URL}product?category=${route.params.slug}`
-    // );
     const response = await sendRequest({
       url: `product?category=${route.params.slug}`,
       method: "GET",
     })
     products.value = response.data;
   } catch (error) {
-    // console.error("Error fetching products:", error);
     toast.error("Failed to load products");
   }
 });

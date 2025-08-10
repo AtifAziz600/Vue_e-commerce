@@ -4,7 +4,6 @@
       <div class="flex items-center gap-2 justify-start">
         <h2 class="text-xl sm:text-2xl font-semibold text-black">
           Catch Low Prices in Each Category
-
           <a
             href="/all-products"
             class="text-xs text-blue-950 font-semibold hover:text-blue-900"
@@ -29,11 +28,14 @@
           :key="item.title"
           class="bg-white overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 border border-gray-200 rounded-xl"
         >
+        <RouterLink :to="`/product/${item.slug}`" class="block h-full">
+          
           <img
             :src="item.cover_image_url"
             alt="Product"
             class="w-full h-44 object-contain p-2"
           />
+                  </RouterLink>
           <div class="px-4 pb-4">
             <p class="text-xs font-medium text-gray-500 mb-1">
               <span
@@ -67,6 +69,7 @@
               </button>
             </div>
           </div>
+
         </swiper-slide>
       </swiper>
     </div>
@@ -80,10 +83,10 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import { Navigation } from "swiper/modules";
 import { useToast } from "vue-toastification";
 import { useCartStore } from "../../stores/useCartStore";
-import { useRoute } from "vue-router";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useApiProductStore } from "../../stores/useApiProductStore";
+import { RouterLink, useRoute } from "vue-router";
 const productApiStore = useApiProductStore();
 const { sendRequest } = useAxios();
 const route = useRoute();
@@ -101,14 +104,10 @@ onMounted(async () => {
   try {
     const response = await sendRequest({
       url: `product?category=${route.params.slug}`,
-      method: 'GET',
+      method: "GET",
     })
-    // const response = await axios.get(
-    //   `${import.meta.env.VITE_APP_URL}product?category=${route.params.slug}`
-    // );
     products.value = response.data;
   } catch (error) {
-    // console.error("Error fetching products:", error);
     toast.error("Failed to load products");
   }
 });

@@ -6,16 +6,24 @@
       <div class="w-full lg:w-1/2 px-2 lg:px-6 lg:pt-8">
         <h3 class="text-3xl font-semibold text-gray-800 mb-6">APAGOR</h3>
         <div class="mb-4">
-          <label for="email" class="block pb-1 text-sm font-medium text-gray-600">Email</label>
+          <label for="email" class="block pb-1 text-sm font-medium text-gray-600"
+          :class="{'text-red-500': authStore?.error?.errors?.email, 'text-gray-600': !authStore?.error?.errors?.email}"
+          >Email</label>
           <input type="email" name="email" id="email" v-model="loginCredential.email" placeholder="you@example.com"
-            class="w-full bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 text-gray-800 shadow-inner focus:outline-none" />
+            class="w-full bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 text-gray-800 shadow-inner focus:outline-none" 
+            :class="{'border-red-500': authStore?.error?.errors?.email, 'border-gray-300': !authStore?.error?.errors?.email}"
+            />
+            <span v-if="authStore?.error?.errors?.email" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.email">{{ error }}</span>
         </div>
 
         <div class="mb-4 relative">
           <label for="password" class="block pb-1 text-sm font-medium text-gray-600">Password</label>
           <input :type="showPassword ? 'text' : 'password'" name="password" id="password"
             v-model="loginCredential.password" placeholder="Enter Password"
-            class="w-full bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 text-gray-800 shadow-inner focus:outline-none" />
+            class="w-full bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 text-gray-800 shadow-inner focus:outline-none" 
+            :class="{'border-red-500' : authStore?.error?.errors?.password, 'border-gray-300': !authStore?.error?.errors?.password}" 
+            />
+            <span v-if="authStore?.error?.errors?.password" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.password">{{ error }}</span>
           <Icon :icon="showPassword ? 'ri:eye-close-line' : 'ri:eye-2-line'"
             class="absolute top-9 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword" />
         </div>
@@ -25,9 +33,9 @@
           </RouterLink>
         </div>
         <div class="mb-4">
-          <button @click="handleLogin" :disabled="isLoading"
+          <button @click="handleLogin" :disabled="authStore.loading"
             class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md transition disabled:opacity-50 duration-200 flex justify-center items-center">
-            <template v-if="isLoading">
+            <template v-if="authStore.loading">
               <svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -63,8 +71,8 @@
           </button>
         </div>
         <p class="text-sm text-gray-600 text-center">
-          Don’t have an account?
-          <RouterLink to="/register" class="text-deepMaroon font-medium hover:underline ml-1">Create one</RouterLink>
+          Don’t have an account? 
+          <RouterLink :to="`/register?redirect=/${route.query?.redirect}`" class="text-deepMaroon font-medium hover:underline ml-1">Create one</RouterLink>
         </p>
       </div>
       <div class="hidden lg:block w-1/2">
@@ -118,24 +126,13 @@ onMounted(() => {
 });
 
 const handleLogin = async () => {
-  if (!loginCredential.value.email || !loginCredential.value.password) {
-    toast.error("Please fill in all fields");
-    return;
-  }
-  isLoading.value = true;
-  const loginResponse = await authStore.login(loginCredential.value);
-  if (loginResponse) {
-    isLoading.value = false;
-    if (loginResponse.data.status === 403) {
-      toast.error("Email not verified. Please verify your email.");
-    } else {
-      toast.success("Login successful!", { autoClose: 1000 });
-      const redirectPath = route.query.redirect || "/dashboard";
-      router.push(redirectPath);
+   const response = await authStore.login(loginCredential.value);
+   if(response.data){
+    if(route?.query?.redirect){
+      router.push(route.query.redirect);
+    }else {
+      router.push('/dashboard');
     }
-  } else {
-    isLoading.value = false;
-    toast.error("Login failed. Please try with another email");
-  }
+   }
 };
 </script>

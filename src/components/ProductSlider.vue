@@ -52,8 +52,8 @@ const swiperRef = ref(null);
 
 const {sendRequest, loading, error} = useAxios()
 const sliders = ref([])
-onMounted(async () => {
-  sliders.value = await sendRequest('/sliders');
-})
+// onMounted(async () => {
+//   sliders.value = await sendRequest('/sliders');
+// })
 
 </script>

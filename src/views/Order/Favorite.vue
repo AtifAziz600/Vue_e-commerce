@@ -14,7 +14,6 @@
             </button>
           </div>
         </div>
-
         <div 
           v-if="wishlistStore.getWishlistLength === 0"
           class="bg-white rounded-xl p-12 text-center shadow-sm border border-gray-100"
@@ -29,7 +28,6 @@
             Continue Shopping
           </button>
         </div>
-
         <div v-else class="grid grid-cols-1 gap-6">
           <div 
             v-for="item in wishlistStore.getWishlistItems"
@@ -44,7 +42,6 @@
                   class="h-48 w-full object-contain hover:scale-105 transition-transform"
                 />
               </div>
-
               <div class="md:w-2/4 p-6 flex flex-col justify-between">
                 <div>
                   <h3 class="text-lg font-medium text-gray-900 mb-1">{{ item?.title }}</h3>
@@ -58,7 +55,6 @@
                   </div>
                   <p class="text-gray-600 text-sm mb-4 line-clamp-2">{{ item?.description }}</p>
                 </div>
-
                 <div class="flex items-center justify-between">
                   <div>
                     <span class="text-lg font-bold text-gray-900">${{ item?.price }}</span>
@@ -66,7 +62,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="md:w-1/4 p-6 border-l border-gray-100 flex flex-col justify-between">
                 <div class="flex justify-end">
                   <button 
@@ -78,7 +73,6 @@
                     </svg>
                   </button>
                 </div>
-
                 <div class="space-y-3">
                   <button
                     @click="handleAddToCart(item)"
@@ -98,7 +92,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </AppLayout>
@@ -145,7 +138,6 @@ function handleAddToCart(item) {
       return;
     }
   }
-
   cart.addToCart({
     id: item.id,
     product_id: item.id,
@@ -157,17 +149,14 @@ function handleAddToCart(item) {
     category_id: item.category_id,
     total: item.price,
     category: item.tag,
-  });
-  
+  }); 
   toast.success(`${item.title} added to cart`);
 }
-
 function handleBuyNow(item) {
   if (!item) {
     toast.error("Product not found");
     return;
   }
-
   const checkoutProduct = {
     id: item.id,
     product_id: item.id,
@@ -180,12 +169,10 @@ function handleBuyNow(item) {
     total: item.price,
     category: item.tag,
   };
-  
   localStorage.setItem("checkoutProduct", JSON.stringify(checkoutProduct));
   router.push("/checkout");
 }
 </script>
-
 <style scoped>
 .line-clamp-2 {
   display: -webkit-box;
@@ -193,15 +180,12 @@ function handleBuyNow(item) {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 .transition-shadow {
   transition: box-shadow 0.2s ease-in-out;
 }
-
 .transition-transform {
   transition: transform 0.2s ease-in-out;
 }
-
 .rounded-xl {
   border-radius: 12px;
 }

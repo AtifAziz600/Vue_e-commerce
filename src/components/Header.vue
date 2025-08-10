@@ -384,7 +384,7 @@ function logout() {
   authStore.logout();
   dropdownOpen.value = false;
   toast.success(`Your Log Out is Successful`);
-  router.push("/logout");
+  router.push("/login");
 }
 const cart = useCartStore();
 const { cartCount } = storeToRefs(cart);

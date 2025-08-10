@@ -48,7 +48,12 @@
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                   <dt class="text-base font-medium text-gray-600">Date:</dt>
                   <dd class="mt-1.5 text-base font-semibold text-gray-900">
-                    {{ order.created_at }}
+
+                    {{ new Date(order.created_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    }) }}
                   </dd>
                 </dl>
                 <dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
@@ -75,11 +80,11 @@
                     class="w-full rounded-lg border border-red-700 px-3 py-2 text-center text-sm font-medium text-red-700 hover:bg-red-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-red-300 transition">
                     Cancel Order
                   </button>
-                  <RouterLink v-else type="button" @click="handleOrder"
+                  <RouterLink type="button" @click="handleOrder"
                     class="w-full rounded-lg border border-green-700 px-3 py-2 text-center text-sm font-medium text-green-700 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 transition">
                     Order Again
                   </RouterLink>
-                  <RouterLink to="/order-summary" @click="handleViewDetails"
+                  <RouterLink :to="`/order-detail/${id}`"  @click="handleViewDetails"
                     class="w-full rounded-lg border border-blue-700 px-3 py-2 text-center text-sm font-medium text-blue-700 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
                     View Details
                   </RouterLink>
@@ -132,21 +137,11 @@ const data = ref();
 onMounted(async () => {
   if (!authStore?.user?.token) {
     toast.error("Please login first!");
-    return route.push("/login");
+    return route.push("/login?redirect=/order-history");
   }
   try {
-    // const response = await axios.get(
-    //   `${import.meta.env.VITE_APP_URL}customer/customer/${authStore.user?.user?.id}`,
-    //   {
-    //     headers: {
-    //       Authorization: `Bearer ${authStore.user.token}`,
-    //       Accept: "application/json",
-    //     },
-    //   }
-    // );
-
     const response = await sendRequest({
-      url: `customer/customer/${authStore.user?.user?.id}`,
+      url: `/customer/${authStore.user?.user?.id}`,
       method: 'GET',
       header: {
         Authorization: `Bearer ${authStore.user.token}`,
@@ -185,7 +180,7 @@ function handleOrder() {
 
 function handleViewDetails() {
   toast.warning("This is the order details");
-  route("/order-summary");
+  route(`/order-detail/${id}`);
 }
 
 function handleRefunds() {

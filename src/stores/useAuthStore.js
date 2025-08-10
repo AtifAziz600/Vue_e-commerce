@@ -4,14 +4,14 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
-
+import { useToast } from "vue-toastification";
 export const useAuthStore = defineStore("auth", () => {
   const router = useRouter();
   const user = ref(JSON.parse(localStorage.getItem("user")) || null);
   const isLoggedIn = computed(() => !!user.value);
   const { loading, error, sendRequest } = useAxios();
   const nav = ref({ isMobileMenu: false });
-
+  const toast = useToast();
   async function fetchUser() {
     // const storedUser = JSON.parse(await getLocalStorage());
 
@@ -49,7 +49,6 @@ export const useAuthStore = defineStore("auth", () => {
         data: credential,
       });
       if (loginResponse?.data) {
-        // console.log('auth data', loginResponse?.data)
         await setLocalStorage(loginResponse?.data);
         user.value = loginResponse.data;
         return loginResponse;
@@ -71,19 +70,15 @@ export const useAuthStore = defineStore("auth", () => {
       console.error("Logout failed", error.value);
     }
   }
-
   async function setLocalStorage(user) {
     localStorage.setItem("user", JSON.stringify(user));
   }
-
   async function clearLocalStorage() {
     localStorage.removeItem("user");
   }
-
   async function getLocalStorage() {
     return localStorage.getItem("user");
   }
-
   function getToken() {
     try {
       return JSON.parse(localStorage.getItem("user"))?.token || "";
@@ -91,30 +86,25 @@ export const useAuthStore = defineStore("auth", () => {
       return "";
     }
   }
-
   function toggleMobileMenu() {
     nav.value.isMobileMenu = !nav.value.isMobileMenu;
   }
 
 async function register(credentials) {
+
   try {
     const response = await sendRequest({
       method: "POST",
       url: "/register",
       data: credentials,
     });
-    if (!response || response.status >= 400) {
-      throw response;
-    }
     user.value = response.data;
-    localStorage.setItem('user', JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
     return response;
   } catch (err) {
-    throw err; 
+   
   }
 }
-
-
   async function resendOtp(phone) {
     try {
       await sendRequest({
@@ -126,9 +116,7 @@ async function register(credentials) {
     } catch (err) {
       throw err;
     }
-  }
- 
- 
+  }  
   return {
     user,
     login,
@@ -141,6 +129,5 @@ async function register(credentials) {
     getToken,
     // verifyOtp,
     resendOtp,
-
   };
 });

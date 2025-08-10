@@ -128,9 +128,9 @@
           </div>
           <button
             @click="placeOrder"
-            class="mt-6 w-full md:w-auto bg-deepMaroon hover:bg-secondysButton text-white px-6 py-3 rounded-xl font-medium shadow-md transition"
+            class="mt-6 w-full bg-deepMaroon hover:bg-secondysButton text-white px-6 py-3 rounded-xl font-medium shadow-md transition"
           >
-            Confirm Order
+            Pay
           </button>
         </div>
       </div>
@@ -194,9 +194,9 @@ const form = ref({
 });
 
 const placeOrder = async () => {
-  if (!authStore?.user?.token) {
+ if (!authStore?.user?.token) {
     toast.error("Please login first!");
-    router.push("/login");
+    router.push("/login?redirect=/checkout");
     return;
   }
 
@@ -235,8 +235,6 @@ const placeOrder = async () => {
       ],
     };
 
-    console.log("Order Payload:", payload);
-
     const response = await sendRequest({
       url: `customer/order`,
       method: "POST",
@@ -255,12 +253,6 @@ const placeOrder = async () => {
 };
 
 onMounted(() => {
-  if (!authStore?.user?.token) {
-    toast.error("Please login first!");
-    router.push("/login");
-    return;
-  }
-
   const stored = localStorage.getItem("checkoutProduct");
   if (stored) {
     product.value = JSON.parse(stored);

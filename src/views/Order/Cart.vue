@@ -125,7 +125,7 @@
                 <option value="express">Express Delivery - zł{{ vendorShippingCharge2 }}</option>
               </select>
             </div>
-
+<!-- 
             <div>
               <label class="block mb-1 text-sm text-gray-600">Promo Code</label>
               <div class="flex gap-2">
@@ -136,7 +136,7 @@
                   Apply
                 </button>
               </div>
-            </div>
+            </div> -->
             <RouterLink to="/add-coupon-code" class="flex justify-center">
               <button class="w-full bg-gray-800 hover:bg-black text-white py-2 rounded-md text-sm font-semibold">
                 Add Coupon Code
@@ -294,7 +294,7 @@ const form = ref({
 const paymentAndPlaceOrder = async () => {
   if (!authStore?.user?.token) {
     toast.error("Please login first!");
-    router.push("/login");
+    router.push("/login?redirect=/cart-order");
     return;
   }
   if (

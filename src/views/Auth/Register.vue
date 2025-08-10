@@ -6,34 +6,51 @@
 
       <div class="w-full lg:w-1/2 px-2 lg:px-6 lg:pt-6">
         <h3 class="text-3xl font-semibold text-gray-800 mb-6">Create Account</h3>
-
+      
         <div class="mb-4">
-          <label for="name" class="block text-sm font-medium text-gray-600">Full Name</label>
-          <input autofocus type="text" id="name" v-model="state.name" placeholder="Enter name"
-            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
-        </div>
+          <label for="name" 
+          class="block text-sm font-medium"
+          :class="{'text-red-500': authStore?.error?.errors?.name, 'text-gray-600': !authStore?.error?.errors?.name}">
+          Full Name</label>
+          <input type="text" id="name" v-model="state.name" placeholder="Enter name"
+          :class="{'border-red-500': authStore?.error?.errors?.name, 'border-gray-300': !authStore?.error?.errors?.name}"
+            class="bg-white/60 border focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
+            <span v-if="authStore?.error?.errors?.name" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.name">{{ error }}</span>
+          </div>
         <div class="mb-4">
-          <label for="name" class="block text-sm font-medium text-gray-600">Phone Number</label>
+          <label for="name" class="block text-sm font-medium text-gray-600"
+          :class="{'text-red-500': authStore?.error?.errors?.phone, 'text-gray-600': !authStore?.error?.errors?.phone}"
+          >Phone Number</label>
           <input type="tel" id="phone" v-model="state.phone" placeholder="Enter Phone Number"
-            class="bg-white/60 border border-gray-300 focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
+          :class="{'border-red-500': authStore?.error?.errors?.phone, 'border-gray-300': !authStore?.error?.errors?.phone}"
+            class="bg-white/60 border focus:ring-2 focus:ring-deepMaroon rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none text-gray-800" />
+            <span v-if="authStore?.error?.errors?.phone" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.phone">{{ error }}</span>
         </div>
         <div class="mb-4">
-          <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+          <label for="email" class="block text-sm font-medium text-gray-600"
+          :class="{'text-red-500': authStore?.error?.errors?.email, 'text-gray-600': !authStore?.error?.errors?.email}"
+          >Email</label>
           <input type="email" id="email" v-model="state.email" placeholder="you@example.com"
-            class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
+          :class="{'border-red-500': authStore?.error?.errors?.email, 'border-gray-300': !authStore?.error?.errors?.email}"
+            class="bg-white/60 border rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
+            <span v-if="authStore?.error?.errors?.email" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.email">{{ error }}</span>
         </div>
         <div class="mb-4 relative">
-          <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+          <label for="password" class="block text-sm font-medium text-gray-600"
+          :class="{'text-red-500': authStore?.error?.errors?.password, 'text-gray-600': !authStore?.error?.errors?.password}"
+          >Password</label>
           <input :type="showPassword ? 'text' : 'password'" id="password" v-model="state.password"
-            placeholder="Enter Password"
+          :class="{'border-red-500': authStore?.error?.errors?.password, 'border-gray-300': !authStore?.error?.errors?.email}"  
+          placeholder="Enter Password"
             class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
           <Icon :icon="showPassword ? 'ri:eye-close-line' : 'ri:eye-2-line'"
             class="absolute top-8 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword" />
+            <span v-if="authStore?.error?.errors?.password" class="text-red-500 text-sm" :key="error" v-for="error in authStore?.error?.errors?.password">{{ error }}</span>
         </div>
         <div class="mb-4">
-          <button @click="handleRegister" :disabled="isRegistering"
+          <button @click="handleRegister" :disabled="authStore.loading"
             class="w-full py-2 bg-deepMaroon hover:bg-secondysButton text-white font-medium text-base rounded-lg shadow-md hover:bg-opacity-90 disabled:opacity-50 transition flex justify-center items-center">
-            <template v-if="isRegistering">
+            <template v-if="authStore.loading">
               <svg class="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                 viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -100,12 +117,8 @@ const state = ref({
   email: "",
   password: "",
 });
-
 const showPassword = ref(false);
-const isRegistering = ref(false);
-
 onMounted(() => {
-
   if (route.query.user) {
     try {
       const user = JSON.parse(route.query.user);
@@ -121,47 +134,19 @@ const handleGoogleLogin = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   window.location.href = `${apiUrl}/auth/google/redirect`;
 }
-
 const handleFaceBookLogin = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
   window.location.href = `${apiUrl}/auth/facebook/redirect`;
 }
-
 const handleRegister = async () => {
-  if (!state.value.name || !state.value.phone || !state.value.email || !state.value.password) {
-    toast.error("Please fill in all fields");
-    return;
-  }
-  try {
-    isRegistering.value = true;
-    const response = await authStore.register(state.value);
-    if (response) {
-      toast.success("Registration successful");
-      router.push({ name: "home" });
+   const response = await authStore.register(state.value);
+   if(response.data){
+    if(route?.query?.redirect){
+      router.push(route.query.redirect);
+    }else {
+      router.push('/dashboard');
     }
-  } catch (error) {
-    if (error && error.status === 422) {
-      toast.error("Registration failed");
-    } else {
-      toast.error("Email already exists. Please try another one");
-    }
-  } finally {
-    isRegistering.value = false;
-  }
+   }
 };
 
-// const countries = ref([]);
-// const selectedCountry = ref(null);
-// const showDropdown = ref(false);
-
-// const toggleDropdown = () => {
-//   showDropdown.value = !showDropdown.value;
-// };
-
-// const selectCountry = (country) => {
-//   selectedCountry.value = country;
-//   showDropdown.value = false;
-// };
-
-// onMounted(fetchCountries);
 </script>

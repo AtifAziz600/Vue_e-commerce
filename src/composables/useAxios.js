@@ -1,7 +1,7 @@
 // src/composables/useAxios.js
 import {ref} from 'vue';
 import axios from 'axios';
-
+import { useToast } from "vue-toastification";
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true,
@@ -13,20 +13,18 @@ export default function useAxios() {
   const error = ref(null);
 
   const sendRequest = async (config, globalLoading = loading) => {
+    const toast = useToast();
     globalLoading.value = true;
     try {
       return await axiosInstance(config);
     } catch (err) {
-      error.value = err;
+      error.value = err.response?.data;
+      toast.info(err.response?.data?.message)
     } finally {
       globalLoading.value = false;
     }
   };
 
-  // Example of using onMounted to perform an action when the component is mounted
-  // onMounted(() => {
-  //   console.log('Component is mounted');
-  // });
 
   return {
     loading,
