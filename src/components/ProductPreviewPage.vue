@@ -19,7 +19,6 @@
               </div>
             </div>
           </div>
-
           <div class="lg:sticky lg:top-24 self-start">
             <div class="space-y-6">
               <div>
@@ -33,18 +32,14 @@
                   <span class="text-sm text-green-600 font-medium">In Stock</span>
                 </div>
               </div>
-
               <div class="space-y-2">
-                <div class="text-gray-700" v-html="product?.description"></div>
                 <div class="text-gray-500 text-sm">SKU: {{ product?.sku || '' }}</div>
               </div>
-
               <div class="flex items-center space-x-4">
                 <div class="text-3xl font-bold text-gray-900">zł {{ product?.discount_price * quantity }}</div>
                 <div v-if="product?.price !== product?.discount_price" class="text-xl text-gray-500 line-through">zł {{
                   product?.price * quantity }}</div>
               </div>
-
               <div v-if="product?.key_features" class="border-t border-b border-gray-200 py-4">
                 <h3 class="font-medium text-lg mb-2">Key Features</h3>
                 <ul class="space-y-2">
@@ -54,7 +49,6 @@
                   </li>
                 </ul>
               </div>
-
               <div class="space-y-4">
                 <div class="flex items-center space-x-4">
                   <div class="flex items-center border border-gray-300 rounded-full">
@@ -73,7 +67,6 @@
                     <span>Add to Cart</span>
                   </button>
                 </div>
-
                 <div class="flex space-x-4">
                   <button @click="wishlistStore.addToWishlist(product)"
                     class="p-3 border border-gray-300 rounded-full hover:bg-gray-50 transition-colors"
@@ -86,7 +79,6 @@
                   </button>
                 </div>
               </div>
-
               <div class="bg-blue-50 p-4 rounded-lg">
                 <div class="flex items-start space-x-3">
                   <Icon icon="material-symbols:security" class="h-6 w-6 text-blue-500 mt-0.5 flex-shrink-0" />
@@ -98,9 +90,7 @@
               </div>
               <div class="mt-8 border border-gray-200 rounded-xl p-6 bg-white shadow-sm">
                 <h3 class="text-xl font-bold mb-4">Shop Information</h3>
-
                 <div class="flex items-start gap-4">
-                  <!-- Shop Logo with Verification Badge -->
                   <div class="relative">
                     <div class="w-20 h-20 rounded-full bg-gray-100 overflow-hidden border-2 border-white shadow-md">
                       <img :src="product?.shop?.logo_url || '/placeholder-shop.jpg'" :alt="product?.shop?.name"
@@ -112,8 +102,6 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- Shop Details -->
                   <div class="flex-1">
                     <div class="flex items-center justify-between">
                       <h4 class="text-lg font-semibold text-gray-900">{{ product?.shop?.name }}</h4>
@@ -123,7 +111,6 @@
                         <Icon icon="mdi:chevron-right" class="ml-1 h-4 w-4" />
                       </RouterLink>
                     </div>
-
                     <div class="flex items-center mt-1 space-x-4">
                       <div class="flex items-center">
                         <Icon icon="mdi:star" class="h-4 w-4 text-yellow-400" />
@@ -189,7 +176,6 @@
             </div>
           </div>
         </div>
-
         <div class="mt-16">
           <div class="border-b border-gray-200">
             <nav class="flex space-x-8">
@@ -199,34 +185,24 @@
               </button>
             </nav>
           </div>
-
           <div class="py-6">
             <div v-show="activeTab === 'description'">
               <div class="prose max-w-none" v-html="product?.description"></div>
             </div>
-
             <div v-show="activeTab === 'specifications'" class="space-y-4">
-              <table class="min-w-full divide-y divide-gray-200">
-                <tbody class="bg-white divide-y divide-gray-200">
-                  <tr v-for="(spec, key) in product?.specifications" :key="key">
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 bg-gray-50">{{ key }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ spec }}</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div class="prose max-none" v-html="product?.specification"></div>
             </div>
-
             <div v-show="activeTab === 'reviews'" class="space-y-8">
-              <GiveReview :product-id="product?.id" />
+              <GiveReview :product-id="product?.id" :product-name="product?.title" />
               <div v-if="product?.reviews && product.reviews.length > 0">
                 <div v-for="review in product.reviews" :key="review.id"
                   class="border-b border-gray-200 pb-6 last:border-0">
                   <div class="flex items-center space-x-3">
                     <div class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
-                      <span class="text-gray-600">{{ review.user_name.charAt(0).toUpperCase() }}</span>
+                      <span class="text-gray-600">{{ review.name }}</span>
                     </div>
                     <div>
-                      <h4 class="font-medium">{{ review.user_name }}</h4>
+                      <h4 class="font-medium">{{ review.name }}</h4>
                       <div class="flex items-center">
                         <div class="flex">
                           <svg v-for="i in 5" :key="i" class="h-4 w-4"
@@ -243,23 +219,17 @@
                   <p class="mt-2 text-gray-700">{{ review.comment }}</p>
                 </div>
               </div>
-              <div v-else class="text-center py-8 text-gray-500">
-                No reviews yet. Be the first to review!
-              </div>
-            </div>
 
+            </div>
             <div v-show="activeTab === 'shipping'" class="prose max-w-none" v-html="product?.shipping_return"></div>
           </div>
         </div>
-
-
         <div class="mt-16">
           <h3 class="text-2xl font-bold mb-6">You may also like</h3>
           <div class="w-full h-full">
             <RelatedProduct :data="product?.relatedProducts" />
           </div>
         </div>
-
         <div class="mt-16">
           <h3 class="text-2xl font-bold mb-6">Also more Product related to the shop</h3>
           <div class="w-full h-full">

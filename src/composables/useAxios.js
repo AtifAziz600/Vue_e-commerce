@@ -19,7 +19,7 @@ export default function useAxios() {
       return await axiosInstance(config);
     } catch (err) {
       error.value = err.response?.data;
-      toast.info(err.response?.data?.message)
+      toast.error(err.response?.data?.message)
     } finally {
       globalLoading.value = false;
     }

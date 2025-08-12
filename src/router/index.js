@@ -85,7 +85,7 @@ const router = createRouter({
       component: ProductPreviewPage,
     },
     {
-      path: "/review",
+      path: "/reviews",
       name: "review",
       component: () => import("../views/Review/Review.vue"),
     },

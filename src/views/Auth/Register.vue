@@ -41,7 +41,7 @@
           >Password</label>
           <input :type="showPassword ? 'text' : 'password'" id="password" v-model="state.password"
           :class="{'border-red-500': authStore?.error?.errors?.password, 'border-gray-300': !authStore?.error?.errors?.email}"  
-          placeholder="Enter Password"
+          placeholder="Enter Your Password"
             class="bg-white/60 border border-gray-300 rounded-lg px-4 py-2 w-full shadow-inner focus:outline-none focus:ring-2 focus:ring-deepMaroon text-gray-800" />
           <Icon :icon="showPassword ? 'ri:eye-close-line' : 'ri:eye-2-line'"
             class="absolute top-8 right-3 text-gray-500 cursor-pointer h-5 w-5" @click="showPassword = !showPassword" />

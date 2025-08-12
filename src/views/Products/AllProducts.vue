@@ -5,7 +5,6 @@
         <div class="text-gray-700 text-sm pt-6">
           <p>{{ filteredProducts.length }} results</p>
         </div>
-
         <div class="flex items-center gap-3 pt-6">
           <label for="sort-by" class="text-gray-700 text-sm">Sort by:</label>
           <div class="relative">
@@ -28,7 +27,6 @@
         </div>
       </div>
     </div>
-
     <div class="max-w-full mx-auto py-4 pt-8">
       <div class="flex flex-col md:flex-row gap-6">
         <aside class="hidden md:block w-64 space-y-6">
@@ -47,7 +45,6 @@
                 <span>zł{{ priceRange[1] }}</span>
               </div>
             </div>
-
             <div class="mb-6">
               <h3 class="font-semibold text-gray-700 mb-3">Discount</h3>
               <div class="space-y-2">
@@ -68,7 +65,6 @@
                 </label>
               </div>
             </div>
-
             <div class="mb-6">
               <h3 class="font-semibold text-gray-700 mb-3">Customer Rating</h3>
               <div class="space-y-2">
@@ -83,14 +79,11 @@
                 </label>
               </div>
             </div>
-
-
             <button @click="resetFilters" class="mt-4 text-deepMaroon text-sm font-medium hover:underline">
               Reset all filters
             </button>
           </div>
         </aside>
-
         <transition name="slide">
           <div v-if="isSidebarOpen" class="fixed inset-0 z-50 bg-black bg-opacity-50 flex md:hidden">
             <div class="w-4/5 max-w-sm bg-white h-full overflow-y-auto" @click.stop>
@@ -100,7 +93,6 @@
                   <Icon icon="mdi:close" class="h-6 w-6 text-gray-500" />
                 </button>
               </div>
-
               <div class="p-4 space-y-6">
                 <div>
                   <h3 class="font-semibold text-gray-700 mb-3">Price Range</h3>
@@ -255,7 +247,6 @@
           </div>
         </div>
       </div>
-      {{ }}
     </div>
   </AppLayout>
 </template>
@@ -359,8 +350,6 @@ function resetFilters() {
 }
 
 function handleBuyNow(item) {
-    console.log('Shipping Charge:', item.shop?.shipping_charge);
-  console.log('Shipping Charge 2:', item.shop?.shipping_charge2);
   const checkoutProduct = {
     id: item.id,
     product_id: item.id,
