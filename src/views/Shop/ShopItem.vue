@@ -107,7 +107,8 @@ import { useToast } from "vue-toastification";
 import { onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import useAxios from "@/composables/useAxios.js";
-
+import { useCartStore } from "../../stores/useCartStore";
+const cart = useCartStore();
 const toast = useToast();
 const router = useRouter();
 const route = useRoute();
@@ -138,8 +139,6 @@ onMounted(() => {
   fetchShopWithProducts();
 });
 
-import { useCartStore } from "../../stores/useCartStore";
-const cart = useCartStore();
 
 function handleAddToCart(item) {
     console.log('Shipping Charge:', item.shipping_charge);

@@ -72,7 +72,7 @@
         </div>
         <p class="text-sm text-gray-600 text-center">
           Don’t have an account? 
-          <RouterLink :to="`/register?redirect=/${route.query?.redirect}`" class="text-deepMaroon font-medium hover:underline ml-1">Create one</RouterLink>
+          <RouterLink :to="route.query.redirect ? `/register?redirect=${route.query.redirect}` : '/register'" class="text-deepMaroon font-medium hover:underline ml-1">Create one</RouterLink>
         </p>
       </div>
       <div class="hidden lg:block w-1/2">

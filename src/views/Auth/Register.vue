@@ -87,7 +87,7 @@
         </div>
         <p class="text-sm text-gray-600 text-center">
           Already have an account?
-          <RouterLink to="/login" class="text-deepMaroon hover:text-secondysButton font-medium hover:underline ml-1">
+          <RouterLink :to="route.query.redirect ? `/login?redirect=${route.query.redirect}` : '/login'" class="text-deepMaroon hover:text-secondysButton font-medium hover:underline ml-1">
             Login Here</RouterLink>
         </p>
       </div>

@@ -5,7 +5,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           <div class="space-y-4">
             <div class="relative rounded-xl overflow-hidden bg-white shadow-lg border border-gray-100 aspect-square">
-              <img :src="product?.cover_image_url" :alt="product?.title"
+              <InnerImageZoom :src="product?.cover_image_url" :alt="product?.title"
                 class="w-full h-full object-contain transition-transform duration-500 hover:scale-105" />
               <div v-if="product?.discount_percentage"
                 class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
@@ -15,7 +15,7 @@
             <div class="grid grid-cols-4 gap-3">
               <div v-for="(image, index) in product?.images" :key="index"
                 class="cursor-pointer border rounded-lg overflow-hidden bg-white aspect-square">
-                <img :src="image" :alt="`${product?.title} thumbnail ${index}`" class="w-full h-full object-cover" />
+                <img :src="image.full_url" class="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -253,6 +253,8 @@ import { useSingleProductStore } from "../stores/useSingleProductStore";
 import GiveReview from "@/views/Review/GiveReview.vue";
 import RelatedProduct from "./RelatedProduct.vue";
 import RelatedShopPorduct from "./RelatedShopPorduct.vue";
+import InnerImageZoom from "vue-inner-image-zoom";
+import "vue-inner-image-zoom/lib/vue-inner-image-zoom.css";
 const route = useRoute();
 const router = useRouter();
 const toast = useToast();

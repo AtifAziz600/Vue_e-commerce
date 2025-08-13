@@ -173,7 +173,28 @@
         <div class="flex-1 w-full">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">New Releases</h2>
           <p class="text-sm text-gray-500 mb-6">Check all the products here</p>
-
+        <div v-if="productApiStore.loading" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div v-for="i in 5" :key="i" class="bg-white rounded-xl shadow-sm overflow-hidden animate-pulse">
+        <div class="bg-gray-200 h-48 w-full"></div>
+        <div class="p-4 space-y-2">
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div class="h-3 bg-gray-200 rounded w-full"></div>
+        </div>
+      </div>
+    </div>
+       <div v-else-if="productApiStore.products.length === 0" class="bg-white rounded-lg p-8 text-center">
+            <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 class="text-lg font-medium text-gray-900 mb-1">No products found</h3>
+            <p class="text-sm text-gray-500 mb-4">There are not product here</p>
+          </div>
+     <div v-else-if="productApiStore.loading === 0" class="bg-white rounded-lg p-8 text-center">
+            <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+            <h3 class="text-lg font-medium text-gray-900 mb-1">No products found</h3>
+            <p class="text-sm text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
+            <button @click="resetFilters" class="text-deepMaroon text-sm font-medium hover:underline">
+              Reset all filters
+            </button>
+          </div>
           <div v-if="filteredProducts.length > 0" class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
             <div v-for="item in filteredProducts" :key="item.id"
               class="relative bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 group overflow-hidden">
@@ -181,7 +202,6 @@
                 class="absolute top-3 left-3 bg-discountColor text-gray-900 text-xs font-bold px-2 py-1 rounded-full z-10">
                 -{{ calculateDiscountPercentage(item.price, item.discount_price) }}%
               </div>
-
               <RouterLink :to="`/product/${item.slug}`"
                 class="block w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden relative">
                 <img :src="item.cover_image_url" :alt="item.title"
@@ -236,15 +256,7 @@
               </div>
             </div>
           </div>
-
-          <div v-else class="bg-white rounded-lg p-8 text-center">
-            <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 class="text-lg font-medium text-gray-900 mb-1">No products found</h3>
-            <p class="text-sm text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
-            <button @click="resetFilters" class="text-deepMaroon text-sm font-medium hover:underline">
-              Reset all filters
-            </button>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -258,6 +270,8 @@ import { useToast } from 'vue-toastification';
 import { Icon } from '@iconify/vue';
 import { useApiProductStore } from '../../stores/useApiProductStore';
 import { useCartStore } from '../../stores/useCartStore';
+import Loading from '@/components/Layouts/Loading.vue';
+import useAxios from "@/composables/useAxios.js";
 const router = useRouter();
 const toast = useToast();
 const productApiStore = useApiProductStore();
@@ -268,7 +282,7 @@ const priceRange = ref([0, 1000000000000]);
 const discountFilter = ref([]);
 const ratingFilter = ref([]);
 const categoryFilter = ref([]);
-
+const {loading} = useAxios()
 onMounted(async () => {
   await productApiStore.fetchProducts();
   categories.value = [...new Set(productApiStore.products.map(p => ({
@@ -286,8 +300,10 @@ const maxPrice = computed(() => {
 });
 
 const categories = ref([]);
-
+const isLoading = ref(false);
 const filteredProducts = computed(() => {
+  isLoading.value = true;
+  try{
   let products = [...productApiStore.products];
   products = products.filter(p => {
     const price = p.discount_price || p.price || 0;
@@ -327,6 +343,9 @@ const filteredProducts = computed(() => {
   }
 
   return products;
+  } finally {
+    isLoading.value = false;
+  }
 });
 
 function calculateDiscountPercentage(originalPrice, discountPrice) {
@@ -397,6 +416,7 @@ function handleAddToCart(item) {
 
   toast.success(`${item.title} added to cart`);
 }
+
 </script>
 
 <style scoped>

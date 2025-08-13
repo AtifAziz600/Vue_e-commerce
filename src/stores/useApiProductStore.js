@@ -12,7 +12,7 @@ export const useApiProductStore = defineStore("productApiStore", {
     async fetchProducts() {
       this.loading = true;
       try {
-        const { sendRequest } = useAxios();
+        const { sendRequest, loading } = useAxios();
         const response = await sendRequest({
           url: '/public/product',
           params: {},

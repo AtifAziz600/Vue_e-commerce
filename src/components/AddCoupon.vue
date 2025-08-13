@@ -52,6 +52,7 @@
 import { ref } from 'vue'
 import { useToast } from 'vue-toastification'
 import { useCouponCode } from "../stores/useCouponCode"
+import LoadingButton from './LoadingButton.vue'
 const toast = useToast()
 
 const enteredCode = ref('')

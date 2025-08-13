@@ -257,7 +257,33 @@
         <div class="flex-1 w-full">
           <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-1">{{ products?.category }}</h2>
           <p class="text-sm text-gray-500 mb-6">Check all the products here</p>
-          
+    <div v-if="isLoading" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+      <div v-for="i in 5" :key="i" class="bg-white rounded-xl shadow-sm overflow-hidden animate-pulse">
+        <div class="bg-gray-200 h-48 w-full"></div>
+        <div class="p-4 space-y-2">
+          <div class="h-4 bg-gray-200 rounded w-3/4"></div>
+          <div class="h-3 bg-gray-200 rounded w-full"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div v-else-if="!products?.data?.length" class="bg-white rounded-lg p-8 text-center">
+      <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+      <h3 class="text-lg font-medium text-gray-900 mb-1">No products available</h3>
+      <p class="text-sm text-gray-500 mb-4">There are currently no products in this category.</p>
+    </div>
+    
+    <div v-else-if="filteredProducts.length === 0" class="bg-white rounded-lg p-8 text-center">
+      <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
+      <h3 class="text-lg font-medium text-gray-900 mb-1">No products match your filters</h3>
+      <p class="text-sm text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
+      <button 
+        @click="resetFilters"
+        class="text-deepMaroon text-sm font-medium hover:underline"
+      >
+        Reset all filters
+      </button>
+    </div>
           <div v-if="filteredProducts.length > 0" class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
             <div
               v-for="item in filteredProducts"
@@ -344,17 +370,6 @@
             </div>
           </div>
           
-          <div v-else class="bg-white rounded-lg p-8 text-center">
-            <Icon icon="mdi:package-variant-remove" class="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 class="text-lg font-medium text-gray-900 mb-1">No products found</h3>
-            <p class="text-sm text-gray-500 mb-4">Try adjusting your filters to find what you're looking for.</p>
-            <button 
-              @click="resetFilters"
-              class="text-deepMaroon text-sm font-medium hover:underline"
-            >
-              Reset all filters
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -380,8 +395,10 @@ const priceRange = ref([0, 100000000000000000]);
 const discountFilter = ref([]);
 const ratingFilter = ref([]);
 const products = ref(null);
-
+const isLoading = ref(true);
 onMounted(async () => {
+  isLoading.value = true;
+  try{
   const res = await sendRequest({
     url: `product?category=${route.params.slug}`,
     method: "GET",
@@ -397,6 +414,11 @@ onMounted(async () => {
       ];
     }
   }
+} catch(error) {
+  console.log("Error fecthig data", error)
+} finally {
+  isLoading.value = false;
+}
 });
 
 const minPrice = computed(() => {
