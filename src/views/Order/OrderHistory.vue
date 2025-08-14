@@ -73,7 +73,7 @@
                   </dd>
                 </dl>
                 <div class="w-full grid sm:grid-cols-2 lg:flex lg:w-96 lg:items-center lg:justify-end gap-4">
-                  <button v-if="
+                  <!-- <button v-if="
                     order.order_status === 'Pre-order' ||
                     order.order_status === 'In transit'
                   " type="button" @click="handleCancel"
@@ -83,12 +83,12 @@
                   <RouterLink type="button" @click="handleOrder"
                     class="w-full rounded-lg border border-green-700 px-3 py-2 text-center text-sm font-medium text-green-700 hover:bg-green-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-green-300 transition">
                     Order Again
-                  </RouterLink>
+                  </RouterLink> -->
                   <RouterLink :to="`/order-detail/${id}`"  @click="handleViewDetails"
                     class="w-full rounded-lg border border-blue-700 px-3 py-2 text-center text-sm font-medium text-blue-700 hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
                     View Details
                   </RouterLink>
-                  <RouterLink @click="handleRefunds" :to="{
+                  <!-- <RouterLink @click="handleRefunds" :to="{
                     path: '/refund-order',
                     query: {
                       orderId: order.order_code,
@@ -101,7 +101,7 @@
                   }"
                     class="w-full rounded-lg border border-slate-700 px-3 py-2 text-center text-sm font-medium text-primarysButton hover:bg-secondysButton hover:text-white focus:outline-none focus:ring-4 focus:ring-secondysButton transition">
                     Refund Order
-                  </RouterLink>
+                  </RouterLink> -->
                 </div>
               </div>
             </div>

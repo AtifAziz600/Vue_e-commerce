@@ -119,9 +119,9 @@ if (route.query.items) {
 }
 
 const customerName = ref(route.query.customer_name || "Customer");
-const estimatedDelivery = ref("3-5 Business Days");
+const estimatedDelivery = ref("1-2 Business Days");
 const deliveryAddress = ref(route.query.customer_address || "N/A");
-const paymentMethod = ref(orderStore.paymentMethod || "Credit Card");
+const paymentMethod = ref(orderStore.paymentMethod || "Stripe");
 
 const subtotal = ref(route.query.subtotal);
 const shipping = ref(route.query.shipping);

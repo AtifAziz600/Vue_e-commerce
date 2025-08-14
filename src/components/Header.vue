@@ -257,7 +257,7 @@
           </div>
         </div>
         <div class="flex items-center gap-4 transition-all duration-300" :class="isHeaderShrunk ? 'py-1' : 'py-2'">
-          <RouterLink to="/all-products"
+          <RouterLink to="/new-release"
             class="cursor-pointer rounded-full py-1 px-2 text-sm font-medium hover:bg-gray-100">
             New Release
           </RouterLink>

@@ -5,7 +5,7 @@
         <h2 class="text-xl sm:text-2xl font-semibold text-black">
           Catch Low Prices in Each Category
           <a
-            href="/all-products"
+            href="/new-release"
             class="text-xs text-blue-950 font-semibold hover:text-blue-900"
             >See more</a
           >

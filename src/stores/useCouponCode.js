@@ -1,46 +1,29 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import useAxios from '@/composables/useAxios'
+import { ref, computed } from 'vue'
 
 export const useCouponCode = defineStore('couponCode', () => {
   const appliedCoupon = ref(null)
-  const discountAmount = ref(0)
-  const { sendRequest } = useAxios()
 
-  async function applyCoupon(code, cartTotal) {
-    try {
-      const response = await sendRequest({
-        method: 'POST',
-        url: '/coupon',  
-        data: {
-          code: code.trim(),
-          cart_total: cartTotal,
-        },
-      })
+  const discountAmount = computed(() => {
+    if (!appliedCoupon.value) return 0
+    if (appliedCoupon.value === 'SAVE10') return 0.1 
+    if (appliedCoupon.value === 'WELCOME') return 5   
+    if (appliedCoupon.value === 'FREESHIP') return 0  
+    return 0
+  })
 
-      if (response?.data?.discount_amount !== undefined) {
-        appliedCoupon.value = code.trim()
-        discountAmount.value = response.data.discount_amount
-        return true
-      } else {
-        throw new Error('Invalid response from server')
-      }
-    } catch (error) {
-      appliedCoupon.value = null
-      discountAmount.value = 0
-      throw error
-    }
+  const applyCoupon = (code) => {
+    appliedCoupon.value = code
   }
 
-  function clearCoupon() {
+  const clearCoupon = () => {
     appliedCoupon.value = null
-    discountAmount.value = 0
   }
 
   return {
     appliedCoupon,
     discountAmount,
     applyCoupon,
-    clearCoupon,
+    clearCoupon
   }
 })

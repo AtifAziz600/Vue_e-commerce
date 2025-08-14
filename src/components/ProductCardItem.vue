@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="flex justify-center">
-        <RouterLink to="/all-products" class="text-blue-800 hover:underline hover:text-blue-900 text-sm cursor-pointer">See More</RouterLink>
+        <RouterLink to="/new-release" class="text-blue-800 hover:underline hover:text-blue-900 text-sm cursor-pointer">See More</RouterLink>
       </div>
     </div>
     <div class="bg-white/60 backdrop-blur-xl p-4 shadow-md border border-gray-200">
@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="flex justify-center mb-1">
-        <RouterLink to="/all-products" class="text-blue-800 hover:underline hover:text-blue-900 text-sm cursor-pointer">See More</RouterLink>
+        <RouterLink to="/new-release" class="text-blue-800 hover:underline hover:text-blue-900 text-sm cursor-pointer">See More</RouterLink>
       </div>
     </div>
 

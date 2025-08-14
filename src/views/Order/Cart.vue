@@ -266,7 +266,7 @@ const form = ref({
   name: computed(() => authStore?.user?.user?.name),
   email: computed(() => authStore?.user?.user?.email),
   phone: computed(() => authStore?.user?.user?.phone),
-  country: authStore?.user?.country ?? "",
+  country: authStore?.user?.country ?? "Poland",
   state: "",
   city: "",
   zip_code: "",

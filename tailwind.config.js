@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        raleway: ['Raleway', 'sans-serif'],
       },
       colors: {
         primarysButton: '#8A0000',

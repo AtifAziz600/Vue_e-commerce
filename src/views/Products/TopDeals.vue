@@ -13,7 +13,7 @@
 
     <div class="grid grid-cols-2 lg:grid-cols-4 px-2 py-2 gap-2">
       <div
-        v-for="item in productApiStore.products.slice(4, 12)"
+        v-for="item in productApiStore.topSellers"
         :key="item.id"
         class="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 bg-white group border border-gray-100 hover:border-red-200"
       >
@@ -109,7 +109,7 @@ const cart = useCartStore();
 const productApiStore = useApiProductStore();
 
 onMounted(async () => {
-  await productApiStore.fetchProducts();
+  await productApiStore.fetchTopSellers();
 });
 function calculateDiscountPercentage(originalPrice, discountPrice) {
   if (!originalPrice || !discountPrice) return 0;

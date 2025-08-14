@@ -118,7 +118,7 @@
             </div>
             <h3 class="text-lg font-medium text-gray-900 mb-1">No orders yet</h3>
             <p class="text-gray-500 max-w-md mx-auto">Your order history will appear here once you make purchases.</p>
-            <RouterLink to="/products" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-deepMaroon hover:bg-blue-700 focus:outline-none">
+            <RouterLink to="/" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-deepMaroon hover:bg-secondysButton focus:outline-none">
               Start Shopping
             </RouterLink>
           </div>

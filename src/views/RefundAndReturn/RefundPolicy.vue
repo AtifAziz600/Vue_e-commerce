@@ -1,231 +1,105 @@
 <template>
   <AppLayout>
-    <section
-      class="relative mt-0 sm:mt-6 bg-gradient-to-br from-gray-50 to-white min-h-screen"
-    >
-      <div
-        class="w-full mx-auto bg-white/90 backdrop-blur-sm border border-gray-200 shadow-lg rounded-lg p-6 sm:p-8 lg:p-10 space-y-8 sm:space-y-10"
-      >
-        <div>
-          <h1
-            class="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight"
-          >
-            Return & Refund Policy
+    <section class="bg-gray-50 py-8 sm:py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-8">
+          <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-3">
+            Refund Policy
           </h1>
-          <p class="mt-3 text-sm sm:text-base text-gray-600 leading-relaxed">
-            At APAGOR, we are committed to providing a unique and
-            <span class="text-gray-800 font-semibold"
-              >satisfying purchase experience.</span
-            >
-            We ensure the
-            <span class="text-gray-800 font-semibold"
-              >highest quality and reliability</span
-            >
-            in all our products. However, in rare cases, returns or refunds may
-            be necessary. Please review our policy below.
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Shop with confidence at <span class="text-brand-600 font-semibold">APAGOR</span>. 
+            We stand behind every purchase with our hassle-free Refund policy.
           </p>
         </div>
 
-        <hr class="border-gray-200 w-full" />
+        <div class="gap-6 mb-10">
 
-        <div>
-          <h2
-            class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-5"
-          >
-            Return Policy
-          </h2>
-          <ul class="space-y-4 text-gray-700">
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >1.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Necessitatibus architecto excepturi culpa omnis consectetur
-                ducimus voluptas quos quisquam temporibus sequi!
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >2.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Similique possimus harum quos debitis cumque qui praesentium!
-                Eveniet, provident. Beatae, iure!
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >3.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repellendus in voluptates ducimus unde, nesciunt impedit
-                repellat iste corrupti maxime qui.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >4.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Suscipit totam vitae nam ad voluptatem sint voluptatum
-                voluptatibus et, veniam aut.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >5.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
-                tempora ipsum necessitatibus explicabo tenetur voluptatum
-                mollitia esse debitis eum quis.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >6.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut ea,
-                sit nam a ratione rerum laudantium tenetur obcaecati expedita
-                modi?
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >7.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Expedita deserunt quasi amet harum voluptate, placeat omnis
-                dignissimos laboriosam distinctio tempora.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >8.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam
-                reiciendis nulla animi fugit tempore, ex harum eveniet delectus
-                esse eum.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >9.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Accusamus tempora animi libero numquam ut. Cupiditate id cum
-                vitae vero accusantium?
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >10.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi
-                eum repudiandae natus necessitatibus! Est delectus dolores aut
-                ipsum, earum hic?
-              </p>
-            </li>
-          </ul>
+
         </div>
 
-        <hr class="border-gray-200" />
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div class="p-6 border-b border-gray-200">
+            <div class="flex items-start">
+              <div class="bg-blue-100 p-2 rounded-lg mr-4 mt-1">
+                <Icon icon="material-symbols:broken-image-outline-rounded" class="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Unboxing Picture Requirement</h3>
+                <p class="text-gray-600 mb-3">To protect both buyers and sellers, we require  Picture documentation for warranty claims:</p>
+                <ul class="space-y-2 text-gray-700 pl-1">
+                  <li class="flex items-start">
+                    <span class="text-gray-500 mr-2">•</span>
+                    <span>The Image the unboxing from sealed package to product inspection</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-gray-500 mr-2">•</span>
+                    <span>Clearly show any damage or defects</span>
+                  </li>
+                  <li class="flex items-start">
+                    <span class="text-gray-500 mr-2">•</span>
+                    <span>Upload to Google Drive/Dropbox and share link in your claim</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-        <div>
-          <h2
-            class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-5"
-          >
-            Mandatory Unboxing Video for Any Return/Warranty Claim
-          </h2>
-          <ul class="space-y-4 text-gray-700">
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >1.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae blanditiis suscipit velit. Asperiores quidem,
-                ratione adipisci soluta nesciunt beatae quibusdam.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >2.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Consequatur ipsa quos magnam officiis ratione, minima optio modi
-                veniam est laudantium.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >3.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum
-                repellendus culpa quia deleniti in ad incidunt labore est
-                consequuntur ipsa!
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >4.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
-                dolorem fuga debitis sequi. Tempore aspernatur veritatis sed
-                culpa laborum qui.
-              </p>
-            </li>
-            <li class="flex items-start gap-3">
-              <span
-                class="text-base font-semibold text-gray-700 mt-0.5 min-w-[20px] text-right"
-                >5.</span
-              >
-              <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                Voluptatum, suscipit ullam. Repellendus repellat voluptate totam
-                culpa odio, at laboriosam natus!
-              </p>
-            </li>
-          </ul>
+          <div class="p-6">
+            <h3 class="text-lg font-semibold text-gray-800 mb-4">How to Return an Item</h3>
+            <div class="space-y-6">
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center h-8 w-8 rounded-full bg-brand-100 text-brand-600 font-bold">1</div>
+                </div>
+                <div>
+                  <h4 class="text-md font-medium text-gray-800">Initiate Return</h4>
+                  <p class="mt-1 text-gray-600">Go to "My Orders" and select "Return Item" within 30 days of delivery.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center h-8 w-8 rounded-full bg-brand-100 text-brand-600 font-bold">2</div>
+                </div>
+                <div>
+                  <h4 class="text-md font-medium text-gray-800">Pack Securely</h4>
+                  <p class="mt-1 text-gray-600">Include all original packaging and accessories. Attach the return label.</p>
+                </div>
+              </div>
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center h-8 w-8 rounded-full bg-brand-100 text-brand-600 font-bold">3</div>
+                </div>
+                <div>
+                  <h4 class="text-md font-medium text-gray-800">Ship Back</h4>
+                  <p class="mt-1 text-gray-600">Drop off at any authorized carrier location. Keep your tracking number.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="pt-4 text-center text-gray-600 text-sm sm:text-base">
-          <p>
-            For any questions regarding our return and refund policy, please
-            <a href="/contact" class="text-deepMaroon hover:underline"
-              >contact us</a
-            >.
-          </p>
-          <p class="mt-2 text-xs sm:text-sm text-gray-500">
-            APAGOR reserves the right to amend this policy at any time without
-            prior notice.
-          </p>
+        <div class="mt-10 flex flex-wrap justify-center gap-6">
+          <div class="flex items-center">
+           <Icon class="w-6 h-6 text-green-500 mb-2" icon="material-symbols:check-rounded"/>
+            <span class="text-sm font-medium text-gray-700">Buyer Protection</span>
+          </div>
+          <div class="flex items-center">
+           <Icon class="h-6 w-6 text-blue-500 mr-2" icon="material-symbols:security" />
+            <span class="text-sm font-medium text-gray-700">Secure Payments</span>
+          </div>
+          <div class="flex items-center">
+            <Icon icon="solar:wallet-money-bold" class="h-6 w-6 text-orange-500 mr-2" />
+            <span class="text-sm font-medium text-gray-700">Money Back Guarantee</span>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center bg-brand-50 rounded-lg p-6">
+          <h3 class="text-lg font-medium text-gray-900 mb-3">Need help with a return?</h3>
+          <p class="text-gray-600 mb-4">Our customer service team is available 24/7.</p>
+          <a href="/contact" class="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-black bg-brand-600 hover:bg-brand-700 transition-colors">
+            Contact Support
+            <Icon icon="material-symbols:line-end-arrow-notch" width="24" height="24" />
+          </a>
         </div>
       </div>
     </section>
@@ -233,7 +107,6 @@
 </template>
 
 <script setup>
+import { Icon } from "@iconify/vue";
 import AppLayout from "../../components/Layouts/AppLayout.vue";
 </script>
-
-<style scoped></style>

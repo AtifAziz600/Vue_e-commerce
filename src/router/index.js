@@ -70,9 +70,9 @@ const router = createRouter({
       component: () => import("../views/Order/OrderCancel.vue"),
     },
     {
-      path: "/all-products",
-      name: "all-products",
-      component: () => import("../views/Products/AllProducts.vue"),
+      path: "/new-release",
+      name: "new-release",
+      component: () => import("../views/Products/NewRelease.vue"),
     },
     {
       path: "/add-coupon-code",
@@ -105,9 +105,24 @@ const router = createRouter({
       component: () => import("../views/About/About.vue"),
     },
     {
-      path: "/refund",
-      name: "refund",
+      path: "/contact",
+      name: "contact-us",
+      component: () => import("../views/ContactUs/ContactUs.vue"),
+    },
+    {
+      path: "/support",
+      name: "support-us",
+      component: () => import("../views/SupportUs/SupportUs.vue"),
+    },
+    {
+      path: "/refund-policy",
+      name: "refund-policy",
       component: () => import("../views/RefundAndReturn/RefundPolicy.vue"),
+    },
+    {
+      path: "/return-policy",
+      name: "return-policy",
+      component: () => import("../views/RefundAndReturn/ReturnPolicy.vue"),
     },
     {
       path: "/refund-order",
@@ -143,6 +158,11 @@ const router = createRouter({
       path: "/shop/:slug",
       name: "SingleShop",
       component: () => import("../views/Shop/ShopItem.vue")
+    },
+    {
+      path: "/all-product",
+      name: "AllProduct",
+      component: () => import("../views/Products/AllProduct.vue"),
     }
   ],
 });

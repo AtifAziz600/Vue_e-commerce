@@ -6,7 +6,7 @@
           Discover Our New Products
 
           <a
-            href="/all-products"
+            href="/new-release"
             class="text-xs text-blue-950 font-semibold hover:text-blue-900"
             >See more</a
           >
